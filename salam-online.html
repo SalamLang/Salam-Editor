@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="fa-IR">
-
 <head>
 	<title>Salam Programming Language</title>
 	<meta charset="UTF-8">
@@ -8,20 +7,17 @@
 	<link rel="stylesheet" href="./style.css">
 	<link rel="shortcut icon" href="salam_logo.png" type="image/x-icon">
 </head>
-
 <body>
 	<textarea id="code"></textarea>
 	<button id="execute" disabled="true">اجرا</button>
 	<iframe></iframe>
-
+	<pre></pre> <!-- این تگ به کد اضافه شد -->
 	<script>
 		let $ = document
 		const codeTextArea = $.querySelector('#code');
 		const executeButton = $.querySelector('#execute');
 		const outputPre = $.querySelector('pre');
 		const iframe = $.querySelector('iframe');
-		const CloseIfreame = $.querySelector(".close_ifream")
-
 
 		codeTextArea.addEventListener('keydown', function (event) {
 			if (event.key === 'Tab') {
@@ -113,5 +109,4 @@
 		document.body.appendChild(script);
 	</script>
 </body>
-
 </html>
