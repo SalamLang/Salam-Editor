@@ -1,0 +1,47 @@
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Deploy and Run Commands via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            cd ${{ secrets.SERVER_PATH }}
+            git fetch --all
+            git pull
+
+            # Create a random variable for unique clone directory
+            variable=cache$RANDOM
+            echo "Cloning repository to: clone-${variable}"
+            git clone https://github.com/SalamLang/Salam-Editor clone-${variable}
+            cd clone-${variable}
+            
+            # Run the WebAssembly build script
+            echo "Running build-webassembly.sh..."
+            bash build-webassembly.sh
+            
+            # Check if the WebAssembly files were built and copy them
+            if [ -f "salam-wa.wasm" ] && [ -f "salam-wa.js" ]; then
+              echo "Copying salam-wa.wasm and salam-wa.js to the parent directory."
+              cp salam-wa.wasm ../
+              cp salam-wa.js ../
+            else
+              echo "salam-wa.wasm or salam-wa.js not found. Skipping."
+            fi
+            
+            # Cleanup cloned directory
+            cd ..
+            rm -rf clone-${variable}
+            echo "Cleanup completed: clone-${variable} removed."
