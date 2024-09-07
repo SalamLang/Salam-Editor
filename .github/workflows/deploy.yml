@@ -27,6 +27,7 @@ jobs:
             echo "Cloning repository to: clone-${variable}"
             git clone https://github.com/SalamLang/Salam-Editor clone-${variable}
             cd clone-${variable}
+            cd src
             
             # Run the WebAssembly build script
             echo "Running build-webassembly.sh..."
@@ -35,13 +36,13 @@ jobs:
             # Check if the WebAssembly files were built and copy them
             if [ -f "salam-wa.wasm" ] && [ -f "salam-wa.js" ]; then
               echo "Copying salam-wa.wasm and salam-wa.js to the parent directory."
-              cp salam-wa.wasm ../
-              cp salam-wa.js ../
+              cp salam-wa.wasm ../../
+              cp salam-wa.js ../../
             else
               echo "salam-wa.wasm or salam-wa.js not found. Skipping."
             fi
             
             # Cleanup cloned directory
-            cd ..
+            cd ../..
             rm -rf clone-${variable}
             echo "Cleanup completed: clone-${variable} removed."
