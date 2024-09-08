@@ -78,7 +78,6 @@ function runSalam() {
 
     if (isReady) {
         captureOutput(args);
-        iframe.style.right = 0
     } else {
         console.log('Salam runtime not ready. Please wait...');
     }
@@ -86,6 +85,15 @@ function runSalam() {
 
 executeButton.addEventListener('click', () => {
     runSalam();
+    if (codeTextArea.value !== null && codeTextArea.value !== "") {
+        if (executeButton.innerHTML === "اجرا") {
+            iframe.style.right = "50%"
+            executeButton.innerHTML = "بازگشت"
+        } else if (executeButton.innerHTML === "بازگشت") {
+            iframe.style.right = "150%"
+            executeButton.innerHTML = "اجرا"
+        }
+    }
 });
 
 const script = document.createElement('script');
