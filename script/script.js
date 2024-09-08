@@ -3,7 +3,7 @@ const executeButton = document.querySelector('#execute');
 const outputPre = document.querySelector('pre');
 const iframe = document.querySelector('iframe');
 
-if(localStorage.getItem("cache-code")){
+if (localStorage.getItem("cache-code")) {
     codeTextArea.value = localStorage.getItem("cache-code")
 }
 
@@ -30,7 +30,7 @@ var Module = {
     }
 };
 
-function captureOutput(showOutput, arguments) {
+const captureOutput = (showOutput, arguments) => {
     if (showOutput === true) {
         if (iframe.style.right === "50%") {
             iframe.style.right = "150%"
@@ -70,7 +70,7 @@ function captureOutput(showOutput, arguments) {
     return output;
 }
 
-function runSalam(showOutput) {
+const runSalam = (showOutput) => {
     console.log('Running Salam code...');
     const code = codeTextArea.value.toString().trim();
 
@@ -89,15 +89,16 @@ function runSalam(showOutput) {
     }
 }
 
+// Events
 executeButton.addEventListener('click', () => {
     console.log('Button clicked!');
     runSalam(true);
 });
 
-codeTextArea.addEventListener('keydown', function (event) {
+codeTextArea.addEventListener('keydown', (event) => {
     if (event.key === 'Tab') {
         event.preventDefault();
-        const textarea = this;
+        const textarea = event.target;
         const start = textarea.selectionStart;
         const end = textarea.selectionEnd;
         textarea.value = textarea.value.substring(0, start) + '\t' + textarea.value.substring(end);
