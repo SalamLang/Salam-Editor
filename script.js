@@ -3,6 +3,9 @@ const codeTextArea = $.querySelector('#code');
 const executeButton = $.querySelector('#execute');
 const outputPre = $.querySelector('pre');
 const iframe = $.querySelector('iframe');
+const toggleBtn = $.getElementById('toggleBtn');
+
+let status = 0
 
 codeTextArea.addEventListener('keydown', function (event) {
     if (event.key === 'Tab') {
@@ -84,15 +87,43 @@ function runSalam() {
 }
 
 executeButton.addEventListener('click', () => {
-    runSalam();
-    if (codeTextArea.value !== null && codeTextArea.value !== "") {
-        if (executeButton.innerHTML === "اجرا") {
-            iframe.style.right = "50%"
-            executeButton.innerHTML = "بازگشت"
-        } else if (executeButton.innerHTML === "بازگشت") {
-            iframe.style.right = "150%"
-            executeButton.innerHTML = "اجرا"
+    if (status === 0) {
+        runSalam();
+        if (codeTextArea.value !== null && codeTextArea.value !== "") {
+            if (executeButton.innerHTML === "اجرا") {
+                iframe.style.right = "50%"
+                executeButton.innerHTML = "بازگشت"
+            } else if (executeButton.innerHTML === "بازگشت") {
+                iframe.style.right = "150%"
+                executeButton.innerHTML = "اجرا"
+            }
         }
+    }
+});
+
+if (status === 1) {
+    codeTextArea.addEventListener("input", function () {
+        runSalam();
+    })
+}
+
+toggleBtn.addEventListener('change', function () {
+    if (this.checked) {
+        status = 1
+        $.querySelector("header").style.width = "49%"
+        codeTextArea.style.width = "49%"
+        document.body.style.alignItems = "start"
+        iframe.style.right = "75%"
+        iframe.style.height = "calc(100% - 20px)"
+        iframe.style.width = "49%"
+    } else {
+        status = 0
+        $.querySelector("header").style.width = "98%"
+        codeTextArea.style.width = "98%"
+        document.body.style.alignItems = "center"
+        iframe.style.right = "150%"
+        iframe.style.height = "calc(100% - 99px)"
+        iframe.style.width = "98%"
     }
 });
 
