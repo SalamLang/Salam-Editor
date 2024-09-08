@@ -11,6 +11,7 @@
 <body>
 	<header>
 		<button id="execute" disabled="true">اجرا</button>
+		<a href="./index.exe" download="true" id="download">دانلود نرم افزار</a>
 	</header>
 	<textarea id="code"></textarea>
 	<iframe></iframe>
@@ -21,6 +22,14 @@
 		const executeButton = document.querySelector('#execute');
 		const outputPre = document.querySelector('pre');
 		const iframe = document.querySelector('iframe');
+
+		if(localStorage.getItem("code")){
+			codeTextArea.value = localStorage.getItem("code")
+		}
+
+		codeTextArea.addEventListener("input", function () {
+			localStorage.setItem("code", codeTextArea.value);
+		})
 
 		const args = ['code', ''];
 		let isReady = false;

@@ -75,6 +75,27 @@ body {
 	cursor: pointer;
 }
 
+#download {
+	min-width: 50px;
+	padding-inline: 10px;
+	height: 50px;
+	border-radius: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 0;
+	background-color: #D1FF6E;
+	color: rgb(0, 0, 0);
+	font-size: 16px;
+	cursor: pointer;
+	text-decoration: none;
+	opacity: 0;
+	transition: all 1000ms;
+}
+#download:hover{
+	opacity: 1;
+}
+
 iframe {
 	width: 98%;
 	height: calc(100% - 99px);
