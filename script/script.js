@@ -20,24 +20,27 @@ var Module = {
         console.log('Salam loaded successfully');
         isReady = true;
         executeButton.disabled = false;
-        
-        // if (codeTextArea.value.toString().trim() !== '') {
-        //     runSalam();
-        // }
+
+        if (codeTextArea.value.toString().trim() !== '') {
+            runSalam(false);
+        }
     },
     print: (text) => {
         console.log(text);
     }
 };
 
-function captureOutput(arguments) {
-    if (iframe.style.right === "50%") {
-        iframe.style.right = "150%"
-    } else if (iframe.style.right === "150%") {
-        iframe.style.right = "50%"
-    } else {
-        iframe.style.right = "50%"
+function captureOutput(showOutput, arguments) {
+    if (showOutput === true) {
+        if (iframe.style.right === "50%") {
+            iframe.style.right = "150%"
+        } else if (iframe.style.right === "150%") {
+            iframe.style.right = "50%"
+        } else {
+            iframe.style.right = "50%"
+        }
     }
+    
     if (outputPre) {
         outputPre.textContent = '';
     }
@@ -67,7 +70,7 @@ function captureOutput(arguments) {
     return output;
 }
 
-function runSalam() {
+function runSalam(showOutput) {
     console.log('Running Salam code...');
     const code = codeTextArea.value.toString().trim();
 
@@ -80,7 +83,7 @@ function runSalam() {
     console.log('Calling Salam with arguments:', args);
 
     if (isReady) {
-        captureOutput(args);
+        captureOutput(showOutput, args);
     } else {
         console.log('Salam runtime not ready. Please wait...');
     }
@@ -88,7 +91,7 @@ function runSalam() {
 
 executeButton.addEventListener('click', () => {
     console.log('Button clicked!');
-    runSalam();
+    runSalam(true);
 });
 
 codeTextArea.addEventListener('keydown', function (event) {
