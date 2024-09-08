@@ -21,34 +21,3 @@ jobs:
             cd ${{ secrets.SERVER_PATH }}
             git fetch --all
             git pull
-
-            # Create a random variable for unique clone directory
-            variable=cache$RANDOM
-            echo "Cloning repository to: clone-${variable}"
-            git clone https://github.com/SalamLang/Salam clone-${variable}
-            cd clone-${variable}
-            cd src
-            
-            # Run the WebAssembly build script
-            echo "Running build-webassembly.sh..."
-            bash build-webassembly.sh
-            
-            # Check if the WebAssembly files were built and copy them
-            if [ -f "salam-wa.wasm" ] && [ -f "salam-wa.js" ]; then
-              echo "Copying salam-wa.wasm and salam-wa.js to the parent directory."
-              cp salam-wa.wasm ../../
-              cp salam-wa.js ../../
-            else
-              echo "salam-wa.wasm or salam-wa.js not found. Skipping."
-            fi
-            
-            # Cleanup cloned directory
-            cd ../..
-            rm -rf clone-${variable}
-            echo "Cleanup completed: clone-${variable} removed."
-
-            # Add, commit, and push changes
-            cd ${{ secrets.SERVER_PATH }}
-            git add salam-wa.wasm salam-wa.js
-            git commit -m "Automated commit of WebAssembly build artifacts"
-            git push
