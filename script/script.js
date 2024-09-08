@@ -130,7 +130,6 @@ script.type = 'text/javascript';
 script.src = 'salam/salam-wa.js';
 document.body.appendChild(script);
 
-/*
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js')
     .then(() => {
@@ -140,4 +139,3 @@ if ('serviceWorker' in navigator) {
         console.log('Service Worker Registration Failed:', error);
     });
 }
-*/
