@@ -98,7 +98,7 @@ executeButton.addEventListener('click', () => {
 
 const script = document.createElement('script');
 script.type = 'text/javascript';
-script.src = 'salam-wa.js';
+script.src = 'salam/salam-wa.js';
 document.body.appendChild(script);
 
 /*

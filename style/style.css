@@ -1,0 +1,160 @@
+@font-face {
+	font-family: "estedad";
+	font-weight: 100;
+	src: url("../font/Estedad-Thin.ttf");
+}
+
+@font-face {
+	font-family: "estedad";
+	font-weight: 300;
+	src: url("../font/Estedad-Light.ttf");
+}
+
+@font-face {
+	font-family: "estedad";
+	font-weight: 400;
+	src: url("../font/Estedad-Medium.ttf");
+}
+
+@font-face {
+	font-family: "estedad";
+	font-weight: 700;
+	src: url("../font/Estedad-Bold.ttf");
+}
+
+@font-face {
+	font-family: "estedad";
+	font-weight: 900;
+	src: url("../font/Estedad-Black.ttf");
+}
+
+* {
+	box-sizing: border-box;
+	direction: rtl;
+	font-family: "estedad", sans-serif;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	overflow: hidden;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+	flex-direction: column;
+}
+
+#code {
+	width: 98%;
+	height: calc(100vh - 80px);
+	margin-bottom: 10px;
+	background-color: #ff620027;
+	border-radius: 20px;
+	border: 0;
+	padding: 15px;
+	font-size: 19px;
+	outline: 0;
+	resize: none;
+}
+
+#execute {
+	min-width: 50px;
+	padding-inline: 10px;
+	height: 50px;
+	border-radius: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 0;
+	background-color: #FF6100;
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+iframe {
+	width: 98%;
+	height: calc(100% - 99px);
+	position: fixed;
+	bottom: 10px;
+	right: 150%;
+	transform: translateX(50%);
+	transition: all 500ms;
+	border: 0;
+	outline: 0;
+	background-color: white;
+	border: 1px solid #FF6100;
+	border-radius: 15px;
+	box-shadow: 0 0 20px -10px #FF6100;
+}
+
+pre {
+	display: none;
+}
+
+header {
+	height: 70px;
+	width: 98%;
+	border-radius: 20px;
+	display: flex;
+	justify-content: space-between;
+	padding-inline: 10px;
+	align-items: center;
+	background-color: #ff620021;
+	margin-top: 10px;
+}
+
+header>div:nth-child(2) {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+  
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ff620027;
+	transition: .4s;
+	border-radius: 34px;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	transition: .4s;
+	border-radius: 50%;
+}
+
+input:checked + .slider {
+	background-color: #ff6200;
+}
+
+input:checked + .slider:before {
+	transform: translateX(26px);
+}
