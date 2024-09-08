@@ -100,13 +100,11 @@ executeButton.addEventListener('click', () => {
         }
     }
 });
-
-if (status === 1) {
-    codeTextArea.addEventListener("input", function () {
-        runSalam();
-    })
-}
-
+codeTextArea.addEventListener("input", function () {
+    if(status === 1){
+        runSalam()
+    }
+})
 toggleBtn.addEventListener('change', function () {
     if (this.checked) {
         status = 1
