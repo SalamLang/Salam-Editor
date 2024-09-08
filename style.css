@@ -85,3 +85,7 @@ iframe {
     outline: 0;
     background-color: white;
 }
+
+pre{
+    display: none;
+}
