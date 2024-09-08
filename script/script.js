@@ -20,10 +20,10 @@ var Module = {
         console.log('Salam loaded successfully');
         isReady = true;
         executeButton.disabled = false;
-
-        if (codeTextArea.value.toString().trim() !== '') {
-            runSalam();
-        }
+        
+        // if (codeTextArea.value.toString().trim() !== '') {
+        //     runSalam();
+        // }
     },
     print: (text) => {
         console.log(text);
@@ -104,7 +104,7 @@ codeTextArea.addEventListener('keydown', function (event) {
 
 const script = document.createElement('script');
 script.type = 'text/javascript';
-script.src = 'salam-wa.js';
+script.src = 'salam/salam-wa.js';
 document.body.appendChild(script);
 
 if ('serviceWorker' in navigator) {
