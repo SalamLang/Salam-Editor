@@ -23,12 +23,12 @@
 		const outputPre = document.querySelector('pre');
 		const iframe = document.querySelector('iframe');
 
-		if(localStorage.getItem("code")){
-			codeTextArea.value = localStorage.getItem("code")
+		if(localStorage.getItem("cache-code")){
+			codeTextArea.value = localStorage.getItem("cache-code")
 		}
 
 		codeTextArea.addEventListener("input", function () {
-			localStorage.setItem("code", codeTextArea.value);
+			localStorage.setItem("cache-code", codeTextArea.value);
 		})
 
 		const args = ['code', ''];
