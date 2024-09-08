@@ -1,22 +1,15 @@
-let $ = document
-const codeTextArea = $.querySelector('#code');
-const executeButton = $.querySelector('#execute');
-const outputPre = $.querySelector('pre');
-const iframe = $.querySelector('iframe');
-const toggleBtn = $.getElementById('toggleBtn');
+const codeTextArea = document.querySelector('#code');
+const executeButton = document.querySelector('#execute');
+const outputPre = document.querySelector('pre');
+const iframe = document.querySelector('iframe');
 
-let status = 0
+if(localStorage.getItem("cache-code")){
+    codeTextArea.value = localStorage.getItem("cache-code")
+}
 
-codeTextArea.addEventListener('keydown', function (event) {
-    if (event.key === 'Tab') {
-        event.preventDefault();
-        const textarea = this;
-        const start = textarea.selectionStart;
-        const end = textarea.selectionEnd;
-        textarea.value = textarea.value.substring(0, start) + '\t' + textarea.value.substring(end);
-        textarea.selectionStart = textarea.selectionEnd = start + 1;
-    }
-});
+codeTextArea.addEventListener("input", function () {
+    localStorage.setItem("cache-code", codeTextArea.value);
+})
 
 const args = ['code', ''];
 let isReady = false;
@@ -38,6 +31,13 @@ var Module = {
 };
 
 function captureOutput(arguments) {
+    if (iframe.style.right === "50%") {
+        iframe.style.right = "150%"
+    } else if (iframe.style.right === "150%") {
+        iframe.style.right = "50%"
+    } else {
+        iframe.style.right = "50%"
+    }
     if (outputPre) {
         outputPre.textContent = '';
     }
@@ -87,52 +87,28 @@ function runSalam() {
 }
 
 executeButton.addEventListener('click', () => {
-    if (status === 0) {
-        runSalam();
-        if (codeTextArea.value !== null && codeTextArea.value !== "") {
-            if (executeButton.innerHTML === "اجرا") {
-                iframe.style.right = "50%"
-                executeButton.innerHTML = "بازگشت"
-            } else if (executeButton.innerHTML === "بازگشت") {
-                iframe.style.right = "150%"
-                executeButton.innerHTML = "اجرا"
-            }
-        }
-    }
+    console.log('Button clicked!');
+    runSalam();
 });
-codeTextArea.addEventListener("input", function () {
-    if(status === 1){
-        runSalam()
-    }
-})
-toggleBtn.addEventListener('change', function () {
-    if (this.checked) {
-        status = 1
-        $.querySelector("header").style.width = "49%"
-        codeTextArea.style.width = "49%"
-        document.body.style.alignItems = "start"
-        iframe.style.right = "75%"
-        iframe.style.height = "calc(100% - 20px)"
-        iframe.style.width = "49%"
-    } else {
-        status = 0
-        $.querySelector("header").style.width = "98%"
-        codeTextArea.style.width = "98%"
-        document.body.style.alignItems = "center"
-        iframe.style.right = "150%"
-        iframe.style.height = "calc(100% - 99px)"
-        iframe.style.width = "98%"
+
+codeTextArea.addEventListener('keydown', function (event) {
+    if (event.key === 'Tab') {
+        event.preventDefault();
+        const textarea = this;
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        textarea.value = textarea.value.substring(0, start) + '\t' + textarea.value.substring(end);
+        textarea.selectionStart = textarea.selectionEnd = start + 1;
     }
 });
 
 const script = document.createElement('script');
 script.type = 'text/javascript';
-script.src = 'salam/salam-wa.js';
+script.src = 'salam-wa.js';
 document.body.appendChild(script);
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
-    .then(() => {
+    navigator.serviceWorker.register('/service-worker.js').then(() => {
         console.log('Service Worker Registered');
     })
     .catch(error => {
