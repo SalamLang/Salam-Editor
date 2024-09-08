@@ -43,12 +43,13 @@ jobs:
             fi
             
             # Cleanup cloned directory
-            cd ../..
+            cd ../../
             rm -rf clone-${variable}
             echo "Cleanup completed: clone-${variable} removed."
 
             # Add, commit, and push changes
-            cd ${{ secrets.SERVER_PATH }}
+            ls -al
+            git status
             git add salam-wa.wasm salam-wa.js
             git commit -m "Automated commit of WebAssembly build artifacts"
             git push
