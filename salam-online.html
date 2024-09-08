@@ -42,11 +42,11 @@
 		};
 
 		function captureOutput(arguments) {
-			if(iframe.style.right === "50%"){
+			if (iframe.style.right === "50%") {
 				iframe.style.right = "150%"
-			}else if(iframe.style.right === "150%"){
+			} else if (iframe.style.right === "150%") {
 				iframe.style.right = "50%"
-			}else {
+			} else {
 				iframe.style.right = "50%"
 			}
 			if (outputPre) {
@@ -102,15 +102,14 @@
 			runSalam();
 		});
 
-		codeTextArea.addEventListener('keydown', (e) => {
-			if (e.key === 'Tab') {
-				e.preventDefault();
-				const start = codeTextArea.selectionStart;
-				const end = codeTextArea.selectionEnd;
-
-				codeTextArea.value = codeTextArea.value.substring(0, start) + '	' + codeTextArea.value.substring(end);
-
-				codeTextArea.selectionStart = codeTextArea.selectionEnd = start + 4;
+		codeTextArea.addEventListener('keydown', function (event) {
+			if (event.key === 'Tab') {
+				event.preventDefault();
+				const textarea = this;
+				const start = textarea.selectionStart;
+				const end = textarea.selectionEnd;
+				textarea.value = textarea.value.substring(0, start) + '\t' + textarea.value.substring(end);
+				textarea.selectionStart = textarea.selectionEnd = start + 1;
 			}
 		});
 
