@@ -42,6 +42,11 @@ const displayOutput = (text) => {
 const displayError = (text) => {
     console.error("Error: ", text);
 
+    // TODO: Ignore keepRuntimeAlive() warning
+    if (text === "program exited (with status: 2), but keepRuntimeAlive() is set (counter=0) due to an async operation, so halting execution but not exiting the runtime or preventing further async execution (you can use emscripten_force_exit, if you want to force a true shutdown)") {
+        return;
+    }
+
     elm_error.textContent += text + '<br>';
 };
 
