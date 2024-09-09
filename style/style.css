@@ -38,7 +38,7 @@ img {
 	max-width: 100%;
 }
 
-body, input, textarea, select {
+body, input, textarea, select, button {
 	font-family: "estedad", sans-serif;
 }
 
