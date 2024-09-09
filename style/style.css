@@ -47,7 +47,7 @@ body {
 	flex-direction: column;
 }
 
-#code {
+.code {
 	width: 98%;
 	height: calc(100vh - 80px);
 	margin-bottom: 10px;
@@ -60,7 +60,7 @@ body {
 	resize: none;
 }
 
-#execute {
+.execute {
 	min-width: 50px;
 	padding-inline: 10px;
 	height: 50px;
@@ -75,7 +75,7 @@ body {
 	cursor: pointer;
 }
 
-#download {
+.download {
 	min-width: 50px;
 	padding-inline: 10px;
 	height: 50px;
@@ -92,11 +92,11 @@ body {
 	opacity: 0;
 	transition: all 1000ms;
 }
-#download:hover{
+.download:hover{
 	opacity: 1;
 }
 
-iframe {
+.iframe {
 	width: 98%;
 	height: calc(100% - 99px);
 	position: fixed;
@@ -112,7 +112,7 @@ iframe {
 	box-shadow: 0 0 20px -10px #FF6100;
 }
 
-pre {
+.output, .error {
 	display: none;
 }
 
@@ -128,7 +128,7 @@ header {
 	margin-top: 10px;
 }
 
-header>div:nth-child(2) {
+header > div:nth-child(2) {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -141,7 +141,7 @@ header>div:nth-child(2) {
 	width: 60px;
 	height: 34px;
 }
-  
+
 .switch input {
 	opacity: 0;
 	width: 0;
