@@ -82,7 +82,7 @@ const captureOutput = (showOutput, arguments) => {
     elm_error.textContent = '';
 
     try {
-        const exitCode = callMain(args);
+        const exitCode = callMain(arguments);
 
         if (exitCode !== 0) {
             const errorMessage = 'برنامه با خطا مواجه شد';
@@ -114,14 +114,14 @@ const runSalam = (showOutput) => {
         return;
     }
 
-    const args = ['code', code];
+    const arguments = ['code', code];
 
     if (!isReady) {
         console.log('Salam runtime not ready. Please wait...');
         return;
     }
 
-    captureOutput(showOutput, args);
+    captureOutput(showOutput, arguments);
 };
 
 // Events
