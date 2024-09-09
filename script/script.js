@@ -6,7 +6,6 @@ const elm_error = document.querySelector('.error');
 const elm_iframe = document.querySelector('.iframe');
 
 // Const variables
-const args = ['code', ''];
 
 // Variables
 let isReady = false;
@@ -74,8 +73,8 @@ const runSalam = (showOutput) => {
 		alert('Code is empty! Please enter Salam code.');
 		return;
 	}
-
-	args[1] = code;
+	
+	const args = ['code', code];
 
 	if (!isReady) {
 		console.log('Salam runtime not ready. Please wait...');
