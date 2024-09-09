@@ -21,41 +21,41 @@ var Module = {
 		elm_execute.disabled = !isReady;
 	},
 	print: (text) => {
-		console.log(text);
+		displayOutput(text);
+	},
+	printErr: (text) => {
+		displayError(text);
 	},
 };
 
 // Functions
+const displayOutput = (text) => {
+    elm_output.textContent += text + '\n';
+};
+
+const displayError = (text) => {
+    elm_error.textContent += text + '\n';
+};
+
+const toggleIframePosition = () => {
+	if (elm_iframe.style.right === "50%") {
+		elm_iframe.style.right = "150%";
+	} else {
+		elm_iframe.style.right = "50%";
+	}
+};
+
 const captureOutput = (showOutput, arguments) => {
 	console.log("Capture Output: ", arguments);
 	
-	if (showOutput === true) {
-		if (elm_iframe.style.right === "50%") {
-			elm_iframe.style.right = "150%";
-		} else if (elm_iframe.style.right === "150%") {
-			elm_iframe.style.right = "50%";
-		} else {
-			elm_iframe.style.right = "50%";
-		}
+	if (showOutput) {
+		toggleIframePosition();
 	}
 
 	elm_output.textContent = '';
-
-	let output = '';
-	const originalConsoleLog = console.log;
-	console.log = (text) => output += text + '\n';
-
-	let error = '';
-	const originalConsoleError = console.error;
-	console.error = (text) => error += text + '\n';
+	elm_error.textContent = '';
 
 	callMain(arguments);
-
-	console.log = originalConsoleLog;
-	console.error = originalConsoleError;
-
-	elm_output.textContent = output;
-	elm_error.textContent = error;
 
 	const iframeDocument = elm_iframe.contentDocument || elm_iframe.contentWindow.document;
 	if (iframeDocument) {
