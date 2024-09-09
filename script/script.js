@@ -45,6 +45,15 @@ const toggleIframePosition = () => {
 	}
 };
 
+const showErrorInIframe = (errorMessage) => {
+    const iframeDocument = elm_iframe.contentDocument || elm_iframe.contentWindow.document;
+    if (iframeDocument) {
+        iframeDocument.open();
+        iframeDocument.write(`<div style="color: red; font-weight: bold;">خطا: ${errorMessage}</div>`);
+        iframeDocument.close();
+    }
+};
+
 const captureOutput = (showOutput, arguments) => {
 	console.log("Capture Output: ", arguments);
 	
@@ -55,12 +64,25 @@ const captureOutput = (showOutput, arguments) => {
 	elm_output.textContent = '';
 	elm_error.textContent = '';
 
+	try {
+		const exitCode = callMain(args);
+		
+		if (exitCode !== 0) {
+			const errorMessage = 'برنامه با خطا مواجه شد';
+			displayError(errorMessage);
+			showErrorInIframe(errorMessage);
+		}
+	} catch (err) {
+		const errorMessage = 'خطای غیرمنتظره رخ داد';
+		displayError(errorMessage);
+		showErrorInIframe(errorMessage);
+	}
 	callMain(arguments);
 
 	const iframeDocument = elm_iframe.contentDocument || elm_iframe.contentWindow.document;
 	if (iframeDocument) {
 		iframeDocument.open();
-		iframeDocument.write(output);
+		iframeDocument.write(elm_output.textContent);
 		iframeDocument.close();
 	}
 };
