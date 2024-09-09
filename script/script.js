@@ -95,8 +95,6 @@ const captureOutput = (showOutput, arguments) => {
                 iframeDocument.close();
             }
         }
-        
-        Module._emscripten_force_exit(exitCode);
     } catch (err) {
         console.error(err);
         
