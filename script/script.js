@@ -99,7 +99,7 @@ const captureOutput = (showOutput, arguments) => {
             }
         }
         
-        emscripten_force_exit(exitCode);
+        Module.emscripten_force_exit(exitCode);
     } catch (err) {
         console.error(err);
         
