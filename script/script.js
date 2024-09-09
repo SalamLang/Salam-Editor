@@ -57,14 +57,14 @@ const getIframeContent = (iframe) => {
     return iframe.contentDocument || iframe.contentWindow.document;
 };
 
-const showErrorInIframe = (errorMessage) => {
+const showErrorInIframe = () => {
     const iframeDocument = getIframeContent(elm_iframe);
     if (iframeDocument) {
         iframeDocument.open();
         iframeDocument.write(`<!DOCTYPE html>
 <html dir="rtl" lang="fa-IR">
     <body>
-        <div style="color: red; font-weight: bold;">خطا: ${errorMessage}</div>
+        <div style="color: red; font-weight: bold;">خطا: ${elm_error.textContent}</div>
     </body>
 </html>`);
         iframeDocument.close();
@@ -85,9 +85,8 @@ const captureOutput = (showOutput, arguments) => {
         const exitCode = callMain(arguments);
 
         if (exitCode !== 0) {
-            const errorMessage = 'برنامه با خطا مواجه شد';
-            displayError(errorMessage);
-            showErrorInIframe(errorMessage);
+            elm_error.textContent = 'برنامه با خطا مواجه شد: ' + elm_error.textContent;
+            showErrorInIframe();
         } else {
             const iframeDocument = getIframeContent(elm_iframe);
             if (iframeDocument) {
@@ -99,9 +98,8 @@ const captureOutput = (showOutput, arguments) => {
     } catch (err) {
         console.error(err);
         
-        const errorMessage = 'خطای غیرمنتظره رخ داد';
-        displayError(errorMessage);
-        showErrorInIframe(errorMessage);
+        elm_error.textContent = 'خطای غیرمنتظره رخ داد';
+        showErrorInIframe();
     }
 };
 
