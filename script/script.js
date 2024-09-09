@@ -19,7 +19,11 @@ var Module = {
         isReady = true;
 
         elm_execute.disabled = !isReady;
-    },
+
+        if (elm_code.value !== '') {
+            runSalam(false);
+        }
+},
     print: (text) => {
         displayOutput(text);
     },
@@ -141,10 +145,6 @@ window.addEventListener('load', () => {
 
     if (localStorage.getItem("cache-code")) {
         elm_code.value = localStorage.getItem("cache-code").toString().trim();
-
-        if (elm_code.value !== '') {
-            runSalam(false);
-        }
     }
 });
 
