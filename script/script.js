@@ -28,6 +28,8 @@ var Module = {
 
 // Functions
 const captureOutput = (showOutput, arguments) => {
+	console.log("Capture Output: ", arguments);
+	
 	if (showOutput === true) {
 		if (elm_iframe.style.right === "50%") {
 			elm_iframe.style.right = "150%";
