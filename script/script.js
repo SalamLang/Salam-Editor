@@ -30,9 +30,6 @@ var Module = {
     printErr: (text) => {
         displayError(text);
     },
-    emscripten_force_exit: (exitCode) => {
-        Module._emscripten_force_exit(exitCode);
-    },
 };
 
 // Functions
@@ -99,7 +96,7 @@ const captureOutput = (showOutput, arguments) => {
             }
         }
         
-        Module.emscripten_force_exit(exitCode);
+        Module._emscripten_force_exit(exitCode);
     } catch (err) {
         console.error(err);
         
