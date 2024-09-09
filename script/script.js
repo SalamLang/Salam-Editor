@@ -8,21 +8,23 @@ const elm_iframe = document.querySelector('.iframe');
 // Const variables
 const args = ['code', ''];
 
+// Variables
+let isReady = false;
+
 // Global variables
 var Module = {
 	noInitialRun: true,
 	onRuntimeInitialized: () => {
 		console.log('Salam loaded successfully');
+		
 		isReady = true;
-		elm_execute.disabled = false;
+		
+		elm_execute.disabled = !isReady;
 	},
 	print: (text) => {
 		console.log(text);
 	},
 };
-
-// Variables
-let isReady = false;
 
 // Functions
 const captureOutput = (showOutput, arguments) => {
