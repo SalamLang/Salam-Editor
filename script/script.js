@@ -90,7 +90,7 @@ const captureOutput = (showOutput, arguments) => {
         const exitCode = callMain(arguments);
 
         if (exitCode !== 0) {
-            elm_error.innerHTML = 'برنامه با خطا مواجه شد:<br>' + elm_error.textContent;
+            elm_error.innerHTML = 'برنامه با خطا مواجه شد.<br>' + elm_error.textContent;
             showErrorInIframe();
         } else {
             const iframeDocument = getIframeContent(elm_iframe);
@@ -103,7 +103,7 @@ const captureOutput = (showOutput, arguments) => {
     } catch (err) {
         console.error(err);
         
-        elm_error.textContent = 'خطای غیرمنتظره رخ داد';
+        elm_error.textContent = 'خطای غیرمنتظره رخ داد.';
         showErrorInIframe();
     }
 };
