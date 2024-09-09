@@ -69,7 +69,7 @@ const showErrorInIframe = () => {
         iframeDocument.write(`<!DOCTYPE html>
 <html dir="rtl" lang="fa-IR">
     <body>
-        <div style="color: red; font-weight: bold;">خطا: ${elm_error.innerHTML}</div>
+        <div style="color: red; font-weight: bold;"><b>خطا:</b> ${elm_error.innerHTML}</div>
     </body>
 </html>`);
         iframeDocument.close();
