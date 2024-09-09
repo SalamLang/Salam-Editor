@@ -34,7 +34,7 @@ const displayOutput = (text) => {
 };
 
 const displayError = (text) => {
-    elm_error.textContent += text + '\n';
+    elm_error.textContent += text + '<br>';
 };
 
 const toggleIframePosition = () => {
@@ -45,11 +45,20 @@ const toggleIframePosition = () => {
     }
 };
 
+const getIframeContent = (iframe) => {
+    return iframe.contentDocument || iframe.contentWindow.document;
+};
+
 const showErrorInIframe = (errorMessage) => {
-    const iframeDocument = elm_iframe.contentDocument || elm_iframe.contentWindow.document;
+    const iframeDocument = getIframeContent(elm_iframe);
     if (iframeDocument) {
         iframeDocument.open();
-        iframeDocument.write(`<div style="color: red; font-weight: bold;">خطا: ${errorMessage}</div>`);
+        iframeDocument.write(`<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
+    <body>
+        <div style="color: red; font-weight: bold;">خطا: ${errorMessage}</div>
+    </body>
+</html>`);
         iframeDocument.close();
     }
 };
