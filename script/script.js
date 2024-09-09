@@ -23,7 +23,7 @@ var Module = {
         if (elm_code.value !== '') {
             runSalam(false);
         }
-},
+    },
     print: (text) => {
         displayOutput(text);
     },
@@ -34,10 +34,14 @@ var Module = {
 
 // Functions
 const displayOutput = (text) => {
+    console.log("Output: ", text);
+
     elm_output.textContent += text + '\n';
 };
 
 const displayError = (text) => {
+    console.error("Error: ", text);
+
     elm_error.textContent += text + '<br>';
 };
 
