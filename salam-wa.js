@@ -389,6 +389,8 @@ var __ATPOSTRUN__ = []; // functions called after the main() is called
 
 var runtimeInitialized = false;
 
+var runtimeExited = false;
+
 function preRun() {
   if (Module['preRun']) {
     if (typeof Module['preRun'] == 'function') Module['preRun'] = [Module['preRun']];
@@ -420,6 +422,16 @@ function preMain() {
   callRuntimeCallbacks(__ATMAIN__);
 }
 
+function exitRuntime() {
+  assert(!runtimeExited);
+  checkStackCookie();
+  ___funcs_on_exit(); // Native atexit() functions
+  callRuntimeCallbacks(__ATEXIT__);
+  FS.quit();
+TTY.shutdown();
+  runtimeExited = true;
+}
+
 function postRun() {
   checkStackCookie();
 
@@ -446,6 +458,7 @@ function addOnPreMain(cb) {
 }
 
 function addOnExit(cb) {
+  __ATEXIT__.unshift(cb);
 }
 
 function addOnPostRun(cb) {
@@ -599,6 +612,7 @@ var isFileURI = (filename) => filename.startsWith('file://');
 function createExportWrapper(name, nargs) {
   return (...args) => {
     assert(runtimeInitialized, `native function \`${name}\` called before runtime initialization`);
+    assert(!runtimeExited, `native function \`${name}\` called after runtime exit (use NO_EXIT_RUNTIME to keep it alive after main() exits)`);
     var f = wasmExports[name];
     assert(f, `exported native function \`${name}\` not found`);
     // Only assert for too many arguments. Too few can be valid since the missing arguments will be zero filled.
@@ -914,7 +928,7 @@ function dbg(...args) {
     }
   }
 
-  var noExitRuntime = Module['noExitRuntime'] || true;
+  var noExitRuntime = Module['noExitRuntime'] || false;
 
   var ptrToString = (ptr) => {
       assert(typeof ptr === 'number');
@@ -3867,6 +3881,47 @@ function dbg(...args) {
 
   var __emscripten_memcpy_js = (dest, src, num) => HEAPU8.copyWithin(dest, src, src + num);
 
+  
+  var runtimeKeepaliveCounter = 0;
+  var keepRuntimeAlive = () => noExitRuntime || runtimeKeepaliveCounter > 0;
+  var _proc_exit = (code) => {
+      EXITSTATUS = code;
+      if (!keepRuntimeAlive()) {
+        Module['onExit']?.(code);
+        ABORT = true;
+      }
+      quit_(code, new ExitStatus(code));
+    };
+  
+  /** @suppress {duplicate } */
+  /** @param {boolean|number=} implicit */
+  var exitJS = (status, implicit) => {
+      EXITSTATUS = status;
+  
+      if (!keepRuntimeAlive()) {
+        exitRuntime();
+      }
+  
+      // if exit() was called explicitly, warn the user if the runtime isn't actually being shut down
+      if (keepRuntimeAlive() && !implicit) {
+        var msg = `program exited (with status: ${status}), but keepRuntimeAlive() is set (counter=${runtimeKeepaliveCounter}) due to an async operation, so halting execution but not exiting the runtime or preventing further async execution (you can use emscripten_force_exit, if you want to force a true shutdown)`;
+        err(msg);
+      }
+  
+      _proc_exit(status);
+    };
+  var _exit = exitJS;
+  
+  var __emscripten_runtime_keepalive_clear = () => {
+      noExitRuntime = false;
+      runtimeKeepaliveCounter = 0;
+    };
+  
+  var _emscripten_force_exit = (status) => {
+      __emscripten_runtime_keepalive_clear();
+      _exit(status);
+    };
+
   var getHeapMax = () =>
       // Stay one Wasm page short of 4GB: while e.g. Chrome is able to allocate
       // full 4GB Wasm memories, the size will wrap back to 0 bytes in Wasm side
@@ -4007,34 +4062,6 @@ function dbg(...args) {
       return 0;
     };
 
-  
-  var runtimeKeepaliveCounter = 0;
-  var keepRuntimeAlive = () => noExitRuntime || runtimeKeepaliveCounter > 0;
-  var _proc_exit = (code) => {
-      EXITSTATUS = code;
-      if (!keepRuntimeAlive()) {
-        Module['onExit']?.(code);
-        ABORT = true;
-      }
-      quit_(code, new ExitStatus(code));
-    };
-  
-  /** @suppress {duplicate } */
-  /** @param {boolean|number=} implicit */
-  var exitJS = (status, implicit) => {
-      EXITSTATUS = status;
-  
-      checkUnflushedContent();
-  
-      // if exit() was called explicitly, warn the user if the runtime isn't actually being shut down
-      if (keepRuntimeAlive() && !implicit) {
-        var msg = `program exited (with status: ${status}), but keepRuntimeAlive() is set (counter=${runtimeKeepaliveCounter}) due to an async operation, so halting execution but not exiting the runtime or preventing further async execution (you can use emscripten_force_exit, if you want to force a true shutdown)`;
-        err(msg);
-      }
-  
-      _proc_exit(status);
-    };
-  var _exit = exitJS;
 
   function _fd_close(fd) {
   try {
@@ -4188,6 +4215,8 @@ var wasmImports = {
   /** @export */
   _emscripten_memcpy_js: __emscripten_memcpy_js,
   /** @export */
+  emscripten_force_exit: _emscripten_force_exit,
+  /** @export */
   emscripten_resize_heap: _emscripten_resize_heap,
   /** @export */
   environ_get: _environ_get,
@@ -4207,6 +4236,7 @@ var wasmImports = {
 var wasmExports = createWasm();
 var ___wasm_call_ctors = createExportWrapper('__wasm_call_ctors', 0);
 var _main = Module['_main'] = createExportWrapper('__main_argc_argv', 2);
+var ___funcs_on_exit = createExportWrapper('__funcs_on_exit', 0);
 var _fflush = createExportWrapper('fflush', 1);
 var _strerror = createExportWrapper('strerror', 1);
 var _emscripten_stack_init = () => (_emscripten_stack_init = wasmExports['emscripten_stack_init'])();
@@ -4600,45 +4630,6 @@ function run(args = arguments_) {
     doRun();
   }
   checkStackCookie();
-}
-
-function checkUnflushedContent() {
-  // Compiler settings do not allow exiting the runtime, so flushing
-  // the streams is not possible. but in ASSERTIONS mode we check
-  // if there was something to flush, and if so tell the user they
-  // should request that the runtime be exitable.
-  // Normally we would not even include flush() at all, but in ASSERTIONS
-  // builds we do so just for this check, and here we see if there is any
-  // content to flush, that is, we check if there would have been
-  // something a non-ASSERTIONS build would have not seen.
-  // How we flush the streams depends on whether we are in SYSCALLS_REQUIRE_FILESYSTEM=0
-  // mode (which has its own special function for this; otherwise, all
-  // the code is inside libc)
-  var oldOut = out;
-  var oldErr = err;
-  var has = false;
-  out = err = (x) => {
-    has = true;
-  }
-  try { // it doesn't matter if it fails
-    _fflush(0);
-    // also flush in the JS FS layer
-    ['stdout', 'stderr'].forEach(function(name) {
-      var info = FS.analyzePath('/dev/' + name);
-      if (!info) return;
-      var stream = info.object;
-      var rdev = stream.rdev;
-      var tty = TTY.ttys[rdev];
-      if (tty?.output?.length) {
-        has = true;
-      }
-    });
-  } catch(e) {}
-  out = oldOut;
-  err = oldErr;
-  if (has) {
-    warnOnce('stdio streams had content in them that was not flushed. you should set EXIT_RUNTIME to 1 (see the Emscripten FAQ), or make sure to emit a newline when you printf etc.');
-  }
 }
 
 if (Module['preInit']) {
