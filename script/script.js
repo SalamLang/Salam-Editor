@@ -108,7 +108,7 @@ codeTextArea.addEventListener('keydown', (event) => {
 
 const script = document.createElement('script');
 script.type = 'text/javascript';
-script.src = 'salam/salam-wa.js';
+script.src = 'salam-wa.js';
 document.body.appendChild(script);
 
 if ('serviceWorker' in navigator) {
