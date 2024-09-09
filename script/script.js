@@ -7,6 +7,9 @@ const elm_iframe = document.querySelector('.iframe');
 
 // Const variables
 const args = ['code', ''];
+const DEFAULT_CODE = `صفحه:
+    محتوا = «سلام دنیا»
+تمام`;
 
 // Variables
 let isReady = false;
@@ -106,12 +109,20 @@ elm_code.addEventListener("input", () => {
 });
 
 window.addEventListener('load', () => {
+	let hasCode = false;
+	
 	if (localStorage.getItem("cache-code")) {
 		elm_code.value = localStorage.getItem("cache-code").toString().trim();
 
 		if (elm_code.value !== '') {
+			hasCode = true;
+			
 			runSalam(false);
 		}
+	}
+	
+	if (!hasCode) {
+		elm_code.value = DEFAULT_CODE;
 	}
 });
 
