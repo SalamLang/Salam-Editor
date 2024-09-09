@@ -30,6 +30,9 @@ var Module = {
     printErr: (text) => {
         displayError(text);
     },
+    emscripten_force_exit: (exitCode) => {
+        Module._emscripten_force_exit(exitCode);
+    },
 };
 
 // Functions
