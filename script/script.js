@@ -69,7 +69,7 @@ const showErrorInIframe = () => {
         iframeDocument.write(`<!DOCTYPE html>
 <html dir="rtl" lang="fa-IR">
     <body>
-        <div style="color: red; font-weight: bold;">خطا: ${elm_error.textContent}</div>
+        <div style="color: red; font-weight: bold;">خطا: ${elm_error.innerHTML}</div>
     </body>
 </html>`);
         iframeDocument.close();
@@ -90,7 +90,7 @@ const captureOutput = (showOutput, arguments) => {
         const exitCode = callMain(arguments);
 
         if (exitCode !== 0) {
-            elm_error.textContent = 'برنامه با خطا مواجه شد: ' + elm_error.textContent;
+            elm_error.innerHTML = 'برنامه با خطا مواجه شد:<br>' + elm_error.textContent;
             showErrorInIframe();
         } else {
             const iframeDocument = getIframeContent(elm_iframe);
