@@ -71,19 +71,18 @@ const captureOutput = (showOutput, arguments) => {
 			const errorMessage = 'برنامه با خطا مواجه شد';
 			displayError(errorMessage);
 			showErrorInIframe(errorMessage);
+		} else {
+			const iframeDocument = elm_iframe.contentDocument || elm_iframe.contentWindow.document;
+			if (iframeDocument) {
+				iframeDocument.open();
+				iframeDocument.write(elm_output.textContent);
+				iframeDocument.close();
+			}
 		}
 	} catch (err) {
 		const errorMessage = 'خطای غیرمنتظره رخ داد';
 		displayError(errorMessage);
 		showErrorInIframe(errorMessage);
-	}
-	callMain(arguments);
-
-	const iframeDocument = elm_iframe.contentDocument || elm_iframe.contentWindow.document;
-	if (iframeDocument) {
-		iframeDocument.open();
-		iframeDocument.write(elm_output.textContent);
-		iframeDocument.close();
 	}
 };
 
