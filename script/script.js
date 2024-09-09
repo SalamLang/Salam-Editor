@@ -112,7 +112,7 @@ script.src = 'salam/salam-wa.js';
 document.body.appendChild(script);
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js').then(() => {
+    navigator.serviceWorker.register('/script/service-worker.js').then(() => {
         console.log('Service Worker Registered');
     })
     .catch(error => {
