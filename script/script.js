@@ -5,10 +5,11 @@ const elm_output = document.querySelector('.output');
 const elm_error = document.querySelector('.error');
 const elm_iframe = document.querySelector('.iframe');
 
+// Const variables
 const args = ['code', ''];
-let isReady = false;
 
-const Module = {
+// Global variables
+var Module = {
 	noInitialRun: true,
 	onRuntimeInitialized: () => {
 		console.log('Salam loaded successfully');
@@ -19,6 +20,9 @@ const Module = {
 		console.log(text);
 	},
 };
+
+// Variables
+let isReady = false;
 
 // Functions
 const captureOutput = (showOutput, arguments) => {
