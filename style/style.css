@@ -116,7 +116,7 @@ body {
 	display: none;
 }
 
-header {
+.header {
 	height: 70px;
 	width: 98%;
 	border-radius: 20px;
