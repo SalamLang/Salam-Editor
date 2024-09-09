@@ -89,7 +89,7 @@ const captureOutput = (showOutput, arguments) => {
             displayError(errorMessage);
             showErrorInIframe(errorMessage);
         } else {
-            const iframeDocument = elm_iframe.contentDocument || elm_iframe.contentWindow.document;
+            const iframeDocument = getIframeContent(elm_iframe);
             if (iframeDocument) {
                 iframeDocument.open();
                 iframeDocument.write(elm_output.textContent);
@@ -97,6 +97,8 @@ const captureOutput = (showOutput, arguments) => {
             }
         }
     } catch (err) {
+        console.error(err);
+        
         const errorMessage = 'خطای غیرمنتظره رخ داد';
         displayError(errorMessage);
         showErrorInIframe(errorMessage);
