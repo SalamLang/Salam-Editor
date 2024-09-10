@@ -6,6 +6,7 @@ const elm_error = document.querySelector('.error');
 const elm_iframe = document.querySelector('.iframe');
 const elm_toggle = document.querySelector('#toggleBtn');
 const elm_header = document.querySelector('header');
+const elm_save = document.querySelector('.save');
 
 // Const variables
 
@@ -35,6 +36,22 @@ var Module = {
 };
 
 // Functions
+function getCookie(cookie_name) {
+    var name = cookie_name + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+}
+
 const displayOutput = (text) => {
     console.log("Output: ", text);
 
@@ -206,6 +223,10 @@ elm_toggle.addEventListener("change", () => {
     }
     localStorage.setItem("toggle", toggleStatus)
     togglePosition()
+})
+
+elm_save.addEventListener("click", () => {
+    
 })
 
 // Init
