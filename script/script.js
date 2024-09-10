@@ -11,7 +11,7 @@ const elm_header = document.querySelector('header');
 
 // Variables
 let isReady = false;
-let toggleStatus = 0
+let toggleStatus = 1;
 
 // Global variables
 var Module = {
@@ -24,7 +24,7 @@ var Module = {
         elm_execute.disabled = !isReady;
 
         if (elm_code.value !== '') {
-            runSalam(false);
+            runSalam(false, false);
         }
     },
     print: (text) => {
@@ -91,6 +91,7 @@ const getIframeContent = (iframe) => {
 
 const showErrorInIframe = () => {
     const iframeDocument = getIframeContent(elm_iframe);
+
     if (iframeDocument) {
         iframeDocument.open();
         iframeDocument.write(`<!DOCTYPE html>
@@ -118,9 +119,11 @@ const captureOutput = (showOutput, arguments) => {
 
         if (exitCode !== 0) {
             elm_error.innerHTML = 'برنامه با خطا مواجه شد.<br>' + elm_error.textContent;
+
             showErrorInIframe();
         } else {
             const iframeDocument = getIframeContent(elm_iframe);
+
             if (iframeDocument) {
                 iframeDocument.open();
                 iframeDocument.write(elm_output.textContent);
@@ -131,16 +134,17 @@ const captureOutput = (showOutput, arguments) => {
         console.error(err);
         
         elm_error.textContent = 'خطای غیرمنتظره رخ داد.';
+        
         showErrorInIframe();
     }
 };
 
-const runSalam = (showOutput) => {
+const runSalam = (showOutput, buttonClicked) => {
     console.log('Running Salam code...');
 
     const code = elm_code.value.toString().trim();
-    if (!code) {
-        alert('Code is empty! Please enter Salam code.');
+    if (!code && buttonClicked === true) {
+        alert('کد خالی است لطفا کد های خود را وارد کنید.');
         return;
     }
 
@@ -156,7 +160,7 @@ const runSalam = (showOutput) => {
 
 // Events
 elm_execute.addEventListener('click', () => {
-    runSalam(true);
+    runSalam(true, true);
 });
 
 elm_code.addEventListener('keydown', (event) => {
@@ -175,7 +179,7 @@ elm_code.addEventListener('keydown', (event) => {
 elm_code.addEventListener("input", () => {
     localStorage.setItem("cache-code", elm_code.value.toString().trim());
     if (toggleStatus === 1) {
-        runSalam()
+        runSalam(true, false)
     }
 });
 
