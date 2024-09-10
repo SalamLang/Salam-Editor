@@ -260,7 +260,7 @@ elm_save.addEventListener("click", () => {
         xhr.setRequestHeader('x-xss-protection', '1; mode=block');
         
         xhr.send(JSON.stringify({
-            test: "fb"
+            test: token
         }));        
     }
 })
