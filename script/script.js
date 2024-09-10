@@ -4,11 +4,14 @@ const elm_execute = document.querySelector('.execute');
 const elm_output = document.querySelector('.output');
 const elm_error = document.querySelector('.error');
 const elm_iframe = document.querySelector('.iframe');
+const elm_toggle = document.querySelector('#toggleBtn');
+const elm_header = document.querySelector('header');
 
 // Const variables
 
 // Variables
 let isReady = false;
+let toggleStatus = 0
 
 // Global variables
 var Module = {
@@ -55,6 +58,30 @@ const toggleIframePosition = () => {
         elm_iframe.style.right = "150%";
     } else {
         elm_iframe.style.right = "50%";
+    }
+};
+
+const togglePosition = () => {
+    if(toggleStatus === 1){
+        elm_header.style.width = "49%"
+        elm_code.style.width = "49%"
+        document.body.style.alignItems = "start"
+        document.body.style.paddingRight = "10px"
+        elm_iframe.style.width = "49%"
+        elm_iframe.style.right = "75%"
+        elm_iframe.style.height = "calc(100% - 22px)"
+        elm_execute.disabled = true
+    }else {
+        elm_header.style.width = "98%"
+        elm_code.style.width = "98%"
+        setTimeout(() => {
+            document.body.style.alignItems = "center"
+        }, 300)
+        document.body.style.paddingRight = "0px"
+        elm_iframe.style.width = "98%"
+        elm_iframe.style.right = "150%"
+        elm_iframe.style.height = "calc(100% - 99px)"
+        elm_execute.disabled = false
     }
 };
 
@@ -147,6 +174,9 @@ elm_code.addEventListener('keydown', (event) => {
 
 elm_code.addEventListener("input", () => {
     localStorage.setItem("cache-code", elm_code.value.toString().trim());
+    if (toggleStatus === 1) {
+        runSalam()
+    }
 });
 
 window.addEventListener('load', () => {
@@ -156,6 +186,15 @@ window.addEventListener('load', () => {
         elm_code.value = localStorage.getItem("cache-code").toString().trim();
     }
 });
+
+elm_toggle.addEventListener("change", () => {
+    if (elm_toggle.checked){
+        toggleStatus = 1
+    }else {
+        toggleStatus = 0
+    }
+    togglePosition()
+})
 
 // Init
 const script = document.createElement('script');

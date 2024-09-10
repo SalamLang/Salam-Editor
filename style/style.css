@@ -1,6 +1,7 @@
 * {
 	box-sizing: border-box;
 	direction: rtl;
+	transition: all 300ms;
 }
 
 @font-face {
