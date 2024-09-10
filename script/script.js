@@ -62,7 +62,7 @@ const toggleIframePosition = () => {
 };
 
 const togglePosition = () => {
-    if(toggleStatus === 1){
+    if(toggleStatus === 1) {
         elm_header.style.width = "49%"
         elm_code.style.width = "49%"
         document.body.style.alignItems = "start"
@@ -134,7 +134,7 @@ const captureOutput = (showOutput, arguments) => {
         console.error(err);
         
         elm_error.textContent = 'خطای غیرمنتظره رخ داد.';
-        
+
         showErrorInIframe();
     }
 };
@@ -189,15 +189,17 @@ window.addEventListener('load', () => {
     if (localStorage.getItem("cache-code")) {
         elm_code.value = localStorage.getItem("cache-code").toString().trim();
     }
+
+    togglePosition();
 });
 
 elm_toggle.addEventListener("change", () => {
-    if (elm_toggle.checked){
-        toggleStatus = 1
+    if (elm_toggle.checked) {
+        toggleStatus = 1;
     }else {
-        toggleStatus = 0
+        toggleStatus = 0;
     }
-    togglePosition()
+    togglePosition();
 })
 
 // Init
