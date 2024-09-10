@@ -241,7 +241,7 @@ elm_save.addEventListener("click", () => {
             console.log(xhr.response);
             
         }
-
+        xhr.setRequestHeader('Content-type', 'application/json');
         xhr.open("POST", APP_URL + "/api/v1/verify_token");
         xhr.send(JSON.stringify({
             token: token
