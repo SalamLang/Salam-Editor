@@ -7,6 +7,7 @@ const elm_iframe = document.querySelector('.iframe');
 const elm_toggle = document.querySelector('#toggleBtn');
 const elm_header = document.querySelector('header');
 const elm_save = document.querySelector('.save');
+const APP_URL = "https://api.salamlang.ir"
 
 // Const variables
 
@@ -42,14 +43,14 @@ function getCookie(cookie_name) {
     var name = cookie_name + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
     }
     return "";
 }
@@ -80,7 +81,7 @@ const toggleIframePosition = () => {
 };
 
 const togglePosition = () => {
-    if(toggleStatus === 1){
+    if (toggleStatus === 1) {
         elm_header.style.width = "49%"
         elm_code.style.width = "49%"
         document.body.style.alignItems = "start"
@@ -89,7 +90,7 @@ const togglePosition = () => {
         elm_iframe.style.right = "75%"
         elm_iframe.style.height = "calc(100% - 22px)"
         elm_execute.disabled = true
-    }else {
+    } else {
         elm_header.style.width = "98%"
         elm_code.style.width = "98%"
         setTimeout(() => {
@@ -103,11 +104,11 @@ const togglePosition = () => {
     }
 };
 
-const checkDefault = () => {    
+const checkDefault = () => {
     if (localStorage.getItem("toggle")) {
         toggleStatus = parseInt(localStorage.getItem("toggle"))
         toggleStatus === 1 ? elm_toggle.checked = true : false
-    }else {
+    } else {
         toggleStatus = 0
     }
     togglePosition();
@@ -157,7 +158,7 @@ const captureOutput = (showOutput, arguments) => {
         }
     } catch (err) {
         console.error(err);
-        
+
         elm_error.textContent = 'خطای غیرمنتظره رخ داد.';
         showErrorInIframe();
     }
@@ -215,7 +216,7 @@ window.addEventListener('load', () => {
     if (getCookie("token") !== "") {
         token = getCookie("token")
     }
-    
+
 
     if (localStorage.getItem("cache-code")) {
         elm_code.value = localStorage.getItem("cache-code").toString().trim();
@@ -223,9 +224,9 @@ window.addEventListener('load', () => {
 });
 
 elm_toggle.addEventListener("change", () => {
-    if (elm_toggle.checked){
+    if (elm_toggle.checked) {
         toggleStatus = 1
-    }else {
+    } else {
         toggleStatus = 0
     }
     localStorage.setItem("toggle", toggleStatus)
@@ -234,7 +235,17 @@ elm_toggle.addEventListener("change", () => {
 
 elm_save.addEventListener("click", () => {
     if (token !== null) {
-        
+        let xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+            console.log(xhr.response);
+            
+        }
+
+        xhr.open("POST", APP_URL + "/api/v1/verify_token");
+        xhr.send(JSON.stringify({
+            token: token
+        }));
     }
 })
 
@@ -247,8 +258,8 @@ document.body.appendChild(script);
 // Cache
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/script/service-worker.js').then(() => {
-            console.log('Service Worker Registered');
-        })
+        console.log('Service Worker Registered');
+    })
         .catch(error => {
             console.log('Service Worker Registration Failed:', error);
         });
