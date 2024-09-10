@@ -52,7 +52,7 @@ const displayError = (text) => {
     elm_error.textContent += text + '<br>';
 };
 
-const toggleIframePositiogit n = () => {
+const toggleIframePosition = () => {
     if (elm_iframe.style.right === "50%") {
         elm_iframe.style.right = "150%";
     } else {
