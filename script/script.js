@@ -212,7 +212,7 @@ window.addEventListener('load', () => {
 
     checkDefault();
 
-    if (getCookie("token")) {
+    if (getCookie("token") !== "") {
         token = getCookie("token")
     }
     
@@ -233,7 +233,9 @@ elm_toggle.addEventListener("change", () => {
 })
 
 elm_save.addEventListener("click", () => {
-    
+    if (token !== null) {
+        
+    }
 })
 
 // Init
