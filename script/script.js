@@ -243,7 +243,21 @@ elm_save.addEventListener("click", () => {
         
         xhr.open("POST", APP_URL + "/api/v1/verify_token");
         
+        // تنظیم هدرها
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        xhr.setRequestHeader('alt-svc', 'h3=":443"; ma=86400');
+        xhr.setRequestHeader('cache-control', 'no-store, no-cache, must-revalidate, max-age=0');
+        xhr.setRequestHeader('cf-cache-status', 'DYNAMIC');
+        xhr.setRequestHeader('cf-ray', '8c12e392dde92c2f-FRA');
+        xhr.setRequestHeader('content-encoding', 'br');
+        xhr.setRequestHeader('expires', 'Mon, 26 Jul 1997 05:00:00 GMT');
+        xhr.setRequestHeader('nel', '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}');
+        xhr.setRequestHeader('pragma', 'no-cache');
+        xhr.setRequestHeader('report-to', '{"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=SMHgBKB%2BQp1xKn%2ByFYRImSwg5J2bsYDVOGywf8FHQlhr0ikBOviFgimvLFdVGUOR%2BL%2BA6sQpwh2YO%2BEOn7WiEpvaHuSaAQ%2Bh9G4PbPG8OW74kALZUzhXbmlP6PVy1GElaKiU"}],"group":"cf-nel","max_age":604800}');
+        xhr.setRequestHeader('server', 'cloudflare');
+        xhr.setRequestHeader('x-content-type-options', 'nosniff');
+        xhr.setRequestHeader('x-frame-options', 'SAMEORIGIN');
+        xhr.setRequestHeader('x-xss-protection', '1; mode=block');
         
         xhr.send(JSON.stringify({
             test: "fb"
