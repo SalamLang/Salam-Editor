@@ -11,7 +11,7 @@ const elm_header = document.querySelector('header');
 
 // Variables
 let isReady = false;
-let toggleStatus = 1;
+let toggleStatus = 0
 
 // Global variables
 var Module = {
@@ -24,7 +24,7 @@ var Module = {
         elm_execute.disabled = !isReady;
 
         if (elm_code.value !== '') {
-            runSalam(false, false);
+            runSalam(false);
         }
     },
     print: (text) => {
@@ -62,7 +62,7 @@ const toggleIframePosition = () => {
 };
 
 const togglePosition = () => {
-    if(toggleStatus === 1) {
+    if(toggleStatus === 1){
         elm_header.style.width = "49%"
         elm_code.style.width = "49%"
         document.body.style.alignItems = "start"
@@ -91,7 +91,6 @@ const getIframeContent = (iframe) => {
 
 const showErrorInIframe = () => {
     const iframeDocument = getIframeContent(elm_iframe);
-
     if (iframeDocument) {
         iframeDocument.open();
         iframeDocument.write(`<!DOCTYPE html>
@@ -119,11 +118,9 @@ const captureOutput = (showOutput, arguments) => {
 
         if (exitCode !== 0) {
             elm_error.innerHTML = 'برنامه با خطا مواجه شد.<br>' + elm_error.textContent;
-
             showErrorInIframe();
         } else {
             const iframeDocument = getIframeContent(elm_iframe);
-
             if (iframeDocument) {
                 iframeDocument.open();
                 iframeDocument.write(elm_output.textContent);
@@ -134,17 +131,16 @@ const captureOutput = (showOutput, arguments) => {
         console.error(err);
         
         elm_error.textContent = 'خطای غیرمنتظره رخ داد.';
-
         showErrorInIframe();
     }
 };
 
-const runSalam = (showOutput, buttonClicked) => {
+const runSalam = (showOutput) => {
     console.log('Running Salam code...');
 
     const code = elm_code.value.toString().trim();
-    if (!code && buttonClicked === true) {
-        alert('کد خالی است لطفا کد های خود را وارد کنید.');
+    if (!code) {
+        alert('Code is empty! Please enter Salam code.');
         return;
     }
 
@@ -160,7 +156,7 @@ const runSalam = (showOutput, buttonClicked) => {
 
 // Events
 elm_execute.addEventListener('click', () => {
-    runSalam(true, true);
+    runSalam(true);
 });
 
 elm_code.addEventListener('keydown', (event) => {
@@ -179,7 +175,7 @@ elm_code.addEventListener('keydown', (event) => {
 elm_code.addEventListener("input", () => {
     localStorage.setItem("cache-code", elm_code.value.toString().trim());
     if (toggleStatus === 1) {
-        runSalam(true, false)
+        runSalam()
     }
 });
 
@@ -189,17 +185,15 @@ window.addEventListener('load', () => {
     if (localStorage.getItem("cache-code")) {
         elm_code.value = localStorage.getItem("cache-code").toString().trim();
     }
-
-    togglePosition();
 });
 
 elm_toggle.addEventListener("change", () => {
-    if (elm_toggle.checked) {
-        toggleStatus = 1;
+    if (elm_toggle.checked){
+        toggleStatus = 1
     }else {
-        toggleStatus = 0;
+        toggleStatus = 0
     }
-    togglePosition();
+    togglePosition()
 })
 
 // Init
