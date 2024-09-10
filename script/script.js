@@ -13,6 +13,8 @@ const elm_save = document.querySelector('.save');
 // Variables
 let isReady = false;
 let toggleStatus = 0
+let token;
+
 // Global variables
 var Module = {
     noInitialRun: true,
@@ -209,6 +211,11 @@ window.addEventListener('load', () => {
     elm_code.focus();
 
     checkDefault();
+
+    if (getCookie("token")) {
+        token = getCookie("token")
+    }
+    
 
     if (localStorage.getItem("cache-code")) {
         elm_code.value = localStorage.getItem("cache-code").toString().trim();
