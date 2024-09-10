@@ -235,14 +235,14 @@ elm_toggle.addEventListener("change", () => {
 
 elm_save.addEventListener("click", () => {
     if (token !== null) {
-        let xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest()
 
         xhr.onreadystatechange = function () {
             console.log(xhr.response);
             
         }
-        xhr.setRequestHeader('Content-type', 'application/json');
         xhr.open("POST", APP_URL + "/api/v1/verify_token");
+        xhr.setRequestHeader('Content-type', 'application/json');
         xhr.send(JSON.stringify({
             token: token
         }));
