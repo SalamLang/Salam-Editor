@@ -243,8 +243,8 @@ elm_save.addEventListener("click", () => {
         
         xhr.open("POST", APP_URL + "/api/v1/verify_token");
         
-        // تنظیم هدرها
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        xhr.setRequestHeader('Authorization', token);
         xhr.setRequestHeader('alt-svc', 'h3=":443"; ma=86400');
         xhr.setRequestHeader('cache-control', 'no-store, no-cache, must-revalidate, max-age=0');
         xhr.setRequestHeader('cf-cache-status', 'DYNAMIC');
@@ -259,9 +259,7 @@ elm_save.addEventListener("click", () => {
         xhr.setRequestHeader('x-frame-options', 'SAMEORIGIN');
         xhr.setRequestHeader('x-xss-protection', '1; mode=block');
         
-        xhr.send(JSON.stringify({
-            test: token
-        }));        
+        xhr.send();        
     }
 })
 
