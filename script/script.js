@@ -244,9 +244,10 @@ elm_save.addEventListener("click", () => {
         xhr.open("POST", APP_URL + "/api/v1/verify_token");
         
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-        xhr.send({
-            token: token
-        });        
+        
+        xhr.send(JSON.stringify({
+            test: "fb"
+        }));        
     }
 })
 
