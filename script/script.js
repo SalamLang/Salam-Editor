@@ -12,7 +12,6 @@ const elm_header = document.querySelector('header');
 // Variables
 let isReady = false;
 let toggleStatus = 0
-
 // Global variables
 var Module = {
     noInitialRun: true,
@@ -53,7 +52,7 @@ const displayError = (text) => {
     elm_error.textContent += text + '<br>';
 };
 
-const toggleIframePosition = () => {
+const toggleIframePositiogit n = () => {
     if (elm_iframe.style.right === "50%") {
         elm_iframe.style.right = "150%";
     } else {
@@ -84,6 +83,16 @@ const togglePosition = () => {
         elm_execute.disabled = false
     }
 };
+
+const checkDefault = () => {    
+    if (localStorage.getItem("toggle")) {
+        toggleStatus = parseInt(localStorage.getItem("toggle"))
+        toggleStatus === 1 ? elm_toggle.checked = true : false
+    }else {
+        toggleStatus = 0
+    }
+    togglePosition();
+}
 
 const getIframeContent = (iframe) => {
     return iframe.contentDocument || iframe.contentWindow.document;
@@ -182,6 +191,8 @@ elm_code.addEventListener("input", () => {
 window.addEventListener('load', () => {
     elm_code.focus();
 
+    checkDefault();
+
     if (localStorage.getItem("cache-code")) {
         elm_code.value = localStorage.getItem("cache-code").toString().trim();
     }
@@ -193,6 +204,7 @@ elm_toggle.addEventListener("change", () => {
     }else {
         toggleStatus = 0
     }
+    localStorage.setItem("toggle", toggleStatus)
     togglePosition()
 })
 
