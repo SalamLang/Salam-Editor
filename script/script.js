@@ -270,11 +270,11 @@ const save_code = () => {
                 let xhr = new XMLHttpRequest();
 
                 xhr.onload = function () {
-                    if (JSON.parse(xhr.response).status === true) {
+                    if (JSON.parse(xhr.response).status === true) {                        
                         Swal.fire({
                             icon: "success",
-                            title: "لطفا اطلاعات را درست وارد نمایید",
-                            text: "فیلد عنوان نباید خالی باشد",
+                            title: "کد شما ذخیره شد.",
+                            html: `<a href='${JSON.parse(xhr.response).data.url}'>مشاهده</a>`
                         });
                     } else {
                         Swal.fire({
