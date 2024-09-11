@@ -240,8 +240,8 @@ elm_save.addEventListener("click", () => {
         xhr.onreadystatechange = function () {
             console.log(xhr.response);
         };
-        
         xhr.open("GET", APP_URL + "/api/v1/verify_token");
+        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhr.setRequestHeader('Authorization', token);  
         xhr.send();        
     }
