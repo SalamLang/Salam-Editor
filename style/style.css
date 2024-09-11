@@ -277,3 +277,36 @@ div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm)::a
 	align-items: center;
 	content: "باشه";
 }
+
+.overlay{
+	position: fixed;
+	top: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.171);
+	width: 100%;
+	height: 100%;
+	z-index: 9;
+}
+
+.setting_modal{
+	width: 400px;
+	min-height: 100px;
+	padding: 15px;
+	border: 1px solid #FF6100;
+	position: fixed;
+	z-index: 10;
+	top: 50%;
+	right: 50%;
+	transform: translate(50%, -50%);
+	border-radius: 15px;
+	background-color: #fff9f5;
+}
+
+.setting_modal h1{
+	margin: 0;
+	text-align: center;
+	color: #FF6100;
+}
+.setting_modal hr{
+	
+}
