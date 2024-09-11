@@ -338,7 +338,18 @@ elm_overlay.addEventListener("click", () => {
 })
 
 elm_refactor.addEventListener("click", () => {
-    runLint()
+    runSalam()
+    if (elm_error.innerHTML === "") {
+        runLint()
+    }else {
+        console.log(elm_error.innerHTM);
+        
+        Swal.fire({
+            icon: "error",
+            title: "کد نمیتواند تمیز شود",
+            text: "کدی که نوشته اید دارای ارور میباشد.",
+        });
+    }
 })
 
 // Init
