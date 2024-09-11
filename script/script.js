@@ -4,7 +4,6 @@ const elm_execute = document.querySelector('.execute');
 const elm_output = document.querySelector('.output');
 const elm_error = document.querySelector('.error');
 const elm_iframe = document.querySelector('.iframe');
-const elm_toggle = document.querySelector('#toggleBtn');
 const elm_header = document.querySelector('header');
 const elm_save = document.querySelector('.save');
 const APP_URL = "https://api.salamlang.ir"
@@ -228,7 +227,11 @@ const runSalam = (showOutput) => {
 
     const code = elm_code.value.toString().trim();
     if (!code) {
-        alert('Code is empty! Please enter Salam code.');
+        Swal.fire({
+            icon: "error",
+            title: "کد نمیتواند خالی اجرا شود",
+            text: "لطفا کدی نوشته و سپس ان را اجرا کنید",
+        });
         return;
     }
 
