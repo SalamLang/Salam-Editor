@@ -280,7 +280,7 @@ const save_code = () => {
                         Swal.fire({
                             icon: "error",
                             title: "کد نمیتواند خالی باشد.",
-                        });
+                        })
                     }
                 };
                 xhr.open("POST", APP_URL + "/api/v1/codes/save");
@@ -295,6 +295,10 @@ const save_code = () => {
                     icon: "error",
                     title: "لطفا اطلاعات را درست وارد نمایید",
                     text: "فیلد عنوان نباید خالی باشد",
+                }).then((res) => {
+                    if (res.isConfirmed) {
+                        save_code()
+                    }
                 });
             }
         },
