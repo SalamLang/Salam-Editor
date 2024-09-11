@@ -355,3 +355,13 @@ if ('serviceWorker' in navigator) {
             console.log('Service Worker Registration Failed:', error);
         });
 }
+
+// Disable Btn
+
+setTimeout(() => {
+    if (toggleStatus === 1) {
+        console.log("Sdc");
+        
+        elm_execute.disabled = true
+    }
+}, 300)
