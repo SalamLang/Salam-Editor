@@ -237,7 +237,7 @@ elm_save.addEventListener("click", () => {
     if (token !== null) {
         let xhr = new XMLHttpRequest();
 
-        xhr.onreadystatechange = function () {
+        xhr.onload = function () {
             if (JSON.parse(xhr.response).status === true) {
                 console.log('ok');
             }
