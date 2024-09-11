@@ -318,7 +318,6 @@ div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel)::af
 }
 
 div:where(.swal2-container) div:where(.swal2-actions) {
-	flex-direction: row-reverse;
 	gap: 10px;
 }
 
