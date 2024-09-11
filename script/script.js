@@ -253,7 +253,31 @@ const in_login = () => {
 }
 
 const save_code = () => {
-    console.log("saved");
+    Swal.fire({
+        title: "عنوان کد را وارد کنید.",
+        input: "text",
+        inputAttributes: {
+            autocapitalize: "off"
+        },
+        showCancelButton: true,
+        confirmButtonText: "Look up",
+        showLoaderOnConfirm: true,
+        customClass: {
+            confirmButton: "save_btn_after"
+        },
+        preConfirm: (login) => {
+            if (login !== "") {
+                
+            }else {
+                Swal.fire({
+                    icon: "error",
+                    title: "لطفا اطلاعات را درست وارد نمایید",
+                    text: "فیلد عنوان نباید خالی باشد",
+                });
+            }
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+    })
 }
 
 // Events
@@ -288,7 +312,7 @@ window.addEventListener('load', () => {
 
     if (getCookie("token") !== "") {
         token = getCookie("token")
-    }else {
+    } else {
         token = null
     }
 
@@ -306,7 +330,7 @@ window.addEventListener('load', () => {
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhr.setRequestHeader('Authorization', token);
         xhr.send();
-    }else {
+    } else {
         elm_login_btn.style.display = "flex"
     }
 
@@ -346,7 +370,7 @@ elm_save.addEventListener("click", () => {
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhr.setRequestHeader('Authorization', token);
         xhr.send();
-    }else {
+    } else {
         get_login()
     }
 })

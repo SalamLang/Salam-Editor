@@ -276,12 +276,12 @@ div:where(.swal2-icon) {
 	margin: 1.5em auto .6em !important;
 }
 
-div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm) {
-	background-color: #ff6200 !important;
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm),
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel) {
 	border-radius: 10px !important;
 	width: 100px !important;
 	height: 50px !important;
-	display: flex !important;
+	display: flex;
 	justify-content: center !important;
 	align-items: center !important;
 	padding: 0 !important;
@@ -290,7 +290,8 @@ div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm) {
 	overflow: hidden !important;
 }
 
-div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm)::after {
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm)::after,
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel)::after {
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -301,6 +302,24 @@ div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm)::a
 	justify-content: center;
 	align-items: center;
 	content: "باشه";
+}
+
+.swal2-input{
+	border-radius: 10px;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm).save_btn_after::after{
+	content: "ذخیره";
+}
+
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel)::after{
+	background-color: rgb(39 110 246);
+	content: "کنسل";
+}
+
+div:where(.swal2-container) div:where(.swal2-actions){
+	flex-direction: row-reverse;
+	gap: 10px;
 }
 
 .overlay {
