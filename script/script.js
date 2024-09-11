@@ -252,6 +252,10 @@ const in_login = () => {
     console.log("loggined");
 }
 
+const save_code = () => {
+    console.log("saved");
+}
+
 // Events
 elm_execute.addEventListener('click', () => {
     runSalam(true);
@@ -333,7 +337,7 @@ elm_save.addEventListener("click", () => {
 
         xhr.onload = function () {
             if (JSON.parse(xhr.response).status === true) {
-
+                save_code()
             } else {
                 get_login()
             }
