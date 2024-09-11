@@ -9,10 +9,14 @@ const elm_header = document.querySelector('header');
 const elm_save = document.querySelector('.save');
 const APP_URL = "https://api.salamlang.ir"
 
+//Setting Element
+const elm_editor_mode_1 = document.querySelector(".editor_mode1")
+const elm_editor_mode_2 = document.querySelector(".editor_mode2")
+
 // Const variables
 // Variables
 let isReady = false;
-let toggleStatus = 0
+let toggleStatus = 1
 let token;
 
 // Global variables
@@ -106,9 +110,14 @@ const togglePosition = () => {
 const checkDefault = () => {
     if (localStorage.getItem("toggle")) {
         toggleStatus = parseInt(localStorage.getItem("toggle"))
-        toggleStatus === 1 ? elm_toggle.checked = true : false
+        if (toggleStatus === 1) {
+            elm_editor_mode_2.classList.add("active")
+        }else {
+            elm_editor_mode_1.classList.add("active")
+        }
     } else {
-        toggleStatus = 0
+        toggleStatus = 1
+        elm_editor_mode_2.classList.add("active")
     }
     togglePosition();
 }
@@ -262,13 +271,19 @@ window.addEventListener('load', () => {
     }
 });
 
-elm_toggle.addEventListener("change", () => {
-    if (elm_toggle.checked) {
-        toggleStatus = 1
-    } else {
-        toggleStatus = 0
-    }
+elm_editor_mode_1.addEventListener("click", () => {
+    toggleStatus = 0
     localStorage.setItem("toggle", toggleStatus)
+    elm_editor_mode_1.classList.add("active")
+    elm_editor_mode_2.classList.remove("active")
+    togglePosition()
+})
+
+elm_editor_mode_2.addEventListener("click", () => {
+    toggleStatus = 1
+    localStorage.setItem("toggle", toggleStatus)
+    elm_editor_mode_2.classList.add("active")
+    elm_editor_mode_1.classList.remove("active")
     togglePosition()
 })
 
