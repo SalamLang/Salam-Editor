@@ -389,3 +389,9 @@ div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm)::a
 	border: 1px solid #FF6100;
 	box-shadow: 0 0 20px -10px #FF6100;
 }
+
+@media screen and (max-width: 600px) {
+	span.title{
+		display: none;
+	}
+}
