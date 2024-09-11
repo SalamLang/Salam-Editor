@@ -8,6 +8,9 @@ const elm_toggle = document.querySelector('#toggleBtn');
 const elm_header = document.querySelector('header');
 const elm_save = document.querySelector('.save');
 const APP_URL = "https://api.salamlang.ir"
+const elm_setting_btn = document.querySelector(".setting")
+const elm_setting_modal = document.querySelector(".setting_modal")
+const elm_overlay = document.querySelector(".overlay")
 
 //Setting Element
 const elm_editor_mode_1 = document.querySelector(".editor_mode1")
@@ -307,6 +310,26 @@ elm_save.addEventListener("click", () => {
         xhr.setRequestHeader('Authorization', token);
         xhr.send();
     }
+})
+
+elm_setting_btn.addEventListener("click", () => {
+    elm_setting_modal.style.opacity = "0"
+    elm_setting_modal.style.display = "block"
+    elm_overlay.style.opacity = "0"
+    elm_overlay.style.display = "block"
+    setTimeout(() => {
+        elm_setting_modal.style.opacity = "1"
+        elm_overlay.style.opacity = "1"
+    }, 0)
+})
+
+elm_overlay.addEventListener("click", () => {
+    elm_setting_modal.style.opacity = "0"
+    elm_overlay.style.opacity = "0"
+    setTimeout(() => {
+        elm_setting_modal.style.display = "none"
+        elm_overlay.style.display = "none"
+    }, 300)
 })
 
 // Init
