@@ -352,6 +352,7 @@ div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm)::a
 	border-radius: 15px;
 	overflow: hidden;
 	padding: 5px;
+	user-select: none;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -362,6 +363,7 @@ div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm)::a
 
 .setting-item img {
 	width: 100%;
+	user-select: none;
 	height: 100%;
 	border-radius: 10px;
 	object-fit: cover;
