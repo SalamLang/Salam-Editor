@@ -6,20 +6,21 @@ const elm_error = document.querySelector('.error');
 const elm_iframe = document.querySelector('.iframe');
 const elm_header = document.querySelector('header');
 const elm_save = document.querySelector('.save');
-const APP_URL = "https://api.salamlang.ir"
 const elm_setting_btn = document.querySelector(".setting")
 const elm_setting_modal = document.querySelector(".setting_modal")
 const elm_overlay = document.querySelector(".overlay")
 
-//Setting Element
+// Setting Element
 const elm_editor_mode_1 = document.querySelector(".editor_mode1")
 const elm_editor_mode_2 = document.querySelector(".editor_mode2")
 
 // Const variables
+const APP_URL = "https://api.salamlang.ir"
+
 // Variables
+let token;
 let isReady = false;
 let toggleStatus = 1
-let token;
 
 // Global variables
 var Module = {
@@ -215,7 +216,7 @@ const runLint = () => {
 
     const res = captureLint(arguments);
     if (res !== null) {
-        elm_code.value = res;
+        elm_code.value = res.trim();
     }
 };
 
