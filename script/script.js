@@ -131,6 +131,25 @@ const showErrorInIframe = () => {
     }
 };
 
+const captureLint = (arguments) => {
+    console.log("Capture Lint: ", arguments);
+
+    elm_output.textContent = '';
+    elm_error.textContent = '';
+
+    try {
+        const exitCode = callMain(arguments);
+
+        if (exitCode !== 0) {
+            return null;
+        } else {
+            return elm_output.textContent;
+        }
+    } catch (err) {
+        return null;
+    }
+};
+
 const captureOutput = (showOutput, arguments) => {
     console.log("Capture Output: ", arguments);
 
@@ -163,8 +182,34 @@ const captureOutput = (showOutput, arguments) => {
     }
 };
 
+const runLint = () => {
+    console.log('Running Salam lint...');
+
+    if (!isReady) {
+        console.log('Salam runtime not ready. Please wait...');
+        return;
+    }
+
+    const code = elm_code.value.toString().trim();
+    if (!code) {
+        return;
+    }
+
+    const arguments = ['lint', 'code', code];
+
+    const res = captureLint(arguments);
+    if (res !== null) {
+        elm_code.value = res;
+    }
+};
+
 const runSalam = (showOutput) => {
     console.log('Running Salam code...');
+
+    if (!isReady) {
+        console.log('Salam runtime not ready. Please wait...');
+        return;
+    }
 
     const code = elm_code.value.toString().trim();
     if (!code) {
@@ -173,11 +218,6 @@ const runSalam = (showOutput) => {
     }
 
     const arguments = ['code', code];
-
-    if (!isReady) {
-        console.log('Salam runtime not ready. Please wait...');
-        return;
-    }
 
     captureOutput(showOutput, arguments);
 };
