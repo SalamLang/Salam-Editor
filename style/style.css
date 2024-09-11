@@ -408,6 +408,37 @@ div:where(.swal2-container) div:where(.swal2-actions) {
 	box-shadow: 0 0 20px -10px #FF6100;
 }
 
+
+html.dark body {
+	background-color: #1a202e;
+}
+
+html.dark .code {
+	color: white;
+	background-color: #293347;
+}
+
+html.dark header {
+	background-color: #293347;
+}
+
+html.dark .setting_modal {
+	background-color: #293347;
+	border: 0;
+}
+
+html.dark .setting_modal h1{
+	color: white
+}
+
+html.dark .setting_modal span{
+	color: white
+}
+
+html.dark .overlay{
+	background-color: rgba(0, 0, 0, 0.521);
+}
+
 @media screen and (max-width: 600px) {
 	span.title {
 		display: none;
