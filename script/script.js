@@ -15,6 +15,8 @@ const elm_login_btn = document.querySelector(".login")
 // Setting Element
 const elm_editor_mode_1 = document.querySelector(".editor_mode1")
 const elm_editor_mode_2 = document.querySelector(".editor_mode2")
+const elm_editor_light = document.querySelector(".editor_light")
+const elm_editor_dark = document.querySelector(".editor_dark")
 
 // Const variables
 const APP_URL = "https://api.salamlang.ir"
@@ -23,6 +25,7 @@ const APP_URL = "https://api.salamlang.ir"
 let token;
 let isReady = false;
 let toggleStatus = 1
+let theme = "dark"
 
 // Global variables
 var Module = {
@@ -112,6 +115,14 @@ const togglePosition = () => {
     }
 };
 
+const changeTheme = () => {
+    if (theme === "dark") {
+        document.querySelector("html").classList.add("dark")
+    } else {
+        document.querySelector("html").classList.remove("dark")
+    }
+};
+
 const checkDefault = () => {
     if (localStorage.getItem("toggle")) {
         toggleStatus = parseInt(localStorage.getItem("toggle"))
@@ -124,6 +135,15 @@ const checkDefault = () => {
         toggleStatus = 1
         elm_editor_mode_2.classList.add("active")
     }
+    if (localStorage.getItem("theme")) {
+        theme = localStorage.getItem("theme")
+        if (theme === "dark") {
+            elm_editor_dark.classList.add("active")
+        } else {
+            elm_editor_light.classList.add("active")
+        }
+    }
+    changeTheme()
     togglePosition();
 }
 
@@ -379,6 +399,22 @@ elm_editor_mode_2.addEventListener("click", () => {
     elm_editor_mode_2.classList.add("active")
     elm_editor_mode_1.classList.remove("active")
     togglePosition()
+})
+
+elm_editor_dark.addEventListener("click", () => {
+    theme = "dark"
+    localStorage.setItem("theme", theme)
+    elm_editor_dark.classList.add("active")
+    elm_editor_light.classList.remove("active")
+    changeTheme()
+})
+
+elm_editor_light.addEventListener("click", () => {
+    theme = "light"
+    localStorage.setItem("theme", theme)
+    elm_editor_dark.classList.remove("active")
+    elm_editor_light.classList.add("active")
+    changeTheme()
 })
 
 elm_save.addEventListener("click", () => {
