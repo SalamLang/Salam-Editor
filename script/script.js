@@ -341,9 +341,9 @@ elm_refactor.addEventListener("click", () => {
     runSalam()
     if (elm_error.innerHTML === "") {
         runLint()
-    }else {
+    } else {
         console.log(elm_error.innerHTM);
-        
+
         Swal.fire({
             icon: "error",
             title: "کد نمیتواند تمیز شود",
@@ -369,11 +369,10 @@ if ('serviceWorker' in navigator) {
 }
 
 // Disable Btn
-
 setTimeout(() => {
     if (toggleStatus === 1) {
         console.log("Sdc");
-        
+
         elm_execute.disabled = true
     }
 }, 300)
