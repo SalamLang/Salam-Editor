@@ -56,6 +56,10 @@ body {
 	flex-direction: column;
 }
 
+button:hover{
+	opacity: 0.8;
+}
+
 .code {
 	width: 98%;
 	height: calc(100vh - 80px);
@@ -85,6 +89,21 @@ body {
 }
 .execute:disabled {
 	opacity: 0.3;
+}
+
+.setting {
+	min-width: 50px;
+	padding-inline: 10px;
+	height: 50px;
+	border-radius: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 0;
+	background-color: #FF6100;
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
 }
 
 .download {
@@ -122,8 +141,17 @@ body {
 	font-size: 16px;
 	cursor: pointer;
 	transition: all 1000ms;
+	text-wrap: nowrap;
 }
 
+.save>svg,
+.execute>svg {
+	width: 25px;
+    margin-right: 4px;
+}
+.execute>svg{
+	width: 20px;
+}
 .iframe {
 	width: 98%;
 	height: calc(100% - 99px);
