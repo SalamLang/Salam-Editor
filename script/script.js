@@ -267,7 +267,29 @@ const save_code = () => {
         },
         preConfirm: (login) => {
             if (login !== "") {
-                
+                let xhr = new XMLHttpRequest();
+
+                xhr.onload = function () {                    
+                    if (JSON.parse(xhr.response).status === true) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "لطفا اطلاعات را درست وارد نمایید",
+                            text: "فیلد عنوان نباید خالی باشد",
+                        });
+                    }else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "کد نمیتواند خالی باشد.",
+                        });
+                    }
+                };
+                xhr.open("POST", APP_URL + "/api/v1/codes/save");
+                xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+                xhr.setRequestHeader('Authorization', token);
+                xhr.send(JSON.stringify({
+                    title: login,
+                    code: elm_code.value
+                }));
             }else {
                 Swal.fire({
                     icon: "error",
