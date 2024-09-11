@@ -11,6 +11,7 @@ const elm_setting_modal = document.querySelector(".setting_modal")
 const elm_overlay = document.querySelector(".overlay")
 const elm_refactor = document.querySelector(".refactor")
 const elm_login_btn = document.querySelector(".login")
+const elm_logout_btn = document.querySelector(".logout")
 
 // Setting Element
 const elm_editor_mode_1 = document.querySelector(".editor_mode1")
@@ -368,6 +369,7 @@ window.addEventListener('load', () => {
         xhr.onload = function () {
             if (JSON.parse(xhr.response).status === true) {
                 in_login()
+                elm_logout_btn.style.display = "flex"
             } else {
                 elm_login_btn.style.display = "flex"
             }
