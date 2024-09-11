@@ -9,6 +9,7 @@ const elm_save = document.querySelector('.save');
 const elm_setting_btn = document.querySelector(".setting")
 const elm_setting_modal = document.querySelector(".setting_modal")
 const elm_overlay = document.querySelector(".overlay")
+const elm_refactor = document.querySelector(".refactor")
 
 // Setting Element
 const elm_editor_mode_1 = document.querySelector(".editor_mode1")
@@ -184,11 +185,6 @@ const captureOutput = (showOutput, arguments) => {
                 iframeDocument.open();
                 iframeDocument.write(elm_output.textContent);
                 iframeDocument.close();
-
-                // Run linter to clean and beautify the code
-                if (showOutput) {
-                    runLint();
-                }
             }
         }
     } catch (err) {
@@ -339,6 +335,10 @@ elm_overlay.addEventListener("click", () => {
         elm_setting_modal.style.display = "none"
         elm_overlay.style.display = "none"
     }, 300)
+})
+
+elm_refactor.addEventListener("click", () => {
+    runLint()
 })
 
 // Init
