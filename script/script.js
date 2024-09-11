@@ -238,7 +238,9 @@ elm_save.addEventListener("click", () => {
         let xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function () {
-            console.log(JSON.parse(xhr.response));
+            if (JSON.parse(xhr.response).status === true) {
+                console.log('ok');
+            }
         };
         xhr.open("GET", APP_URL + "/api/v1/verify_token");
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
