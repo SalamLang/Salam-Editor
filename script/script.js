@@ -269,14 +269,14 @@ const save_code = () => {
             if (login !== "") {
                 let xhr = new XMLHttpRequest();
 
-                xhr.onload = function () {                    
+                xhr.onload = function () {
                     if (JSON.parse(xhr.response).status === true) {
                         Swal.fire({
                             icon: "success",
                             title: "لطفا اطلاعات را درست وارد نمایید",
                             text: "فیلد عنوان نباید خالی باشد",
                         });
-                    }else {
+                    } else {
                         Swal.fire({
                             icon: "error",
                             title: "کد نمیتواند خالی باشد.",
@@ -290,7 +290,7 @@ const save_code = () => {
                     title: login,
                     code: elm_code.value
                 }));
-            }else {
+            } else {
                 Swal.fire({
                     icon: "error",
                     title: "لطفا اطلاعات را درست وارد نمایید",

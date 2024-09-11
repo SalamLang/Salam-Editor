@@ -154,7 +154,7 @@ button:hover {
 }
 
 .save>svg,
-.execute>svg ,
+.execute>svg,
 .refactor>svg,
 .login>svg {
 	width: 25px;
@@ -165,12 +165,12 @@ button:hover {
 	width: 20px;
 }
 
-.refactor{
+.refactor {
 	background-color: rgb(39 110 246);
 	color: white;
 }
 
-.login{
+.login {
 	display: none;
 	background-color: #FF6100;
 	color: white;
@@ -304,20 +304,20 @@ div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel)::af
 	content: "باشه";
 }
 
-.swal2-input{
+.swal2-input {
 	border-radius: 10px;
 }
 
-div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm).save_btn_after::after{
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm).save_btn_after::after {
 	content: "ذخیره";
 }
 
-div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel)::after{
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel)::after {
 	background-color: rgb(39 110 246);
 	content: "کنسل";
 }
 
-div:where(.swal2-container) div:where(.swal2-actions){
+div:where(.swal2-container) div:where(.swal2-actions) {
 	flex-direction: row-reverse;
 	gap: 10px;
 }
@@ -410,10 +410,11 @@ div:where(.swal2-container) div:where(.swal2-actions){
 }
 
 @media screen and (max-width: 600px) {
-	span.title{
+	span.title {
 		display: none;
 	}
-	.setting_modal{
+
+	.setting_modal {
 		width: 96%;
 	}
 }
