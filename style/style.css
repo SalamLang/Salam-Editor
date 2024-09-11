@@ -39,7 +39,11 @@ img {
 	max-width: 100%;
 }
 
-body, input, textarea, select, button {
+body,
+input,
+textarea,
+select,
+button {
 	font-family: "estedad", sans-serif;
 }
 
@@ -56,7 +60,7 @@ body {
 	flex-direction: column;
 }
 
-button:hover{
+button:hover {
 	opacity: 0.8;
 }
 
@@ -87,6 +91,7 @@ button:hover{
 	font-size: 16px;
 	cursor: pointer;
 }
+
 .execute:disabled {
 	opacity: 0.3;
 }
@@ -123,7 +128,8 @@ button:hover{
 	opacity: 0;
 	transition: all 1000ms;
 }
-.download:hover{
+
+.download:hover {
 	opacity: 1;
 }
 
@@ -147,11 +153,13 @@ button:hover{
 .save>svg,
 .execute>svg {
 	width: 25px;
-    margin-right: 4px;
+	margin-right: 4px;
 }
-.execute>svg{
+
+.execute>svg {
 	width: 20px;
 }
+
 .iframe {
 	width: 98%;
 	height: calc(100% - 99px);
@@ -168,14 +176,15 @@ button:hover{
 	box-shadow: 0 0 20px -10px #FF6100;
 }
 
-.btn-wrapper{
+.btn-wrapper {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
 }
 
-.output, .error {
+.output,
+.error {
 	display: none;
 }
 
@@ -191,7 +200,7 @@ button:hover{
 	margin-top: 10px;
 }
 
-header > div:nth-child(2) {
+header>div:nth-child(2) {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -235,23 +244,23 @@ header > div:nth-child(2) {
 	border-radius: 50%;
 }
 
-input:checked + .slider {
+input:checked+.slider {
 	background-color: #ff6200;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
 	transform: translateX(26px);
 }
 
-div:where(.swal2-container) div:where(.swal2-popup){
+div:where(.swal2-container) div:where(.swal2-popup) {
 	border-radius: 25px !important;
 }
 
-div:where(.swal2-icon){
+div:where(.swal2-icon) {
 	margin: 1.5em auto .6em !important;
 }
 
-div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm){
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm) {
 	background-color: #ff6200 !important;
 	border-radius: 10px !important;
 	width: 100px !important;
@@ -265,7 +274,7 @@ div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm){
 	overflow: hidden !important;
 }
 
-div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm)::after{
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm)::after {
 	width: 100%;
 	height: 100%;
 	position: absolute;
@@ -278,7 +287,7 @@ div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm)::a
 	content: "باشه";
 }
 
-.overlay{
+.overlay {
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -288,8 +297,8 @@ div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm)::a
 	z-index: 9;
 }
 
-.setting_modal{
-	width: 400px;
+.setting_modal {
+	width: 420px;
 	min-height: 100px;
 	padding: 15px;
 	border: 1px solid #FF6100;
@@ -302,11 +311,32 @@ div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm)::a
 	background-color: #fff9f5;
 }
 
-.setting_modal h1{
+.setting_modal h1 {
 	margin: 0;
 	text-align: center;
 	color: #FF6100;
 }
-.setting_modal hr{
+
+.setting_modal hr {
+	opacity: 1;
+	border: 0;
+	height: 1px;
+	background-color: #FF6100;
+}
+
+.setting-wrapper {
+	display: flex;
+	justify-content: start;
+	align-items: start;
+	gap: 10px;
+	flex-direction: column;
+	margin-top: 20px;
+}
+
+.setting-wrapper span {
+	font-size: 18px;
+}
+
+.setting-ite-wrapper{
 	
 }
