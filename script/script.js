@@ -185,7 +185,9 @@ const captureOutput = (showOutput, arguments) => {
                 iframeDocument.close();
 
                 // Run linter to clean and beautify the code
-                runLint();
+                if (showOutput) {
+                    runLint();
+                }
             }
         }
     } catch (err) {
@@ -261,7 +263,7 @@ elm_code.addEventListener('keydown', (event) => {
 elm_code.addEventListener("input", () => {
     localStorage.setItem("cache-code", elm_code.value.toString().trim());
     if (toggleStatus === 1) {
-        runSalam()
+        runSalam(false);
     }
 });
 
