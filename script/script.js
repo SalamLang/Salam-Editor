@@ -10,7 +10,6 @@ const elm_save = document.querySelector('.save');
 const APP_URL = "https://api.salamlang.ir"
 
 // Const variables
-
 // Variables
 let isReady = false;
 let toggleStatus = 0
@@ -239,7 +238,13 @@ elm_save.addEventListener("click", () => {
 
         xhr.onload = function () {
             if (JSON.parse(xhr.response).status === true) {
-                console.log('ok');
+                
+            }else {
+                Swal.fire({
+                    icon: "error",
+                    title: "لطفا در سایت وارد شوید!",
+                    text: "برای دسترسی به این قسمت باید در سایت وارد شوید",
+                  });
             }
         };
         xhr.open("GET", APP_URL + "/api/v1/verify_token");
