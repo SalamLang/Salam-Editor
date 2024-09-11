@@ -184,6 +184,9 @@ const captureOutput = (showOutput, arguments) => {
                 iframeDocument.open();
                 iframeDocument.write(elm_output.textContent);
                 iframeDocument.close();
+
+                // Run linter to clean and beautify the code
+                runLint();
             }
         }
     } catch (err) {
