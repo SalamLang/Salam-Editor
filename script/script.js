@@ -112,7 +112,7 @@ const checkDefault = () => {
         toggleStatus = parseInt(localStorage.getItem("toggle"))
         if (toggleStatus === 1) {
             elm_editor_mode_2.classList.add("active")
-        }else {
+        } else {
             elm_editor_mode_1.classList.add("active")
         }
     } else {
@@ -293,19 +293,19 @@ elm_save.addEventListener("click", () => {
 
         xhr.onload = function () {
             if (JSON.parse(xhr.response).status === true) {
-                
-            }else {
+
+            } else {
                 Swal.fire({
                     icon: "error",
                     title: "لطفا در سایت وارد شوید!",
                     text: "برای دسترسی به این قسمت باید در سایت وارد شوید",
-                  });
+                });
             }
         };
         xhr.open("GET", APP_URL + "/api/v1/verify_token");
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-        xhr.setRequestHeader('Authorization', token);  
-        xhr.send();        
+        xhr.setRequestHeader('Authorization', token);
+        xhr.send();
     }
 })
 
