@@ -10,6 +10,7 @@ const elm_setting_btn = document.querySelector(".setting")
 const elm_setting_modal = document.querySelector(".setting_modal")
 const elm_overlay = document.querySelector(".overlay")
 const elm_refactor = document.querySelector(".refactor")
+const elm_login_btn = document.querySelector(".login")
 
 // Setting Element
 const elm_editor_mode_1 = document.querySelector(".editor_mode1")
@@ -239,6 +240,18 @@ const runSalam = (showOutput) => {
     captureOutput(showOutput, arguments);
 };
 
+const get_login = () => {
+    Swal.fire({
+        icon: "error",
+        title: "لطفا در سایت وارد شوید!",
+        text: "برای دسترسی به این قسمت باید در سایت وارد شوید",
+    });
+}
+
+const in_login = () => {
+    console.log("loggined");
+}
+
 // Events
 elm_execute.addEventListener('click', () => {
     runSalam(true);
@@ -271,8 +284,27 @@ window.addEventListener('load', () => {
 
     if (getCookie("token") !== "") {
         token = getCookie("token")
+    }else {
+        token = null
     }
 
+    if (token !== null) {
+        let xhr = new XMLHttpRequest();
+
+        xhr.onload = function () {
+            if (JSON.parse(xhr.response).status === true) {
+                in_login()
+            } else {
+                elm_login_btn.style.display = "flex"
+            }
+        };
+        xhr.open("GET", APP_URL + "/api/v1/verify_token");
+        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        xhr.setRequestHeader('Authorization', token);
+        xhr.send();
+    }else {
+        elm_login_btn.style.display = "flex"
+    }
 
     if (localStorage.getItem("cache-code")) {
         elm_code.value = localStorage.getItem("cache-code").toString().trim();
@@ -303,17 +335,15 @@ elm_save.addEventListener("click", () => {
             if (JSON.parse(xhr.response).status === true) {
 
             } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "لطفا در سایت وارد شوید!",
-                    text: "برای دسترسی به این قسمت باید در سایت وارد شوید",
-                });
+                get_login()
             }
         };
         xhr.open("GET", APP_URL + "/api/v1/verify_token");
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhr.setRequestHeader('Authorization', token);
         xhr.send();
+    }else {
+        get_login()
     }
 })
 
