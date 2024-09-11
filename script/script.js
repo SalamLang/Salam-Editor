@@ -20,7 +20,7 @@ const elm_editor_light = document.querySelector(".editor_light")
 const elm_editor_dark = document.querySelector(".editor_dark")
 
 // Const variables
-const APP_URL = "https://api.salamlang.ir"
+const APP_URL = "https://auth.salamlang.ir"
 
 // Variables
 let token;
