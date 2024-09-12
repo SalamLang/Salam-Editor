@@ -6,6 +6,7 @@
 	::-webkit-scrollbar {
 		width: 10px;
 		background-color: #f3f3f3;
+		border-radius: 100px;
 	}
 
 	::-webkit-scrollbar-track {
