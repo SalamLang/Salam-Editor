@@ -266,7 +266,7 @@ const runSalam = (showOutput) => {
 	if (!code) {
 		elm_error.innerHTML = '';
 		elm_output.innerHTML = '';
-		
+
 		if (showOutput === true) {
 			Swal.fire({
 				icon: "error",
@@ -466,7 +466,7 @@ elm_overlay.addEventListener("click", () => {
 });
 
 elm_refactor.addEventListener("click", () => {
-	runSalam();
+	runSalam(true);
 
 	if (elm_error.innerHTML === "") {
 		runLint();
