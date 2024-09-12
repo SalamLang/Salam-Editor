@@ -14,12 +14,12 @@ const ASSETS_TO_CACHE = [
     'salam-wa.wasm',
 
     // images
-    'images/android-chrome-192x192.png',
-    'images/android-chrome-512x512.png',
-    'images/apple-touch-icon.png',
-    'images/favicon-16x16.png',
-    'images/favicon-32x32.png',
-    'images/favicon.ico',
+    'image/android-chrome-192x192.png',
+    'image/android-chrome-512x512.png',
+    'image/apple-touch-icon.png',
+    'image/favicon-16x16.png',
+    'image/favicon-32x32.png',
+    'image/favicon.ico',
 ];
 
 // Install Event - Cache the defined assets
