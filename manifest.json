@@ -21,8 +21,8 @@
   "screenshots": [
     {
       "src": "https://editor.salamlang.ir/image/screenshot.jpg",
-      "sizes": "1280x720",
-      "type": "image/png",
+      "sizes": "1224x720",
+      "type": "image/jpeg",
       "form_factor": "wide"
     }
   ]
