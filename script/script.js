@@ -264,6 +264,9 @@ const runSalam = (showOutput) => {
 
 	const code = elm_code.value.toString().trim();
 	if (!code) {
+		elm_error.innerHTML = '';
+		elm_output.innerHTML = '';
+		
 		if (showOutput === true) {
 			Swal.fire({
 				icon: "error",
