@@ -322,11 +322,11 @@ const save_code = () => {
 				const xhr = new XMLHttpRequest();
 				xhr.onload = () => {
 					const obj = JSON.parse(xhr.response);
-					if (obj.status === true) {
+					if (obj.status === true && obj.data && obj.data.slug) {
 						Swal.fire({
 							icon: "success",
 							title: "کد شما ذخیره شد.",
-							html: `<a href='/?code=${obj.data.url}'>مشاهده</a>`,
+							html: `<a href='/?code=${obj.data.slug}'>مشاهده</a>`,
 						});
 					} else {
 						Swal.fire({
