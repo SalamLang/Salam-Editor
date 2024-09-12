@@ -20,6 +20,12 @@ const ASSETS_TO_CACHE = [
 	'/image/favicon-16x16.png',
 	'/image/favicon-32x32.png',
 	'/image/favicon.ico',
+
+	'/image/theme-light.jpg',
+	'/image/theme-dark.jpg',
+
+	'/image/view-full.jpg',
+	'/image/view-split.jpg',
 ];
 
 // Install Event - Cache the defined assets
