@@ -194,6 +194,17 @@ button:hover {
 	color: white;
 }
 
+.see_btn{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 100px;
+	min-height: 40px;
+	border-radius: 10px;
+	background-color: #FF6100;
+	color: white;
+}
+
 .iframe {
 	width: 98%;
 	height: calc(100% - 99px);
