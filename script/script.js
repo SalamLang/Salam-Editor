@@ -22,6 +22,7 @@ const elm_editor_dark = document.querySelector(".editor_dark");
 const APP_URL = "https://auth.salamlang.ir";
 const APP_URL_VERIFY_TOKEN = APP_URL + "/api/v1/verify_token";
 const APP_URL_SAVE = APP_URL + "/api/v1/codes/save";
+const APP_URL_GET_CODE = APP_URL + "/api/v1/codes";
 
 // Variables
 let token;
@@ -301,9 +302,8 @@ const save_code = () => {
 		},
 		preConfirm: (login) => {
 			if (login !== "") {
-				let xhr = new XMLHttpRequest();
-
-				xhr.onload = function () {
+				const xhr = new XMLHttpRequest();
+				xhr.onload = () => {
 					if (JSON.parse(xhr.response).status === true) {                        
 						Swal.fire({
 							icon: "success",
@@ -420,8 +420,7 @@ elm_editor_light.addEventListener("click", () => {
 
 elm_save.addEventListener("click", () => {
 	if (token !== null) {
-		let xhr = new XMLHttpRequest();
-
+		const xhr = new XMLHttpRequest();
 		xhr.onload = () => {
 			if (JSON.parse(xhr.response).status === true) {
 				save_code();
@@ -506,7 +505,22 @@ window.addEventListener('load', () => {
 	const codeParam = new URLSearchParams(window.location.search).get("code");
 	console.log(codeParam, window.location.search);
 	if (codeParam !== null) {
-		elm_code.value = codeParam.trim();
+		const xhr = new XMLHttpRequest();
+		xhr.onload = () => {
+			const obj = JSON.parse(xhr.response);
+			console.log("Get code: ", obj);
+			if (obj.status === true) {
+				elm_code.value = obj.data.code.trim();
+			} else {
+				if (localStorage.getItem("cache-code")) {
+					elm_code.value = localStorage.getItem("cache-code").toString().trim();
+				}
+			}
+		};
+		xhr.open("GET", APP_URL_GET_CODE);
+		xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+		xhr.setRequestHeader('Authorization', token);
+		xhr.send();
 	}
 	else {
 		if (localStorage.getItem("cache-code")) {
@@ -515,7 +529,7 @@ window.addEventListener('load', () => {
 	}
 
 	if (token !== null) {
-		let xhr = new XMLHttpRequest();
+		const xhr = new XMLHttpRequest();
 
 		xhr.onload = () => {
 			if (JSON.parse(xhr.response).status === true) {
