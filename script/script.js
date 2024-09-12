@@ -91,10 +91,12 @@ const displayError = (text) => {
 };
 
 const toggleIframePosition = () => {
-	if (elm_iframe.style.right === "50%") {
-		elm_iframe.style.right = "150%";
-	} else {
-		elm_iframe.style.right = "50%";
+	if (toggleStatus === 1) {
+		if (elm_iframe.style.right === "50%") {
+			elm_iframe.style.right = "150%";
+		} else {
+			elm_iframe.style.right = "50%";
+		}
 	}
 };
 
@@ -205,12 +207,12 @@ const captureLint = (arguments) => {
 const captureOutput = (showOutput, arguments) => {
 	console.log("Capture Output: ", arguments);
 
+	elm_output.textContent = '';
+	elm_error.textContent = '';
+
 	if (showOutput) {
 		toggleIframePosition();
 	}
-
-	elm_output.textContent = '';
-	elm_error.textContent = '';
 
 	try {
 		const exitCode = callMain(arguments);
