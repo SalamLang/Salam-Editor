@@ -51,18 +51,22 @@ var Module = {
 
 // Functions
 const getCookie = (cookie_name) => {
-	var name = cookie_name + "=";
-	var decodedCookie = decodeURIComponent(document.cookie);
-	var ca = decodedCookie.split(';');
-	for (var i = 0; i < ca.length; i++) {
-		var c = ca[i];
-		while (c.charAt(0) == ' ') {
+	const name = cookie_name + "=";
+	const decodedCookie = decodeURIComponent(document.cookie);
+	const ca = decodedCookie.split(';');
+
+	for (let i = 0; i < ca.length; i++) {
+		let c = ca[i];
+
+		while (c.charAt(0) === ' ') {
 			c = c.substring(1);
 		}
-		if (c.indexOf(name) == 0) {
+
+		if (c.indexOf(name) === 0) {
 			return c.substring(name.length, c.length);
 		}
 	}
+
 	return "";
 };
 
@@ -128,18 +132,21 @@ const changeTheme = () => {
 const checkDefault = () => {
 	if (localStorage.getItem("toggle")) {
 		toggleStatus = parseInt(localStorage.getItem("toggle"));
+
 		if (toggleStatus === 1) {
 			elm_editor_mode_2.classList.add("active");
 		} else {
 			elm_editor_mode_1.classList.add("active");
 		}
 	} else {
-		toggleStatus = 1
+		toggleStatus = 1;
+
 		elm_editor_mode_2.classList.add("active");
 	}
 
 	if (localStorage.getItem("theme")) {
 		theme = localStorage.getItem("theme");
+		
 		if (theme === "dark") {
 			elm_editor_dark.classList.add("active");
 		} else {
@@ -275,9 +282,7 @@ const get_login = () => {
 	});
 };
 
-const in_login = () => {
-	console.log("loggined");
-};
+const in_login = () => {};
 
 const save_code = () => {
 	Swal.fire({
@@ -311,8 +316,9 @@ const save_code = () => {
 					}
 				};
 				xhr.open("POST", APP_URL + "/api/v1/codes/save");
-				xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+				xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
 				xhr.setRequestHeader('Authorization', token);
+
 				xhr.send(JSON.stringify({
 					title: login,
 					code: elm_code.value,
@@ -364,42 +370,6 @@ elm_logout_btn.addEventListener("click", () => {
 	document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.salamlang.ir;";
 
 	location.reload();
-});
-
-window.addEventListener('load', () => {
-	elm_code.focus();
-
-	checkDefault();
-
-	if (getCookie("token") !== "") {
-		token = getCookie("token");
-	} else {
-		token = null;
-	}
-
-	if (token !== null) {
-		let xhr = new XMLHttpRequest();
-
-		xhr.onload = () => {
-			if (JSON.parse(xhr.response).status === true) {
-				in_login();
-
-				elm_logout_btn.style.display = "flex";
-			} else {
-				elm_login_btn.style.display = "flex";
-			}
-		};
-		xhr.open("GET", APP_URL + "/api/v1/verify_token");
-		xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-		xhr.setRequestHeader('Authorization', token);
-		xhr.send();
-	} else {
-		elm_login_btn.style.display = "flex";
-	}
-
-	if (localStorage.getItem("cache-code")) {
-		elm_code.value = localStorage.getItem("cache-code").toString().trim();
-	}
 });
 
 elm_editor_mode_1.addEventListener("click", () => {
@@ -510,6 +480,59 @@ script.type = 'text/javascript';
 script.src = 'salam-wa.js';
 document.body.appendChild(script);
 
+// Disable Btn
+setTimeout(() => {
+	if (toggleStatus === 1) {
+		console.log("Sdc");
+
+		elm_execute.disabled = true
+	}
+}, 300);
+
+window.addEventListener('load', () => {
+	elm_code.focus();
+
+	checkDefault();
+
+	token = getCookie("token");
+	if (token !== "") {
+		token = getCookie("token");
+	} else {
+		token = null;
+	}
+
+	const codeParam = new URLSearchParams(window.location.search).get("code");
+	console.log(codeParam, window.location.search);
+	if (codeParam !== null) {
+		elm_code.value = codeParam.trim();
+	}
+	else {
+		if (localStorage.getItem("cache-code")) {
+			elm_code.value = localStorage.getItem("cache-code").toString().trim();
+		}
+	}
+
+	if (token !== null) {
+		let xhr = new XMLHttpRequest();
+
+		xhr.onload = () => {
+			if (JSON.parse(xhr.response).status === true) {
+				in_login();
+
+				elm_logout_btn.style.display = "flex";
+			} else {
+				elm_login_btn.style.display = "flex";
+			}
+		};
+		xhr.open("GET", APP_URL + "/api/v1/verify_token");
+		xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+		xhr.setRequestHeader('Authorization', token);
+		xhr.send();
+	} else {
+		elm_login_btn.style.display = "flex";
+	}
+});
+
 // Cache
 if ('serviceWorker' in navigator) {
 	navigator.serviceWorker.register('/script/service-worker.js').then(() => {
@@ -519,12 +542,3 @@ if ('serviceWorker' in navigator) {
 		console.log('Service Worker Registration Failed:', error);
 	});
 }
-
-// Disable Btn
-setTimeout(() => {
-	if (toggleStatus === 1) {
-		console.log("Sdc");
-
-		elm_execute.disabled = true
-	}
-}, 300);
