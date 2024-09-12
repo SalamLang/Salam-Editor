@@ -22,7 +22,7 @@ const elm_editor_dark = document.querySelector(".editor_dark");
 const APP_URL = "https://auth.salamlang.ir";
 const APP_URL_VERIFY_TOKEN = APP_URL + "/api/v1/verify_token";
 const APP_URL_SAVE = APP_URL + "/api/v1/codes/save";
-const APP_URL_GET_CODE = APP_URL + "/api/v1/code";
+const APP_URL_GET_CODE = APP_URL + "/api/v1/code/"; // + @uuid
 
 // Variables
 let token;
@@ -508,7 +508,6 @@ window.addEventListener('load', () => {
 		const xhr = new XMLHttpRequest();
 		xhr.onload = () => {
 			const obj = JSON.parse(xhr.response);
-			console.log("Get code: ", obj);
 			if (obj.status === true) {
 				elm_code.value = obj.data.code.trim();
 			} else {
@@ -517,7 +516,7 @@ window.addEventListener('load', () => {
 				}
 			}
 		};
-		xhr.open("GET", APP_URL_GET_CODE);
+		xhr.open("GET", APP_URL_GET_CODE + codeParam);
 		xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 		xhr.setRequestHeader('Authorization', token);
 		xhr.send();
