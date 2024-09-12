@@ -264,11 +264,14 @@ const runSalam = (showOutput) => {
 
 	const code = elm_code.value.toString().trim();
 	if (!code) {
-		Swal.fire({
-			icon: "error",
-			title: "کد نمیتواند خالی اجرا شود",
-			text: "لطفا کدی نوشته و سپس ان را اجرا کنید",
-		});
+		if (showOutput === true) {
+			Swal.fire({
+				icon: "error",
+				title: "کد نمیتواند خالی اجرا شود",
+				text: "لطفا کدی نوشته و سپس ان را اجرا کنید",
+			});
+		}
+
 		return;
 	}
 
