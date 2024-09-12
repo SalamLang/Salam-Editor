@@ -20,6 +20,8 @@ const elm_editor_dark = document.querySelector(".editor_dark");
 
 // Const variables
 const APP_URL = "https://auth.salamlang.ir";
+const APP_URL_VERIFY_TOKEN = APP_URL + "/api/v1/verify_token";
+const APP_URL_SAVE = APP_URL + "/api/v1/codes/save";
 
 // Variables
 let token;
@@ -315,7 +317,7 @@ const save_code = () => {
 						});
 					}
 				};
-				xhr.open("POST", APP_URL + "/api/v1/codes/save");
+				xhr.open("POST", APP_URL_SAVE);
 				xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
 				xhr.setRequestHeader('Authorization', token);
 
@@ -427,7 +429,7 @@ elm_save.addEventListener("click", () => {
 				get_login();
 			}
 		};
-		xhr.open("GET", APP_URL + "/api/v1/verify_token");
+		xhr.open("GET", APP_URL_VERIFY_TOKEN);
 		xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 		xhr.setRequestHeader('Authorization', token);
 		xhr.send();
@@ -524,7 +526,7 @@ window.addEventListener('load', () => {
 				elm_login_btn.style.display = "flex";
 			}
 		};
-		xhr.open("GET", APP_URL + "/api/v1/verify_token");
+		xhr.open("GET", APP_URL_VERIFY_TOKEN);
 		xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 		xhr.setRequestHeader('Authorization', token);
 		xhr.send();
