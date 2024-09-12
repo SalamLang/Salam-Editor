@@ -98,7 +98,7 @@ const togglePosition = () => {
         elm_code.style.width = "49%"
         document.body.style.alignItems = "start"
         document.body.style.paddingRight = "10px"
-        elm_iframe.style.width = "49%"
+        elm_iframe.style.width = "calc(50% - 10px)"
         elm_iframe.style.right = "75%"
         elm_iframe.style.height = "calc(100% - 22px)"
         elm_execute.disabled = true
