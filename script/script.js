@@ -301,7 +301,7 @@ const save_code = () => {
 			title: "ذخیره کد",
 			text: "لطفا ابتدا کد خود را بنویسید.",
 		});
-		
+
 		return;
 	}
 
@@ -321,11 +321,12 @@ const save_code = () => {
 			if (login !== "") {
 				const xhr = new XMLHttpRequest();
 				xhr.onload = () => {
-					if (JSON.parse(xhr.response).status === true) {
+					const obj = JSON.parse(xhr.response);
+					if (obj.status === true) {
 						Swal.fire({
 							icon: "success",
 							title: "کد شما ذخیره شد.",
-							html: `<a href='${JSON.parse(xhr.response).data.url}'>مشاهده</a>`,
+							html: `<a href='${obj.data.url}'>مشاهده</a>`,
 						});
 					} else {
 						Swal.fire({
@@ -439,7 +440,8 @@ elm_save.addEventListener("click", () => {
 	if (token !== null) {
 		const xhr = new XMLHttpRequest();
 		xhr.onload = () => {
-			if (JSON.parse(xhr.response).status === true) {
+			const obj = JSON.parse(xhr.response);
+			if (obj.status === true) {
 				save_code();
 			} else {
 				get_login();
@@ -548,7 +550,8 @@ window.addEventListener('load', () => {
 		const xhr = new XMLHttpRequest();
 
 		xhr.onload = () => {
-			if (JSON.parse(xhr.response).status === true) {
+			const obj = JSON.parse(xhr.response);
+			if (obj.status === true) {
 				in_login();
 
 				elm_logout_btn.style.display = "flex";
