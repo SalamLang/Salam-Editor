@@ -1,6 +1,7 @@
 {
   "name": "زبان برنامه نویسی سلام",
   "short_name": "زبان سلام",
+  "description": "یک زبان برنامه نویسی جدید و ساده برای یادگیری و توسعه، مناسب برای کودکان و نوجوانان.",
   "icons": [
     {
       "src": "https://editor.salamlang.ir/image/android-chrome-192x192.png",
