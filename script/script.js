@@ -107,7 +107,8 @@ const togglePosition = () => {
 		elm_iframe.style.width = "calc(50% - 10px)";
 		elm_iframe.style.right = "75%";
 		elm_iframe.style.height = "calc(100% - 22px)";
-		elm_execute.disabled = true;
+
+		// elm_execute.disabled = true;
 	} else {
 		elm_header.style.width = "98%";
 		elm_code.style.width = "98%";
@@ -120,7 +121,8 @@ const togglePosition = () => {
 		elm_iframe.style.width = "98%";
 		elm_iframe.style.right = "150%";
 		elm_iframe.style.height = "calc(100% - 99px)";
-		elm_execute.disabled = false;
+
+		// elm_execute.disabled = false;
 	}
 };
 
@@ -500,17 +502,12 @@ script.type = 'text/javascript';
 script.src = 'salam-wa.js';
 document.body.appendChild(script);
 
-// Disable Btn
-setTimeout(() => {
-	if (toggleStatus === 1) {
-		console.log("Sdc");
-
-		elm_execute.disabled = true
-	}
-}, 300);
-
 window.addEventListener('load', () => {
 	elm_code.focus();
+
+	// if (toggleStatus === 1) {
+	// 	elm_execute.disabled = true;
+	// }
 
 	checkDefault();
 
