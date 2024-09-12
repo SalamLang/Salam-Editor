@@ -194,16 +194,16 @@ button:hover {
 	color: white;
 }
 
-.see_btn{
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 222px;
-    min-height: 40px;
-    border-radius: 10px;
-    background-color: #4000ff;
-    color: white;
-    text-decoration: none;
+.see_btn {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 222px;
+	min-height: 40px;
+	border-radius: 10px;
+	background-color: #4000ff;
+	color: white;
+	text-decoration: none;
 }
 
 .iframe {
@@ -457,15 +457,15 @@ html.dark .setting_modal {
 	border: 0;
 }
 
-html.dark .setting_modal h1{
+html.dark .setting_modal h1 {
 	color: white
 }
 
-html.dark .setting_modal span{
+html.dark .setting_modal span {
 	color: white
 }
 
-html.dark .overlay{
+html.dark .overlay {
 	background-color: rgba(0, 0, 0, 0.521);
 }
 
