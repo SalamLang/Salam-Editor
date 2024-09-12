@@ -6,27 +6,26 @@ const elm_error = document.querySelector('.error');
 const elm_iframe = document.querySelector('.iframe');
 const elm_header = document.querySelector('header');
 const elm_save = document.querySelector('.save');
-const elm_setting_btn = document.querySelector(".setting")
-const elm_setting_modal = document.querySelector(".setting_modal")
-const elm_overlay = document.querySelector(".overlay")
-const elm_refactor = document.querySelector(".refactor")
-const elm_login_btn = document.querySelector(".login")
-const elm_logout_btn = document.querySelector(".logout")
-
+const elm_setting_btn = document.querySelector(".setting");
+const elm_setting_modal = document.querySelector(".setting_modal");
+const elm_overlay = document.querySelector(".overlay");
+const elm_refactor = document.querySelector(".refactor");
+const elm_login_btn = document.querySelector(".login");
+const elm_logout_btn = document.querySelector(".logout");
 // Setting Element
-const elm_editor_mode_1 = document.querySelector(".editor_mode1")
-const elm_editor_mode_2 = document.querySelector(".editor_mode2")
-const elm_editor_light = document.querySelector(".editor_light")
-const elm_editor_dark = document.querySelector(".editor_dark")
+const elm_editor_mode_1 = document.querySelector(".editor_mode1");
+const elm_editor_mode_2 = document.querySelector(".editor_mode2");
+const elm_editor_light = document.querySelector(".editor_light");
+const elm_editor_dark = document.querySelector(".editor_dark");
 
 // Const variables
-const APP_URL = "https://auth.salamlang.ir"
+const APP_URL = "https://auth.salamlang.ir";
 
 // Variables
 let token;
 let isReady = false;
-let toggleStatus = 1
-let theme = "dark"
+let toggleStatus = 1;
+let theme = "dark";
 
 // Global variables
 var Module = {
@@ -108,7 +107,7 @@ const togglePosition = () => {
 
 		setTimeout(() => {
 			document.body.style.alignItems = "center";
-		}, 300)
+		}, 300);
 
 		document.body.style.paddingRight = "0px";
 		elm_iframe.style.width = "98%";
@@ -308,7 +307,7 @@ const save_code = () => {
 						Swal.fire({
 							icon: "error",
 							title: "کد نمیتواند خالی باشد.",
-						})
+						});
 					}
 				};
 				xhr.open("POST", APP_URL + "/api/v1/codes/save");
@@ -332,7 +331,7 @@ const save_code = () => {
 		},
 
 		allowOutsideClick: () => !Swal.isLoading(),
-	})
+	});
 };
 
 // Events
@@ -365,7 +364,7 @@ elm_logout_btn.addEventListener("click", () => {
 	document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.salamlang.ir;";
 
 	location.reload();
-})
+});
 
 window.addEventListener('load', () => {
 	elm_code.focus();
@@ -373,9 +372,9 @@ window.addEventListener('load', () => {
 	checkDefault();
 
 	if (getCookie("token") !== "") {
-		token = getCookie("token")
+		token = getCookie("token");
 	} else {
-		token = null
+		token = null;
 	}
 
 	if (token !== null) {
@@ -383,7 +382,8 @@ window.addEventListener('load', () => {
 
 		xhr.onload = () => {
 			if (JSON.parse(xhr.response).status === true) {
-				in_login()
+				in_login();
+
 				elm_logout_btn.style.display = "flex";
 			} else {
 				elm_login_btn.style.display = "flex";
@@ -433,7 +433,7 @@ elm_editor_dark.addEventListener("click", () => {
 	elm_editor_light.classList.remove("active");
 
 	changeTheme();
-})
+});
 
 elm_editor_light.addEventListener("click", () => {
 	theme = "light";
@@ -462,20 +462,21 @@ elm_save.addEventListener("click", () => {
 		xhr.setRequestHeader('Authorization', token);
 		xhr.send();
 	} else {
-		get_login()
+		get_login();
 	}
-})
+});
 
 elm_setting_btn.addEventListener("click", () => {
 	elm_setting_modal.style.opacity = "0";
 	elm_setting_modal.style.display = "block";
 	elm_overlay.style.opacity = "0";
 	elm_overlay.style.display = "block";
+
 	setTimeout(() => {
 		elm_setting_modal.style.opacity = "1";
 		elm_overlay.style.opacity = "1";
-	}, 0)
-})
+	}, 0);
+});
 
 elm_overlay.addEventListener("click", () => {
 	elm_setting_modal.style.opacity = "0";
@@ -485,7 +486,7 @@ elm_overlay.addEventListener("click", () => {
 		elm_setting_modal.style.display = "none";
 		elm_overlay.style.display = "none";
 	}, 300);
-})
+});
 
 elm_refactor.addEventListener("click", () => {
 	runSalam();
@@ -501,7 +502,7 @@ elm_refactor.addEventListener("click", () => {
 			text: "کدی که نوشته اید دارای ارور میباشد.",
 		});
 	}
-})
+});
 
 // Init
 const script = document.createElement('script');
