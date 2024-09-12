@@ -328,7 +328,7 @@ const save_code = () => {
 						Swal.fire({
 							icon: "success",
 							title: "کد شما ذخیره شد.",
-							html: `<a href='/?code=${obj.data.slug}'>مشاهده</a>`,
+							html: `<a href='/?code=${obj.data.slug}' class='see_btn'>مشاهده</a>`,
 						});
 					} else {
 						Swal.fire({
