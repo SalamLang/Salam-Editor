@@ -26,6 +26,8 @@ const ASSETS_TO_CACHE = [
 
 	'/image/view-full.jpg',
 	'/image/view-split.jpg',
+
+	'/image/image/screenshot.jpg',
 ];
 
 // Install Event - Cache the defined assets
