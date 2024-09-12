@@ -22,7 +22,7 @@ const elm_editor_dark = document.querySelector(".editor_dark");
 const APP_URL = "https://auth.salamlang.ir";
 const APP_URL_VERIFY_TOKEN = APP_URL + "/api/v1/verify_token";
 const APP_URL_SAVE = APP_URL + "/api/v1/codes/save";
-const APP_URL_GET_CODE = APP_URL + "/api/v1/codes";
+const APP_URL_GET_CODE = APP_URL + "/api/v1/code";
 
 // Variables
 let token;
