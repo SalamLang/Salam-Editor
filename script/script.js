@@ -23,6 +23,10 @@ const APP_URL = "https://auth.salamlang.ir";
 const APP_URL_VERIFY_TOKEN = APP_URL + "/api/v1/verify_token";
 const APP_URL_SAVE = APP_URL + "/api/v1/codes/save";
 const APP_URL_GET_CODE = APP_URL + "/api/v1/code/"; // + @uuid
+const DEFAULT_CODE = `صفحه:
+	محتوا = «<سلام دنیا> زبان سلام»
+	اندازه فونت = ۱۰۰
+تمام`;
 
 // Variables
 let token;
@@ -254,7 +258,7 @@ const runLint = () => {
 
 	const res = captureLint(arguments);
 	if (res !== null) {
-		elm_code.value = res.trim();
+		elm_code.value = res.toString().trim();
 	}
 };
 
@@ -530,10 +534,13 @@ window.addEventListener('load', () => {
 		xhr.onload = () => {
 			const obj = JSON.parse(xhr.response);
 			if (obj.status === true) {
-				elm_code.value = obj.data.code.trim();
+				elm_code.value = obj.data.code.toString().trim();
 			} else {
-				if (localStorage.getItem("cache-code")) {
-					elm_code.value = localStorage.getItem("cache-code").toString().trim();
+				const cache_code = localStorage.getItem("cache-code").toString();
+				if (cache_code && cache_code.trim() !== "") {
+					elm_code.value = cache_code;
+				} else {
+					elm_code.value = DEFAULT_CODE;
 				}
 			}
 		};
@@ -545,6 +552,8 @@ window.addEventListener('load', () => {
 	else {
 		if (localStorage.getItem("cache-code")) {
 			elm_code.value = localStorage.getItem("cache-code").toString().trim();
+		} else {
+			elm_code.value = DEFAULT_CODE;
 		}
 	}
 
