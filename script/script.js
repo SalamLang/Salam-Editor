@@ -149,7 +149,7 @@ const checkDefault = () => {
 
 	if (localStorage.getItem("theme")) {
 		theme = localStorage.getItem("theme");
-		
+
 		if (theme === "dark") {
 			elm_editor_dark.classList.add("active");
 		} else {
@@ -270,8 +270,8 @@ const runSalam = (showOutput) => {
 		if (showOutput === true) {
 			Swal.fire({
 				icon: "error",
-				title: "کد نمیتواند خالی اجرا شود",
-				text: "لطفا کدی نوشته و سپس ان را اجرا کنید",
+				title: "اجرای کد",
+				text: "لطفا ابتدا کد خود را بنویسید.",
 			});
 		}
 
@@ -286,14 +286,25 @@ const runSalam = (showOutput) => {
 const get_login = () => {
 	Swal.fire({
 		icon: "error",
-		title: "لطفا در سایت وارد شوید!",
-		text: "برای دسترسی به این قسمت باید در سایت وارد شوید",
+		title: "عدم دسترسی",
+		text: "برای دسترسی به این قسمت باید وارد شوید",
 	});
 };
 
-const in_login = () => {};
+const in_login = () => { };
 
 const save_code = () => {
+	const code = elm_code.value.toString().trim();
+	if (!code) {
+		Swal.fire({
+			icon: "error",
+			title: "ذخیره کد",
+			text: "لطفا ابتدا کد خود را بنویسید.",
+		});
+		
+		return;
+	}
+
 	Swal.fire({
 		title: "عنوان کد را وارد کنید.",
 		input: "text",
@@ -310,7 +321,7 @@ const save_code = () => {
 			if (login !== "") {
 				const xhr = new XMLHttpRequest();
 				xhr.onload = () => {
-					if (JSON.parse(xhr.response).status === true) {                        
+					if (JSON.parse(xhr.response).status === true) {
 						Swal.fire({
 							icon: "success",
 							title: "کد شما ذخیره شد.",
@@ -319,7 +330,7 @@ const save_code = () => {
 					} else {
 						Swal.fire({
 							icon: "error",
-							title: "کد نمیتواند خالی باشد.",
+							title: "مشکلی در ذخیره کد رخ داده است!",
 						});
 					}
 				};
@@ -334,8 +345,8 @@ const save_code = () => {
 			} else {
 				Swal.fire({
 					icon: "error",
-					title: "لطفا اطلاعات را درست وارد نمایید",
-					text: "فیلد عنوان نباید خالی باشد",
+					title: "ذخیره کد",
+					text: "مقدار عنوان نباید خالی باشد.",
 				}).then((res) => {
 					if (res.isConfirmed) {
 						save_code();
@@ -420,7 +431,7 @@ elm_editor_light.addEventListener("click", () => {
 
 	elm_editor_dark.classList.remove("active");
 	elm_editor_light.classList.add("active");
-	
+
 	changeTheme();
 });
 
@@ -475,8 +486,8 @@ elm_refactor.addEventListener("click", () => {
 
 		Swal.fire({
 			icon: "error",
-			title: "کد نمیتواند تمیز شود",
-			text: "کدی که نوشته اید دارای ارور میباشد.",
+			title: "تمیز کردن کد",
+			text: "کد شما خطا دارد. لطفا خطای آن را برطرف کنید.",
 		});
 	}
 });
@@ -559,7 +570,7 @@ if ('serviceWorker' in navigator) {
 	navigator.serviceWorker.register('/script/service-worker.js').then(() => {
 		console.log('Service Worker Registered');
 	})
-	.catch(error => {
-		console.log('Service Worker Registration Failed:', error);
-	});
+		.catch(error => {
+			console.log('Service Worker Registration Failed:', error);
+		});
 }
