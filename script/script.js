@@ -107,7 +107,8 @@ const togglePosition = () => {
 		elm_iframe.style.width = "calc(50% - 10px)";
 		elm_iframe.style.right = "75%";
 		elm_iframe.style.height = "calc(100% - 22px)";
-		elm_execute.disabled = true;
+
+		// elm_execute.disabled = true;
 	} else {
 		elm_header.style.width = "98%";
 		elm_code.style.width = "98%";
@@ -120,7 +121,8 @@ const togglePosition = () => {
 		elm_iframe.style.width = "98%";
 		elm_iframe.style.right = "150%";
 		elm_iframe.style.height = "calc(100% - 99px)";
-		elm_execute.disabled = false;
+
+		// elm_execute.disabled = false;
 	}
 };
 
@@ -149,7 +151,7 @@ const checkDefault = () => {
 
 	if (localStorage.getItem("theme")) {
 		theme = localStorage.getItem("theme");
-		
+
 		if (theme === "dark") {
 			elm_editor_dark.classList.add("active");
 		} else {
@@ -270,8 +272,8 @@ const runSalam = (showOutput) => {
 		if (showOutput === true) {
 			Swal.fire({
 				icon: "error",
-				title: "کد نمیتواند خالی اجرا شود",
-				text: "لطفا کدی نوشته و سپس ان را اجرا کنید",
+				title: "اجرای کد",
+				text: "لطفا ابتدا کد خود را بنویسید.",
 			});
 		}
 
@@ -286,14 +288,25 @@ const runSalam = (showOutput) => {
 const get_login = () => {
 	Swal.fire({
 		icon: "error",
-		title: "لطفا در سایت وارد شوید!",
-		text: "برای دسترسی به این قسمت باید در سایت وارد شوید",
+		title: "عدم دسترسی",
+		text: "برای دسترسی به این قسمت باید وارد شوید",
 	});
 };
 
-const in_login = () => {};
+const in_login = () => { };
 
 const save_code = () => {
+	const code = elm_code.value.toString().trim();
+	if (!code) {
+		Swal.fire({
+			icon: "error",
+			title: "ذخیره کد",
+			text: "لطفا ابتدا کد خود را بنویسید.",
+		});
+
+		return;
+	}
+
 	Swal.fire({
 		title: "عنوان کد را وارد کنید.",
 		input: "text",
@@ -310,16 +323,17 @@ const save_code = () => {
 			if (login !== "") {
 				const xhr = new XMLHttpRequest();
 				xhr.onload = () => {
-					if (JSON.parse(xhr.response).status === true) {                        
+					const obj = JSON.parse(xhr.response);
+					if (obj.status === true && obj.data && obj.data.slug) {
 						Swal.fire({
 							icon: "success",
 							title: "کد شما ذخیره شد.",
-							html: `<a href='${JSON.parse(xhr.response).data.url}'>مشاهده</a>`,
+							html: `<a href='/?code=${obj.data.slug}'>مشاهده</a>`,
 						});
 					} else {
 						Swal.fire({
 							icon: "error",
-							title: "کد نمیتواند خالی باشد.",
+							title: "مشکلی در ذخیره کد رخ داده است!",
 						});
 					}
 				};
@@ -334,8 +348,8 @@ const save_code = () => {
 			} else {
 				Swal.fire({
 					icon: "error",
-					title: "لطفا اطلاعات را درست وارد نمایید",
-					text: "فیلد عنوان نباید خالی باشد",
+					title: "ذخیره کد",
+					text: "مقدار عنوان نباید خالی باشد.",
 				}).then((res) => {
 					if (res.isConfirmed) {
 						save_code();
@@ -420,7 +434,7 @@ elm_editor_light.addEventListener("click", () => {
 
 	elm_editor_dark.classList.remove("active");
 	elm_editor_light.classList.add("active");
-	
+
 	changeTheme();
 });
 
@@ -428,7 +442,8 @@ elm_save.addEventListener("click", () => {
 	if (token !== null) {
 		const xhr = new XMLHttpRequest();
 		xhr.onload = () => {
-			if (JSON.parse(xhr.response).status === true) {
+			const obj = JSON.parse(xhr.response);
+			if (obj.status === true) {
 				save_code();
 			} else {
 				get_login();
@@ -475,8 +490,8 @@ elm_refactor.addEventListener("click", () => {
 
 		Swal.fire({
 			icon: "error",
-			title: "کد نمیتواند تمیز شود",
-			text: "کدی که نوشته اید دارای ارور میباشد.",
+			title: "تمیز کردن کد",
+			text: "کد شما خطا دارد. لطفا خطای آن را برطرف کنید.",
 		});
 	}
 });
@@ -487,17 +502,12 @@ script.type = 'text/javascript';
 script.src = 'salam-wa.js';
 document.body.appendChild(script);
 
-// Disable Btn
-setTimeout(() => {
-	if (toggleStatus === 1) {
-		console.log("Sdc");
-
-		elm_execute.disabled = true
-	}
-}, 300);
-
 window.addEventListener('load', () => {
 	elm_code.focus();
+
+	// if (toggleStatus === 1) {
+	// 	elm_execute.disabled = true;
+	// }
 
 	checkDefault();
 
@@ -537,7 +547,8 @@ window.addEventListener('load', () => {
 		const xhr = new XMLHttpRequest();
 
 		xhr.onload = () => {
-			if (JSON.parse(xhr.response).status === true) {
+			const obj = JSON.parse(xhr.response);
+			if (obj.status === true) {
 				in_login();
 
 				elm_logout_btn.style.display = "flex";
@@ -559,7 +570,7 @@ if ('serviceWorker' in navigator) {
 	navigator.serviceWorker.register('/script/service-worker.js').then(() => {
 		console.log('Service Worker Registered');
 	})
-	.catch(error => {
-		console.log('Service Worker Registration Failed:', error);
-	});
+		.catch(error => {
+			console.log('Service Worker Registration Failed:', error);
+		});
 }
