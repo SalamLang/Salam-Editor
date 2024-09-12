@@ -339,7 +339,7 @@ const save_code = () => {
 								console.log(event)
 								}">مشاهده</a>`,
 						});
-					} else { 
+					} else {
 						Swal.fire({
 							icon: "error",
 							title: "مشکلی در ذخیره کد رخ داده است!",
