@@ -58,6 +58,10 @@
 </div>
 
 <script>
+	const keywords = ['تمام'];
+	const commands = ['صفحه', 'قطعه', 'جعبه', 'پاراگراف'];
+	const arguments = ['منبع', 'مقصد', 'محتوا', 'موقعیت', 'اندازه', 'رنگ', 'پس‌زمینه', 'حاشیه', 'پهنا', 'ارتفاع', 'شکل', 'نوع', 'سبک', 'وزن', 'خط', 'خط‌کش', 'خط‌کشی', 'خط‌کشی‌ها', 'خط‌کشی‌های'];
+
 	const editor = document.querySelector('.editor');
 	const editor_code = editor.querySelector('.editor-code');
 	const editor_lines = editor.querySelector('.editor-lines');
@@ -131,7 +135,7 @@
 			console.log("newLine: ", newLine);
 
 			scrollIntoViewIfNeeded(newLine);
-			
+
 			const newRange = document.createRange();
 			// newRange.setStart(newLine, 1);
 			// newRange.setEnd(newLine, 1);
@@ -163,16 +167,16 @@
 		console.log("splitLines");
 		const lines = editor_code.querySelectorAll(".line");
 
-		// lines.forEach((line) => {
-		// 	const textContent = line.textContent;
-		// 
-		// 	const NotZeroWidthSpacesRegex = /^[\u200B-\u200D\uFEFF]*$/;
-		// 	const ZeroWidthSpacesRegex = /[\u200B-\u200D\uFEFF]*$/;
-		// 
-		// 	if (ZeroWidthSpacesRegex.test(textContent) && NotZeroWidthSpacesRegex.test(textContent)) {
-		// 		line.innerHTML = line.innerHTML.replace(/[\u200B-\u200D\uFEFF]/g, '');
-		// 	}
-		// });
+		lines.forEach((line) => {
+			const textContent = line.textContent;
+		
+			const NotZeroWidthSpacesRegex = /^[\u200B-\u200D\uFEFF]*$/;
+			const ZeroWidthSpacesRegex = /[\u200B-\u200D\uFEFF]*$/;
+		
+			if (ZeroWidthSpacesRegex.test(textContent) && NotZeroWidthSpacesRegex.test(textContent)) {
+				line.innerHTML = line.innerHTML.replace(/[\u200B-\u200D\uFEFF]/g, '');
+			}
+		});
 
 		updateLineNumbers();
 	};
@@ -194,7 +198,9 @@
 	editor_code.addEventListener('scroll', synchronizeScroll);
 	editor_code.addEventListener('keydown', handleKey);
 	editor_code.addEventListener('input', splitLines);
+
 	editor_code.innerHTML = '<div class="line"><br></div>';
 	editor_code.focus();
+
 	splitLines();
 </script>
