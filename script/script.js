@@ -1,6 +1,6 @@
 // Elements
 const elm_code = document.querySelector('.code');
-const elm_highlighte = document.querySelector('.highlighted-code');
+// const elm_highlighte = document.querySelector('.highlighted-code');
 const elm_execute = document.querySelector('.execute');
 const elm_output = document.querySelector('.output');
 const elm_error = document.querySelector('.error');
@@ -272,7 +272,7 @@ const runSalam = (showOutput) => {
 		return;
 	}
 
-	const rawCode = elm_code.textContent || elm_code.innerText;
+	const rawCode = elm_code.value;
 	if (!rawCode) {
 		elm_error.innerHTML = '';
 		elm_output.innerHTML = '';
@@ -370,15 +370,15 @@ const save_code = () => {
 	});
 };
 
-const highlightCode = (code) => {
-	const highlightedText = code.replace(
-		new RegExp(`\\b(${keywords.join('|')})\\b`, 'g'),
-		'<span style="background-color: yellow;">$1</span>'
-	);
-	console.log("highlightCode", code, keywords, highlightedText);
-
-	elm_highlighte.innerHTML = highlightedText;
-};
+// const highlightCode = (code) => {
+// 	const highlightedText = code.replace(
+// 		new RegExp(`\\b(${keywords.join('|')})\\b`, 'g'),
+// 		'<span style="background-color: yellow;">$1</span>'
+// 	);
+// 	console.log("highlightCode", code, keywords, highlightedText);
+// 
+// 	elm_highlighte.innerHTML = highlightedText;
+// };
 
 // Events
 elm_execute.addEventListener('click', () => {
@@ -401,7 +401,7 @@ elm_code.addEventListener('keydown', (event) => {
 elm_code.addEventListener("input", () => {
 	const inputText = elm_code.value.toString().trim();
 
-	highlightCode(inputText);
+	// highlightCode(inputText);
 
 	localStorage.setItem("cache-code", inputText);
 
