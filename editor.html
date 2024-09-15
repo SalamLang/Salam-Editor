@@ -42,6 +42,24 @@
 	.editor-code .line {
 		display: block;
 	}
+
+	.editor-code .line .string {
+		color: #d14;
+	}
+
+	.editor-code .line .operator {
+		color: gold;
+	}
+
+	.editor-code .line .comment {
+		color: #999;
+		font-style: italic;
+	}
+
+	.editor-code .line .keyword {
+		color: #0086b3;
+		font-weight: bold;
+	}
 </style>
 
 <div class="editor">
@@ -59,6 +77,7 @@
 
 <script>
 	const keywords = ['تمام'];
+	const ops = ['\\+', '\\-', '\\:', '\\=', '\\.'];
 	const commands = ['صفحه', 'قطعه', 'جعبه', 'پاراگراف'];
 	const arguments = ['منبع', 'مقصد', 'محتوا', 'موقعیت', 'اندازه', 'رنگ', 'پس‌زمینه', 'حاشیه', 'پهنا', 'ارتفاع', 'شکل', 'نوع', 'سبک', 'وزن', 'خط', 'خط‌کش', 'خط‌کشی', 'خط‌کشی‌ها', 'خط‌کشی‌های'];
 
@@ -137,10 +156,10 @@
 			scrollIntoViewIfNeeded(newLine);
 
 			const newRange = document.createRange();
-			// newRange.setStart(newLine, 1);
-			// newRange.setEnd(newLine, 1);
-			newRange.setStart(newLine, 0);
-			newRange.setEnd(newLine, 0);
+			newRange.setStart(newLine, 1);
+			newRange.setEnd(newLine, 1);
+			// newRange.setStart(newLine, 0);
+			// newRange.setEnd(newLine, 0);
 
 			const newSelection = window.getSelection();
 			newSelection.removeAllRanges();
@@ -163,19 +182,30 @@
 		}
 	};
 
+	const highlight = (code) => {
+		code = code.replace(/(["'])(?:(?=(\\?))\2.)*?\1/g, '<span class="string">$&</span>');
+		code = code.replace(/\/\/[^\n]*/g, '<span class="comment">$&</span>');
+		code = code.replace(/\/\*[\s\S]*?\*\//g, '<span class="comment">$&</span>');
+
+		const escapeRegex = (word) => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+		const keywordReg = `\\b(${[...keywords, ...commands, ...arguments].map(escapeRegex).join('|')})\\b`;
+		const keywordRegex = new RegExp(keywordReg, 'g');
+		code = code.replace(keywordRegex, '<span class="keyword">$&</span>');
+
+		const opsReg = `(${ops.join('|')})`;
+		const opsRegex = new RegExp(opsReg, 'g');
+		code = code.replace(opsRegex, '<span class="operator">$&</span>');
+
+		return code;
+	};
+
 	const splitLines = () => {
 		console.log("splitLines");
 		const lines = editor_code.querySelectorAll(".line");
 
 		lines.forEach((line) => {
-			const textContent = line.textContent;
-		
-			const NotZeroWidthSpacesRegex = /^[\u200B-\u200D\uFEFF]*$/;
-			const ZeroWidthSpacesRegex = /[\u200B-\u200D\uFEFF]*$/;
-		
-			if (ZeroWidthSpacesRegex.test(textContent) && NotZeroWidthSpacesRegex.test(textContent)) {
-				line.innerHTML = line.innerHTML.replace(/[\u200B-\u200D\uFEFF]/g, '');
-			}
+			line.innerHTML = highlight(line.textContent);
 		});
 
 		updateLineNumbers();
