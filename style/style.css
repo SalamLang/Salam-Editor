@@ -92,6 +92,10 @@ button:hover {
 	resize: none;
 }
 
+.highlighted-code {
+	background-color: white;
+}
+
 .execute {
 	min-width: 50px;
 	padding-inline: 10px;

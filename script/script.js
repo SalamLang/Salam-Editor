@@ -1,5 +1,6 @@
 // Elements
 const elm_code = document.querySelector('.code');
+const elm_highlighte = document.querySelector('.highlighted-code');
 const elm_execute = document.querySelector('.execute');
 const elm_output = document.querySelector('.output');
 const elm_error = document.querySelector('.error');
@@ -27,6 +28,7 @@ const DEFAULT_CODE = `صفحه:
 	محتوا = «<سلام دنیا> زبان سلام»
 	اندازه فونت = ۱۰۰
 تمام`;
+const keywords = ['صفحه', 'قطعه', 'جعبه', 'پاراگراف', 'تمام'];
 
 // Variables
 let token;
@@ -270,8 +272,8 @@ const runSalam = (showOutput) => {
 		return;
 	}
 
-	const code = elm_code.value.toString().trim();
-	if (!code) {
+	const rawCode = elm_code.textContent || elm_code.innerText;
+	if (!rawCode) {
 		elm_error.innerHTML = '';
 		elm_output.innerHTML = '';
 
@@ -286,7 +288,7 @@ const runSalam = (showOutput) => {
 		return;
 	}
 
-	const arguments = ['code', code];
+	const arguments = ['code', rawCode];
 
 	captureOutput(showOutput, arguments);
 };
@@ -368,6 +370,16 @@ const save_code = () => {
 	});
 };
 
+const highlightCode = (code) => {
+	const highlightedText = code.replace(
+		new RegExp(`\\b(${keywords.join('|')})\\b`, 'g'),
+		'<span style="background-color: yellow;">$1</span>'
+	);
+	console.log("highlightCode", code, keywords, highlightedText);
+
+	elm_highlighte.innerHTML = highlightedText;
+};
+
 // Events
 elm_execute.addEventListener('click', () => {
 	runSalam(true);
@@ -387,7 +399,11 @@ elm_code.addEventListener('keydown', (event) => {
 });
 
 elm_code.addEventListener("input", () => {
-	localStorage.setItem("cache-code", elm_code.value.toString().trim());
+	const inputText = elm_code.value.toString().trim();
+
+	highlightCode(inputText);
+
+	localStorage.setItem("cache-code", inputText);
 
 	if (toggleStatus === 1) {
 		runSalam(false);
@@ -577,11 +593,11 @@ window.addEventListener('load', () => {
 });
 
 // Cache
-if ('serviceWorker' in navigator) {
-	navigator.serviceWorker.register('/script/service-worker.js').then(() => {
-		console.log('Service Worker Registered');
-	})
-		.catch(error => {
-			console.log('Service Worker Registration Failed:', error);
-		});
-}
+// if ('serviceWorker' in navigator) {
+// 	navigator.serviceWorker.register('/script/service-worker.js').then(() => {
+// 		console.log('Service Worker Registered');
+// 	})
+// 		.catch(error => {
+// 			console.log('Service Worker Registration Failed:', error);
+// 		});
+// }
