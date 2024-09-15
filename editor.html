@@ -1,169 +1,200 @@
 <style>
-    * {
-        padding: 0;
-        margin: 0;
-    }
+	* {
+		padding: 0;
+		margin: 0;
+	}
 
-    .editor {
-        direction: rtl;
-        text-align: right;
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        flex-direction: row;
-        line-height: 1.5;
-        font-size: 1.5rem;
-        font-family: sans-serif;
-    }
+	.editor {
+		direction: rtl;
+		text-align: right;
+		width: 100%;
+		height: 100vh;
+		display: flex;
+		flex-direction: row;
+		line-height: 1.5;
+		font-size: 1.5rem;
+		font-family: sans-serif;
+	}
 
-    .editor-lines {
-        width: auto;
-        min-width: 20px;
-        background-color: #f5f5f5;
-        color: #6c6c6c;
-        border-right: 1px solid #ddd;
-        list-style: none;
-        overflow: hidden;
-        height: 100%;
-        padding-right: 10px;
-        padding-left: 20px;
-    }
+	.editor-lines {
+		width: auto;
+		min-width: 20px;
+		background-color: #f5f5f5;
+		color: #6c6c6c;
+		border-right: 1px solid #ddd;
+		list-style: none;
+		overflow: hidden;
+		height: 100%;
+		padding-right: 10px;
+		padding-left: 20px;
+	}
 
-    .editor-code {
-        width: calc(100% - 20px);
-        padding-right: 10px;
-        padding-left: 10px;
-        height: 100%;
-        overflow-y: auto;
-        white-space: pre-wrap;
-    }
+	.editor-code {
+		width: calc(100% - 20px);
+		padding-right: 10px;
+		padding-left: 10px;
+		height: 100%;
+		overflow-y: auto;
+		/* white-space: pre-wrap; */
+		white-space: nowrap;
+	}
 
-    .editor-code .line {
-        display: block;
-    }
+	.editor-code .line {
+		display: block;
+	}
 </style>
 
 <div class="editor">
-    <div class="editor-lines">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-    </div>
-    <div contenteditable="true" class="editor-code"></div>
+	<div class="editor-lines">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+	</div>
+	<div contenteditable="true" class="editor-code"></div>
 </div>
 
 <script>
-    const editor = document.querySelector('.editor');
-    const editor_code = editor.querySelector('.editor-code');
-    const editor_lines = editor.querySelector('.editor-lines');
+	const editor = document.querySelector('.editor');
+	const editor_code = editor.querySelector('.editor-code');
+	const editor_lines = editor.querySelector('.editor-lines');
 
-    const updateLineNumbers = () => {
-        const lines = editor_code.querySelectorAll('.line');
-        editor_lines.innerHTML = '';
+	const updateLineNumbers = () => {
+		const lines = editor_code.querySelectorAll('.line');
+		editor_lines.innerHTML = '';
 
-        lines.forEach((_, index) => {
-            const lineItem = document.createElement('li');
-            lineItem.textContent = index + 1;
-            editor_lines.appendChild(lineItem);
-        });
-    };
+		lines.forEach((_, index) => {
+			const lineItem = document.createElement('li');
+			lineItem.textContent = index + 1;
+			editor_lines.appendChild(lineItem);
+		});
+	};
 
-    const getLeadingSpaces = (lineElement) => {
-        const lineText = lineElement.textContent;
-        const leadingSpaces = lineText.match(/^\s*/)[0].length;
-        return leadingSpaces;
-    };
+	const getLeadingSpaces = (lineElement) => {
+		const lineText = lineElement.textContent;
+		const leadingSpaces = lineText.match(/^\s*/)[0].length;
+		return leadingSpaces;
+	};
 
-    const handleKeyTab = (event) => {
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
+	const handleKeyTab = (event) => {
+		const selection = window.getSelection();
+		const range = selection.getRangeAt(0);
 
-        const tabNode = document.createTextNode('\u00a0\u00a0\u00a0\u00a0');
+		const tabNode = document.createTextNode('\u00a0\u00a0\u00a0\u00a0');
 
-        range.insertNode(tabNode);
+		range.insertNode(tabNode);
 
-        range.setStartAfter(tabNode);
-        range.setEndAfter(tabNode);
+		range.setStartAfter(tabNode);
+		range.setEndAfter(tabNode);
 
-        selection.removeAllRanges();
-        selection.addRange(range);
-    };
-    
-    const handleKeyLine = (event) => {
-        const selection = window.getSelection();
-        const range = selection.getRangeAt(0);
+		selection.removeAllRanges();
+		selection.addRange(range);
+	};
 
-        const newLine = document.createElement('div');
-        newLine.classList.add('line');
+	const scrollIntoViewIfNeeded = (element) => {
+		const rect = element.getBoundingClientRect();
+		const isVisible = (
+			rect.top >= 0 &&
+			rect.left >= 0 &&
+			rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+			rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+		);
 
-        newLine.innerHTML = '&#8203;';
+		if (!isVisible) {
+			element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+		}
+	};
 
-        // let previousLine = range.startContainer.parentElement.previousElementSibling;
-        // if (!previousLine || !previousLine.classList.contains('line')) {
-        //     previousLine = range.startContainer.parentElement;
-        // }
-        // if (previousLine) {
-        //     const leadingSpaces = getLeadingSpaces(previousLine);
-        //     newLine.innerHTML = '\u00a0'.repeat(leadingSpaces);
-        // } else {
-        //     newLine.innerHTML = '&#8203;';
-        // }
+	const handleKeyLine = (event) => {
+		const selection = window.getSelection();
+		const range = selection.getRangeAt(0);
 
-        const currentLine = range.startContainer.parentElement;
+		const newLine = document.createElement('div');
+		newLine.classList.add('line');
 
-        if (currentLine) {
-            if (currentLine.classList.contains('line')) {
-                currentLine.parentElement.insertBefore(newLine, currentLine.nextSibling);
-            }
-            else {
-                currentLine.appendChild(newLine);
-            }
+		newLine.innerHTML = '<br>';
+		// newLine.innerHTML = '&#8203;';
 
-            newLine.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		const currentLine = range.startContainer.parentElement;
 
-            console.log("newLine: ", newLine);
+		if (currentLine) {
+			if (currentLine.classList.contains('line')) {
+				currentLine.parentElement.insertBefore(newLine, currentLine.nextSibling);
+			}
+			else {
+				currentLine.appendChild(newLine);
+			}
 
-            const newRange = document.createRange();
-            // set range at end of newLine
-            newRange.setStart(newLine, 1);
-            newRange.setEnd(newLine, 1);
+			console.log("newLine: ", newLine);
 
-            const newSelection = window.getSelection();
-            newSelection.removeAllRanges();
-            newSelection.addRange(newRange);
-        }
-    };
+			scrollIntoViewIfNeeded(newLine);
+			
+			const newRange = document.createRange();
+			// newRange.setStart(newLine, 1);
+			// newRange.setEnd(newLine, 1);
+			newRange.setStart(newLine, 0);
+			newRange.setEnd(newLine, 0);
 
-    const handleKey = (event) => {
-        console.log(event.key);
+			const newSelection = window.getSelection();
+			newSelection.removeAllRanges();
+			newSelection.addRange(newRange);
+		}
+	};
 
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            handleKeyLine();
-            updateLineNumbers();
-        }
-        else if (event.key === 'Tab') {
-            event.preventDefault();
-            handleKeyTab();
-            updateLineNumbers();
-        }
-    };
+	const handleKey = (event) => {
+		console.log(event.key);
 
-    const splitLines = () => {
-        updateLineNumbers();
-    };
+		if (event.key === 'Enter') {
+			event.preventDefault();
+			handleKeyLine();
+			updateLineNumbers();
+		}
+		else if (event.key === 'Tab') {
+			event.preventDefault();
+			handleKeyTab();
+			updateLineNumbers();
+		}
+	};
 
-    const synchronizeScroll = () => {
-        editor_lines.scrollTop = editor_code.scrollTop;
-    };
+	const splitLines = () => {
+		console.log("splitLines");
+		const lines = editor_code.querySelectorAll(".line");
 
-    editor_code.addEventListener('scroll', synchronizeScroll);
-    editor_code.addEventListener('keydown', handleKey);
-    editor_code.addEventListener('input', splitLines);
-    editor_code.innerHTML = '<div class="line">&#8203;</div>';
-    splitLines();
+		// lines.forEach((line) => {
+		// 	const textContent = line.textContent;
+		// 
+		// 	const NotZeroWidthSpacesRegex = /^[\u200B-\u200D\uFEFF]*$/;
+		// 	const ZeroWidthSpacesRegex = /[\u200B-\u200D\uFEFF]*$/;
+		// 
+		// 	if (ZeroWidthSpacesRegex.test(textContent) && NotZeroWidthSpacesRegex.test(textContent)) {
+		// 		line.innerHTML = line.innerHTML.replace(/[\u200B-\u200D\uFEFF]/g, '');
+		// 	}
+		// });
+
+		updateLineNumbers();
+	};
+
+
+	const synchronizeScroll = () => {
+		editor_lines.scrollTop = editor_code.scrollTop;
+	};
+
+	const handlePaste = (event) => {
+		event.preventDefault();
+
+		const text = (event.clipboardData || window.clipboardData).getData('text');
+
+		document.execCommand('insertText', false, text);
+	};
+
+	editor_code.addEventListener('paste', handlePaste);
+	editor_code.addEventListener('scroll', synchronizeScroll);
+	editor_code.addEventListener('keydown', handleKey);
+	editor_code.addEventListener('input', splitLines);
+	editor_code.innerHTML = '<div class="line"><br></div>';
+	editor_code.focus();
+	splitLines();
 </script>
