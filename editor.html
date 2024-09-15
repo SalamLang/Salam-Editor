@@ -93,7 +93,7 @@
 	const updateLineNumbers = () => {
 		const selection = window.getSelection();
 		const range = selection.getRangeAt(0);
-		const activeLine = range.startContainer.closest('.line');
+		const activeLine = range.startContainer ? range.startContainer.closest('.line') : null;
 
 		editor_code.querySelectorAll('.line').forEach(line => line.classList.remove('active'));
 		editor_lines.querySelectorAll('li').forEach(li => li.classList.remove('active'));
@@ -259,7 +259,7 @@
 		updateLineNumbers();
 
 		const selection = window.getSelection();
-		const activeLine = selection.anchorNode.closest('.line');
+		const activeLine = selection.anchorNode ? selection.anchorNode.closest('.line') : null;
 
 		if (activeLine) {
 			activeLine.classList.add('active');
