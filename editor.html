@@ -79,13 +79,35 @@
 	const keywords = ['تمام'];
 	const ops = ['\\+', '\\-', '\\:', '\\=', '\\.'];
 	const commands = ['صفحه', 'قطعه', 'جعبه', 'پاراگراف'];
-	const arguments = ['منبع', 'مقصد', 'محتوا', 'موقعیت', 'اندازه', 'رنگ', 'پس‌زمینه', 'حاشیه', 'پهنا', 'ارتفاع', 'شکل', 'نوع', 'سبک', 'وزن', 'خط', 'خط‌کش', 'خط‌کشی', 'خط‌کشی‌ها', 'خط‌کشی‌های'];
+	const arguments = ['منبع', 'مقصد', 'محتوا'];
 
 	const editor = document.querySelector('.editor');
 	const editor_code = editor.querySelector('.editor-code');
 	const editor_lines = editor.querySelector('.editor-lines');
 
+	const handleBlur = () => {
+		// Remove active class when editor loses focus
+		editor_code.querySelectorAll('.line').forEach(line => line.classList.remove('active'));
+		editor_lines.querySelectorAll('li').forEach(li => li.classList.remove('active'));
+	};
+
 	const updateLineNumbers = () => {
+		const selection = window.getSelection();
+		const range = selection.getRangeAt(0);
+		const activeLine = range.startContainer.closest('.line');
+
+		editor_code.querySelectorAll('.line').forEach(line => line.classList.remove('active'));
+		editor_lines.querySelectorAll('li').forEach(li => li.classList.remove('active'));
+		if (activeLine) {
+			activeLine.classList.add('active');
+
+			const lineIndex = Array.from(editor_code.children).indexOf(activeLine);
+			const lineNumber = editor_lines.children[lineIndex];
+			if (lineNumber) {
+				lineNumber.classList.add('active');
+			}
+		}
+
 		const lines = editor_code.querySelectorAll('.line');
 		editor_lines.innerHTML = '';
 
@@ -158,6 +180,7 @@
 			const newRange = document.createRange();
 			newRange.setStart(newLine, 1);
 			newRange.setEnd(newLine, 1);
+			// or?
 			// newRange.setStart(newLine, 0);
 			// newRange.setEnd(newLine, 0);
 
@@ -178,24 +201,23 @@
 		else if (event.key === 'Tab') {
 			event.preventDefault();
 			handleKeyTab();
-			updateLineNumbers();
+			// updateLineNumbers();
 		}
 	};
 
 	const highlight = (code) => {
-		code = code.replace(/(["'])(?:(?=(\\?))\2.)*?\1/g, '<span class="string">$&</span>');
-		code = code.replace(/\/\/[^\n]*/g, '<span class="comment">$&</span>');
-		code = code.replace(/\/\*[\s\S]*?\*\//g, '<span class="comment">$&</span>');
+		code = code.replace(/(["'])(?:(?=(\\?))\2.)*?\1/g, '<span class=string>$&</span>');
+		code = code.replace(/\/\/[^\n]*/g, '<span class=comment>$&</span>');
+		code = code.replace(/\/\*[\s\S]*?\*\//g, '<span class=comment>$&</span>');
 
-		const escapeRegex = (word) => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-		const keywordReg = `\\b(${[...keywords, ...commands, ...arguments].map(escapeRegex).join('|')})\\b`;
+		const keywordReg = `\\b(${[...keywords, ...commands, ...arguments].join('|')})\\b`;
 		const keywordRegex = new RegExp(keywordReg, 'g');
-		code = code.replace(keywordRegex, '<span class="keyword">$&</span>');
+		console.log(keywordReg, keywordRegex);
+		code = code.replace(keywordRegex, '<span class=keyword>$&</span>');
 
 		const opsReg = `(${ops.join('|')})`;
 		const opsRegex = new RegExp(opsReg, 'g');
-		code = code.replace(opsRegex, '<span class="operator">$&</span>');
+		code = code.replace(opsRegex, '<span class=operator>$&</span>');
 
 		return code;
 	};
@@ -205,7 +227,10 @@
 		const lines = editor_code.querySelectorAll(".line");
 
 		lines.forEach((line) => {
-			line.innerHTML = highlight(line.textContent);
+			let h = highlight(line.textContent);
+			if (h == line.textContent) {
+				line.innerHTML = h;
+			}
 		});
 
 		updateLineNumbers();
@@ -223,10 +248,17 @@
 		document.execCommand('insertText', false, text);
 	};
 
+	const handleFocus = () => {
+		updateLineNumbers();
+	};
+
 	editor_code.addEventListener('paste', handlePaste);
 	editor_code.addEventListener('scroll', synchronizeScroll);
+	editor_code.addEventListener('focus', handleFocus);
+	editor_code.addEventListener('blur', handleBlur);
 	editor_code.addEventListener('keydown', handleKey);
 	editor_code.addEventListener('input', splitLines);
+
 
 	editor_code.innerHTML = '<div class="line"><br></div>';
 	editor_code.focus();
