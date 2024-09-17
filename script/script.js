@@ -410,7 +410,7 @@ elm_code.addEventListener("input", () => {
 	}
 });
 
-elm_logout_btn.addEventListener("click", () => {
+if (elm_logout_btn) elm_logout_btn.addEventListener("click", () => {
 	document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.salamlang.ir;";
 
 	location.reload();
@@ -578,9 +578,9 @@ window.addEventListener('load', () => {
 			if (obj.status === true) {
 				in_login();
 
-				elm_logout_btn.style.display = "flex";
+				if (elm_logout_btn) elm_logout_btn.style.display = "flex";
 			} else {
-				elm_login_btn.style.display = "flex";
+				if (elm_login_btn) elm_login_btn.style.display = "flex";
 			}
 		};
 		xhr.open("GET", APP_URL_VERIFY_TOKEN);
