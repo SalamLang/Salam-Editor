@@ -109,7 +109,6 @@
 		code = code.replace(/\/\*[\s\S]*?\*\//g, '<span class=comment>$&</span>');
 
 		// Handle english, persian, arabic numbers
-		// code = code.replace(/([0-9٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹]+)(\.([0-9٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹]+)|)/g, '<span class=number>$&</span>');
 		code = code.replace(/([0-9٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹]+)/g, '<span class=number>$&</span>');
 
 		// Regex for keywords, commands, and arguments (handling Persian/Arabic characters)
@@ -267,9 +266,31 @@
 		return textLines.join('<br>');
 	};
 
-	const splitLines = () => {
-		console.log("splitLines");
+	const saveCursorPosition = () => {
+		const selection = window.getSelection();
+
+		if (selection.rangeCount > 0) {
+			return selection.getRangeAt(0).cloneRange();
+		}
+
+		return null;
+	};
+
+	const restoreCursorPosition = (range) => {
+		if (range) {
+			const selection = window.getSelection();
+			
+			selection.removeAllRanges();
+			selection.addRange(range);
+		}
+	};
+
+	const highlightCodeInLines = () => {
+		console.log("highlightCodeInLines");
 		const lines = editor_code.querySelectorAll(".line");
+
+		const cursorRange = saveCursorPosition();
+		console.log("cursorRange: ", cursorRange);
 
 		lines.forEach((line) => {
 			if (line.textContent === "") {
@@ -285,6 +306,8 @@
 				}
 			}
 		});
+
+		restoreCursorPosition(cursorRange);
 
 		updateLineNumbers();
 	};
@@ -317,10 +340,10 @@
 	editor_code.addEventListener('focus', handleFocus);
 	editor_code.addEventListener('blur', handleBlur);
 	editor_code.addEventListener('keydown', handleKey);
-	editor_code.addEventListener('input', splitLines);
+	editor_code.addEventListener('input', highlightCodeInLines);
 
 	// editor_code.innerHTML = '<div class="line"><br></div>';
 	editor_code.focus();
 
-	splitLines();
+	highlightCodeInLines();
 </script>
