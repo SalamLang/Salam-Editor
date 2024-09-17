@@ -56,6 +56,10 @@
 		font-style: italic;
 	}
 
+	.editor-code .line .number {
+		color: pink;
+	}
+
 	.editor-code .line .keyword {
 		color: #0086b3;
 		font-weight: bold;
@@ -72,18 +76,52 @@
 		<li>5</li>
 		<li>6</li>
 	</div>
-	<div contenteditable="true" class="editor-code"></div>
+	<div contenteditable="true" class="editor-code">
+		<div class=line>صفحه:</div>
+		<div class=line> محتوا = ۳۴۵</div>
+		<div class=line>تمام</div>
+	</div>
 </div>
 
 <script>
 	const keywords = ['تمام'];
 	const ops = ['\\+', '\\-', '\\:', '\\=', '\\.'];
 	const commands = ['صفحه', 'قطعه', 'جعبه', 'پاراگراف'];
-	const arguments = ['منبع', 'مقصد', 'محتوا'];
+	const argumentsList = ['منبع', 'مقصد', 'محتوا'];
 
 	const editor = document.querySelector('.editor');
 	const editor_code = editor.querySelector('.editor-code');
 	const editor_lines = editor.querySelector('.editor-lines');
+
+	const highlight = (code) => {
+		// First, handle operators to avoid interfering with other patterns
+		const opsReg = `(${ops.join('|')})`;
+		const opsRegex = new RegExp(opsReg, 'g');
+		code = code.replace(opsRegex, '<span class=operator>$&</span>');
+
+		// Handle strings (single or double quoted)
+		code = code.replace(/(["'])(?:(?=(\\?))\2.)*?\1/g, '<span class=string>$&</span>');
+
+		// Handle single-line comments (starting with //)
+		code = code.replace(/\/\/[^\n]*/g, '<span class=comment>$&</span>');
+
+		// Handle multi-line comments (/* */)
+		code = code.replace(/\/\*[\s\S]*?\*\//g, '<span class=comment>$&</span>');
+
+		// Handle english, persian, arabic numbers
+		// code = code.replace(/([0-9٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹]+)(\.([0-9٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹]+)|)/g, '<span class=number>$&</span>');
+		code = code.replace(/([0-9٠١٢٣٤٥٦٧٨٩۰۱۲۳۴۵۶۷۸۹]+)/g, '<span class=number>$&</span>');
+
+		// Regex for keywords, commands, and arguments (handling Persian/Arabic characters)
+		const keywordReg = `(?:^|[^\\w\u0600-\u06FF])(${[...keywords, ...commands, ...argumentsList].join('|')})(?=[^\\w\u0600-\u06FF]|$)`;
+		const keywordRegex = new RegExp(keywordReg, 'g');
+		code = code.replace(keywordRegex, (match, p1) => {
+			// Only wrap the actual keyword and not the surrounding characters
+			return match.replace(p1, `<span class=keyword>${p1}</span>`);
+		});
+
+		return code;
+	};
 
 	const handleBlur = () => {
 		editor_code.querySelectorAll('.line').forEach(line => line.classList.remove('active'));
@@ -93,20 +131,20 @@
 	const updateLineNumbers = () => {
 		const selection = window.getSelection();
 		const range = selection.getRangeAt(0);
-		const activeLine = range.startContainer ? range.startContainer.closest('.line') : null;
+		// const activeLine = range.startContainer ? range.startContainer.closest('.line') : null;
 
 		editor_code.querySelectorAll('.line').forEach(line => line.classList.remove('active'));
 		editor_lines.querySelectorAll('li').forEach(li => li.classList.remove('active'));
 
-		if (activeLine) {
-			activeLine.classList.add('active');
-
-			const lineIndex = Array.from(editor_code.children).indexOf(activeLine);
-			const lineNumber = editor_lines.children[lineIndex];
-			if (lineNumber) {
-				lineNumber.classList.add('active');
-			}
-		}
+		// if (activeLine) {
+		// 	activeLine.classList.add('active');
+		// 
+		// 	const lineIndex = Array.from(editor_code.children).indexOf(activeLine);
+		// 	const lineNumber = editor_lines.children[lineIndex];
+		// 	if (lineNumber) {
+		// 		lineNumber.classList.add('active');
+		// 	}
+		// }
 
 		const lines = editor_code.querySelectorAll('.line');
 		editor_lines.innerHTML = '';
@@ -165,36 +203,46 @@
 		newLine.innerHTML = '<br>';
 		// newLine.innerHTML = '&#8203;';
 
-		const currentLine = range.startContainer.parentElement;
+		let currentLine = range.startContainer.parentElement;
 
 		if (currentLine) {
-			if (currentLine.classList.contains('line')) {
-				currentLine.parentElement.insertBefore(newLine, currentLine.nextSibling);
+			console.log("Now CurrentLine: ", currentLine);
+			let isCurrentLineEditor = false;
+			while (currentLine && !currentLine.classList.contains('line')) {
+				if (currentLine.classList.contains('editor-code')) {
+					isCurrentLineEditor = true;
+					break;
+				}
+
+				currentLine = currentLine.parentElement;
 			}
-			else {
-				currentLine.appendChild(newLine);
+
+			console.log("CurrentLine: ", currentLine);
+			if (currentLine) {
+				if (isCurrentLineEditor) {
+					currentLine.appendChild(newLine);
+				}
+				else {
+					currentLine.parentElement.insertBefore(newLine, currentLine.nextSibling);
+				}
+
+				scrollIntoViewIfNeeded(newLine);
+
+				const newRange = document.createRange();
+				// newRange.setStart(newLine, 1);
+				// newRange.setEnd(newLine, 1);
+				// or?
+				newRange.setStart(newLine, 0);
+				newRange.setEnd(newLine, 0);
+
+				const newSelection = window.getSelection();
+				newSelection.removeAllRanges();
+				newSelection.addRange(newRange);
 			}
-
-			console.log("newLine: ", newLine);
-
-			scrollIntoViewIfNeeded(newLine);
-
-			const newRange = document.createRange();
-			// newRange.setStart(newLine, 1);
-			// newRange.setEnd(newLine, 1);
-			// or?
-			newRange.setStart(newLine, 0);
-			newRange.setEnd(newLine, 0);
-
-			const newSelection = window.getSelection();
-			newSelection.removeAllRanges();
-			newSelection.addRange(newRange);
 		}
 	};
 
 	const handleKey = (event) => {
-		console.log(event.key);
-
 		if (event.key === 'Enter') {
 			event.preventDefault();
 
@@ -206,27 +254,17 @@
 			event.preventDefault();
 
 			handleKeyTab();
-
-			// updateLineNumbers();
 		}
 	};
 
-	const highlight = (code) => {
-		code = code.replace(/(["'])(?:(?=(\\?))\2.)*?\1/g, '<span class=string>$&</span>');
-		code = code.replace(/\/\/[^\n]*/g, '<span class=comment>$&</span>');
-		code = code.replace(/\/\*[\s\S]*?\*\//g, '<span class=comment>$&</span>');
+	const stripHTML = (string) => {
+		const doc = new DOMParser().parseFromString(string, 'text/html');
+		const textLines = [];
+		doc.body.childNodes.forEach((childNode) => {
+			textLines.push(childNode.textContent || '');
+		});
 
-		const keywordReg = `\\b(${[...keywords, ...commands, ...arguments].join('|')})\\b`;
-		const keywordRegex = new RegExp(keywordReg, 'g');
-		console.log(keywordReg, keywordRegex);
-		code = code.replace(keywordRegex, '<span class=keyword>$&</span>');
-
-		const opsReg = `(${ops.join('|')})`;
-		const opsRegex = new RegExp(opsReg, 'g');
-		console.log(opsReg, opsRegex);
-		code = code.replace(opsRegex, '<span class=operator>$&</span>');
-
-		return code;
+		return textLines.join('<br>');
 	};
 
 	const splitLines = () => {
@@ -234,9 +272,17 @@
 		const lines = editor_code.querySelectorAll(".line");
 
 		lines.forEach((line) => {
-			let h = highlight(line.textContent);
-			if (h == line.textContent) {
-				line.innerHTML = h;
+			if (line.textContent === "") {
+				h = "<br>";
+			}
+			else {
+				const code = line.textContent;
+				console.log("Code: ", code);
+				const h = highlight(code);
+
+				if (h !== line.textContent) {
+					line.innerHTML = h;
+				}
 			}
 		});
 
@@ -256,14 +302,14 @@
 	};
 
 	const handleFocus = () => {
-		updateLineNumbers();
+		// updateLineNumbers();
 
-		const selection = window.getSelection();
-		const activeLine = selection.anchorNode ? selection.anchorNode.closest('.line') : null;
+		// const selection = window.getSelection();
+		// const activeLine = selection.anchorNode ? selection.anchorNode.closest('.line') : null;
 
-		if (activeLine) {
-			activeLine.classList.add('active');
-		}
+		// if (activeLine) {
+		// 	activeLine.classList.add('active');
+		// }
 	};
 
 	editor_code.addEventListener('paste', handlePaste);
@@ -273,7 +319,7 @@
 	editor_code.addEventListener('keydown', handleKey);
 	editor_code.addEventListener('input', splitLines);
 
-	editor_code.innerHTML = '<div class="line"><br></div>';
+	// editor_code.innerHTML = '<div class="line"><br></div>';
 	editor_code.focus();
 
 	splitLines();
