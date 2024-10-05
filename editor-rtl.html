@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
+	<head>
+		<meta charset="UTF-8">
+		<title>Salam Editor</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		body {
+			overflow: hidden;
+		}
+		.CodeMirror {
+			/* direction: rtl; */
+			/* text-align: right; */
+			margin: 0;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			border: 1px solid #ccc;
+			font-family: monospace;
+		}
+		</style>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+	</head>
+	<body>
+		<textarea id="editor"></textarea>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js" integrity="sha512-8RnEqURPUc5aqFEN04aQEiPlSAdE0jlFS/9iGgUyNtwFnSKCXhmB6ZTNl7LnDtDWKabJIASzXrzD0K+LYexU9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/hint/html-hint.min.js" integrity="sha512-oxBKDzXElkyh3mQC/bKA/se1Stg1Q6fm7jz7PPY2kL01jRHQ64IwjpZVsuZojcaj5g8eKSMY9UJamtB1QR7Dmw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/lint/html-lint.min.js" integrity="sha512-+1cU98RF1+fbQdVuO2Hph3BxSIz3kr25QnZkgk9dYXdLlhAJ8u+75mfy5UKMBRxlRWYe+MewgVcFTHrYl4Xi8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/htmlembedded/htmlembedded.min.js" integrity="sha512-nZlYJlXg6ZqhEdMELUCY9QpeUZHLZh9JUUe2wnHmEvFSWer2gxmDO4xeQ4QlRM1zMzeZsTdm5oFw2IGhsmmLlA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+		<script>
+		const elm_editor = document.querySelector('#editor');
+		const editor = CodeMirror.fromTextArea(elm_editor, {
+			mode: 'html',
+			lineNumbers: true,
+			// rtlMoveVisually: true,
+			lineWrapping: true,
+			autoCloseTags: true,
+			lint: true,
+			extraKeys: {
+				'Ctrl-Space': 'autocomplete',
+			},
+			extensions:[
+				// basicSetup,
+				// html(),
+			],
+		});
+		editor.setValue('<!DOCTYPE html>\n<html lang="fa">\n<head>\n\t<meta charset="UTF-8">\n\t<title>Sample HTML in RTL</title>\n</head>\n<body>\n\t<h1>سلام</h1>\n\t<p>این یک مثال از ویرایشگر کد با پشتیبانی از HTML است.</p>\n</body>\n</html>');
+		</script>
+	</body>
+</html>
