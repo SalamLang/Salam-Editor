@@ -13,6 +13,10 @@
             left: 0;
             right: 0;
         }
+        .ace_line {
+            /* direction: ltr; */
+            /* unicode-bidi: bidi-override; */
+        }
         </style>    
     </head>
     <body>
@@ -54,11 +58,24 @@
         // editor.session.$bidiHandler.setRtlDirection(editor, true);
         
         editor.setOptions({
-            isRtlDir: true,
+            // isRtlDir: true,
             enableLiveAutocompletion: true,
             autoScrollEditorIntoView: true,
             copyWithEmptySelection: true,
             mergeUndoDeltas: "always",
+
+            useWorker: false,
+            highlightActiveLine: true,
+            rtl: true,
+            rtlText: true,
+            enableBasicAutocompletion: false,
+            enableSnippets: false,
+            enableLiveAutocompletion: false,
+            fontSize: "20px",
+            showPrintMargin: false,
+            showGutter: false,
+            // spellcheck: false,
+            // showSpaces: false,
         });
         
         editor.setTheme("ace/theme/twilight");
