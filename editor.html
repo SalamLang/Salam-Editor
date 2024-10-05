@@ -128,8 +128,8 @@
 	};
 
 	const updateLineNumbers = () => {
-		const selection = window.getSelection();
-		const range = selection.getRangeAt(0);
+		// const selection = window.getSelection();
+		// const range = selection.getRangeAt(0);
 		// const activeLine = range.startContainer ? range.startContainer.closest('.line') : null;
 
 		editor_code.querySelectorAll('.line').forEach(line => line.classList.remove('active'));
@@ -266,31 +266,97 @@
 		return textLines.join('<br>');
 	};
 
+	// const saveCursorPosition = () => {
+	// 	const selection = window.getSelection();
+
+	// 	if (selection.rangeCount > 0) {
+	// 		return selection.getRangeAt(0).cloneRange();
+	// 	}
+
+	// 	return null;
+	// };
+
+	// const restoreCursorPosition = (range) => {
+	// 	if (range) {
+	// 		const selection = window.getSelection();
+
+	// 		selection.removeAllRanges();
+	// 		selection.addRange(range);
+	// 	}
+	// };
+
+	// const getCursorPosition = (editor) => {
+	// 	const selection = window.getSelection();
+	// 	if (!selection.rangeCount) return { lineIndex: null, offset: 0 };
+
+	// 	const range = selection.getRangeAt(0);
+	// 	const line = range.startContainer.parentElement;
+	// 	const lineIndex = Array.from(editor.querySelectorAll(".line")).indexOf(line);
+	// 	const offset = range.startOffset;
+
+	// 	return { lineIndex, offset };
+	// };
+
+	// const setCursorPosition = (editor, lineIndex, offset) => {
+	// 	const lines = editor.querySelectorAll(".line");
+	// 	if (lineIndex >= 0 && lineIndex < lines.length) {
+	// 		const line = lines[lineIndex];
+	// 		const range = document.createRange();
+	// 		const selection = window.getSelection();
+
+	// 		const textNode = line.firstChild || document.createTextNode('');
+	// 		range.setStart(textNode, offset);
+	// 		range.collapse(true);
+
+	// 		selection.removeAllRanges();
+	// 		selection.addRange(range);
+	// 	}
+	// };
+
 	const saveCursorPosition = () => {
 		const selection = window.getSelection();
-
 		if (selection.rangeCount > 0) {
 			return selection.getRangeAt(0).cloneRange();
 		}
-
 		return null;
 	};
 
 	const restoreCursorPosition = (range) => {
 		if (range) {
 			const selection = window.getSelection();
-			
 			selection.removeAllRanges();
 			selection.addRange(range);
 		}
 	};
 
+	const getCaretPosition = () => {
+		const selection = document.getSelection();
+
+		if (!selection || !editor_code) return 0;
+
+		selection.collapseToEnd();
+
+		const range = selection.getRangeAt(0);
+		const clone = range.cloneRange();
+
+		clone.selectNodeContents(editor_code);
+		clone.setEnd(range.startContainer, range.startOffset);
+
+		console.log("clone:", clone, clone.toString(), clone.toString().length);
+		return clone.toString().length;
+	}
+
 	const highlightCodeInLines = () => {
 		console.log("highlightCodeInLines");
+		console.log(getCaretPosition());
 		const lines = editor_code.querySelectorAll(".line");
 
+		// console.log("saveCursorPosition");
 		const cursorRange = saveCursorPosition();
 		console.log("cursorRange: ", cursorRange);
+
+		// let cursorPos = { line: null, offset: 0 };
+		// let cursorPos = getCursorPosition(editor);
 
 		lines.forEach((line) => {
 			if (line.textContent === "") {
@@ -298,16 +364,28 @@
 			}
 			else {
 				const code = line.textContent;
-				console.log("Code: ", code);
+				// console.log("Code: ", code);
 				const h = highlight(code);
 
 				if (h !== line.textContent) {
+					// if (line === cursorPos.line) {
+					// 	cursorPos.offset = cursorPos.offset < highlightedCode.length ? cursorPos.offset : highlightedCode.length;
+					// }
+
 					line.innerHTML = h;
 				}
 			}
 		});
 
-		restoreCursorPosition(cursorRange);
+		// console.log("restoreCursorPosition");
+		// restoreCursorPosition(cursorRange);
+
+		// if (cursorPos.lineIndex !== null) {
+		// 	setCursorPosition(editor, cursorPos.lineIndex, cursorPos.offset);
+		// }
+		// if (cursorPos.line) {
+		// 	setCursorPosition(cursorPos.line, cursorPos.offset);
+		// }
 
 		updateLineNumbers();
 	};
