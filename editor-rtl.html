@@ -1,60 +1,53 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="fa-IR">
+<html lang="fa-IR" dir="ltr">
 	<head>
 		<meta charset="UTF-8">
-		<title>Salam Editor</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.css">
 		<style>
-		* {
+		*, *:after, *:before {
+			margin: 0;
 			padding: 0;
-			margin: 0;
-		}
-		body {
-			overflow: hidden;
-		}
-		.CodeMirror {
-			/* direction: rtl; */
-			/* text-align: right; */
-			margin: 0;
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			border: 1px solid #ccc;
-			font-family: monospace;
+			box-sizing: border-box;
 		}
 		</style>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
 	</head>
 	<body>
-		<textarea id="editor" cols="120" rows="30"></textarea>
-			
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js" integrity="sha512-8RnEqURPUc5aqFEN04aQEiPlSAdE0jlFS/9iGgUyNtwFnSKCXhmB6ZTNl7LnDtDWKabJIASzXrzD0K+LYexU9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/hint/html-hint.min.js" integrity="sha512-oxBKDzXElkyh3mQC/bKA/se1Stg1Q6fm7jz7PPY2kL01jRHQ64IwjpZVsuZojcaj5g8eKSMY9UJamtB1QR7Dmw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/lint/html-lint.min.js" integrity="sha512-+1cU98RF1+fbQdVuO2Hph3BxSIz3kr25QnZkgk9dYXdLlhAJ8u+75mfy5UKMBRxlRWYe+MewgVcFTHrYl4Xi8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/htmlembedded/htmlembedded.min.js" integrity="sha512-nZlYJlXg6ZqhEdMELUCY9QpeUZHLZh9JUUe2wnHmEvFSWer2gxmDO4xeQ4QlRM1zMzeZsTdm5oFw2IGhsmmLlA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+		<textarea id="editor"></textarea>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/xml/xml.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/css/css.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/javascript/javascript.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/htmlmixed/htmlmixed.js"></script>
 
 		<script>
-		const elm_editor = document.querySelector('#editor');
-
-		// const editor = CodeMirror.fromTextArea(elm_editor, {
-		// 	styleActiveLine: true,
-		// 	lineNumbers: true,
-		// 	matchBrackets: true,
-		// 	autoCloseBrackets: true,
-		// 	autoCloseTags: true,
-		// 	mode: "html",
-		// });
-
-		const editor = CodeMirror.fromTextArea(elm_editor, {
-			height: "350px",
-			// parserfile: ["parsehtmlmixed.js"],
-			// stylesheet: ["css/xmlcolors.css", "css/jscolors.css", "css/csscolors.css"],
-			// path: "js/",
-		});
-		
-		editor.setValue('<!DOCTYPE html>\n<html lang="fa">\n<head>\n\t<meta charset="UTF-8">\n\t<title>RTL</title>\n</head>\n<body>\n\t<h1>سلام</h1>\n\t<p>این یک مثال از ویرایشگر کد با پشتیبانی از HTML است.</p>\n</body>\n</html>');
+  function myCompletions(context) {
+    let word = context.matchBefore(/\w*/);
+    if (word.from == word.to && !context.explicit)
+      return null
+    return {
+      from: word.from,
+      options: [
+        {label: "match", type: "keyword"},
+        {label: "hello", type: "variable", info: "(World)"},
+        {label: "magic", type: "text", apply: "⠁⭒*.✩.*⭒⠁", detail: "macro"}
+      ]
+    }
+  }
+		const elm_editor = document.querySelector("#editor");
+		const editor_options = {
+			styleActiveLine: true,
+			lineNumbers: true,
+			matchBrackets: true,
+			autoCloseBrackets: true,
+			autoCloseTags: true,
+			mode: "htmlmixed",
+			extensions: [
+				// basicSetup,
+				autocompletion({override: [myCompletions]}),
+			],
+		};
+		const editor = CodeMirror.fromTextArea(elm_editor, editor_options);
 		</script>
 	</body>
 </html>
