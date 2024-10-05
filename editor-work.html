@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>Salam Editor</title>
+        <style type="text/css" media="screen">
+        body {
+            overflow: hidden;
+        }
+        #editor { 
+            margin: 0;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        </style>    
+    </head>
+    <body>
+        <div id="editor"></div>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/ace.min.js" integrity="sha512-xylzfb6LZn1im1ge493MNv0fISAU4QkshbKz/jVh6MJFAlZ6T1NRDJa0ZKb7ECuhSTO7fVy8wkXkT95/f4R4nA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/theme-twilight.min.js" integrity="sha512-CQbWpkkaPvt/wFnztAIuDoXvww/t8Ls9p98tRFw241zbd7jO743xfx2T8A48OXOUd7mFrb+iRCRrdwv2XDPHYw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/mode-html.min.js" integrity="sha512-JSkDZ0Crk8+F/F/lCqh6LZ/mzPqhSrRanUC3TExEziPsbLPFIJQmR5R7p954sdM88cOL9+WlVR6XBFJa3nXcdA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/snippets/html.min.js" integrity="sha512-q7p8Vl9Pu2j+nfsWLNLlITCMgOlaXKW3ZWar+86WKPsJIcg0qyxNMfavFsunVbrC7d/Ll6f8e2u8Jdy3NM/etA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/ext-language_tools.min.js" integrity="sha512-4l33zsqrqf1PBA3iEZ399Jl9on7It0HngOkI3TG2c6W0wUyTiXRxd9Eh8zFBXNy8fMlgda/u4u1metnbEf5Hzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+        <script>
+        const elm_editor = document.getElementById("editor");
+        elm_editor.textContent = `<!DOCTYPE html>
+        <html>
+            <head>
+        
+            <style type="text/css">
+                .text-layer {
+                    font-family: Monaco, "Courier New", monospace;
+                    font-size: 12px;
+                    cursor: text;
+                }
+            </style>
+        
+            </head>
+            <body>
+                <h2>dfgdfgdfg</h2>
+                <h1 style="color:red">Juhu Kinners</h1>
+            </body>
+        </html>`;
+        
+        const editor = ace.edit(elm_editor, {
+            mode: "ace/mode/html",
+            selectionStyle: "text"
+        })
+        ace.require("ace/ext/language_tools");
+        
+        editor.setOptions({
+            enableLiveAutocompletion: true,
+            autoScrollEditorIntoView: true,
+            copyWithEmptySelection: true,
+            mergeUndoDeltas: "always",
+        });
+        
+        editor.setTheme("ace/theme/twilight");
+        
+        // var JavaScriptMode = ace.require("ace/mode/html").Mode;
+        // editor.session.setMode(new JavaScriptMode());
+        </script>            
+    </body>
+</html>
