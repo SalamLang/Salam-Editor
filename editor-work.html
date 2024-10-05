@@ -1,4 +1,4 @@
-<html>
+<html dir="rtl" lang="fa-IR">
     <head>
         <title>Salam Editor</title>
         <style type="text/css" media="screen">
@@ -23,35 +23,38 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/mode-html.min.js" integrity="sha512-JSkDZ0Crk8+F/F/lCqh6LZ/mzPqhSrRanUC3TExEziPsbLPFIJQmR5R7p954sdM88cOL9+WlVR6XBFJa3nXcdA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/snippets/html.min.js" integrity="sha512-q7p8Vl9Pu2j+nfsWLNLlITCMgOlaXKW3ZWar+86WKPsJIcg0qyxNMfavFsunVbrC7d/Ll6f8e2u8Jdy3NM/etA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/ext-language_tools.min.js" integrity="sha512-4l33zsqrqf1PBA3iEZ399Jl9on7It0HngOkI3TG2c6W0wUyTiXRxd9Eh8zFBXNy8fMlgda/u4u1metnbEf5Hzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/ext-rtl.min.js" integrity="sha512-Y1PT0DPmdyo8jNcZ7Hlocor6wqXMpfGVp0rU65vQEjd2DipLQoRSgJ5V+3u6Y7Q3a6PcfsANYJ1NnjQvrReCqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script>
         const elm_editor = document.getElementById("editor");
         elm_editor.textContent = `<!DOCTYPE html>
-        <html>
-            <head>
-        
-            <style type="text/css">
-                .text-layer {
-                    font-family: Monaco, "Courier New", monospace;
-                    font-size: 12px;
-                    cursor: text;
-                }
-            </style>
-        
-            </head>
-            <body>
-                <h2>dfgdfgdfg</h2>
-                <h1 style="color:red">Juhu Kinners</h1>
-            </body>
-        </html>`;
+<html>
+    <head>
+
+    <style type="text/css">
+        .text-layer {
+            font-family: Monaco, "Courier New", monospace;
+            font-size: 12px;
+            cursor: text;
+        }
+    </style>
+
+    </head>
+    <body>
+        <h2>dfgdfgdfg</h2>
+        <h1 style="color:red">Juhu Kinners</h1>
+    </body>
+</html>`;
         
         const editor = ace.edit(elm_editor, {
             mode: "ace/mode/html",
             selectionStyle: "text"
         })
-        ace.require("ace/ext/language_tools");
+        // ace.require("ace/ext/rtl");
+        // ace.require("ace/ext/language_tools");
+        // editor.session.$bidiHandler.setRtlDirection(editor, true);
         
         editor.setOptions({
+            isRtlDir: true,
             enableLiveAutocompletion: true,
             autoScrollEditorIntoView: true,
             copyWithEmptySelection: true,
