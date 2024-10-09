@@ -1,55 +1,68 @@
 <!DOCTYPE html>
 <html lang="fa-IR" dir="ltr">
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.css">
-		<style>
-		*, *:after, *:before {
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.css">
+	<style>
+		*,
+		*:after,
+		*:before {
 			margin: 0;
 			padding: 0;
 			box-sizing: border-box;
 		}
-		</style>
-	</head>
-	<body>
-		<textarea id="editor"></textarea>
+	</style>
+</head>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/xml/xml.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/css/css.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/javascript/javascript.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/htmlmixed/htmlmixed.js"></script>
+<body>
+	<div id="editor"></div>
 
-		<script>
-		function myCompletions(context) {
-			const word = context.matchBefore(/\w*/);
+	<script src="https://codemirror.net/codemirror.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.js"></script> -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/xml/xml.js"></script> -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/css/css.js"></script> -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/javascript/javascript.js"></script> -->
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/mode/htmlmixed/htmlmixed.js"></script> -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/@codemirror/lang-html@6.4.9/dist/index.min.js"></script> -->
+	<script>
+		// import * as codemirrorlangHtml from 'https://esm.run/@codemirror/lang-html';
+		// console.log(codemirrorlangHtml);
+	</script>
 
-			if (word.from == word.to && !context.explicit) return null;
+	<script>
+			const { EditorView, basicSetup } = CM["codemirror"];
+			const { autocompletion } = CM["@codemirror/autocomplete"];
 
-			return {
-				from: word.from,
-				options: [
-					{label: "match", type: "keyword"},
-					{label: "hello", type: "variable", info: "(World)"},
-					{label: "magic", type: "text", apply: "⠁⭒*.✩.*⭒⠁", detail: "macro"},
+			function myCompletions(context) {
+				let word = context.matchBefore(/\w*/);
+				if (word.from == word.to && !context.explicit)
+					return null
+				return {
+					from: word.from,
+					options: [
+						{ label: "match", type: "keyword" },
+						{ label: "hello", type: "variable", info: "(World)" },
+						{ label: "magic", type: "text", apply: "⠁⭒*.✩.*⭒⠁", detail: "macro" }
+					]
+				}
+			}
+			const elm_editor = document.querySelector("#editor");
+			const editor_options = {
+				parent: elm_editor,
+				styleActiveLine: true,
+				lineNumbers: true,
+				matchBrackets: true,
+				autoCloseBrackets: true,
+				autoCloseTags: true,
+				mode: "htmlmixed",
+				extensions: [
+					basicSetup,
+					autocompletion({ override: [myCompletions] }),
 				],
 			};
-		}
+			const editor = new EditorView(editor_options);
+	</script>
+</body>
 
-		const elm_editor = document.querySelector("#editor");
-		const editor_options = {
-			styleActiveLine: true,
-			lineNumbers: true,
-			matchBrackets: true,
-			autoCloseBrackets: true,
-			autoCloseTags: true,
-			mode: "htmlmixed",
-			extensions: [
-				// basicSetup,
-				// autocompletion({override: [myCompletions]}),
-			],
-		};
-		const editor = CodeMirror.fromTextArea(elm_editor, editor_options);
-		</script>
-	</body>
 </html>
