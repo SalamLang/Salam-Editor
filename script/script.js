@@ -1,12 +1,12 @@
 // Elements
-const elm_code = document.querySelector('.code');
-// const elm_highlighte = document.querySelector('.highlighted-code');
-const elm_execute = document.querySelector('.execute');
-const elm_output = document.querySelector('.output');
-const elm_error = document.querySelector('.error');
-const elm_iframe = document.querySelector('.iframe');
-const elm_header = document.querySelector('header');
-const elm_save = document.querySelector('.save');
+const elm_code = document.querySelector(".code");
+// const elm_highlighte = document.querySelector(".highlighted-code");
+const elm_execute = document.querySelector(".execute");
+const elm_output = document.querySelector(".output");
+const elm_error = document.querySelector(".error");
+const elm_iframe = document.querySelector(".iframe");
+const elm_header = document.querySelector("header");
+const elm_save = document.querySelector(".save");
 const elm_setting_btn = document.querySelector(".setting");
 const elm_setting_modal = document.querySelector(".setting_modal");
 const elm_overlay = document.querySelector(".overlay");
@@ -28,7 +28,7 @@ const DEFAULT_CODE = `صفحه:
 	محتوا = «<سلام دنیا> زبان سلام»
 	اندازه فونت = ۱۰۰
 تمام`;
-const keywords = ['صفحه', 'قطعه', 'جعبه', 'پاراگراف', 'تمام'];
+const keywords = ["صفحه", "قطعه", "جعبه", "پاراگراف", "تمام"];
 
 // Variables
 let token;
@@ -40,13 +40,13 @@ let theme = "dark";
 var Module = {
 	noInitialRun: true,
 	onRuntimeInitialized: () => {
-		console.log('Salam loaded successfully');
+		console.log("Salam loaded successfully");
 
 		isReady = true;
 
 		elm_execute.disabled = !isReady;
 
-		if (elm_code.value !== '') {
+		if (elm_code.value !== "") {
 			runSalam(false);
 		}
 	},
@@ -64,8 +64,9 @@ var Module = {
 
 // Functions
 const handleInput = () => {
+	console.log("handleInput");
 	const inputText = elm_code.value.toString().trim();
-	
+
 	// highlightCode(inputText);
 
 	localStorage.setItem("cache-code", inputText);
@@ -88,7 +89,7 @@ const debounce = (func, delay) => {
 };
 
 const restartRuntime = () => {
-	console.log('Restarting runtime...');
+	console.log("Restarting runtime...");
 
 	Module.onRuntimeInitialized();
 	Module._main();
@@ -97,12 +98,12 @@ const restartRuntime = () => {
 const getCookie = (cookie_name) => {
 	const name = cookie_name + "=";
 	const decodedCookie = decodeURIComponent(document.cookie);
-	const ca = decodedCookie.split(';');
+	const ca = decodedCookie.split(";");
 
 	for (let i = 0; i < ca.length; i++) {
 		let c = ca[i];
 
-		while (c.charAt(0) === ' ') {
+		while (c.charAt(0) === " ") {
 			c = c.substring(1);
 		}
 
@@ -117,7 +118,7 @@ const getCookie = (cookie_name) => {
 const displayOutput = (text) => {
 	console.log("Output: ", text);
 
-	elm_output.textContent += text + '\n';
+	elm_output.textContent += text + "\n";
 };
 
 const displayError = (text) => {
@@ -128,7 +129,7 @@ const displayError = (text) => {
 		return;
 	}
 
-	elm_error.textContent += text + '<br>';
+	elm_error.textContent += text + "<br>";
 };
 
 const toggleIframePosition = () => {
@@ -229,8 +230,8 @@ const showErrorInIframe = () => {
 const captureLint = (arguments) => {
 	console.log("Capture Lint: ", arguments);
 
-	elm_output.textContent = '';
-	elm_error.textContent = '';
+	elm_output.textContent = "";
+	elm_error.textContent = "";
 
 	try {
 		const exitCode = callMain(arguments);
@@ -248,8 +249,8 @@ const captureLint = (arguments) => {
 const captureOutput = (showOutput, arguments) => {
 	console.log("Capture Output: ", arguments);
 
-	elm_output.textContent = '';
-	elm_error.textContent = '';
+	elm_output.textContent = "";
+	elm_error.textContent = "";
 
 	if (showOutput) {
 		toggleIframePosition();
@@ -259,7 +260,7 @@ const captureOutput = (showOutput, arguments) => {
 		const exitCode = callMain(arguments);
 
 		if (exitCode !== 0) {
-			elm_error.innerHTML = 'برنامه با خطا مواجه شد.<br>' + elm_error.textContent;
+			elm_error.innerHTML = "برنامه با خطا مواجه شد.<br>" + elm_error.textContent;
 			showErrorInIframe();
 		} else {
 			const iframeDocument = getIframeContent(elm_iframe);
@@ -273,7 +274,7 @@ const captureOutput = (showOutput, arguments) => {
 	} catch (err) {
 		console.error(err);
 
-		elm_error.innerHTML = 'خطای غیرمنتظره رخ داد.<br>' + err;
+		elm_error.innerHTML = "خطای غیرمنتظره رخ داد.<br>" + err;
 		showErrorInIframe();
 	} finally {
 		if (Module.noInitialRun) {
@@ -283,10 +284,10 @@ const captureOutput = (showOutput, arguments) => {
 };
 
 const runLint = () => {
-	console.log('Running Salam lint...');
+	console.log("Running Salam lint...");
 
 	if (!isReady) {
-		console.log('Salam runtime not ready. Please wait...');
+		console.log("Salam runtime not ready. Please wait...");
 		return;
 	}
 
@@ -295,7 +296,7 @@ const runLint = () => {
 		return;
 	}
 
-	const arguments = ['lint', 'code', code];
+	const arguments = ["lint", "code", code];
 
 	const res = captureLint(arguments);
 	if (res !== null) {
@@ -304,17 +305,17 @@ const runLint = () => {
 };
 
 const runSalam = (showOutput) => {
-	console.log('Running Salam code...');
+	console.log("Running Salam code...");
 
 	if (!isReady) {
-		console.log('Salam runtime not ready. Please wait...');
+		console.log("Salam runtime not ready. Please wait...");
 		return;
 	}
 
 	const rawCode = elm_code.value;
 	if (!rawCode) {
-		elm_error.innerHTML = '';
-		elm_output.innerHTML = '';
+		elm_error.innerHTML = "";
+		elm_output.innerHTML = "";
 
 		if (showOutput === true) {
 			Swal.fire({
@@ -327,7 +328,7 @@ const runSalam = (showOutput) => {
 		return;
 	}
 
-	const arguments = ['code', rawCode];
+	const arguments = ["code", rawCode];
 
 	captureOutput(showOutput, arguments);
 };
@@ -375,7 +376,7 @@ const save_code = () => {
 						Swal.fire({
 							icon: "success",
 							title: "کد شما ذخیره شد.",
-							html: `<a href='/?code=${obj.data.slug}' class='see_btn'>مشاهده</a>`,
+							html: `<a href="/?code=${obj.data.slug}" class="see_btn">مشاهده</a>`,
 						});
 					} else {
 						Swal.fire({
@@ -385,8 +386,8 @@ const save_code = () => {
 					}
 				};
 				xhr.open("POST", APP_URL_SAVE);
-				xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-				xhr.setRequestHeader('Authorization', token);
+				xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+				xhr.setRequestHeader("Authorization", token);
 
 				xhr.send(JSON.stringify({
 					title: login,
@@ -411,8 +412,8 @@ const save_code = () => {
 
 // const highlightCode = (code) => {
 // 	const highlightedText = code.replace(
-// 		new RegExp(`\\b(${keywords.join('|')})\\b`, 'g'),
-// 		'<span style="background-color: yellow;">$1</span>'
+// 		new RegExp(`\\b(${keywords.join("|")})\\b`, "g"),
+// 		`<span style="background-color: yellow;">$1</span>`
 // 	);
 // 	console.log("highlightCode", code, keywords, highlightedText);
 // 
@@ -420,19 +421,19 @@ const save_code = () => {
 // };
 
 // Events
-elm_execute.addEventListener('click', () => {
+elm_execute.addEventListener("click", () => {
 	runSalam(true);
 });
 
-elm_code.addEventListener('keydown', (event) => {
-	if (event.key === 'Tab') {
+elm_code.addEventListener("keydown", (event) => {
+	if (event.key === "Tab") {
 		event.preventDefault();
 
 		const textarea = event.target;
 		const start = textarea.selectionStart;
 		const end = textarea.selectionEnd;
 
-		textarea.value = textarea.value.substring(0, start) + '\t' + textarea.value.substring(end);
+		textarea.value = textarea.value.substring(0, start) + "\t" + textarea.value.substring(end);
 		textarea.selectionStart = textarea.selectionEnd = start + 1;
 	}
 });
@@ -503,8 +504,8 @@ elm_save.addEventListener("click", () => {
 			}
 		};
 		xhr.open("GET", APP_URL_VERIFY_TOKEN);
-		xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-		xhr.setRequestHeader('Authorization', token);
+		xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+		xhr.setRequestHeader("Authorization", token);
 		xhr.send();
 	} else {
 		get_login();
@@ -550,12 +551,12 @@ elm_refactor.addEventListener("click", () => {
 });
 
 // Init
-const script = document.createElement('script');
-script.type = 'text/javascript';
-script.src = 'salam-wa.js';
+const script = document.createElement("script");
+script.type = "text/javascript";
+script.src = "salam-wa.js";
 document.body.appendChild(script);
 
-window.addEventListener('load', () => {
+window.addEventListener("load", () => {
 	elm_code.focus();
 
 	// if (toggleStatus === 1) {
@@ -591,8 +592,8 @@ window.addEventListener('load', () => {
 			}
 		};
 		xhr.open("GET", APP_URL_GET_CODE + codeParam);
-		xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-		xhr.setRequestHeader('Authorization', token);
+		xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+		xhr.setRequestHeader("Authorization", token);
 		xhr.send();
 	}
 	else {
@@ -617,8 +618,8 @@ window.addEventListener('load', () => {
 			}
 		};
 		xhr.open("GET", APP_URL_VERIFY_TOKEN);
-		xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-		xhr.setRequestHeader('Authorization', token);
+		xhr.setRequestHeader("Content-type", "application/json; charset=utf-8");
+		xhr.setRequestHeader("Authorization", token);
 		xhr.send();
 	} else {
 		if (elm_login_btn) elm_login_btn.style.display = "flex";
@@ -626,11 +627,11 @@ window.addEventListener('load', () => {
 });
 
 // Cache
-// if ('serviceWorker' in navigator) {
-// 	navigator.serviceWorker.register('/script/service-worker.js').then(() => {
-// 		console.log('Service Worker Registered');
+// if ("serviceWorker" in navigator) {
+// 	navigator.serviceWorker.register("/script/service-worker.js").then(() => {
+// 		console.log("Service Worker Registered");
 // 	})
 // 		.catch(error => {
-// 			console.log('Service Worker Registration Failed:', error);
+// 			console.log("Service Worker Registration Failed:", error);
 // 		});
 // }
