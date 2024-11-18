@@ -249,7 +249,7 @@ const captureOutput = (showOutput, arguments) => {
 	} catch (err) {
 		console.error(err);
 
-		elm_error.textContent = 'خطای غیرمنتظره رخ داد.';
+		elm_error.innerHTML = 'خطای غیرمنتظره رخ داد.<br>' + err;
 		showErrorInIframe();
 	} finally {
 		if (Module.noInitialRun) {
