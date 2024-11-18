@@ -56,9 +56,20 @@ var Module = {
 	printErr: (text) => {
 		displayError(text);
 	},
+	onExit: (status) => {
+		console.log(`Program exited with status: ${status}`);
+		elm_execute.disabled = true;
+	},
 };
 
 // Functions
+const restartRuntime = () => {
+	console.log('Restarting runtime...');
+
+	Module.onRuntimeInitialized();
+	Module._main();
+};
+
 const getCookie = (cookie_name) => {
 	const name = cookie_name + "=";
 	const decodedCookie = decodeURIComponent(document.cookie);
@@ -240,6 +251,10 @@ const captureOutput = (showOutput, arguments) => {
 
 		elm_error.textContent = 'خطای غیرمنتظره رخ داد.';
 		showErrorInIframe();
+	} finally {
+		if (Module.noInitialRun) {
+			restartRuntime();
+		}
 	}
 };
 
