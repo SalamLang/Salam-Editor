@@ -63,6 +63,30 @@ var Module = {
 };
 
 // Functions
+const handleInput = () => {
+	const inputText = elm_code.value.toString().trim();
+	
+	// highlightCode(inputText);
+
+	localStorage.setItem("cache-code", inputText);
+
+	if (toggleStatus === 1) {
+		runSalam(false);
+	}
+};
+
+const debounce = (func, delay) => {
+    let timeoutId;
+
+    return function(...args) {
+        clearTimeout(timeoutId);
+
+        timeoutId = setTimeout(() => {
+            func.apply(this, args);
+        }, delay);
+    };
+};
+
 const restartRuntime = () => {
 	console.log('Restarting runtime...');
 
@@ -414,15 +438,7 @@ elm_code.addEventListener('keydown', (event) => {
 });
 
 elm_code.addEventListener("input", () => {
-	const inputText = elm_code.value.toString().trim();
-
-	// highlightCode(inputText);
-
-	localStorage.setItem("cache-code", inputText);
-
-	if (toggleStatus === 1) {
-		runSalam(false);
-	}
+	debounce(handleInput, 300);
 });
 
 if (elm_logout_btn) elm_logout_btn.addEventListener("click", () => {
