@@ -77,6 +77,7 @@ const handleInput = () => {
 };
 
 const debounce = (func, delay) => {
+	console.log("debounce", delay);
     let timeoutId;
 
     return function(...args) {
@@ -439,6 +440,8 @@ elm_code.addEventListener("keydown", (event) => {
 });
 
 elm_code.addEventListener("input", () => {
+	console.log("Change input");
+	
 	debounce(handleInput, 300);
 });
 
