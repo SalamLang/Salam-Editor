@@ -38,7 +38,6 @@ let theme = "dark";
 
 // Global variables
 var Module = {
-	// noInitialRun: true,
 	noInitialRun: false,
 	onRuntimeInitialized: () => {
 		console.log('Salam loaded successfully');
