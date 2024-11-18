@@ -457,7 +457,7 @@ elm_code.addEventListener("input", debounce(handleInput, 300));
 
 if (elm_logout_btn) elm_logout_btn.addEventListener("click", () => {
 	document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.salamlang.ir;";
-
+	
 	location.reload();
 });
 
