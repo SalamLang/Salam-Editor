@@ -35,6 +35,7 @@ let token;
 let isReady = false;
 let toggleStatus = 1;
 let theme = "dark";
+let is_running = false;
 
 // Global variables
 var Module = {
@@ -124,10 +125,9 @@ const displayOutput = (text) => {
 const displayError = (text) => {
 	console.error("Error: ", text);
 
-	// TODO: Ignore keepRuntimeAlive() warning
-	if (text === "program exited (with status: 2), but keepRuntimeAlive() is set (counter=0) due to an async operation, so halting execution but not exiting the runtime or preventing further async execution (you can use emscripten_force_exit, if you want to force a true shutdown)") {
-		return;
-	}
+	// if (text === "program exited (with status: 2), but keepRuntimeAlive() is set (counter=0) due to an async operation, so halting execution but not exiting the runtime or preventing further async execution (you can use emscripten_force_exit, if you want to force a true shutdown)") {
+	// 	return;
+	// }
 
 	elm_error.textContent += text + "<br>";
 };
@@ -230,7 +230,7 @@ const showErrorInIframe = () => {
 const captureLint = (arguments) => {
 	console.log("Capture Lint: ", arguments);
 
-	if (keepRuntimeAlive && keepRuntimeAlive()) {
+	if (is_running) {
 		return null;
 	}
 
@@ -238,6 +238,8 @@ const captureLint = (arguments) => {
 	elm_error.textContent = "";
 
 	try {
+		is_running = true;
+
 		const exitCode = callMain(arguments);
 
 		if (exitCode !== 0) {
@@ -247,13 +249,15 @@ const captureLint = (arguments) => {
 		}
 	} catch (err) {
 		return null;
+	} finally {
+		is_running = false;
 	}
 };
 
 const captureOutput = (showOutput, arguments) => {
 	console.log("Capture Output: ", arguments);
 
-	if (keepRuntimeAlive && keepRuntimeAlive()) {
+	if (is_running) {
 		return;
 	}
 
@@ -265,6 +269,8 @@ const captureOutput = (showOutput, arguments) => {
 	}
 
 	try {
+		is_running = true;
+
 		const exitCode = callMain(arguments);
 
 		if (exitCode !== 0) {
@@ -285,9 +291,10 @@ const captureOutput = (showOutput, arguments) => {
 		elm_error.innerHTML = "خطای غیرمنتظره رخ داد.<br>" + err;
 		showErrorInIframe();
 	} finally {
-		if (Module.noInitialRun) {
-			// restartRuntime();
-		}
+		is_running = false;
+		// if (Module.noInitialRun) {
+		// 	restartRuntime();
+		// }
 	}
 };
 
