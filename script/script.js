@@ -38,7 +38,7 @@ let theme = "dark";
 
 // Global variables
 var Module = {
-	noInitialRun: false,
+	noInitialRun: true,
 	onRuntimeInitialized: () => {
 		console.log('Salam loaded successfully');
 
@@ -253,7 +253,7 @@ const captureOutput = (showOutput, arguments) => {
 		showErrorInIframe();
 	} finally {
 		if (Module.noInitialRun) {
-			restartRuntime();
+			// restartRuntime();
 		}
 	}
 };
