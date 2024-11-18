@@ -556,9 +556,11 @@ window.addEventListener('load', () => {
 	}
 
 	const codeParam = new URLSearchParams(window.location.search).get("code");
-	console.log(codeParam, window.location.search);
+	console.log("CodeParam: ", codeParam);
+
 	if (codeParam !== null) {
 		const xhr = new XMLHttpRequest();
+		
 		xhr.onload = () => {
 			const obj = JSON.parse(xhr.response);
 			if (obj.status === true) {
