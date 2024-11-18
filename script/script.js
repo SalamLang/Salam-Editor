@@ -588,7 +588,7 @@ window.addEventListener('load', () => {
 		xhr.setRequestHeader('Authorization', token);
 		xhr.send();
 	} else {
-		elm_login_btn.style.display = "flex";
+		if (elm_login_btn) elm_login_btn.style.display = "flex";
 	}
 });
 
