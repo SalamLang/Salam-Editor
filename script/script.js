@@ -243,15 +243,19 @@ const captureLint = (arguments) => {
 		const exitCode = callMain(arguments);
 
 		if (exitCode !== 0) {
+			is_running = false;
+
 			return null;
 		} else {
+			is_running = false;
+
 			return elm_output.textContent;
 		}
 	} catch (err) {
-		return null;
-	} finally {
 		is_running = false;
-	}
+
+		return null;
+	} finally {}
 };
 
 const captureOutput = (showOutput, arguments) => {
@@ -285,13 +289,16 @@ const captureOutput = (showOutput, arguments) => {
 				iframeDocument.close();
 			}
 		}
+
+		is_running = false;
 	} catch (err) {
 		console.error(err);
 
 		elm_error.innerHTML = "خطای غیرمنتظره رخ داد.<br>" + err;
 		showErrorInIframe();
-	} finally {
+		
 		is_running = false;
+	} finally {
 		// if (Module.noInitialRun) {
 		// 	restartRuntime();
 		// }
@@ -457,7 +464,7 @@ elm_code.addEventListener("input", debounce(handleInput, 300));
 
 if (elm_logout_btn) elm_logout_btn.addEventListener("click", () => {
 	document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.salamlang.ir;";
-	
+
 	location.reload();
 });
 
