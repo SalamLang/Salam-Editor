@@ -230,6 +230,10 @@ const showErrorInIframe = () => {
 const captureLint = (arguments) => {
 	console.log("Capture Lint: ", arguments);
 
+	if (keepRuntimeAlive && keepRuntimeAlive()) {
+		return null;
+	}
+
 	elm_output.textContent = "";
 	elm_error.textContent = "";
 
@@ -248,6 +252,10 @@ const captureLint = (arguments) => {
 
 const captureOutput = (showOutput, arguments) => {
 	console.log("Capture Output: ", arguments);
+
+	if (keepRuntimeAlive && keepRuntimeAlive()) {
+		return;
+	}
 
 	elm_output.textContent = "";
 	elm_error.textContent = "";
