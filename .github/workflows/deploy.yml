@@ -20,5 +20,5 @@ jobs:
           script: |
             cd ${{ secrets.SERVER_PATH }}
             git pull
-            npm i
-            npm run build
+            bun install
+            bun run build
