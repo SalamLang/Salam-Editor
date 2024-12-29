@@ -97,15 +97,16 @@ const EditorService = (callback) => {
         extensions: [
             basicSetup,
             SALAM(),
-            // keymap.of([indentWithTab]),
             keymap.of([{ key: "Tab", run: acceptCompletion }, indentWithTab]),
             EditorView.updateListener.of((update) => {
                 if (update.changes) {
                     const newText = update.state.doc.toString();
+                    localStorage.setItem("code", newText);
                     callback(newText)
                 }
             }),
         ],
+        doc: localStorage.getItem("code") ?? ""
     };
     new EditorView(editor_options);
 }

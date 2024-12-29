@@ -1,13 +1,16 @@
 import {useEffect} from "react";
 import "../../scripts/codemirror.js"
 import EditorService from "../../services/EditorService.js";
+import {useLocation} from "react-router-dom";
 
 const Editor = () => {
+    let location = useLocation();
+
     useEffect(() => {
         EditorService((updateText) => {
             console.log(updateText)
         })
-    }, [])
+    }, [location])
 
     return (<>
         <main
