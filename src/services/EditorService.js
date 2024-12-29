@@ -6,9 +6,11 @@ const EditorService = (callback) => {
     }
 
     const { EditorView, basicSetup } = CM["codemirror"];
-    const { completeFromList } = CM["@codemirror/autocomplete"];
+    const { keymap } = CM["@codemirror/view"];
+    const { completeFromList, acceptCompletion } = CM["@codemirror/autocomplete"];
     const { LRParser } = CM["@lezer/lr"];
     const { LRLanguage } = CM["@codemirror/language"];
+    const {indentWithTab, defaultKeymap, indentMore, indentLess} = CM["@codemirror/commands"];
     const { LanguageSupport } = CM["@codemirror/language"];
     const { foldNodeProp, foldInside, indentNodeProp } = CM["@codemirror/language"];
     const { styleTags, tags } = CM["@lezer/highlight"];
@@ -91,9 +93,12 @@ const EditorService = (callback) => {
         matchBrackets: true,
         autoCloseBrackets: true,
         autoCloseTags: true,
+
         extensions: [
             basicSetup,
             SALAM(),
+            // keymap.of([indentWithTab]),
+            keymap.of([{ key: "Tab", run: acceptCompletion }, indentWithTab]),
             EditorView.updateListener.of((update) => {
                 if (update.changes) {
                     const newText = update.state.doc.toString();
