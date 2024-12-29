@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-
-}
-
 /*Nprogress change color*/
 #nprogress .bar {
     background: #FF5C00 !important;
@@ -16,4 +12,12 @@
 #nprogress .spinner-icon {
     border-top-color: #FF5C00 !important;
     border-left-color: #FF5C00 !important;
+}
+
+.ͼ2 .cm-gutters{
+    border: 0 !important;
+}
+
+.ͼ1 .cm-lineNumbers .cm-gutterElement{
+    padding: 0 11px 0 0;
 }
