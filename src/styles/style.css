@@ -2,22 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    
+}
+
 /*Nprogress change color*/
 #nprogress .bar {
     background: #FF5C00 !important;
 }
+
 #nprogress .peg {
     box-shadow: 0 0 10px #FF5C00, 0 0 5px #FF5C00 !important;
 }
+
 #nprogress .spinner-icon {
     border-top-color: #FF5C00 !important;
     border-left-color: #FF5C00 !important;
 }
 
-.ͼ2 .cm-gutters{
+.ͼ2 .cm-gutters {
     border: 0 !important;
 }
 
-.ͼ1 .cm-lineNumbers .cm-gutterElement{
+.ͼ1 .cm-lineNumbers .cm-gutterElement {
     padding: 0 11px 0 0;
+}
+
+.cm-line {
+    font-size: 18px;
+}
+
+.cm-tooltip {
+    font-size: 15px;
 }
