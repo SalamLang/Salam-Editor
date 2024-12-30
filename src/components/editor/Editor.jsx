@@ -8,7 +8,7 @@ const Editor = () => {
 
     useEffect(() => {
         EditorService((updateText) => {
-            console.log(updateText)
+            // console.log(updateText)
         })
     }, [location])
 

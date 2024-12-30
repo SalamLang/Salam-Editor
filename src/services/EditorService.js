@@ -1,3 +1,5 @@
+import {StateEffect} from "@codemirror/state";
+
 const EditorService = (callback) => {
     const CM = window?.CM;
     if (!CM) {
@@ -5,11 +7,11 @@ const EditorService = (callback) => {
         return;
     }
 
-    const { EditorView, basicSetup } = CM["codemirror"];
-    const { keymap } = CM["@codemirror/view"];
+    const { basicSetup } = CM["codemirror"];
+    const { keymap, EditorView } = CM["@codemirror/view"];
     const { completeFromList, acceptCompletion } = CM["@codemirror/autocomplete"];
     const { LRParser } = CM["@lezer/lr"];
-    const { LRLanguage } = CM["@codemirror/language"];
+    const { LRLanguage, HighlightStyle } = CM["@codemirror/language"];
     const {indentWithTab, defaultKeymap, indentMore, indentLess} = CM["@codemirror/commands"];
     const { LanguageSupport } = CM["@codemirror/language"];
     const { foldNodeProp, foldInside, indentNodeProp } = CM["@codemirror/language"];
@@ -30,12 +32,28 @@ const EditorService = (callback) => {
         tokenPrec: 0
     });
 
+    let before_space = 0
+
+    function getSpacesBeforeCursor(state) {
+        const cursorPos = state.selection.main.head; // موقعیت مکان‌نما
+        const line = state.doc.lineAt(cursorPos);    // خط جاری
+
+        let spacesCount = 0;
+        // بررسی اسپیس‌ها در همان خط قبل از مکان‌نما
+        for (let i = line.from; i < cursorPos; i++) {
+            if (line.text.charAt(i - line.from) === ' ') {
+                spacesCount++;
+            }
+        }
+
+        return spacesCount;
+    }
+
     const SALAMLanguage = LRLanguage.define({
         parser: parser.configure({
             props: [
                 indentNodeProp.add({
                     Application: context => context.column(context.node.from) + context.unit
-                    // Application: delimitedIndent({ closing: ")", align: false })
                 }),
                 foldNodeProp.add({
                     Application: foldInside
@@ -56,7 +74,7 @@ const EditorService = (callback) => {
 
     const exampleCompletion = SALAMLanguage.data.of({
         autocomplete: completeFromList([
-            { label: "صفحه", type: "keyword" },
+            { label: "صفحه", type: "keyword", apply: "صفحه" + `:\n${before_space === 0 ? "" : Array(before_space).fill('\xa0').join('')}تمام` },
             { label: "تمام", type: "keyword" },
             { label: "پاراگراف", type: "keyword" },
             { label: "ضخیم", type: "keyword" },
@@ -86,20 +104,24 @@ const EditorService = (callback) => {
     }
 
     const elm_editor = document.querySelector("#editor");
+
     const editor_options = {
         parent: elm_editor,
         styleActiveLine: true,
         lineNumbers: true,
         matchBrackets: true,
         autoCloseBrackets: true,
-        autoCloseTags: true,
 
         extensions: [
             basicSetup,
             SALAM(),
             keymap.of([{ key: "Tab", run: acceptCompletion }, indentWithTab]),
             EditorView.updateListener.of((update) => {
+                setTimeout(() => {
+                    before_space = getSpacesBeforeCursor(update.state)
+                }, 10)
                 if (update.changes) {
+                    console.log(before_space)
                     const newText = update.state.doc.toString();
                     localStorage.setItem("code", newText);
                     callback(newText)
@@ -108,7 +130,15 @@ const EditorService = (callback) => {
         ],
         doc: localStorage.getItem("code") ?? ""
     };
-    new EditorView(editor_options);
+
+    let editor = new EditorView(editor_options);
+
+    setInterval(() => {
+        editor.dispatch({
+            effects: StateEffect.appendConfig.of(SALAM())
+        });
+        console.log(';run')
+    }, 5)
 }
 
 export default EditorService;
