@@ -1,9 +1,11 @@
 import {useEffect} from "react";
 import "../../scripts/codemirror.js"
 import EditorService from "../../services/EditorService.js";
+import SalamService from "../../services/SalamService.js";
 
 const Editor = () => {
     useEffect(() => {
+        SalamService()
         EditorService(() => {
             return [
                 {
@@ -19,7 +21,6 @@ const Editor = () => {
                 }
             ]
         },(updateText) => {
-
         })
     }, [])
 
