@@ -7,20 +7,15 @@ const Editor = () => {
     useEffect(() => {
         SalamService()
         EditorService(() => {
-            return [
-                {
-                    label: "صفحه",
-                    type: "keyword",
-                    apply: "صفحه" + ":\nتمام"
-                },
-                {
-                    label: "دکمه",
-                    type: "variable",
-                    apply: "دکمه" + ":\nتمام",
-                    info: "این تگ برای ایجاد یک دکمه به کار میرود.",
-                }
-            ]
-        },(updateText) => {
+            return [{
+                label: "صفحه", type: "keyword", apply: "صفحه" + ":\nتمام"
+            }, {
+                label: "دکمه",
+                type: "variable",
+                apply: "دکمه" + ":\nتمام",
+                info: "این تگ برای ایجاد یک دکمه به کار میرود.",
+            }]
+        }, (updateText) => {
         })
     }, [])
 
