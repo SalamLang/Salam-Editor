@@ -1,123 +1,87 @@
-const SalamService = () => {
-    // Elements
-    const elm_output = document.querySelector('.output');
-    const elm_error = document.querySelector('.error');
-    const elm_iframe = document.querySelector('.iframe');
+const iframe = document.querySelector('iframe');
+const outputPre = document.querySelector('pre');
 
-// Variables
-    let isReady = false;
+let isReady = false;
+let is_running = false;
 
-// Global variables
-    var Module = {
-        noInitialRun: true, onRuntimeInitialized: () => {
-            console.log('Salam loaded successfully');
+const Module = {
+    noInitialRun: true, onRuntimeInitialized: () => {
+        console.log('Salam loaded successfully');
+        isReady = true;
+    }, print: (text) => {
+        console.log(text);
+    },
+};
 
-            isReady = true;
+const SalamService = (code) => {
+    Module.onRuntimeInitialized();
 
-            runSalam(false);
-        }, print: (text) => {
-            displayOutput(text);
-        }, printErr: (text) => {
-            displayError(text);
-        },
+    console.log('Running Salam code...');
+
+    const args = ['code', code];
+    console.log('Calling Salam with args:', args);
+
+    if (isReady) {
+        captureOutput(args);
+    } else {
+        console.log('Salam runtime not ready. Please wait...');
+    }
+};
+
+const captureOutput = (args) => {
+    if (outputPre) {
+        outputPre.textContent = '';
+    }
+
+    let output = '';
+    const originalConsoleLog = console.log;
+    const originalConsoleError = console.error;
+
+    console.log = (text) => {
+        output += text + '\n';
+    };
+    console.error = (text) => {
+        output += 'Error: ' + text + '\n';
     };
 
-// Functions
-    const displayOutput = (text) => {
-        console.log("Output: ", text);
+    if (is_running) {
+        return;
+    }
 
-        elm_output.textContent += text + '\n';
-    };
+    try {
+        is_running = true;
 
-    const displayError = (text) => {
-        console.error("Error: ", text);
-
-        // TODO: Ignore keepRuntimeAlive() warning
-        if (text === "program exited (with status: 2), but keepRuntimeAlive() is set (counter=0) due to an async operation, so halting execution but not exiting the runtime or preventing further async execution (you can use emscripten_force_exit, if you want to force a true shutdown)") {
-            return;
+        if (typeof callMain === 'function') {
+            try {
+                callMain(args);
+            } catch (err) {
+                console.error('Runtime error:', err);
+            }
+        } else {
+            console.error('callMain is not defined. Ensure NO_EXIT_RUNTIME is enabled.',);
         }
+    } catch (err) {
+        console.error('خطای غیرمنتظره رخ داد. ' + err);
+    } finally {
+        is_running = false;
+    }
 
-        elm_error.textContent += text + '<br>';
-    };
+    if (outputPre) {
+        outputPre.textContent = output;
 
-    const getIframeContent = (iframe) => {
-        return iframe.contentDocument || iframe.contentWindow.document;
-    };
-
-    const showErrorInIframe = () => {
-        const iframeDocument = getIframeContent(elm_iframe);
+        const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
         if (iframeDocument) {
             iframeDocument.open();
-            iframeDocument.write(`<!DOCTYPE html>
-<html dir="rtl" lang="fa-IR">
-	<body>
-		<div style="color: red; font-weight: bold;"><b>errorrrrrrrrrrrrrr:</b> ${elm_error.innerHTML}</div>
-	</body>
-</html>`);
+            iframeDocument.write(output);
             iframeDocument.close();
         }
-    };
+    }
 
-    const captureOutput = (args) => {
-        console.log("Capture Output: ", args);
+    console.log = originalConsoleLog;
+    console.error = originalConsoleError;
 
-        elm_output.textContent = '';
-        elm_error.textContent = '';
-
-        try {
-            const exitCode = callMain(args);
-
-            if (exitCode !== 0) {
-                elm_error.innerHTML = 'njkjn.jnkjkjnkjnknkj¯.<br>' + elm_error.textContent;
-                showErrorInIframe();
-            } else {
-                const iframeDocument = getIframeContent(elm_iframe);
-
-                if (iframeDocument) {
-                    iframeDocument.open();
-                    iframeDocument.write(elm_output.textContent);
-                    iframeDocument.close();
-                }
-            }
-        } catch (err) {
-            console.error(err);
-
-            elm_error.textContent = 'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh.';
-            showErrorInIframe();
-        }
-    };
-
-    const runSalam = () => {
-        console.log('Running Salam code...');
-
-        if (!isReady) {
-            console.log('Salam runtime not ready. Please wait...');
-            return;
-        }
-
-        const code = "صفحه: محتوا=«سلام چطوری» تمام"
-
-        const args = ['code', code];
-
-        captureOutput(args);
-    };
-
-// Init
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'salam-wa.js';
-    document.body.appendChild(script);
-
-// // Cache
-//     if ('serviceWorker' in navigator) {
-//         navigator.serviceWorker.register('/script/service-worker.js').then(() => {
-//             console.log('Service Worker Registered');
-//         })
-//             .catch(error => {
-//                 console.log('Service Worker Registration Failed:', error);
-//             });
-//     }
-}
+    return output;
+};
 
 export default SalamService;

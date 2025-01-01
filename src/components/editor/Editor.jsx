@@ -3,19 +3,25 @@ import "../../scripts/codemirror.js"
 import EditorService from "../../services/EditorService.js";
 import SalamService from "../../services/SalamService.js";
 
+const salamAdd = () => {
+    const script = document.createElement('script');
+    script.src = 'salam-wa.js';
+    script.onload = () => {
+        console.log('Salam module reloaded.');
+    };
+
+    document.body.appendChild(script);
+}
+
 const Editor = () => {
     useEffect(() => {
-        SalamService()
+        salamAdd();
         EditorService(() => {
             return [
                 {
                     label: "صفحه",
                     type: "keyword",
-                    apply: "صفحه" + ":\n\nتمام",
-                    render: (element, data) => {
-                        element.innerHTML = `<span class="icon fa fa-file">f</span> ${data.label}`;
-                    },
-                    icon
+                    apply: "صفحه" + ":\n\nتمام"
                 }, {
                     label: "دکمه",
                     type: "variable",
@@ -24,6 +30,7 @@ const Editor = () => {
                 }
             ]
         }, (updateText) => {
+            SalamService(updateText);
         })
     }, [])
 
@@ -34,6 +41,8 @@ const Editor = () => {
             {/*<div className="output"></div>*/}
             {/*<div className="error"></div>*/}
             {/*<iframe className={"iframe"}></iframe>*/}
+            <iframe></iframe>
+            <pre></pre>
         </main>
     </>);
 };
