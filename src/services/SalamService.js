@@ -59,14 +59,14 @@ const SalamService = () => {
         }
     };
 
-    const captureOutput = (layer) => {
-        console.log("Capture Output: ", layer);
+    const captureOutput = (args) => {
+        console.log("Capture Output: ", args);
 
         elm_output.textContent = '';
         elm_error.textContent = '';
 
         try {
-            const exitCode = callMain(layer);
+            const exitCode = callMain(args);
 
             if (exitCode !== 0) {
                 elm_error.innerHTML = 'njkjn.jnkjkjnkjnknkj¯.<br>' + elm_error.textContent;
@@ -98,9 +98,9 @@ const SalamService = () => {
 
         const code = "صفحه: محتوا=«سلام چطوری» تمام"
 
-        const layer = ['code', code];
+        const args = ['code', code];
 
-        captureOutput(layer);
+        captureOutput(args);
     };
 
 // Init
