@@ -81,6 +81,20 @@
 
         const elm_editor = document.querySelector("#editor");
 
+        const tab = (view) => {
+            const result = acceptCompletion(view);
+            if (result) {
+                const cursorPos = view.state.selection.main.head;
+                const line = view.state.doc.lineAt(cursorPos);
+                const targetLine = parseInt(line.number) - 1
+                const targetPos = view.state.doc.line(targetLine).from;
+                view.dispatch({
+                    selection: { anchor: targetPos, head: targetPos }
+                });
+            }
+            return result;
+        }
+
         const editor_options = {
             parent: elm_editor,
             styleActiveLine: true,
@@ -91,7 +105,13 @@
             extensions: [
                 basicSetup,
                 SALAM(),
-                keymap.of([{ key: "Tab", run: acceptCompletion }, indentWithTab]),
+                keymap.of([
+                    {
+                        key: "Tab",
+                        run: (view) => tab(view)
+                    },
+                    indentWithTab
+                ]),
                 EditorView.updateListener.of((update) => {
                     if (update.changes) {
                         console.log(before_space)
