@@ -7,14 +7,22 @@ const Editor = () => {
     useEffect(() => {
         SalamService()
         EditorService(() => {
-            return [{
-                label: "صفحه", type: "keyword", apply: "صفحه" + ":\nتمام"
-            }, {
-                label: "دکمه",
-                type: "variable",
-                apply: "دکمه" + ":\nتمام",
-                info: "این تگ برای ایجاد یک دکمه به کار میرود.",
-            }]
+            return [
+                {
+                    label: "صفحه",
+                    type: "keyword",
+                    apply: "صفحه" + ":\n\nتمام",
+                    render: (element, data) => {
+                        element.innerHTML = `<span class="icon fa fa-file">f</span> ${data.label}`;
+                    },
+                    icon
+                }, {
+                    label: "دکمه",
+                    type: "variable",
+                    apply: "دکمه" + ":\n\nتمام",
+                    info: "این تگ برای ایجاد یک دکمه به کار میرود.",
+                }
+            ]
         }, (updateText) => {
         })
     }, [])
