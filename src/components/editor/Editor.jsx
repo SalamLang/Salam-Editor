@@ -50,7 +50,7 @@ const Editor = () => {
                 setPosition(position);
             }}>
             <div className={"window"}>
-                <i className={"fas fa-school"}></i>
+                <i className={"fa-brands fa-instagram"}></i>
             </div>
         </Rnd>
     </>);
