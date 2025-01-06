@@ -54,6 +54,7 @@
 /*Nprogress change color*/
 #nprogress .bar {
     background: #FF5C00 !important;
+    background: #ffe9db !important;
 }
 
 #nprogress .peg {

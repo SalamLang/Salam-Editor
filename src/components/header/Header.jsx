@@ -7,6 +7,7 @@ const Header = () => {
         <header className={"header bg-[#ffdecc] h-[35px] w-[100vw] flex justify-start items-center pr-[75px] gap-[20px]"}>
             <Dropdown title={"اسناد"}>
                 <DropdownItem title={"باز کردن فایل"} />
+                <DropdownItem title={"باز کردن فایل"} />
             </Dropdown>
         </header>
     </>)
