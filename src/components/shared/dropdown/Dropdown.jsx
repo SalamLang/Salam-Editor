@@ -1,13 +1,23 @@
 // eslint-disable-next-line react/prop-types
+import {useState} from "react";
+
+// eslint-disable-next-line react/prop-types
 const Dropdown = ({ children, title }) => {
+    const [open, setOpen] = useState(false);
 
     return (<>
         <div className={"relative"}>
-            <button className={"cursor-pointer rounded-[8px] text-[15px] px-2 py-[2px] hover:bg-[#ffc2a8] transition duration-200"}>{ title }</button>
+            <button onClick={() => {
+                setOpen(!open);
+            }} className={"cursor-pointer rounded-[8px] text-[15px] px-2 py-[2px] hover:bg-[#ffc2a8] transition duration-200"}>{ title }</button>
 
-            <div className={"absolute bg-[#ffe9db]/50 backdrop-blur rounded-[15px] z-[1000] top-[26px] right-0 border border-orange-300 p-2"}>
+            <div className={(!open && "hidden ") + " absolute bg-[#ffe9db]/50 backdrop-blur rounded-[15px] z-[1000] top-[26px] right-0 border border-orange-300 p-2"}>
                 { children }
             </div>
+
+            <div className={(!open && "hidden ") + " overlay w-full h-[100vh] bg-transparent fixed top-0 right-0 z-[999]"} onClick={() => {
+                setOpen(!open)
+            }}></div>
         </div>
     </>)
 }
