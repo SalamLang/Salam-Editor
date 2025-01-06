@@ -35,7 +35,17 @@ const Header = () => {
     };
 
     // Export file
-
+    const handleSaveFile = () => {
+        const fileName = "myFile.salam";
+        const fileContent = localStorage.getItem("code") ?? "";
+        const blob = new Blob([fileContent], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = fileName;
+        link.click();
+        URL.revokeObjectURL(url);
+    };
 
     return (<>
         <header
@@ -44,7 +54,10 @@ const Header = () => {
                 <DropdownItem title={"باز کردن فایل"} callback={() => {
                     openFilePicker()
                 }}/>
-                {/*<hr className={"opacity-100 bg-gray-300 my-2 h-[1px] border-0"}/>*/}
+                <hr className={"opacity-100 bg-gray-300 my-2 h-[1px] border-0"}/>
+                <DropdownItem title={"خروجی در فایل سلام"} callback={() => {
+                    handleSaveFile()
+                }}/>
             </Dropdown>
         </header>
         <input
