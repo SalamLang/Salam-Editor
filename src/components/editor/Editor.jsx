@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import "../../scripts/codemirror.js"
 import EditorService from "../../services/EditorService.js";
 import { Rnd } from "react-rnd";
+import {useLocation} from "react-router-dom";
 
 const salamAdd = () => {
     const script = document.createElement('script');
@@ -16,8 +17,14 @@ const salamAdd = () => {
 const Editor = () => {
     const [size, setSize] = useState({ width: 300, height: 200 });
     const [position, setPosition] = useState({ x: 50, y: 50 });
+    const location = useLocation()
 
     useEffect(() => {
+        const editor = document.querySelector("#editor");
+        if (editor) {
+            editor.innerHTML = "";
+        }
+
         // salamAdd();
         EditorService(() => {
             return [{
@@ -31,7 +38,7 @@ const Editor = () => {
         }, (updateText) => {
             // SalamService(updateText);
         })
-    }, [])
+    }, [location])
 
     return (<>
         <main
