@@ -41,6 +41,7 @@ const Header = () => {
             style={{display: "none"}}
             className={"hidden"}
             onChange={handleFileChange}
+            accept={".salam"}
         />
     </>)
 }
