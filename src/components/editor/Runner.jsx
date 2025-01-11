@@ -3,17 +3,35 @@ import {useEffect, useState} from "react";
 const Runner = () => {
     const [hidden, setHidden] = useState(true);
 
-    useEffect(() => {
-        document.addEventListener("keydown", (e) => {
-            if (e.altKey && e.code === 'F2') {
-                e.preventDefault();
-                alert('شما ترکیب Alt + F2 را فشردید!');
+    function debounce(cb, delay) {
+        let timeoutId;
+        return function (...args) {
+            if (timeoutId) {
+                clearTimeout(timeoutId);
             }
+
+            timeoutId = setTimeout(() => {
+                cb(...args);
+            }, delay);
+        };
+    }
+
+    const debouncedChange = debounce(() => {
+        setHidden(true)
+    }, 2000);
+
+    useEffect(() => {
+        document.addEventListener("mousemove", (e) => {
+            e.preventDefault();
+            setHidden(false)
+
+            debouncedChange();
         })
     }, [])
-    
-    return(<>
-        <div className={(hidden && "hidden ") + " fixed top-[75px] left-[70px] z-[998] bg-white w-[100px] h-[35px] rounded-[10px] border"}></div>
+
+    return (<>
+        <div
+            className={(hidden && "opacity-0 ") + " fixed top-[75px] transition-all duration-500 left-[70px] z-[998] bg-white w-[100px] h-[40px] rounded-[10px] border"}></div>
     </>)
 }
 
