@@ -3,6 +3,7 @@ import "../../scripts/codemirror.js"
 import EditorService from "../../services/EditorService.js";
 import { Rnd } from "react-rnd";
 import {useLocation} from "react-router-dom";
+import Runner from "./Runner.jsx";
 
 const salamAdd = () => {
     const script = document.createElement('script');
@@ -45,6 +46,8 @@ const Editor = () => {
             className={"editor-container w-[calc(100%-50px)] h-[calc(100vh-35px)] bg-[#FFF1E9] rounded-tr-[15px] rtl after:inline-block after:border-0 after:z-[-1] after:w-[30px] after:h-[30px] float-end after:bg-[#ffdecc] after:absolute relative after:top-0 after:right-0"}>
             <div id="editor" className={"rounded-tr-[15px] overflow-auto h-[calc(100vh-35px)]"}></div>
         </main>
+
+        <Runner />
         {/*<Rnd*/}
         {/*    size={{ width: size.width, height: size.height }}*/}
         {/*    position={{ x: position.x, y: position.y }}*/}
