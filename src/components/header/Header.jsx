@@ -54,7 +54,7 @@ const Header = () => {
                 <DropdownItem title={"باز کردن فایل"} callback={() => {
                     openFilePicker()
                 }}/>
-                <hr className={"opacity-100 bg-gray-300 my-2 h-[1px] border-0"}/>
+                {/*<hr className={"opacity-100 bg-gray-300 my-2 h-[1px] border-0"}/>*/}
                 <DropdownItem title={"خروجی در فایل سلام"} callback={() => {
                     handleSaveFile()
                 }}/>

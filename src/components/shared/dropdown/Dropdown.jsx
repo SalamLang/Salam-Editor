@@ -10,7 +10,7 @@ const Dropdown = ({ children, title }) => {
                 setOpen(!open);
             }} className={"cursor-pointer text-[16px] px-2 py-4 hover:bg-[#ffc2a8] transition duration-200"}>{ title }</button>
 
-            <div className={(!open && "hidden ") + " absolute bg-[#ffe9db]/50 backdrop-blur rounded-[15px] z-[1000] top-[40px] right-0 border border-orange-300 p-2"}>
+            <div className={(!open && "hidden ") + " absolute bg-[#ffe9db]/50 backdrop-blur rounded-[10px] z-[1000] top-[40px] right-0 border border-orange-300 p-2"}>
                 { children }
             </div>
 
