@@ -121,3 +121,7 @@
     cursor: move;
     position: absolute;
 }
+
+.shadow-orange {
+    box-shadow: 0 3px 10px -7px #FF5C00;
+}
