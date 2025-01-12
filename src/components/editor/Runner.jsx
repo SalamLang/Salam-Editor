@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Tooltip } from "react-tooltip";
 
 const Runner = () => {
   const [hidden, setHidden] = useState(true);
@@ -57,6 +58,8 @@ const Runner = () => {
       >
         <button
           className={"cursor-pointer "}
+          data-tooltip-id="level-1"
+          data-tooltip-content="اجرا در صفحه دیگر"
           onClick={() => {
             runOutput(1);
           }}
@@ -81,6 +84,11 @@ const Runner = () => {
             </g>
           </svg>
         </button>
+        <Tooltip
+          id="level-1"
+          className={"!text-[12px] !rounded-[10px]"}
+          delayShow={800}
+        />
       </div>
     </>
   );
