@@ -4,13 +4,14 @@ import Editor from "../components/editor/Editor.jsx";
 import Logo from "../components/editor/Logo.jsx";
 
 const EditorLayout = () => {
-
-    return (<>
-        <Header />
-        <Logo />
-        <Side />
-        <Editor />
-    </>)
-}
+  return (
+    <>
+      <Header />
+      <Logo />
+      <Side />
+      <Editor />
+    </>
+  );
+};
 
 export default EditorLayout;
