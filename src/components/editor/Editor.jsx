@@ -3,6 +3,7 @@ import "../../scripts/codemirror.js";
 import EditorService from "../../services/EditorService.js";
 import { useLocation } from "react-router-dom";
 import Runner from "./Runner.jsx";
+import SalamService from "../../services/SalamService.js";
 
 const salamAdd = () => {
   const script = document.createElement("script");
