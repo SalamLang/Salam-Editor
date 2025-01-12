@@ -31,7 +31,9 @@ const Runner = () => {
 
     return (<>
         <div
-            className={(hidden && "opacity-0 ") + " shadow-orange fixed top-[75px] transition-all duration-1000 left-[70px] z-[998] bg-white w-[100px] h-[40px] rounded-[10px] border"}></div>
+            className={(hidden && "opacity-0 ") + " shadow-orange fixed top-[75px] transition-all duration-1000 left-[70px] z-[998] bg-white w-fit h-[40px] rounded-[10px] border flex justify-end items-center px-3"}>
+
+        </div>
     </>)
 }
 
