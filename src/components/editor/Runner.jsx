@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
+import { useNavigate } from "react-router-dom";
 
 const Runner = () => {
   const [hidden, setHidden] = useState(true);
+
+  const navigate = useNavigate();
 
   function debounce(cb, delay) {
     let timeoutId;
@@ -31,7 +34,9 @@ const Runner = () => {
   }, []);
 
   const runOutput = (level = 1) => {
-    const level1 = () => {};
+    const level1 = () => {
+      window.open("/run", "_blank");
+    };
 
     const level2 = () => {};
 
