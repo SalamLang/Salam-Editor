@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import salamService from "../../services/SalamService.js";
 
 const Run = () => {
-  const [code, setCode] = useState("");
-
   const salamAdd = () => {
     const script = document.createElement("script");
     script.src = "salam-wa.js";
@@ -17,9 +15,9 @@ const Run = () => {
   const iframe = useRef();
   const pre = useRef();
 
-  salamAdd();
-
-  useEffect(() => {}, []);
+  useEffect(() => {
+    salamAdd();
+  }, []);
 
   return (
     <>
