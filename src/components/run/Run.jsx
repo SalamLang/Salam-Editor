@@ -18,7 +18,9 @@ const Run = () => {
   useEffect(() => {
     salamAdd();
 
-    console.log(iframe, pre);
+    const handle = () => {};
+
+    setTimeout(handle, 300);
   }, []);
 
   return (
