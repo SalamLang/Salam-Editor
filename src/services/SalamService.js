@@ -34,7 +34,6 @@ const SalamService = (code, ifr, outPre) => {
 };
 
 const captureOutput = (args) => {
-  console.log(outputPre);
   if (outputPre) {
     outputPre.textContent = "";
   }
@@ -79,9 +78,6 @@ const captureOutput = (args) => {
 
     const iframeDocument =
       iframe.contentDocument || iframe.contentWindow.document;
-    console.log(
-      "ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
-    );
     if (iframeDocument) {
       iframeDocument.open();
       iframeDocument.write(output);

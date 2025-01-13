@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import salamService from "../../services/SalamService.js";
 
 const Run = () => {
-  const [code, setCode] = useState(localStorage?.getItem("code"));
+  const [code, setCode] = useState("");
 
   const salamAdd = () => {
     const script = document.createElement("script");
@@ -14,20 +14,17 @@ const Run = () => {
     document.body.appendChild(script);
   };
 
+  const iframe = useRef();
+  const pre = useRef();
+
   salamAdd();
-  useEffect(() => {
-    setInterval(() => {
-      if (localStorage?.getItem("code") !== code) {
-        setCode(localStorage?.getItem("code"));
-      }
-      salamService(code);
-    }, 1000);
-  }, []);
+
+  useEffect(() => {}, []);
 
   return (
     <>
-      <iframe></iframe>
-      <pre></pre>
+      <iframe ref={iframe}></iframe>
+      <pre ref={pre}></pre>
     </>
   );
 };
