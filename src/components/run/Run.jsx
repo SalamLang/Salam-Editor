@@ -17,6 +17,8 @@ const Run = () => {
 
   useEffect(() => {
     salamAdd();
+
+    console.log(iframe, pre);
   }, []);
 
   return (
