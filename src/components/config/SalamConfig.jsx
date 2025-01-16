@@ -30,7 +30,18 @@ const SalamConfig = () => {
         }
       },
       print: (text) => {
-        console.log("print-Log:", text);
+        window.code += text;
+        console.log(
+          "%cprint-Log => " + text,
+          `
+          padding: 3px 10px;
+          border-radius: 5px;
+          color: white;
+          background-color: #7200BE;
+          font-family: estedad, sans-serif;
+          font-size: 15px;
+          `,
+        );
       },
       printErr: (text) => {
         console.log("printErr-Error:", text);
