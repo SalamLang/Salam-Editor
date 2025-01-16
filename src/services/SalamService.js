@@ -1,5 +1,3 @@
-import log from "eslint-plugin-react/lib/util/log.js";
-
 let iframe;
 let outputPre;
 let errorPre;
@@ -18,14 +16,34 @@ let isReady = false;
 let is_running = false;
 
 const runSalam = (code) => {
-  console.log("runSalam - Running Salam code...");
+  console.log(
+    "%c3.runSalam - Running Salam code...",
+    `
+          padding: 10px;
+          border-radius: 10px;
+          color: white;
+          background-color: #00BC1C;
+          font-family: estedad, sans-serif;
+          font-size: 18px;
+          `,
+  );
   if (!code) {
     alert("Code is empty! Please enter Salam code.");
     return;
   }
 
   const args = ["code", code];
-  console.log("Calling Salam with args:", args);
+  console.log(
+    "%cCalling Salam with args => " + args[1],
+    `
+          padding: 10px;
+          border-radius: 10px;
+          color: white;
+          background-color: #BEA200;
+          font-family: estedad, sans-serif;
+          font-size: 18px;
+          `,
+  );
 
   if (window.isReady) {
     captureOutput(args);
