@@ -13,12 +13,20 @@ const Run = () => {
   };
 
   const iframe = useRef();
-  const pre = useRef();
+  const error = useRef();
+  const output = useRef();
 
   useEffect(() => {
     salamAdd();
 
-    const handle = () => {};
+    const handle = () => {
+      salamService(
+        "صفحه: دکمه: تمام تمام",
+        iframe.current,
+        error.current,
+        output.current,
+      );
+    };
 
     setTimeout(handle, 300);
   }, []);
@@ -26,7 +34,8 @@ const Run = () => {
   return (
     <>
       <iframe ref={iframe}></iframe>
-      <pre ref={pre}></pre>
+      <pre id="error" ref={error}></pre>
+      <pre id="output" ref={output}></pre>
     </>
   );
 };

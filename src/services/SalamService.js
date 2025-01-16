@@ -1,30 +1,57 @@
-let iframe;
-let outputPre;
+const iframe = document.querySelector("iframe");
+const outputPre = document.querySelector("#output");
+const errorPre = document.querySelector("#error");
+const codeTextArea = document.querySelector("#code");
+const executeButton = document.querySelector("#execute");
 
 let isReady = false;
 let is_running = false;
 
-const Module = {
+var Module = {
   noInitialRun: true,
   onRuntimeInitialized: () => {
     console.log("Salam loaded successfully");
     isReady = true;
+    executeButton.disabled = false;
+
+    if (codeTextArea.value.toString().trim() !== "") {
+      runSalam();
+    }
   },
   print: (text) => {
-    console.log(text);
+    customLogger(text, "log");
+  },
+  printErr: (text) => {
+    customLogger(text, "error");
   },
 };
 
-const SalamService = (code, ifr, outPre) => {
-  iframe = ifr;
-  outputPre = outPre;
+const customLogger = (text, type) => {
+  if (type === "error") {
+    console.error(text);
+  } else {
+    console.log(text);
+  }
 
-  Module.onRuntimeInitialized();
+  const prefix = type === "error" ? "Error: " : "";
 
+  if (prefix === "") {
+    outputPre.textContent += prefix + text + "\n";
+  } else {
+    errorPre.textContent += prefix + text + "\n";
+  }
+};
+
+const runSalam = () => {
   console.log("Running Salam code...");
+  const code = codeTextArea.value.toString().trim();
+  if (!code) {
+    alert("Code is empty! Please enter Salam code.");
+    return;
+  }
 
   const args = ["code", code];
-  console.log("Calling Salam with args:", args);
+  console.log("Calling Salam with arguments:", args);
 
   if (isReady) {
     captureOutput(args);
@@ -33,21 +60,9 @@ const SalamService = (code, ifr, outPre) => {
   }
 };
 
-const captureOutput = (args) => {
-  if (outputPre) {
-    outputPre.textContent = "";
-  }
-
-  let output = "";
-  const originalConsoleLog = console.log;
-  const originalConsoleError = console.error;
-
-  console.log = (text) => {
-    output += text + "\n";
-  };
-  console.error = (text) => {
-    output += "Error: " + text + "\n";
-  };
+const captureOutput = (arguments) => {
+  outputPre.textContent = "";
+  errorPre.textContent = "";
 
   if (is_running) {
     return;
@@ -58,37 +73,56 @@ const captureOutput = (args) => {
 
     if (typeof callMain === "function") {
       try {
-        callMain(args);
+        callMain(arguments);
+
+        const iframeDocument =
+          iframe.contentDocument || iframe.contentWindow.document;
+
+        if (iframeDocument) {
+          iframe.srcdoc = outputPre.textContent;
+        }
       } catch (err) {
-        console.error("Runtime error:", err);
+        Module.printErr("Runtime error: " + err);
       }
     } else {
-      console.error(
+      Module.printErr(
         "callMain is not defined. Ensure NO_EXIT_RUNTIME is enabled.",
       );
     }
   } catch (err) {
-    console.error("خطای غیرمنتظره رخ داد. " + err);
+    Module.printErr("خطای غیرمنتظره رخ داد. " + err);
   } finally {
     is_running = false;
   }
-
-  if (outputPre) {
-    outputPre.textContent = output;
-
-    const iframeDocument =
-      iframe.contentDocument || iframe.contentWindow.document;
-    if (iframeDocument) {
-      iframeDocument.open();
-      iframeDocument.write(output);
-      iframeDocument.close();
-    }
-  }
-
-  console.log = originalConsoleLog;
-  console.error = originalConsoleError;
-
-  return output;
 };
 
-export default SalamService;
+const reloadModule = () => {
+  const script = document.createElement("script");
+  script.src = "salam-wa.js";
+  script.onload = () => {
+    console.log("Salam module reloaded.");
+  };
+
+  document.body.appendChild(script);
+};
+
+executeButton.addEventListener("click", () => {
+  console.log("Button clicked!");
+
+  runSalam();
+});
+
+codeTextArea.addEventListener("keydown", (e) => {
+  if (e.key === "Tab") {
+    e.preventDefault();
+    const start = codeTextArea.selectionStart;
+    const end = codeTextArea.selectionEnd;
+    codeTextArea.value =
+      codeTextArea.value.substring(0, start) +
+      "	" +
+      codeTextArea.value.substring(end);
+    codeTextArea.selectionStart = codeTextArea.selectionEnd = start + 4;
+  }
+});
+
+reloadModule();
