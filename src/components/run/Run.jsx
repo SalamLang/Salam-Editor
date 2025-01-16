@@ -6,12 +6,12 @@ const Run = () => {
     const script = document.createElement("script");
     script.src = "salam-wa.js";
     script.onload = () => {
-      salamService(
-        "صفحه: دکمه: تمام تمام",
-        iframe.current,
-        error.current,
-        output.current,
-      );
+      // salamService(
+      //   "صفحه: دکمه: تمام تمام",
+      //   iframe.current,
+      //   error.current,
+      //   output.current,
+      // );
     };
 
     document.body.appendChild(script);

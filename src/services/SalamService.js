@@ -15,43 +15,8 @@ const SalamService = (code, ifr, err, out) => {
 let isReady = false;
 let is_running = false;
 
-var Module = {
-  noInitialRun: true,
-  onRuntimeInitialized: () => {
-    console.log("Salam loaded successfully");
-    isReady = true;
-
-    if (codeInput.trim() !== "") {
-      runSalam();
-    }
-  },
-  print: (text) => {
-    customLogger(text, "log");
-  },
-  printErr: (text) => {
-    customLogger(text, "error");
-  },
-};
-
-const customLogger = (text, type) => {
-  if (type === "error") {
-    console.error(text);
-  } else {
-    console.log(text);
-  }
-
-  const prefix = type === "error" ? "Error: " : "";
-
-  if (prefix === "") {
-    outputPre.textContent += prefix + text + "\n";
-  } else {
-    errorPre.textContent += prefix + text + "\n";
-  }
-};
-
-const runSalam = () => {
-  console.log("Running Salam code...");
-  const code = codeInput.trim();
+export const runSalam = (code) => {
+  console.log("runSalam - Running Salam code...");
   if (!code) {
     alert("Code is empty! Please enter Salam code.");
     return;
@@ -60,7 +25,7 @@ const runSalam = () => {
   const args = ["code", code];
   console.log("Calling Salam with args:", args);
 
-  if (isReady) {
+  if (window.isReady) {
     captureOutput(args);
   } else {
     console.log("Salam runtime not ready. Please wait...");
@@ -68,8 +33,8 @@ const runSalam = () => {
 };
 
 const captureOutput = (args) => {
-  outputPre.textContent = "";
-  errorPre.textContent = "";
+  if (outputPre) outputPre.textContent = "";
+  if (errorPre) errorPre.textContent = "";
 
   if (is_running) {
     return;
@@ -82,11 +47,15 @@ const captureOutput = (args) => {
       try {
         callMain(args);
 
-        const iframeDocument =
-          iframe.contentDocument || iframe.contentWindow.document;
+        console.log("Final output: ", outputPre.textContent);
 
-        if (iframeDocument) {
-          iframe.srcdoc = outputPre.textContent;
+        if (iframe) {
+          const iframeDocument =
+            iframe.contentDocument || iframe.contentWindow.document;
+
+          if (iframeDocument) {
+            iframe.srcdoc = outputPre.textContent;
+          }
         }
       } catch (err) {
         Module.printErr("Runtime error: " + err);
