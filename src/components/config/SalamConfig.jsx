@@ -7,6 +7,8 @@ const SalamConfig = () => {
   const location = useLocation();
 
   useEffect(() => {
+    window.code = "";
+
     window.Module = {
       noInitialRun: true,
       onRuntimeInitialized: () => {
