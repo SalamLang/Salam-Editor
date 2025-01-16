@@ -112,17 +112,4 @@ executeButton.addEventListener("click", () => {
   runSalam();
 });
 
-codeTextArea.addEventListener("keydown", (e) => {
-  if (e.key === "Tab") {
-    e.preventDefault();
-    const start = codeTextArea.selectionStart;
-    const end = codeTextArea.selectionEnd;
-    codeTextArea.value =
-      codeTextArea.value.substring(0, start) +
-      "	" +
-      codeTextArea.value.substring(end);
-    codeTextArea.selectionStart = codeTextArea.selectionEnd = start + 4;
-  }
-});
-
 reloadModule();
