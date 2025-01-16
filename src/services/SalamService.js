@@ -1,3 +1,5 @@
+import log from "eslint-plugin-react/lib/util/log.js";
+
 let iframe;
 let outputPre;
 let errorPre;
