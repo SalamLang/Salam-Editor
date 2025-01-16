@@ -6,7 +6,12 @@ const Run = () => {
     const script = document.createElement("script");
     script.src = "salam-wa.js";
     script.onload = () => {
-      console.log("Salam module reloaded.");
+      salamService(
+        "صفحه: دکمه: تمام تمام",
+        iframe.current,
+        error.current,
+        output.current,
+      );
     };
 
     document.body.appendChild(script);
@@ -18,17 +23,6 @@ const Run = () => {
 
   useEffect(() => {
     salamAdd();
-
-    const handle = () => {
-      salamService(
-        "صفحه: دکمه: تمام تمام",
-        iframe.current,
-        error.current,
-        output.current,
-      );
-    };
-
-    setTimeout(handle, 300);
   }, []);
 
   return (

@@ -9,7 +9,7 @@ const SalamService = (code, ifr, err, out) => {
   errorPre = err;
   outputPre = out;
 
-  runSalam();
+  runProject();
 };
 
 let isReady = false;
@@ -101,5 +101,9 @@ const captureOutput = (args) => {
   } finally {
     is_running = false;
   }
+};
+
+const runProject = () => {
+  runSalam();
 };
 export default SalamService;
