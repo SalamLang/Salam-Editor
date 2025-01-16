@@ -5,12 +5,14 @@ import RouteChangeHandler from "./components/nprogress/RouteChangeHandler.jsx";
 import FireWork from "./components/FireWork.jsx";
 import { ToastContainer } from "react-toastify";
 import RunLayout from "./layouts/RunLayout.jsx";
+import SalamConfig from "./components/config/SalamConfig.jsx";
 
 createRoot(document.getElementById("root")).render(
   <>
     <BrowserRouter>
       <RouteChangeHandler />
       <ToastContainer />
+      <SalamConfig />
       <Routes>
         <Route path="/" element={<EditorLayout />} />
         <Route path="/run" element={<RunLayout />} />
