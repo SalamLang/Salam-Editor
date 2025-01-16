@@ -13,12 +13,12 @@ const SalamConfig = () => {
         console.log(
           "%c2.salam loaded success",
           `
-          padding: 10px;
-          border-radius: 10px;
+          padding: 3px 10px;
+          border-radius: 5px;
           color: white;
           background-color: #00BC1C;
           font-family: estedad, sans-serif;
-          font-size: 18px;
+          font-size: 15px;
           `,
         );
 

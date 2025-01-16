@@ -19,12 +19,12 @@ const runSalam = (code) => {
   console.log(
     "%c3.runSalam - Running Salam code...",
     `
-          padding: 10px;
-          border-radius: 10px;
+          padding: 3px 10px;
+          border-radius: 5px;
           color: white;
           background-color: #00BC1C;
           font-family: estedad, sans-serif;
-          font-size: 18px;
+          font-size: 15px;
           `,
   );
   if (!code) {
@@ -36,12 +36,12 @@ const runSalam = (code) => {
   console.log(
     "%cCalling Salam with args => " + args[1],
     `
-          padding: 10px;
-          border-radius: 10px;
+          padding: 3px 10px;
+          border-radius: 5px;
           color: white;
           background-color: #BEA200;
           font-family: estedad, sans-serif;
-          font-size: 18px;
+          font-size: 15px;
           `,
   );
 
