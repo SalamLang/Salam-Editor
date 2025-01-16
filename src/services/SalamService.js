@@ -15,7 +15,7 @@ const SalamService = (code, ifr, err, out) => {
 let isReady = false;
 let is_running = false;
 
-export const runSalam = (code) => {
+const runSalam = (code) => {
   console.log("runSalam - Running Salam code...");
   if (!code) {
     alert("Code is empty! Please enter Salam code.");
@@ -73,6 +73,6 @@ const captureOutput = (args) => {
 };
 
 const runProject = () => {
-  runSalam();
+  runSalam(codeInput);
 };
 export default SalamService;

@@ -8,7 +8,9 @@ const Run = ({ level = 0 }) => {
   const output = useRef();
 
   useEffect(() => {
-    console.log(`Level ${level} initialized`);
+    if (level === 1) {
+      salamService("صفحه: تمام", iframe, error, output);
+    }
   }, [level]);
 
   return (

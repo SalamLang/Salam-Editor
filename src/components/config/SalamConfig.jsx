@@ -24,6 +24,9 @@ const SalamConfig = () => {
 
         if (location.pathname === "/run") {
           setIsReady(true);
+          window.isReady = true;
+        } else {
+          window.isReady = false;
         }
       },
       print: (text) => {
