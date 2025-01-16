@@ -1,8 +1,16 @@
-const iframe = document.querySelector("iframe");
-const outputPre = document.querySelector("#output");
-const errorPre = document.querySelector("#error");
-const codeTextArea = document.querySelector("#code");
-const executeButton = document.querySelector("#execute");
+let iframe;
+let outputPre;
+let errorPre;
+let codeInput;
+
+const SalamService = (code, ifr, err, out) => {
+  codeInput = code;
+  iframe = ifr;
+  errorPre = err;
+  outputPre = out;
+
+  runSalam();
+};
 
 let isReady = false;
 let is_running = false;
@@ -12,9 +20,8 @@ var Module = {
   onRuntimeInitialized: () => {
     console.log("Salam loaded successfully");
     isReady = true;
-    executeButton.disabled = false;
 
-    if (codeTextArea.value.toString().trim() !== "") {
+    if (codeInput.trim() !== "") {
       runSalam();
     }
   },
@@ -44,7 +51,7 @@ const customLogger = (text, type) => {
 
 const runSalam = () => {
   console.log("Running Salam code...");
-  const code = codeTextArea.value.toString().trim();
+  const code = codeInput.trim();
   if (!code) {
     alert("Code is empty! Please enter Salam code.");
     return;
@@ -95,21 +102,4 @@ const captureOutput = (args) => {
     is_running = false;
   }
 };
-
-const reloadModule = () => {
-  const script = document.createElement("script");
-  script.src = "salam-wa.js";
-  script.onload = () => {
-    console.log("Salam module reloaded.");
-  };
-
-  document.body.appendChild(script);
-};
-
-executeButton.addEventListener("click", () => {
-  console.log("Button clicked!");
-
-  runSalam();
-});
-
-reloadModule();
+export default SalamService;
