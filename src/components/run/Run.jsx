@@ -1,12 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import salamService from "../../services/SalamService.js";
 
-const Run = () => {
+// eslint-disable-next-line react/prop-types
+const Run = ({ level = 0 }) => {
   const iframe = useRef();
   const error = useRef();
   const output = useRef();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log(`Level ${level} initialized`);
+  }, [level]);
 
   return (
     <>
