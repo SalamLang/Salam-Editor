@@ -72,6 +72,7 @@ const captureOutput = (args) => {
             iframe.contentDocument || iframe.contentWindow.document;
 
           if (iframeDocument) {
+            iframe.srcdoc = "";
             iframe.srcdoc = window.code ?? "";
           }
         }

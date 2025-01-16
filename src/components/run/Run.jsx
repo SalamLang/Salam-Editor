@@ -30,9 +30,9 @@ const Run = ({ level = 0 }) => {
     <>
       {level === 1 && (
         <>
-          <iframe ref={iframe}></iframe>
-          <pre id="error" ref={error}></pre>
-          <pre id="output" ref={output}></pre>
+          <iframe ref={iframe} className={"w-full h-[100vh] bg-white"}></iframe>
+          <pre id="error" ref={error} className={"hidden"}></pre>
+          <pre id="output" ref={output} className={"hidden"}></pre>
         </>
       )}
     </>
