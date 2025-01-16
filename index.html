@@ -10,5 +10,36 @@
   <body class="bg-[#ff5b00]/5">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      const salam = () => {
+        var Module = window.Module
+
+        if (Module) {
+          const script = document.createElement("script");
+          script.src = "salam-wa.js";
+          script.onload = () => {
+            console.log(
+                    "%c1.salam loaded in index success",
+                    `
+                      padding: 10px;
+                      border-radius: 10px;
+                      color: white;
+                      background-color: #00BC1C;
+                      font-family: estedad, sansserif;
+                      font-size: 18px;
+                    `
+            )
+          };
+
+          document.body.appendChild(script);
+        }else {
+          setTimeout(() => {
+            salam()
+          }, 100)
+        }
+      }
+
+      salam()
+    </script>
   </body>
 </html>

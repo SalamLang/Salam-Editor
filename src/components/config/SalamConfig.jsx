@@ -3,18 +3,21 @@ import { runSalam } from "../../services/SalamService";
 
 const SalamConfig = () => {
   useEffect(() => {
-
     window.Module = {
       noInitialRun: true,
       onRuntimeInitialized: () => {
-        console.log("onRuntimeInitialized - Salam loaded successfully");
+        console.log(
+          "%c2.salam loaded success",
+          `
+                      padding: 10px;
+                      border-radius: 10px;
+                      color: white;
+                      background-color: #00BC1C;
+                      font-family: estedad, sansserif;
+                      font-size: 18px;
+                    `,
+        );
         window.isReady = true;
-
-        const code = localStorage.getItem("code", "").toString().trim();
-
-        if (code !== "") {
-          runSalam(code);
-        }
       },
       print: (text) => {
         console.log("print-Log:", text);
@@ -23,6 +26,8 @@ const SalamConfig = () => {
         console.log("printErr-Error:", text);
       },
     };
+
+    window.salam = "salam";
   }, []);
 
   return null;
