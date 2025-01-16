@@ -51,7 +51,7 @@ const runSalam = () => {
   }
 
   const args = ["code", code];
-  console.log("Calling Salam with arguments:", args);
+  console.log("Calling Salam with args:", args);
 
   if (isReady) {
     captureOutput(args);
@@ -60,7 +60,7 @@ const runSalam = () => {
   }
 };
 
-const captureOutput = (arguments) => {
+const captureOutput = (args) => {
   outputPre.textContent = "";
   errorPre.textContent = "";
 
@@ -73,7 +73,7 @@ const captureOutput = (arguments) => {
 
     if (typeof callMain === "function") {
       try {
-        callMain(arguments);
+        callMain(args);
 
         const iframeDocument =
           iframe.contentDocument || iframe.contentWindow.document;
