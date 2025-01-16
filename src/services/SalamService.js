@@ -67,14 +67,12 @@ const captureOutput = (args) => {
       try {
         callMain(args);
 
-        console.log("Final output: ", outputPre.textContent);
-
         if (iframe) {
           const iframeDocument =
             iframe.contentDocument || iframe.contentWindow.document;
 
           if (iframeDocument) {
-            iframe.srcdoc = outputPre.textContent;
+            iframe.srcdoc = window.code ?? "";
           }
         }
       } catch (err) {
