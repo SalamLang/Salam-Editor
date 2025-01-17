@@ -164,8 +164,8 @@ Value {
         if (update.changes) {
           console.log(before_space);
           const newText = update.state.doc.toString();
-          localStorage.setItem("code", newText);
           callback(newText);
+          localStorage.setItem("code", newText);
         }
       }),
     ],

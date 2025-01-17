@@ -20,12 +20,14 @@ const Editor = () => {
       editor.innerHTML = "";
     }
 
-    SalamService(
-      localStorage?.getItem("code"),
-      iframe.current,
-      error.current,
-      output.current,
-    );
+    setTimeout(() => {
+      SalamService(
+        localStorage?.getItem("code"),
+        iframe.current,
+        error.current,
+        output.current,
+      );
+    }, 300);
 
     EditorService(
       () => {
