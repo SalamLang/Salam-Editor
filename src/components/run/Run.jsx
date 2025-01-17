@@ -17,14 +17,14 @@ const Run = ({ level = 0 }) => {
 
   useEffect(() => {
     if (level === 1) {
+      let code = localStorage?.getItem("code");
+      salamService(code, iframe.current, error.current, output.current);
       setInterval(() => {
-        salamService(
-          localStorage?.getItem("code"),
-          iframe.current,
-          error.current,
-          output.current,
-        );
-      }, 1000);
+        if (code !== localStorage?.getItem("code")) {
+          code = localStorage?.getItem("code");
+          salamService(code, iframe.current, error.current, output.current);
+        }
+      }, 500);
     }
   }, [level]);
 
