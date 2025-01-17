@@ -7,21 +7,10 @@ import SalamService from "../../services/SalamService.js";
 import { Rnd } from "react-rnd";
 
 const Editor = () => {
-  const [size, setSize] = useState({ width: 300, height: 400 });
-  const [position, setPosition] = useState({ x: 50, y: 50 });
-  const [levelTwoOpen, setLevelTwoOpen] = useState(false);
   const location = useLocation();
 
-  const handleOpen = () => {
-    if (levelTwoOpen === true) {
-      setPosition({ x: 50, y: 50 });
-    } else {
-      setPosition({ x: 10, y: 10 });
-    }
-  };
-
   useEffect(() => {
-    handleOpen();
+    // handleOpen();
     const editor = document.querySelector("#editor");
     if (editor) {
       editor.innerHTML = "";
@@ -62,27 +51,7 @@ const Editor = () => {
         ></div>
       </main>
 
-      <Runner
-        callback={() => {
-          setLevelTwoOpen(!levelTwoOpen);
-
-          handleOpen();
-        }}
-      />
-      <Rnd
-        size={{ width: size.width, height: size.height }}
-        position={{ x: position.x, y: position.y }}
-        onDragStop={(e, d) => setPosition({ x: d.x, y: d.y })}
-        onResizeStop={(e, direction, ref, delta, position) => {
-          setSize({
-            width: ref.offsetWidth,
-            height: ref.offsetHeight,
-          });
-          setPosition(position);
-        }}
-      >
-        <div className={"window"}></div>
-      </Rnd>
+      <Runner callback={() => {}} />
     </>
   );
 };
