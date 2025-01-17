@@ -78,6 +78,12 @@ const captureOutput = (args) => {
           if (iframeDocument) {
             iframe.srcdoc = "";
             iframe.srcdoc = window.code ?? "";
+            if (window.code.startsWith("===> Toke")) {
+              iframe.srcdoc = "";
+              toast.error("خطا: ورود کاراکتر اشتباه", {
+                position: "bottom-center",
+              });
+            }
             window.code = "";
           }
         }
