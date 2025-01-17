@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 let iframe;
 let outputPre;
 let errorPre;
@@ -28,7 +30,9 @@ const runSalam = (code) => {
           `,
   );
   if (!code) {
-    alert("Code is empty! Please enter Salam code.");
+    toast.error("کد ورودی خالی میباشد", {
+      position: "bottom-center",
+    });
     return;
   }
 
