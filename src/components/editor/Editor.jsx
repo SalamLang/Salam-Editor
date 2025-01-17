@@ -8,6 +8,7 @@ import { Rnd } from "react-rnd";
 
 const Editor = () => {
   const location = useLocation();
+  const [levelTwo, setLevelTwo] = useState(false);
 
   useEffect(() => {
     // handleOpen();
@@ -42,16 +43,36 @@ const Editor = () => {
     <>
       <main
         className={
-          "editor-container w-[calc(100%-50px)] h-[calc(100vh-35px)] bg-[#FFF1E9] rounded-tr-[15px] rtl after:inline-block after:border-0 after:z-[-1] after:w-[30px] after:h-[30px] float-end after:bg-[#ffdecc] after:absolute relative after:top-0 after:right-0"
+          "editor-container w-[calc(100%-50px)] h-[calc(100vh-35px)] bg-[#FFF1E9] rounded-tr-[15px] rtl after:inline-block after:border-0 after:z-[-1] after:w-[30px] after:h-[30px] float-end after:bg-[#ffdecc] after:absolute relative after:top-0 after:right-0 flex"
         }
       >
         <div
           id="editor"
-          className={"rounded-tr-[15px] overflow-auto h-[calc(100vh-35px)]"}
+          className={
+            (levelTwo && "!w-[50vw]") +
+            " w-full rounded-tr-[15px] overflow-auto transition-all duration-300 h-[calc(100vh-35px)]"
+          }
         ></div>
+        <div
+          className={
+            (levelTwo && "!w-[50vw] ") +
+            " w-0 bg-white transition-all duration-300 relative"
+          }
+        >
+          <div
+            className={
+              (!levelTwo && "!w-0 ") +
+              " resize w-[12px] h-full transition-all duration-300 cursor-col-resize absolute top-0 right-[-6px]"
+            }
+          ></div>
+        </div>
       </main>
 
-      <Runner callback={() => {}} />
+      <Runner
+        callback={() => {
+          setLevelTwo(!levelTwo);
+        }}
+      />
     </>
   );
 };
