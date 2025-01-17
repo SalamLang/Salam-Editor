@@ -24,7 +24,7 @@ const SalamConfig = () => {
           `,
         );
 
-        if (location.pathname === "/run") {
+        if (location.pathname === "/run" || location.pathname === "/") {
           setIsReady(true);
           window.isReady = true;
         } else {
@@ -51,7 +51,7 @@ const SalamConfig = () => {
     };
   }, []);
 
-  return <>{isReady && <Run level={1} />}</>;
+  return <>{isReady && location.pathname === "/run" && <Run level={1} />}</>;
 };
 
 export default SalamConfig;

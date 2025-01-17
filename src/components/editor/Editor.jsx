@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../../scripts/codemirror.js";
 import EditorService from "../../services/EditorService.js";
 import { useLocation } from "react-router-dom";
@@ -9,6 +9,10 @@ import { Rnd } from "react-rnd";
 const Editor = () => {
   const location = useLocation();
   const [levelTwo, setLevelTwo] = useState(false);
+
+  let iframe = useRef();
+  let error = useRef();
+  let output = useRef();
 
   useEffect(() => {
     // handleOpen();
@@ -39,7 +43,9 @@ const Editor = () => {
         ];
       },
       (updateText) => {
-        // SalamService(updateText);
+        setTimeout(() => {
+          SalamService(updateText, iframe, error, output);
+        }, 500);
       },
     );
   }, [location]);
@@ -48,7 +54,7 @@ const Editor = () => {
     <>
       <main
         className={
-          "editor-container w-[calc(100%-50px)] h-[calc(100vh-35px)] bg-[#FFF1E9] rounded-tr-[15px] rtl after:inline-block after:border-0 after:z-[-1] after:w-[30px] after:h-[30px] float-end after:bg-[#ffdecc] after:absolute relative after:top-0 after:right-0 flex"
+          "overflow-hidden editor-container w-[calc(100%-50px)] h-[calc(100vh-35px)] bg-[#FFF1E9] rounded-tr-[15px] rtl after:inline-block after:border-0 after:z-[-1] after:w-[30px] after:h-[30px] float-end after:bg-[#ffdecc] after:absolute relative after:top-0 after:right-0 flex"
         }
       >
         <div
@@ -61,9 +67,15 @@ const Editor = () => {
         <div
           className={
             (levelTwo && "!w-[50vw] ") +
-            " w-0 bg-white transition-all duration-300 relative"
+            " w-0 bg-white transition-all duration-300 relative overflow-auto"
           }
         >
+          <iframe
+            ref={iframe}
+            className={"w-full h-full bg-white hhh"}
+          ></iframe>
+          <pre id="error" ref={error} className={"hidden"}></pre>
+          <pre id="output" ref={output} className={"hidden"}></pre>
           <div
             className={
               (!levelTwo && "!w-0 ") +
