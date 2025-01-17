@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
 import { useNavigate } from "react-router-dom";
 
-const Runner = (callback) => {
+const Runner = ({ callback }) => {
   const [hidden, setHidden] = useState(true);
 
   const navigate = useNavigate();

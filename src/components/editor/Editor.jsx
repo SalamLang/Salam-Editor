@@ -4,6 +4,7 @@ import EditorService from "../../services/EditorService.js";
 import { useLocation } from "react-router-dom";
 import Runner from "./Runner.jsx";
 import SalamService from "../../services/SalamService.js";
+import { Rnd } from "react-rnd";
 
 const salamAdd = () => {
   const script = document.createElement("script");
@@ -16,8 +17,9 @@ const salamAdd = () => {
 };
 
 const Editor = () => {
-  const [size, setSize] = useState({ width: 300, height: 200 });
+  const [size, setSize] = useState({ width: 300, height: 400 });
   const [position, setPosition] = useState({ x: 50, y: 50 });
+  const [levelTwoOpen, setLevelTwoOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -26,7 +28,6 @@ const Editor = () => {
       editor.innerHTML = "";
     }
 
-    // salamAdd();
     EditorService(
       () => {
         return [
@@ -62,22 +63,25 @@ const Editor = () => {
         ></div>
       </main>
 
-      <Runner />
-      {/*<Rnd*/}
-      {/*    size={{ width: size.width, height: size.height }}*/}
-      {/*    position={{ x: position.x, y: position.y }}*/}
-      {/*    onDragStop={(e, d) => setPosition({ x: d.x, y: d.y })}*/}
-      {/*    onResizeStop={(e, direction, ref, delta, position) => {*/}
-      {/*        setSize({*/}
-      {/*            width: ref.offsetWidth,*/}
-      {/*            height: ref.offsetHeight,*/}
-      {/*        });*/}
-      {/*        setPosition(position);*/}
-      {/*    }}>*/}
-      {/*    <div className={"window"}>*/}
-      {/*        */}
-      {/*    </div>*/}
-      {/*</Rnd>*/}
+      <Runner
+        callback={() => {
+          setLevelTwoOpen(!levelTwoOpen);
+        }}
+      />
+      <Rnd
+        size={{ width: size.width, height: size.height }}
+        position={{ x: position.x, y: position.y }}
+        onDragStop={(e, d) => setPosition({ x: d.x, y: d.y })}
+        onResizeStop={(e, direction, ref, delta, position) => {
+          setSize({
+            width: ref.offsetWidth,
+            height: ref.offsetHeight,
+          });
+          setPosition(position);
+        }}
+      >
+        <div className={"window"}></div>
+      </Rnd>
     </>
   );
 };
