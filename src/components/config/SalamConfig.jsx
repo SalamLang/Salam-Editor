@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 const SalamConfig = () => {
   const [isReady, setIsReady] = useState(false);
   const location = useLocation();
-  function debounce(callback, delay) {}
 
   useEffect(() => {
     window.code = "";
@@ -65,11 +64,9 @@ const SalamConfig = () => {
             position: "bottom-center",
           });
         } else if (text.toString().trim().startsWith("Parser Error")) {
-          debounce(() => {
-            toast.error("ارور در خوانش کد!www", {
-              position: "bottom-center",
-            });
-          }, 1000);
+          toast.error("ارور در خوانش کد!", {
+            position: "bottom-center",
+          });
         }
         // else {
         //   toast.error(text, {
