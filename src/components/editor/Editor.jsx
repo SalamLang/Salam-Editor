@@ -6,23 +6,22 @@ import Runner from "./Runner.jsx";
 import SalamService from "../../services/SalamService.js";
 import { Rnd } from "react-rnd";
 
-const salamAdd = () => {
-  const script = document.createElement("script");
-  script.src = "salam-wa.js";
-  script.onload = () => {
-    console.log("Salam module reloaded.");
-  };
-
-  document.body.appendChild(script);
-};
-
 const Editor = () => {
   const [size, setSize] = useState({ width: 300, height: 400 });
   const [position, setPosition] = useState({ x: 50, y: 50 });
   const [levelTwoOpen, setLevelTwoOpen] = useState(false);
   const location = useLocation();
 
+  const handleOpen = () => {
+    if (levelTwoOpen === true) {
+      setPosition({ x: 50, y: 50 });
+    } else {
+      setPosition({ x: 10, y: 10 });
+    }
+  };
+
   useEffect(() => {
+    handleOpen();
     const editor = document.querySelector("#editor");
     if (editor) {
       editor.innerHTML = "";
@@ -66,6 +65,8 @@ const Editor = () => {
       <Runner
         callback={() => {
           setLevelTwoOpen(!levelTwoOpen);
+
+          handleOpen();
         }}
       />
       <Rnd
