@@ -17,12 +17,14 @@ const Run = ({ level = 0 }) => {
 
   useEffect(() => {
     if (level === 1) {
-      salamService(
-        "صفحه: دکمه: تمام تمام",
-        iframe.current,
-        error.current,
-        output.current,
-      );
+      setInterval(() => {
+        salamService(
+          localStorage?.getItem("code"),
+          iframe.current,
+          error.current,
+          output.current,
+        );
+      }, 1000);
     }
   }, [level]);
 

@@ -74,6 +74,7 @@ const captureOutput = (args) => {
           if (iframeDocument) {
             iframe.srcdoc = "";
             iframe.srcdoc = window.code ?? "";
+            window.code = "";
           }
         }
       } catch (err) {
