@@ -20,6 +20,13 @@ const Editor = () => {
       editor.innerHTML = "";
     }
 
+    SalamService(
+      localStorage?.getItem("code"),
+      iframe.current,
+      error.current,
+      output.current,
+    );
+
     EditorService(
       () => {
         return [
@@ -42,14 +49,14 @@ const Editor = () => {
         ];
       },
       (updateText) => {
-        setTimeout(() => {
+        if (updateText !== localStorage?.getItem("code")) {
           SalamService(
             updateText,
             iframe.current,
             error.current,
             output.current,
           );
-        }, 500);
+        }
       },
     );
   }, [location]);
