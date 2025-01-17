@@ -8,6 +8,7 @@ import SalamService from "../../services/SalamService.js";
 const Editor = () => {
   const location = useLocation();
   const [levelTwo, setLevelTwo] = useState(false);
+  const [levelThere, setLevelThere] = useState(false);
 
   let iframe = useRef();
   let error = useRef();
@@ -46,7 +47,7 @@ const Editor = () => {
             label: "دکمه",
             type: "variable",
             apply: "دکمه" + ":\n\nتمام",
-            info: "این تگ برای ایجاد یک دکمه به کار میرود.",
+            // info: "این تگ برای ایجاد یک دکمه به کار میرود.",
           },
         ];
       },
@@ -67,26 +68,26 @@ const Editor = () => {
     <>
       <main
         className={
-          "editor-container w-[calc(100%-50px)] h-[calc(100vh-35px)] bg-[#FFF1E9] rounded-tr-[15px] rtl after:inline-block after:border-0 after:z-[-1] after:w-[30px] after:h-[30px] float-end after:bg-[#ffdecc] after:absolute relative after:top-0 after:right-0 flex"
+          "editor-container w-[calc(100%-50px)] h-[calc(100vh-35px)] bg-[#FFF1E9] rounded-tr-[15px] rtl after:inline-block after:border-0 after:z-[-1] after:w-[30px] after:h-[30px] float-end after:bg-[#ffdecc] after:absolute relative after:top-0 after:right-0 flex " +
+          (levelThere && " flex-col")
         }
       >
         <div
           id="editor"
           className={
-            (levelTwo && "!w-[50vw]") +
-            " w-full rounded-tr-[15px] overflow-auto transition-all duration-300 h-[calc(100vh-35px)]"
+            (levelTwo && " !w-[50vw] h-[calc(100vh-35px)]") +
+            (levelThere && " !w-[calc(100%-50px)] h-[calc(50vh-35px)]") +
+            " w-full rounded-tr-[15px] overflow-auto transition-all duration-300"
           }
         ></div>
         <div
           className={
-            (levelTwo && "!w-[50vw] ") +
+            (levelTwo && " !w-[50vw] h-[calc(100vh-35px)]") +
+            (levelThere && " !w-[calc(100%-50px)] h-[calc(50vh-35px)]") +
             " w-0 bg-white transition-all duration-300 relative overflow-auto"
           }
         >
-          <iframe
-            ref={iframe}
-            className={"w-full h-full bg-white hhh"}
-          ></iframe>
+          <iframe ref={iframe} className={"w-full h-full bg-white"}></iframe>
           <pre id="error" ref={error} className={"hidden"}></pre>
           <pre id="output" ref={output} className={"hidden"}></pre>
           <div
@@ -99,8 +100,14 @@ const Editor = () => {
       </main>
 
       <Runner
-        callback={() => {
-          setLevelTwo(!levelTwo);
+        callback={(level) => {
+          if (level === 2) {
+            setLevelTwo(!levelTwo);
+            setLevelThere(false);
+          } else if (level === 3) {
+            setLevelThere(!levelThere);
+            setLevelTwo(false);
+          }
         }}
       />
     </>
