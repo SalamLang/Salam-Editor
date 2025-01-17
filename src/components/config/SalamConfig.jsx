@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 const SalamConfig = () => {
   const [isReady, setIsReady] = useState(false);
   const location = useLocation();
+  function debounce(callback, delay) {}
 
   useEffect(() => {
     window.code = "";
@@ -47,24 +48,28 @@ const SalamConfig = () => {
         );
       },
       printErr: (text) => {
-        if (
-          text ===
-          "program exited (with status: 1), but keepRuntimeAlive() is set (counter=0) due to an async operation, so halting execution but not exiting the runtime or preventing further async execution (you can use emscripten_force_exit, if you want to force a true shutdown)"
-        ) {
-          return null;
-        } else if (
-          text ===
-          "program exited (with status: 2), but keepRuntimeAlive() is set (counter=0) due to an async operation, so halting execution but not exiting the runtime or preventing further async execution (you can use emscripten_force_exit, if you want to force a true shutdown)\n"
-        ) {
-          return null;
-        } else if (text.startsWith("Lexer Error")) {
+        console.error(
+          "%cprint-Log => " + text,
+          `
+          padding: 3px 10px;
+          border-radius: 5px;
+          color: white;
+          background-color: #FF0000;
+          font-family: estedad, sans-serif;
+          font-size: 15px;
+          `,
+        );
+
+        if (text.startsWith("Lexer Error")) {
           toast.error("ارور در خوانش کد!", {
             position: "bottom-center",
           });
         } else if (text.toString().trim().startsWith("Parser Error")) {
-          toast.error("ارور در خوانش کد!", {
-            position: "bottom-center",
-          });
+          debounce(() => {
+            toast.error("ارور در خوانش کد!www", {
+              position: "bottom-center",
+            });
+          }, 1000);
         }
         // else {
         //   toast.error(text, {
