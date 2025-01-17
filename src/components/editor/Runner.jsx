@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
-import { useNavigate } from "react-router-dom";
 
+// eslint-disable-next-line react/prop-types
 const Runner = ({ callback }) => {
   const [hidden, setHidden] = useState(true);
-
-  const navigate = useNavigate();
 
   function debounce(cb, delay) {
     let timeoutId;
