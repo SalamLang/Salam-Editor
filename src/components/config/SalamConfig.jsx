@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Run from "../run/Run.jsx";
 import { useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const SalamConfig = () => {
   const [isReady, setIsReady] = useState(false);
@@ -46,7 +47,30 @@ const SalamConfig = () => {
         );
       },
       printErr: (text) => {
-        console.log("printErr-Error:", text);
+        if (
+          text ===
+          "program exited (with status: 1), but keepRuntimeAlive() is set (counter=0) due to an async operation, so halting execution but not exiting the runtime or preventing further async execution (you can use emscripten_force_exit, if you want to force a true shutdown)"
+        ) {
+          return null;
+        } else if (
+          text ===
+          "program exited (with status: 2), but keepRuntimeAlive() is set (counter=0) due to an async operation, so halting execution but not exiting the runtime or preventing further async execution (you can use emscripten_force_exit, if you want to force a true shutdown)\n"
+        ) {
+          return null;
+        } else if (text.startsWith("Lexer Error")) {
+          toast.error("ارور در خوانش کد!", {
+            position: "bottom-center",
+          });
+        } else if (text.toString().trim().startsWith("Parser Error")) {
+          toast.error("ارور در خوانش کد!", {
+            position: "bottom-center",
+          });
+        }
+        // else {
+        //   toast.error(text, {
+        //     position: "bottom-center",
+        //   });
+        // }
       },
     };
   }, []);
