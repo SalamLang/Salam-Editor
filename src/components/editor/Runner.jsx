@@ -36,11 +36,9 @@ const Runner = ({ callback }) => {
       window.open("/run", "_blank");
     };
 
-    const level2 = () => {
-      callback();
-    };
+    const level2 = () => callback(2);
 
-    const level3 = () => {};
+    const level3 = () => callback(3);
 
     if (level === 1) {
       level1();
