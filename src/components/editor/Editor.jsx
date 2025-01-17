@@ -26,6 +26,11 @@ const Editor = () => {
             apply: "صفحه" + ":\n\nتمام",
           },
           {
+            label: "محتوا",
+            type: "keyword",
+            apply: "محتوا" + "=«»",
+          },
+          {
             label: "دکمه",
             type: "variable",
             apply: "دکمه" + ":\n\nتمام",
