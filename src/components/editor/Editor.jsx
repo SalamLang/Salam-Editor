@@ -4,7 +4,6 @@ import EditorService from "../../services/EditorService.js";
 import { useLocation } from "react-router-dom";
 import Runner from "./Runner.jsx";
 import SalamService from "../../services/SalamService.js";
-import { Rnd } from "react-rnd";
 
 const Editor = () => {
   const location = useLocation();
@@ -44,7 +43,12 @@ const Editor = () => {
       },
       (updateText) => {
         setTimeout(() => {
-          SalamService(updateText, iframe, error, output);
+          SalamService(
+            updateText,
+            iframe.current,
+            error.current,
+            output.current,
+          );
         }, 500);
       },
     );
