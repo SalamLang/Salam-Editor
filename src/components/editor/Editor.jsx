@@ -4,8 +4,10 @@ import EditorService from "../../services/EditorService.js";
 import { useLocation } from "react-router-dom";
 import Runner from "./Runner.jsx";
 import SalamService from "../../services/SalamService.js";
+import useTags from "../../hooks/useTags.jsx";
 
 const Editor = () => {
+  useTags();
   const location = useLocation();
   const [levelTwo, setLevelTwo] = useState(false);
   const [levelThere, setLevelThere] = useState(false);
