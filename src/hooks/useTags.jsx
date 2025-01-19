@@ -10,7 +10,15 @@ const useTags = () => {
     };
 
     fetch().then((result) => {
-      return result.data.map(() => {});
+      const data = result.data.items;
+
+      return data.map((item) => {
+        return {
+          info: item?.descriptions?.fa,
+          label: item?.text?.fa[0],
+          type: "variable",
+        };
+      });
     });
   }, []);
 };
