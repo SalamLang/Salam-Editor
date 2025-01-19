@@ -74,7 +74,7 @@ const Runner = ({ callback }) => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="fill-sky-100 stroke-sky-500 -ml-[6px] -mr-[6px]"
+            className="fill-orange-100 stroke-orange-500 -ml-[6px] -mr-[6px]"
           >
             <path
               d="M15 19h6a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4a1 1 0 0 0-1 1"
@@ -98,7 +98,7 @@ const Runner = ({ callback }) => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="fill-sky-100 stroke-sky-500 -mr-[7px]"
+            className="fill-orange-100 stroke-orange-500 -mr-[7px]"
           >
             <path
               d="M12 3h9a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-9"
@@ -122,7 +122,7 @@ const Runner = ({ callback }) => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="fill-sky-100 stroke-sky-500 -mr-[7px]"
+            className="fill-orange-100 stroke-orange-500 -mr-[7px]"
           >
             <path d="M23 11V3H3v8h20Z" strokeWidth="0"></path>
             <path
