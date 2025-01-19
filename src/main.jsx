@@ -7,20 +7,24 @@ import { ToastContainer } from "react-toastify";
 import RunLayout from "./layouts/RunLayout.jsx";
 import SalamConfig from "./components/config/SalamConfig.jsx";
 import NotFound from "./components/errors/NotFound.jsx";
+import { Suspense } from "react";
+import Loading from "./components/loading/Loading.jsx";
 
 createRoot(document.getElementById("root")).render(
   <>
-    <BrowserRouter>
-      <RouteChangeHandler />
-      <ToastContainer />
-      <SalamConfig />
-      <Routes>
-        <Route path="/" element={<EditorLayout />} />
-        <Route path="/run" element={<RunLayout />} />
-        <Route path="/firework" element={<FireWork />} />
+    <Suspense fallback={<Loading />}>
+      <BrowserRouter>
+        <RouteChangeHandler />
+        <ToastContainer />
+        <SalamConfig />
+        <Routes>
+          <Route path="/" element={<EditorLayout />} />
+          <Route path="/run" element={<RunLayout />} />
+          <Route path="/firework" element={<FireWork />} />
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </Suspense>
   </>,
 );
