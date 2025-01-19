@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { client } from "../components/config/AxiosConfig.js";
 
-const useTags = () => {
+const useAttr = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
     const fetch = async () => {
       return await client.get(
-        "https://salamlang.github.io/Salam/config/json/layout/type.json",
+        "https://salamlang.github.io/Salam/config/json/layout/attribute/type.json",
       );
     };
 
@@ -17,10 +17,9 @@ const useTags = () => {
       let result = data.map((item) => {
         return item.text.fa.map((item2, index) => {
           return {
-            info: item.descriptions.fa,
-            type: "variable",
+            type: "keyword",
             label: item.text.fa[index],
-            apply: item.text.fa[index] + ":\n\nتمام",
+            apply: item.text.fa[index] + "=«»",
           };
         });
       });
@@ -32,4 +31,4 @@ const useTags = () => {
   return data?.flat();
 };
 
-export default useTags;
+export default useAttr;
