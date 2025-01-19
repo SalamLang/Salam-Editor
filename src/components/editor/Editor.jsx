@@ -35,7 +35,7 @@ const Editor = () => {
       console.log(tags);
       EditorService(
         () => {
-          return [];
+          return tags;
         },
         (updateText) => {
           if (updateText !== localStorage?.getItem("code")) {
