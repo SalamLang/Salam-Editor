@@ -25,6 +25,7 @@
     "@lezer/common": "^1.2.3",
     "@lezer/highlight": "^1.2.1",
     "@lezer/lr": "^1.4.2",
+    "axios": "^1.7.9",
     "codemirror": "^5.65.18",
     "crelt": "^1.0.6",
     "fireworks-js": "^2.10.8",

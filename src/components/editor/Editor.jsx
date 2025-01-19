@@ -32,24 +32,7 @@ const Editor = () => {
 
     EditorService(
       () => {
-        return [
-          {
-            label: "صفحه",
-            type: "keyword",
-            apply: "صفحه" + ":\n\nتمام",
-          },
-          {
-            label: "محتوا",
-            type: "keyword",
-            apply: "محتوا" + "=«»",
-          },
-          {
-            label: "دکمه",
-            type: "variable",
-            apply: "دکمه" + ":\n\nتمام",
-            // info: "این تگ برای ایجاد یک دکمه به کار میرود.",
-          },
-        ];
+        return [];
       },
       (updateText) => {
         if (updateText !== localStorage?.getItem("code")) {
