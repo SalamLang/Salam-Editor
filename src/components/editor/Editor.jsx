@@ -9,15 +9,14 @@ import useTags from "../../hooks/useTags.jsx";
 const Editor = () => {
   const [levelTwo, setLevelTwo] = useState(false);
   const [levelThere, setLevelThere] = useState(false);
-  const tags = useTags();
 
   let iframe = useRef();
   let error = useRef();
   let output = useRef();
 
+  const tags = useTags();
+
   useEffect(() => {
-    console.log(tags);
-    // handleOpen();
     const editor = document.querySelector("#editor");
     if (editor) {
       editor.innerHTML = "";
@@ -32,22 +31,25 @@ const Editor = () => {
       );
     }, 300);
 
-    EditorService(
-      () => {
-        return [];
-      },
-      (updateText) => {
-        if (updateText !== localStorage?.getItem("code")) {
-          SalamService(
-            updateText,
-            iframe.current,
-            error.current,
-            output.current,
-          );
-        }
-      },
-    );
-  }, []);
+    if (tags) {
+      console.log(tags);
+      EditorService(
+        () => {
+          return [];
+        },
+        (updateText) => {
+          if (updateText !== localStorage?.getItem("code")) {
+            SalamService(
+              updateText,
+              iframe.current,
+              error.current,
+              output.current,
+            );
+          }
+        },
+      );
+    }
+  }, [tags]);
 
   return (
     <>

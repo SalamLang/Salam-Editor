@@ -5,14 +5,15 @@ const useTags = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    client
-      .get("https://salamlang.github.io/Salam/config/json/layout/type.json") // آدرس جدید
-      .then((result) => {
-        setData(result.data.items);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+    const fetch = async () => {
+      return await client.get(
+        "https://salamlang.github.io/Salam/config/json/layout/type.json",
+      );
+    };
+
+    fetch().then((data) => {
+      setData(data.data);
+    });
   }, []);
 
   return data;
