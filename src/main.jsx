@@ -6,6 +6,7 @@ import FireWork from "./components/FireWork.jsx";
 import { ToastContainer } from "react-toastify";
 import RunLayout from "./layouts/RunLayout.jsx";
 import SalamConfig from "./components/config/SalamConfig.jsx";
+import NotFound from "./components/errors/NotFound.jsx";
 
 createRoot(document.getElementById("root")).render(
   <>
@@ -17,6 +18,8 @@ createRoot(document.getElementById("root")).render(
         <Route path="/" element={<EditorLayout />} />
         <Route path="/run" element={<RunLayout />} />
         <Route path="/firework" element={<FireWork />} />
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </>,
