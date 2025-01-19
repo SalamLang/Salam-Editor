@@ -6,6 +6,7 @@ import Runner from "./Runner.jsx";
 import SalamService from "../../services/SalamService.js";
 import useTags from "../../hooks/useTags.jsx";
 import useAttr from "../../hooks/useAttr.jsx";
+import useStyle from "../../hooks/useStyle.jsx";
 
 const Editor = () => {
   const [levelTwo, setLevelTwo] = useState(false);
@@ -17,6 +18,7 @@ const Editor = () => {
 
   const tags = useTags();
   const attr = useAttr();
+  const style = useStyle();
 
   useEffect(() => {
     const editor = document.querySelector("#editor");
@@ -33,11 +35,10 @@ const Editor = () => {
       );
     }, 300);
 
-    if (tags && attr) {
-      console.log(attr);
+    if (tags && attr && style) {
       EditorService(
         () => {
-          return [...tags, ...attr];
+          return [...tags, ...attr, ...style];
         },
         (updateText) => {
           if (updateText !== localStorage?.getItem("code")) {
@@ -51,7 +52,7 @@ const Editor = () => {
         },
       );
     }
-  }, [attr, tags]);
+  }, [attr, style, tags]);
 
   return (
     <>

@@ -15,13 +15,21 @@ const useStyle = () => {
       let data = d.data.items;
 
       let result = data.map((item, index) => {
-        return item.text?.fa.map((item2, index) => {
+        if (index !== 258) {
+          return item.text?.fa.map((item2, index) => {
+            return {
+              type: "text",
+              label: item.text?.fa[index],
+              apply: item.text?.fa[index] + "=«»",
+            };
+          });
+        } else {
           return {
             type: "text",
-            label: item.text?.fa[index],
-            apply: item.text?.fa[index] + "=«»",
+            label: "ارور",
+            apply: "ارور" + "=«»",
           };
-        });
+        }
       });
 
       setData(result);
