@@ -9,13 +9,14 @@ import useTags from "../../hooks/useTags.jsx";
 const Editor = () => {
   const [levelTwo, setLevelTwo] = useState(false);
   const [levelThere, setLevelThere] = useState(false);
-  const Tags = useTags();
+  const tags = useTags();
 
   let iframe = useRef();
   let error = useRef();
   let output = useRef();
 
   useEffect(() => {
+    console.log(tags);
     // handleOpen();
     const editor = document.querySelector("#editor");
     if (editor) {
@@ -33,7 +34,7 @@ const Editor = () => {
 
     EditorService(
       () => {
-        return;
+        return [];
       },
       (updateText) => {
         if (updateText !== localStorage?.getItem("code")) {
