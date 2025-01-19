@@ -125,3 +125,7 @@
 .shadow-orange {
     box-shadow: 0 3px 10px -7px #FF5C00;
 }
+
+.text-shadow {
+    text-shadow: -10px 13px 10px #ff965b;
+}
