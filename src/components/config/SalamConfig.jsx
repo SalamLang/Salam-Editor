@@ -59,15 +59,15 @@ const SalamConfig = () => {
           `,
         );
 
-        if (text.startsWith("Lexer Error")) {
-          toast.error("ارور در خوانش کد!", {
-            position: "bottom-center",
-          });
-        } else if (text.toString().trim().startsWith("Parser Error")) {
-          toast.error("ارور در خوانش کد!", {
-            position: "bottom-center",
-          });
-        }
+        // if (text.startsWith("Lexer Error")) {
+        //   toast.error("ارور در خوانش کد!", {
+        //     position: "bottom-center",
+        //   });
+        // } else if (text.toString().trim().startsWith("Parser Error")) {
+        //   toast.error("ارور در خوانش کد!", {
+        //     position: "bottom-center",
+        //   });
+        // }
         // else {
         //   toast.error(text, {
         //     position: "bottom-center",

@@ -75,15 +75,15 @@ const Editor = () => {
         <div
           id="editor"
           className={
-            (levelTwo && " !w-[50vw] h-[calc(100vh-35px)]") +
-            (levelThere && " !w-[calc(100%-50px)] h-[calc(50vh-35px)]") +
+            (levelTwo && " !w-[50vw] h-full") +
+            (levelThere && " !w-full h-[calc(50vh-17px)]") +
             " w-full rounded-tr-[15px] overflow-auto transition-all duration-300"
           }
         ></div>
         <div
           className={
             (levelTwo && " !w-[50vw] h-[calc(100vh-35px)]") +
-            (levelThere && " !w-[calc(100%-50px)] h-[calc(50vh-35px)]") +
+            (levelThere && " !w-full h-[calc(50vh-17px)]") +
             " w-0 bg-white transition-all duration-300 relative overflow-auto"
           }
         >
