@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import Runner from "./Runner.jsx";
 import SalamService from "../../services/SalamService.js";
 import useTags from "../../hooks/useTags.jsx";
+import useAttr from "../../hooks/useAttr.jsx";
 
 const Editor = () => {
   const [levelTwo, setLevelTwo] = useState(false);
@@ -15,6 +16,7 @@ const Editor = () => {
   let output = useRef();
 
   const tags = useTags();
+  const attr = useAttr();
 
   useEffect(() => {
     const editor = document.querySelector("#editor");
@@ -31,11 +33,11 @@ const Editor = () => {
       );
     }, 300);
 
-    if (tags) {
-      console.log(tags);
+    if (tags && attr) {
+      console.log(attr);
       EditorService(
         () => {
-          return tags;
+          return [...tags, ...attr];
         },
         (updateText) => {
           if (updateText !== localStorage?.getItem("code")) {
@@ -49,7 +51,7 @@ const Editor = () => {
         },
       );
     }
-  }, [tags]);
+  }, [attr, tags]);
 
   return (
     <>

@@ -14,14 +14,22 @@ const useAttr = () => {
     fetch().then((d) => {
       let data = d.data.items;
 
-      let result = data.map((item) => {
-        return item.text.fa.map((item2, index) => {
+      let result = data.map((item, index) => {
+        if (index !== 0) {
+          return item.text?.fa.map((item2, index) => {
+            return {
+              type: "keyword",
+              label: item.text?.fa[index],
+              apply: item.text?.fa[index] + "=«»",
+            };
+          });
+        } else {
           return {
             type: "keyword",
-            label: item.text.fa[index],
-            apply: item.text.fa[index] + "=«»",
+            label: "ارور",
+            apply: "ارور" + "=«»",
           };
-        });
+        }
       });
 
       setData(result);
