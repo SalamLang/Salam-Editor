@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { client } from "../components/config/AxiosConfig.js";
 
 const useTags = () => {
+  const [res, setRes] = useState(null);
+
   useEffect(() => {
     const fetch = async () => {
       return client.get(
@@ -12,15 +14,19 @@ const useTags = () => {
     fetch().then((result) => {
       const data = result.data.items;
 
-      return data.map((item) => {
+      const final = data.map((item) => {
         return {
           info: item?.descriptions?.fa,
           label: item?.text?.fa[0],
           type: "variable",
         };
       });
+
+      setRes(final);
     });
   }, []);
+
+  return res;
 };
 
 export default useTags;

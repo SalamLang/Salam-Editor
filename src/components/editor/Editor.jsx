@@ -7,10 +7,9 @@ import SalamService from "../../services/SalamService.js";
 import useTags from "../../hooks/useTags.jsx";
 
 const Editor = () => {
-  useTags();
-  const location = useLocation();
   const [levelTwo, setLevelTwo] = useState(false);
   const [levelThere, setLevelThere] = useState(false);
+  const Tags = useTags();
 
   let iframe = useRef();
   let error = useRef();
@@ -34,7 +33,7 @@ const Editor = () => {
 
     EditorService(
       () => {
-        return [];
+        return;
       },
       (updateText) => {
         if (updateText !== localStorage?.getItem("code")) {
@@ -47,7 +46,7 @@ const Editor = () => {
         }
       },
     );
-  }, [location]);
+  }, []);
 
   return (
     <>
