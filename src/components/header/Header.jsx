@@ -5,17 +5,15 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const [fileContent, setFileContent] = useState("");
   const navigate = useNavigate();
 
-  // Read File
+  // Read file
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       if (file.name.endsWith(".salam")) {
         const reader = new FileReader();
         reader.onload = (e) => {
-          setFileContent(e.target.result);
           toast.success("فایل وارد شد", {
             position: "bottom-right",
           });
@@ -59,6 +57,21 @@ const Header = () => {
             title={"باز کردن فایل"}
             callback={() => {
               openFilePicker();
+            }}
+          />
+          {/*<hr className={"opacity-100 bg-gray-300 my-2 h-[1px] border-0"}/>*/}
+          <DropdownItem
+            title={"خروجی در فایل سلام"}
+            callback={() => {
+              handleSaveFile();
+            }}
+          />
+        </Dropdown>
+        <Dropdown title={"امکانات"}>
+          <DropdownItem
+            title={"تمیز کردن کد"}
+            callback={() => {
+              lintCode();
             }}
           />
           {/*<hr className={"opacity-100 bg-gray-300 my-2 h-[1px] border-0"}/>*/}
