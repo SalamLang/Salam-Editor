@@ -75,7 +75,7 @@ const SalamConfig = () => {
         // }
       },
     };
-  }, []);
+  }, [location]);
 
   return <>{isReady && location.pathname === "/run" && <Run level={1} />}</>;
 };
