@@ -11,6 +11,7 @@ import useStyle from "../../hooks/useStyle.jsx";
 const Editor = () => {
   const [levelTwo, setLevelTwo] = useState(false);
   const [levelThere, setLevelThere] = useState(false);
+  const location = useLocation();
 
   let iframe = useRef();
   let error = useRef();
@@ -52,7 +53,7 @@ const Editor = () => {
         },
       );
     }
-  }, [attr, style, tags]);
+  }, [attr, style, tags, location]);
 
   return (
     <>
