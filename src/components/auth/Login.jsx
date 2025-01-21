@@ -35,6 +35,14 @@ const Login = () => {
                 style={{ width: `${progress}%` }}
               ></div>
             </div>
+            <img
+              src="/images/favicon.svg"
+              alt="logo"
+              className={
+                "w-[70px] absolute top-[10px] right-[60px] opacity-0" +
+                logoClass
+              }
+            />
           </div>
           <div className="basis-1/2"></div>
         </div>
