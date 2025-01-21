@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { cursorCharBackwardLogical } from "@codemirror/commands";
 
 const Login = () => {
   const [progress, setProgress] = useState(0);
+  const [readyLevel2, setReadyLevel2] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -11,6 +11,7 @@ const Login = () => {
           return prev + 1;
         } else {
           clearInterval(interval);
+          setReadyLevel2(true);
           return prev;
         }
       });
