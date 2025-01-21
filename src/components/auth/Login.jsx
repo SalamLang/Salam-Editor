@@ -2,20 +2,21 @@ import { useEffect, useState } from "react";
 import { cursorCharBackwardLogical } from "@codemirror/commands";
 
 const Login = () => {
-  const [line, setLine] = useState(-200);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setLine((prevLine) => {
-        if (prevLine < 100) {
-          console.log(prevLine);
-          return prevLine + 1;
+      setProgress((prev) => {
+        if (prev < 100) {
+          return prev + 1;
         } else {
           clearInterval(interval);
-          return prevLine;
+          return prev;
         }
       });
-    }, 100);
+    }, 10);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -26,10 +27,13 @@ const Login = () => {
             "w-full max-w-[900px] h-full max-h-[500px] bg-white rounded-[15px] border shadow-lg flex justify-center overflow-hidden"
           }
         >
-          <div className="basis-1/2 bg-gradient-to-b from-[#ff9d00] to-[#ff5c00]">
-            <hr
-              className={`bg-gradient-to-r from-[#fff] transition-all duration-300 from-[${line}%] to-transparent opacity-100 border-0 w-[300px] h-[2px] rounded mt-10 mr-10 -rotate-3`}
-            />
+          <div className="basis-1/2 bg-gradient-to-b from-[#ff9d00] relative to-[#ff5c00]">
+            <div className="w-[300px] h-[2px] rounded absolute top-[120px] right-1/2 translate-x-1/2 rotate-[165deg] overflow-hidden">
+              <div
+                className="h-full bg-white"
+                style={{ width: `${progress}%` }}
+              ></div>
+            </div>
           </div>
           <div className="basis-1/2"></div>
         </div>
