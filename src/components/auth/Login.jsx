@@ -12,18 +12,43 @@ const Login = () => {
           return prev + 1;
         } else {
           clearInterval(interval);
-          setReadyLevel2(true);
+          setTimeout(() => {
+            setReadyLevel2(true);
+          }, 200);
           return prev;
         }
       });
-    }, 10);
+    }, 5);
 
     if (readyLevel2) {
       setLogoClass(" opacity-100");
 
       setTimeout(() => {
-        setLogoClass(" opacity-100 top-[84px] right-[330px]");
+        setLogoClass(" opacity-100 top-[83px] right-[330px] rotate-[360deg]");
       }, 1000);
+
+      setTimeout(() => {
+        const interval = setInterval(() => {
+          setProgress((prev) => {
+            if (prev > 0) {
+              return prev - 1;
+            } else {
+              clearInterval(interval);
+              return prev;
+            }
+          });
+        }, 5);
+      }, 2000);
+
+      setTimeout(() => {
+        setLogoClass(" opacity-100 top-[83px] !right-1/2 !translate-x-1/2");
+      }, 3100);
+
+      setTimeout(() => {
+        setLogoClass(
+          " opacity-100 w-[110px] top-[45px] !right-1/2 !translate-x-1/2",
+        );
+      }, 4000);
     }
   }, [readyLevel2]);
 
