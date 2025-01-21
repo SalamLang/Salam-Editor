@@ -49,6 +49,8 @@ const Login = () => {
           " opacity-100 w-[110px] top-[45px] !right-1/2 !translate-x-1/2",
         );
       }, 4000);
+
+      setTimeout(() => {}, 4500);
     }
   }, [readyLevel2]);
 
@@ -75,6 +77,11 @@ const Login = () => {
                 logoClass
               }
             />
+            <div
+              className={
+                "border border-white h-[calc(100%-170px)] mt-[100px] opacity-0"
+              }
+            ></div>
           </div>
           <div className="basis-1/2"></div>
         </div>
