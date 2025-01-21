@@ -84,10 +84,30 @@ const Login = () => {
             />
             <div
               className={
-                "border border-white h-[calc(100%-170px)] mt-[100px] transition-all duration-500 opacity-0" +
+                "h-[calc(100%-170px)] mt-[100px] transition-all duration-500 opacity-0" +
                 descriptionClass
               }
-            ></div>
+            >
+              <p
+                className={
+                  "text-white text-[20px] text-center mt-[50px] font-bold"
+                }
+              >
+                سلام اولین زبان فارسی جهان!
+              </p>
+              <p
+                className={
+                  "text-white text-[15px] font-[400] text-center mt-4 px-7 leading-[1.8]"
+                }
+              >
+                تا حالا با سلام کار کردی؟ میدونی چقدر خفنه؟ شاید بگی اخه به چه
+                درد من میخوره ولی بزار بهت بگم طراحی؟ نویسنده ای؟ معلمی؟ دانش
+                اموزی؟ دوست داری یه جایی باشه هرچی خواستی بسازی؟ دوست داری سایت
+                شخصیتو بسازی؟ یا اصلا برنامه نویسی؟ چی ازین بهتر که بتونی با
+                زبان مادریت کد بزنی؟ هم سریع تره هم ... تازه یادگیریش هم راحت
+                تره
+              </p>
+            </div>
           </div>
           <div className="basis-1/2"></div>
         </div>
