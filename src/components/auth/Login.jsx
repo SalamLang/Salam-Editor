@@ -4,6 +4,7 @@ const Login = () => {
   const [progress, setProgress] = useState(0);
   const [readyLevel2, setReadyLevel2] = useState(false);
   const [logoClass, setLogoClass] = useState("");
+  const [descriptionClass, setDescriptionClass] = useState("");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -21,10 +22,12 @@ const Login = () => {
     }, 5);
 
     if (readyLevel2) {
-      setLogoClass(" opacity-100");
+      setLogoClass(" !opacity-100");
 
       setTimeout(() => {
-        setLogoClass(" opacity-100 top-[83px] right-[330px] rotate-[360deg]");
+        setLogoClass(
+          " !opacity-100 !top-[83px] !right-[330px] !rotate-[360deg]",
+        );
       }, 1000);
 
       setTimeout(() => {
@@ -41,16 +44,18 @@ const Login = () => {
       }, 2000);
 
       setTimeout(() => {
-        setLogoClass(" opacity-100 top-[83px] !right-1/2 !translate-x-1/2");
+        setLogoClass(" !opacity-100 !top-[83px] !right-1/2 !translate-x-1/2");
       }, 3100);
 
       setTimeout(() => {
         setLogoClass(
-          " opacity-100 w-[110px] top-[45px] !right-1/2 !translate-x-1/2",
+          " !opacity-100 !w-[110px] !top-[45px] !right-1/2 !translate-x-1/2",
         );
       }, 4000);
 
-      setTimeout(() => {}, 4500);
+      setTimeout(() => {
+        setDescriptionClass(" opacity-100 mt-[170px]");
+      }, 4500);
     }
   }, [readyLevel2]);
 
@@ -79,7 +84,8 @@ const Login = () => {
             />
             <div
               className={
-                "border border-white h-[calc(100%-170px)] mt-[100px] opacity-0"
+                "border border-white h-[calc(100%-170px)] mt-[100px] transition-all duration-500 opacity-0" +
+                descriptionClass
               }
             ></div>
           </div>

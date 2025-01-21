@@ -162,3 +162,7 @@ svg .svg-salam-3 {
 svg.active .svg-salam-3 {
     fill: rgb(255, 255, 255);
 }
+
+.mt-\[170px\] {
+    margin-top: 170px;
+}
