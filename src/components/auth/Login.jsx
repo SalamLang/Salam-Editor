@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const Login = () => {
   const [progress, setProgress] = useState(0);
   const [readyLevel2, setReadyLevel2] = useState(false);
+  const [logoClass, setLogoClass] = useState("");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -17,8 +18,14 @@ const Login = () => {
       });
     }, 10);
 
-    return () => clearInterval(interval);
-  }, []);
+    if (readyLevel2) {
+      setLogoClass(" opacity-100");
+
+      setTimeout(() => {
+        setLogoClass(" opacity-100 top-[84px] right-[330px]");
+      }, 1000);
+    }
+  }, [readyLevel2]);
 
   return (
     <>
@@ -39,7 +46,7 @@ const Login = () => {
               src="/images/favicon.svg"
               alt="logo"
               className={
-                "w-[70px] absolute top-[10px] right-[60px] opacity-0" +
+                "w-[70px] absolute top-[10px] transition-all duration-500 right-[60px] opacity-0" +
                 logoClass
               }
             />
