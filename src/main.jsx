@@ -12,6 +12,8 @@ import SalamConfig from "./components/config/SalamConfig.jsx";
 import NotFound from "./components/errors/NotFound.jsx";
 import { Suspense } from "react";
 import Loading from "./components/loading/Loading.jsx";
+// eslint-disable-next-line react-refresh/only-export-components
+const Login = lazy(() => import("./components/auth/Login.jsx"));
 
 createRoot(document.getElementById("root")).render(
   <>
@@ -24,6 +26,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/" element={<EditorLayout />} />
           <Route path="/run" element={<RunLayout />} />
           <Route path="/firework" element={<FireWork />} />
+          <Route path="/login" element={<Login />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
