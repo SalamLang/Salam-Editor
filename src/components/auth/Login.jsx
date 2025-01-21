@@ -4,9 +4,12 @@ const Login = () => {
       <div className="w-full h-[100vh] flex justify-center items-center">
         <div
           className={
-            "w-full max-w-[900px] h-full max-h-[500px] bg-white rounded-[15px] border shadow-lg flex justify-center items-center"
+            "w-full max-w-[900px] h-full max-h-[500px] bg-white rounded-[15px] border shadow-lg flex justify-center overflow-hidden"
           }
-        ></div>
+        >
+          <div className="basis-1/2"></div>
+          <div className="basis-1/2"></div>
+        </div>
       </div>
     </>
   );
