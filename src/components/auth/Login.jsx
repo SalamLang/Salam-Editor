@@ -109,7 +109,9 @@ const Login = () => {
               </p>
             </div>
           </div>
-          <div className="basis-1/2"></div>
+          <div className="basis-1/2 flex flex-col justify-center items-center">
+            <h1 className={"text-[23px] font-bold"}>ورود و ثبت نام</h1>
+          </div>
         </div>
       </div>
     </>
