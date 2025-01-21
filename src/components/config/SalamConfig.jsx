@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Run from "../run/Run.jsx";
 import { useLocation } from "react-router-dom";
-import { toast } from "react-toastify";
 
 const SalamConfig = () => {
   const [isReady, setIsReady] = useState(false);
