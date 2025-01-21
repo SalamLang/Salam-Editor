@@ -97,7 +97,7 @@ const Login = () => {
               </p>
               <p
                 className={
-                  "text-white text-[15px] font-[400] text-center mt-4 px-7 leading-[1.8]"
+                  "text-white text-[15px] font-[400] text-justify mt-4 px-7 leading-[1.8]"
                 }
               >
                 تا حالا با سلام کار کردی؟ میدونی چقدر خفنه؟ شاید بگی اخه به چه
