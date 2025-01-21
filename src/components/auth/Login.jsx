@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import Form from "./Form.jsx";
 
 const Login = () => {
   const [progress, setProgress] = useState(0);
   const [readyLevel2, setReadyLevel2] = useState(false);
   const [logoClass, setLogoClass] = useState("");
   const [descriptionClass, setDescriptionClass] = useState("");
+  const [mobile, setMobile] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -59,6 +61,8 @@ const Login = () => {
     }
   }, [readyLevel2]);
 
+  const handleSubmit = () => {};
+
   return (
     <>
       <div className="w-full h-[100vh] flex justify-center items-center">
@@ -105,12 +109,13 @@ const Login = () => {
                 اموزی؟ دوست داری یه جایی باشه هرچی خواستی بسازی؟ دوست داری سایت
                 شخصیتو بسازی؟ یا اصلا برنامه نویسی؟ چی ازین بهتر که بتونی با
                 زبان مادریت کد بزنی؟ هم سریع تره هم بهتره دیگه! تازه یادگیریش هم
-                راحت تره.🔵🟧
+                راحت تره.
               </p>
             </div>
           </div>
           <div className="basis-1/2 flex flex-col justify-center items-center">
             <h1 className={"text-[23px] font-bold"}>ورود و ثبت نام</h1>
+            <Form onSubmit={handleSubmit}></Form>
           </div>
         </div>
       </div>
