@@ -23,11 +23,17 @@ createRoot(document.getElementById("root")).render(
         <ToastContainer />
         <SalamConfig />
         <Routes>
+          {/*Editor*/}
           <Route path="/" element={<EditorLayout />} />
           <Route path="/run" element={<RunLayout />} />
+
+          {/*Costume*/}
           <Route path="/firework" element={<FireWork />} />
+
+          {/*Auth*/}
           <Route path="/login" element={<Login />} />
 
+          {/*404 - Not found*/}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
