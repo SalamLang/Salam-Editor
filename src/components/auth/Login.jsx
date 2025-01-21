@@ -1,4 +1,14 @@
+import { useEffect, useState } from "react";
+
 const Login = () => {
+  const [activeSalam, setActiveSalam] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setActiveSalam(true);
+    }, 1000);
+  }, []);
+
   return (
     <>
       <div className="w-full h-[100vh] flex justify-center items-center">
