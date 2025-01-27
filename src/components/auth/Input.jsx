@@ -1,5 +1,19 @@
-// eslint-disable-next-line react/prop-types
-const Input = ({ onInput, id, name, type, children }) => {
+const Input = ({
+  // eslint-disable-next-line react/prop-types
+  onInput,
+  // eslint-disable-next-line react/prop-types
+  id,
+  // eslint-disable-next-line react/prop-types
+  name,
+  // eslint-disable-next-line react/prop-types
+  type,
+  // eslint-disable-next-line react/prop-types
+  children,
+  // eslint-disable-next-line react/prop-types
+  placeholder,
+  // eslint-disable-next-line react/prop-types
+  autoFocus,
+}) => {
   return (
     <>
       <div
@@ -19,6 +33,8 @@ const Input = ({ onInput, id, name, type, children }) => {
             name={name}
             onInput={onInput}
             className={"w-full h-full focus-visible:outline-0 p-2 text-[18px]"}
+            placeholder={placeholder}
+            autoFocus={autoFocus}
           />
         </div>
       </div>
