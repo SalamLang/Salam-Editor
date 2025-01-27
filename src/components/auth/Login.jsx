@@ -119,11 +119,33 @@ const Login = () => {
           <div className="basis-1/2 flex flex-col justify-center items-center">
             <h1 className={"text-[23px] font-bold"}>ورود و ثبت نام</h1>
             <Form onSubmit={handleSubmit} className={"w-full max-w-[320px]"}>
-              <Input
-                type={"number"}
-                name={"mobile"}
-                onInput={handleChange}
-              ></Input>
+              <Input type={"number"} name={"mobile"} onInput={handleChange}>
+                <svg
+                  className={"w-[30px]"}
+                  viewBox="0 0 24.00 24.00"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  stroke="#ff5e04"
+                >
+                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    stroke="#CCCCCC"
+                    strokeWidth="0.048"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M12 18H12.01M9.2 21H14.8C15.9201 21 16.4802 21 16.908 20.782C17.2843 20.5903 17.5903 20.2843 17.782 19.908C18 19.4802 18 18.9201 18 17.8V6.2C18 5.0799 18 4.51984 17.782 4.09202C17.5903 3.71569 17.2843 3.40973 16.908 3.21799C16.4802 3 15.9201 3 14.8 3H9.2C8.0799 3 7.51984 3 7.09202 3.21799C6.71569 3.40973 6.40973 3.71569 6.21799 4.09202C6 4.51984 6 5.07989 6 6.2V17.8C6 18.9201 6 19.4802 6.21799 19.908C6.40973 20.2843 6.71569 20.5903 7.09202 20.782C7.51984 21 8.07989 21 9.2 21Z"
+                      stroke="#ff5e04"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </g>
+                </svg>
+              </Input>
             </Form>
           </div>
         </div>
