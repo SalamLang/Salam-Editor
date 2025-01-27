@@ -118,7 +118,7 @@ const Login = () => {
           </div>
           <div className="basis-1/2 flex flex-col justify-center items-center">
             <h1 className={"text-[23px] font-bold"}>ورود و ثبت نام</h1>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} className={"w-full"}>
               <Input
                 type={"number"}
                 name={"mobile"}
