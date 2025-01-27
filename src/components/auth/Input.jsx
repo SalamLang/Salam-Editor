@@ -2,10 +2,20 @@
 const Input = ({ onInput, id, name, type, children }) => {
   return (
     <>
-      <div className={"h-[45px] w-full border rounded-[10px] flex"}>
-        {/*<div className={"w-[45px] bg-blue-700"}>{children}</div>*/}
-        <div className={"w-full bg-yellow-500 h-[45px]"}>
-          {/*<input type={type} id={id} name={name} onInput={onInput} />*/}
+      <div
+        className={"h-[45px] w-full border rounded-[10px] overflow-hidden flex"}
+      >
+        <div className={"basis-[45px] shrink-0 h-[45px] border-l"}>
+          {children}
+        </div>
+        <div className={"h-[45px] basis-full"}>
+          <input
+            type={type}
+            id={id}
+            name={name}
+            onInput={onInput}
+            className={"w-full h-full focus-visible:outline-0 p-2"}
+          />
         </div>
       </div>
     </>
