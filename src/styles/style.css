@@ -166,3 +166,9 @@ svg.active .svg-salam-3 {
 .mt-\[170px\] {
     margin-top: 170px;
 }
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
