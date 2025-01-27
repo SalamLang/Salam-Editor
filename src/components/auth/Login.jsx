@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Form from "./Form.jsx";
+import Input from "./Input.jsx";
 
 const Login = () => {
   const [progress, setProgress] = useState(0);
@@ -63,6 +64,8 @@ const Login = () => {
 
   const handleSubmit = () => {};
 
+  const handleChange = () => {};
+
   return (
     <>
       <div className="w-full h-[100vh] flex justify-center items-center">
@@ -115,7 +118,13 @@ const Login = () => {
           </div>
           <div className="basis-1/2 flex flex-col justify-center items-center">
             <h1 className={"text-[23px] font-bold"}>ورود و ثبت نام</h1>
-            <Form onSubmit={handleSubmit}></Form>
+            <Form onSubmit={handleSubmit}>
+              <Input
+                type={"number"}
+                name={"mobile"}
+                onInput={handleChange}
+              ></Input>
+            </Form>
           </div>
         </div>
       </div>
