@@ -5,39 +5,36 @@ import Label from "../../auth/Label.jsx";
 import Input from "../../auth/Input.jsx";
 import Button from "../../auth/Button.jsx";
 import * as Yup from "yup";
-import SendOtpService from "../../../services/SendOtpService.js";
 import { toast } from "react-toastify";
+import SaveCodeService from "../../../services/SaveCodeService.js";
 
 // eslint-disable-next-line react/prop-types
 const SaveCode = ({ login, show = false, callback }) => {
   const [saveModal, setSaveModal] = useState(false);
-  const [saveData, setSaveData] = useState({
+  const [formData, setFormData] = useState({
     title: null,
   });
   const [clicked, setClicked] = useState(false);
   const [errors, setErrors] = useState({});
 
   const validation = Yup.object({
-    title: Yup.string().min(5).required("وارد کردن عنوان الزامی است"),
+    title: Yup.string().required("وارد کردن عنوان الزامی است"),
   });
 
-  const handleChange = (e) => {
-    setSaveData({
-      ...saveData,
-      [e.target.name]: e.target.value.trim(),
-    });
-  };
+  useEffect(() => {
+    setSaveModal(show);
+  }, [show]);
 
   const saveCode = (e) => {
     e.preventDefault();
     setClicked(true);
 
     validation
-      .validate(saveData, { abortEarly: false })
+      .validate(formData, { abortEarly: false })
       .then(async () => {
         setErrors({});
         let result = await SaveCodeService(
-          saveData.title,
+          formData.title,
           localStorage?.getItem("code"),
         );
         if (result) {
@@ -55,9 +52,12 @@ const SaveCode = ({ login, show = false, callback }) => {
       });
   };
 
-  useEffect(() => {
-    setSaveModal(show);
-  }, [show]);
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
 
   return (
     <>
