@@ -1,63 +1,76 @@
 import { useEffect, useState } from "react";
 
-const LoginSidebar = () => {
+const LoginSidebar = ({ verify }) => {
   const [progress, setProgress] = useState(0);
   const [readyLevel2, setReadyLevel2] = useState(false);
   const [logoClass, setLogoClass] = useState("");
   const [descriptionClass, setDescriptionClass] = useState("");
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev < 100) {
-          return prev + 1;
-        } else {
-          clearInterval(interval);
-          setTimeout(() => {
-            setReadyLevel2(true);
-          }, 200);
-          return prev;
-        }
-      });
-    }, 5);
+    if (!verify) {
+      const interval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev < 100) {
+            return prev + 1;
+          } else {
+            clearInterval(interval);
+            setTimeout(() => {
+              setReadyLevel2(true);
+            }, 200);
+            return prev;
+          }
+        });
+      }, 5);
 
-    if (readyLevel2) {
-      setLogoClass(" !opacity-100");
+      if (readyLevel2) {
+        setLogoClass(" !opacity-100");
 
-      setTimeout(() => {
-        setLogoClass(
-          " !opacity-100 !top-[83px] !right-[330px] !rotate-[360deg]",
-        );
-      }, 1000);
+        setTimeout(() => {
+          setLogoClass(
+            " !opacity-100 !top-[83px] !right-[330px] !rotate-[360deg]",
+          );
+        }, 1000);
 
-      setTimeout(() => {
-        const interval = setInterval(() => {
-          setProgress((prev) => {
-            if (prev > 0) {
-              return prev - 1;
-            } else {
-              clearInterval(interval);
-              return prev;
-            }
-          });
-        }, 5);
-      }, 2000);
+        setTimeout(() => {
+          const interval = setInterval(() => {
+            setProgress((prev) => {
+              if (prev > 0) {
+                return prev - 1;
+              } else {
+                clearInterval(interval);
+                return prev;
+              }
+            });
+          }, 5);
+        }, 2000);
 
-      setTimeout(() => {
-        setLogoClass(" !opacity-100 !top-[83px] !right-1/2 !translate-x-1/2");
-      }, 3100);
+        setTimeout(() => {
+          setLogoClass(" !opacity-100 !top-[83px] !right-1/2 !translate-x-1/2");
+        }, 3100);
 
+        setTimeout(() => {
+          setLogoClass(
+            " !opacity-100 !w-[110px] !top-[45px] !right-1/2 !translate-x-1/2",
+          );
+        }, 4000);
+
+        setTimeout(() => {
+          setDescriptionClass(" opacity-100 mt-[170px]");
+        }, 4500);
+      }
+    }
+    if (verify && verify === true) {
       setTimeout(() => {
         setLogoClass(
           " !opacity-100 !w-[110px] !top-[45px] !right-1/2 !translate-x-1/2",
         );
-      }, 4000);
+      }, 1000);
 
       setTimeout(() => {
         setDescriptionClass(" opacity-100 mt-[170px]");
       }, 4500);
     }
-  }, [readyLevel2]);
+  }, [readyLevel2, verify]);
 
   return (
     <>
