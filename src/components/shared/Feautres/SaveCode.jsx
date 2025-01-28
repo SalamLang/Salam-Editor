@@ -13,7 +13,7 @@ import { useNavigate, useParams } from "react-router-dom";
 const SaveCode = ({ login, show = false, callback }) => {
   const [saveModal, setSaveModal] = useState(false);
   const [formData, setFormData] = useState({
-    title: null,
+    title: localStorage?.getItem("title") ?? null,
   });
   const [clicked, setClicked] = useState(false);
   const [errors, setErrors] = useState({});
@@ -36,8 +36,8 @@ const SaveCode = ({ login, show = false, callback }) => {
       .validate(formData, { abortEarly: false })
       .then(async () => {
         setErrors({});
-        let result = await SaveCodeService(
-          formData.title,
+        let result = await UpdateCodeService(
+          params?.id,
           localStorage?.getItem("code"),
         );
         if (result?.success === true) {
@@ -76,15 +76,19 @@ const SaveCode = ({ login, show = false, callback }) => {
         >
           <h1 className={"text-[23px] text-center font-bold"}>ذخیره کد</h1>
           <Form onSubmit={saveCode}>
-            <Label form={"title"} required={true} error={errors.title}>
-              عنوان کد:
-              <Input
-                className={"mt-1"}
-                name={"title"}
-                onInput={handleChange}
-                autoFocus={true}
-              />
-            </Label>
+            {localStorage?.getItem("is_me") === false && (
+              <>
+                <Label form={"title"} required={true} error={errors.title}>
+                  عنوان کد:
+                  <Input
+                    className={"mt-1"}
+                    name={"title"}
+                    onInput={handleChange}
+                    autoFocus={true}
+                  />
+                </Label>
+              </>
+            )}
             <Button disabled={clicked}>ذخیره کد</Button>
           </Form>
         </Modal>
