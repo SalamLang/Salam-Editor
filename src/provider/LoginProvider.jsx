@@ -18,7 +18,7 @@ const LoginProvider = ({ children }) => {
   return (
     <LoginContext.Provider value={{ login, setLogin }}>
       {loading && <Loading />}
-      {children}
+      {login !== null && children}
     </LoginContext.Provider>
   );
 };
