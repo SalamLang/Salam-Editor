@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Tooltip } from "react-tooltip";
+import Modal from "../shared/Modal.jsx";
+import modal from "../shared/Modal.jsx";
 
 const Share = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -13,7 +15,11 @@ const Share = () => {
         data-tooltip-id="share"
         data-tooltip-content="اشتراک گذاری"
       >
-        <button>
+        <button
+          onClick={() => {
+            setOpenModal(true);
+          }}
+        >
           <svg
             viewBox="0 0 16 16"
             fill="none"
@@ -47,6 +53,12 @@ const Share = () => {
         id={"share"}
         className={"z-[1005] !rounded-[10px] !text-[14px]"}
       />
+      <Modal
+        show={openModal}
+        callback={() => {
+          setOpenModal(false);
+        }}
+      ></Modal>
     </>
   );
 };
