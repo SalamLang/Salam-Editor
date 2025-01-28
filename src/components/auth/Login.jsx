@@ -5,6 +5,7 @@ import Label from "./Label.jsx";
 import Button from "./Button.jsx";
 import * as Yup from "yup";
 import LoginSidebar from "./LoginSidebar.jsx";
+import SendOtpService from "../../services/SendOtpService.js";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -69,7 +70,6 @@ const Login = () => {
               loading={"lazy"}
               className={"w-[200px] -mt-10 hue-rotate-[215deg]"}
             />
-            {/*<h1 className={"text-[23px] font-bold"}>ورود و ثبت نام</h1>*/}
             <Form onSubmit={handleSubmit} className={"w-full max-w-[320px]"}>
               <Label form={"number"} required={true}>
                 شماره موبایل:
@@ -79,7 +79,7 @@ const Login = () => {
                   onInput={handleChange}
                   placeholder={"شماره موبایل"}
                   autoFocus={true}
-                  className={"mt-0.5 tracking-wide"}
+                  className={"mt-1 tracking-wide"}
                 />
               </Label>
               <Button type={"submit"}>ارسال کد</Button>
