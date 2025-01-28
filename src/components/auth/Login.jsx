@@ -129,7 +129,7 @@ const Login = () => {
                   onInput={handleChange}
                   placeholder={"شماره موبایل"}
                   autoFocus={true}
-                  className={"mt-0.5"}
+                  className={"mt-0.5 tracking-wide"}
                 />
               </Label>
               <Button type={"submit"}>ارسال کد</Button>
