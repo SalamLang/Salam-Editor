@@ -82,7 +82,9 @@ const Login = () => {
                   className={"mt-1 tracking-wide"}
                 />
               </Label>
-              <Button type={"submit"}>ارسال کد</Button>
+              <Button type={"submit"} onClick={() => {}}>
+                ارسال کد
+              </Button>
             </Form>
           </div>
         </div>
