@@ -6,6 +6,7 @@ import Button from "./Button.jsx";
 import * as Yup from "yup";
 import LoginSidebar from "./LoginSidebar.jsx";
 import SendOtpService from "../../services/SendOtpService.js";
+import { mobile } from "codemirror/src/util/browser.js";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -71,7 +72,7 @@ const Login = () => {
               className={"w-[200px] -mt-10 hue-rotate-[215deg]"}
             />
             <Form onSubmit={handleSubmit} className={"w-full max-w-[320px]"}>
-              <Label form={"number"} required={true}>
+              <Label form={"number"} required={true} error={errors.mobile}>
                 شماره موبایل:
                 <Input
                   type={"number"}
@@ -82,7 +83,7 @@ const Login = () => {
                   className={"mt-1 tracking-wide"}
                 />
               </Label>
-              <Button type={"submit"} onClick={() => {}}>
+              <Button type={"submit"} disabled={clicked}>
                 ارسال کد
               </Button>
             </Form>
