@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import LoginSidebar from "./LoginSidebar.jsx";
 import { toast } from "react-toastify";
 import VerifyOtpService from "../../services/VerifyOtpService.js";
+import { win } from "codemirror/src/util/dom.js";
 
 // eslint-disable-next-line react/prop-types
 const Verify = ({ mobile }) => {
@@ -33,6 +34,7 @@ const Verify = ({ mobile }) => {
         let result = await VerifyOtpService(mobile, formData.otp);
         if (result) {
           toast.success("کدورود باموفقیت ارسال شد.");
+          location.href = "/";
         }
         setClicked(false);
       })
