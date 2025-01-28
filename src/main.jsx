@@ -10,6 +10,7 @@ import SalamConfig from "./components/config/SalamConfig.jsx";
 import NotFound from "./components/errors/NotFound.jsx";
 import { Suspense } from "react";
 import Loading from "./components/loading/Loading.jsx";
+import LoginProvider from "./provider/LoginProvider.jsx";
 const LoginLayout = lazy(() => import("./layouts/LoginLayout.jsx"));
 
 createRoot(document.getElementById("root")).render(
@@ -19,20 +20,23 @@ createRoot(document.getElementById("root")).render(
         <RouteChangeHandler />
         <ToastContainer />
         <SalamConfig />
-        <Routes>
-          {/*Editor*/}
-          <Route path="/" element={<EditorLayout />} />
-          <Route path="/run" element={<RunLayout />} />
 
-          {/*Costume*/}
-          <Route path="/firework" element={<FireWork />} />
+        <LoginProvider>
+          <Routes>
+            {/*Editor*/}
+            <Route path="/" element={<EditorLayout />} />
+            <Route path="/run" element={<RunLayout />} />
 
-          {/*Auth*/}
-          <Route path="/login" element={<LoginLayout />} />
+            {/*Costume*/}
+            <Route path="/firework" element={<FireWork />} />
 
-          {/*404 - Not found*/}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+            {/*Auth*/}
+            <Route path="/login" element={<LoginLayout />} />
+
+            {/*404 - Not found*/}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </LoginProvider>
       </BrowserRouter>
     </Suspense>
   </>,

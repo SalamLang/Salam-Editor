@@ -6,7 +6,7 @@ import Loading from "../components/loading/Loading.jsx";
 // eslint-disable-next-line react/prop-types
 const LoginProvider = ({ children }) => {
   const [login, setLogin] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     checkToken().then((result) => {
