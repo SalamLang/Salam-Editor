@@ -6,9 +6,6 @@ import LoginContext from "../context/LoginContext.jsx";
 import { useContext } from "react";
 
 const EditorLayout = () => {
-  const { login } = useContext(LoginContext);
-
-  alert(login);
   return (
     <>
       <Header />
