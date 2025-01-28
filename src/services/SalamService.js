@@ -30,9 +30,9 @@ const runSalam = (code) => {
           `,
   );
   if (!code) {
-    toast.error("کد ورودی خالی میباشد", {
-      position: "bottom-center",
-    });
+    // toast.error("کد ورودی خالی میباشد", {
+    //   position: "bottom-center",
+    // });
     return;
   }
 
