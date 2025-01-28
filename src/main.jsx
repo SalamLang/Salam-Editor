@@ -15,13 +15,12 @@ const LoginLayout = lazy(() => import("./layouts/LoginLayout.jsx"));
 
 createRoot(document.getElementById("root")).render(
   <>
-    <Suspense fallback={<Loading />}>
-      <BrowserRouter>
-        <RouteChangeHandler />
-        <ToastContainer />
-        <SalamConfig />
-
-        <LoginProvider>
+    <LoginProvider>
+      <Suspense fallback={<Loading />}>
+        <BrowserRouter>
+          <RouteChangeHandler />
+          <ToastContainer />
+          <SalamConfig />
           <Routes>
             {/*Editor*/}
             <Route path="/" element={<EditorLayout />} />
@@ -36,8 +35,8 @@ createRoot(document.getElementById("root")).render(
             {/*404 - Not found*/}
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </LoginProvider>
-      </BrowserRouter>
-    </Suspense>
+        </BrowserRouter>
+      </Suspense>
+    </LoginProvider>
   </>,
 );
