@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Form from "./Form.jsx";
 import Input from "./Input.jsx";
 import Label from "./Label.jsx";
@@ -6,10 +6,10 @@ import Button from "./Button.jsx";
 import * as Yup from "yup";
 import LoginSidebar from "./LoginSidebar.jsx";
 import SendOtpService from "../../services/SendOtpService.js";
-import { mobile } from "codemirror/src/util/browser.js";
 import { toast } from "react-toastify";
 
-const Login = () => {
+// eslint-disable-next-line react/prop-types
+const Login = ({ callback }) => {
   const [formData, setFormData] = useState({
     mobile: 0,
   });
@@ -36,7 +36,10 @@ const Login = () => {
       .then(async () => {
         setErrors({});
         let result = await SendOtpService(formData.mobile);
-        if (result) toast.success("کدورود باموفقیت ارسال شد.");
+        if (result) {
+          toast.success("کدورود باموفقیت ارسال شد.");
+          callback();
+        }
         setClicked(false);
       })
       .catch((err) => {
