@@ -53,49 +53,6 @@ const Header = () => {
     URL.revokeObjectURL(url);
   };
 
-  const captureLint = (args) => {
-    console.log("Capture Lint: ", args);
-
-    elm_output.textContent = "";
-    elm_error.textContent = "";
-
-    try {
-      const exitCode = callMain(args);
-
-      if (exitCode !== 0) {
-        return null;
-      } else {
-        return elm_output.textContent;
-      }
-      // eslint-disable-next-line no-unused-vars
-    } catch (err) {
-      return null;
-    }
-  };
-
-  const runLint = () => {
-    if (!window.isReady) {
-      return;
-    }
-
-    const code = localStorage?.getItem("code");
-    if (!code) {
-      return;
-    }
-
-    const args = ["lint", "code", code];
-
-    const res = captureLint(args);
-    if (res !== null) {
-      localStorage.setItem("code", res);
-    }
-  };
-
-  const lintCode = () => {
-    runLint();
-    navigate("/");
-  };
-
   return (
     <>
       <header
@@ -118,14 +75,7 @@ const Header = () => {
             }}
           />
         </Dropdown>
-        <Dropdown title={"امکانات"}>
-          <DropdownItem
-            title={"تمیز کردن کد"}
-            callback={() => {
-              lintCode();
-            }}
-          />
-        </Dropdown>
+        <Dropdown title={"امکانات"}></Dropdown>
       </header>
       <input
         type="file"
