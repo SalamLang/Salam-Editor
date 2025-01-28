@@ -1,57 +1,19 @@
 import Dropdown from "../shared/dropdown/Dropdown.jsx";
 import DropdownItem from "../shared/dropdown/DropdownItem.jsx";
-import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import LoginContext from "../../context/LoginContext.jsx";
+import {
+  handleFileChange,
+  handleSaveFile,
+  openFilePicker,
+  saveCode,
+} from "../shared/Features.js";
 
 const Header = () => {
   const navigate = useNavigate();
-
-  let elm_output = {
-    textContent: null,
-  };
-
-  let elm_error = {
-    textContent: null,
-  };
-
-  // Read file
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      if (file.name.endsWith(".salam")) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          toast.success("فایل وارد شد", {
-            position: "bottom-right",
-          });
-          localStorage.setItem("code", e.target.result);
-          navigate("/");
-        };
-        reader.readAsText(file);
-      } else {
-        toast.error("فرمت فایل وارد شده اشتباه است.", {
-          position: "bottom-right",
-        });
-      }
-    }
-  };
-  const openFilePicker = () => {
-    document.getElementById("fileInput").click();
-  };
-
-  // Export file
-  const handleSaveFile = () => {
-    const fileName = "myFile.salam";
-    const fileContent = localStorage.getItem("code") ?? "";
-    const blob = new Blob([fileContent], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = fileName;
-    link.click();
-    URL.revokeObjectURL(url);
-  };
+  const { login } = useContext(LoginContext);
 
   return (
     <>
@@ -75,7 +37,22 @@ const Header = () => {
             }}
           />
         </Dropdown>
-        <Dropdown title={"امکانات"}></Dropdown>
+        <Dropdown title={"امکانات"}>
+          {login === false && (
+            <DropdownItem
+              title={"ورود به حساب"}
+              callback={() => {
+                navigate("/login");
+              }}
+            />
+          )}
+          <DropdownItem
+            title={"ذخیره کد"}
+            callback={() => {
+              saveCode(login);
+            }}
+          />
+        </Dropdown>
       </header>
       <input
         type="file"
