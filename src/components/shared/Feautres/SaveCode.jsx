@@ -7,6 +7,7 @@ import Button from "../../auth/Button.jsx";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import SaveCodeService from "../../../services/SaveCodeService.js";
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const SaveCode = ({ login, show = false, callback }) => {
@@ -16,6 +17,7 @@ const SaveCode = ({ login, show = false, callback }) => {
   });
   const [clicked, setClicked] = useState(false);
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const validation = Yup.object({
     title: Yup.string().required("وارد کردن عنوان الزامی است"),
@@ -38,7 +40,8 @@ const SaveCode = ({ login, show = false, callback }) => {
           localStorage?.getItem("code"),
         );
         if (result) {
-          toast.success("کدورود باموفقیت ارسال شد.");
+          toast.success("با موفقیت ذخیره شد.");
+          navigate("/" + result.data.id);
         }
         setClicked(false);
       })
