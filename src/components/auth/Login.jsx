@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import LoginSidebar from "./LoginSidebar.jsx";
 import SendOtpService from "../../services/SendOtpService.js";
 import { mobile } from "codemirror/src/util/browser.js";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -35,7 +36,7 @@ const Login = () => {
       .then(async () => {
         setErrors({});
         let result = await SendOtpService(formData.mobile);
-        if (result) console.log("ok");
+        if (result) toast.success("کدورود باموفقیت ارسال شد.");
         setClicked(false);
       })
       .catch((err) => {
