@@ -8,33 +8,35 @@ import {
   handleFileChange,
   handleSaveFile,
   openFilePicker,
-} from "../shared/Features.js";
+} from "../shared/Feautres/Features.js";
 import Modal from "../shared/Modal.jsx";
 import Input from "../auth/Input.jsx";
 import Label from "../auth/Label.jsx";
 import Button from "../auth/Button.jsx";
+import Form from "../auth/Form.jsx";
 
 const Header = () => {
   const navigate = useNavigate();
   const { login } = useContext(LoginContext);
   const [saveModal, setSaveModal] = useState(false);
+  const [saveData, setSaveData] = useState({
+    title: null,
+  });
 
-  const saveCode = () => {
-    if (!login) {
-      toast.error("وارد حساب خود شوید.", {
-        position: "bottom-center",
-      });
-      return null;
-    }
+  const saveCode = (e) => {};
 
-    setSaveModal(true);
+  const handleChange = (e) => {
+    setSaveData({
+      ...saveData,
+      [e.target.name]: e.target.value.trim(),
+    });
   };
 
   return (
     <>
       <header
         className={
-          "header bg-[#ffdecc] h-[35px] w-[100vw] flex justify-start items-center pr-[75px] gap-[20px]"
+          "header bg-[#ffdecc] h-[35px] w-[100vw] flex justify-start items-center pr-[75px] gap-[10px]"
         }
       >
         <Dropdown title={"اسناد"}>
@@ -64,7 +66,14 @@ const Header = () => {
           <DropdownItem
             title={"ذخیره کد"}
             callback={() => {
-              saveCode();
+              if (!login) {
+                toast.error("وارد حساب خود شوید.", {
+                  position: "bottom-center",
+                });
+                return null;
+              }
+
+              setSaveModal(true);
             }}
           />
         </Dropdown>
@@ -87,11 +96,18 @@ const Header = () => {
           }}
         >
           <h1 className={"text-[23px] text-center font-bold"}>ذخیره کد</h1>
-          <Label form={"title"} required={true}>
-            عنوان کد:
-            <Input className={"mt-1"} name={"title"} autoFocus={true} />
-          </Label>
-          <Button>ذخیره کد</Button>
+          <Form onSubmit={saveCode}>
+            <Label form={"title"} required={true}>
+              عنوان کد:
+              <Input
+                className={"mt-1"}
+                name={"title"}
+                onInput={handleChange}
+                autoFocus={true}
+              />
+            </Label>
+            <Button>ذخیره کد</Button>
+          </Form>
         </Modal>
       )}
     </>
