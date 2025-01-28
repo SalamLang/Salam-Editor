@@ -39,7 +39,7 @@ const SaveCode = ({ login, show = false, callback }) => {
           formData.title,
           localStorage?.getItem("code"),
         );
-        if (result) {
+        if (result?.success === true) {
           toast.success("با موفقیت ذخیره شد.");
           navigate("/" + result.data.id);
         }

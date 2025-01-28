@@ -11,7 +11,7 @@ const SaveCodeService = async (title, code) => {
     toast.error("اوه!!! یه اروری چیزی داریم.");
   }
 
-  return result.data?.success;
+  return result.data;
 };
 
 export default SaveCodeService;
