@@ -8,36 +8,23 @@ const Input = ({
   // eslint-disable-next-line react/prop-types
   type,
   // eslint-disable-next-line react/prop-types
-  children,
-  // eslint-disable-next-line react/prop-types
   placeholder,
   // eslint-disable-next-line react/prop-types
   autoFocus,
 }) => {
   return (
     <>
-      <div
-        className={"h-[45px] w-full border rounded-[10px] overflow-hidden flex"}
-      >
-        <div
-          className={
-            "basis-[45px] shrink-0 h-[45px] border-l flex justify-center items-center"
-          }
-        >
-          {children}
-        </div>
-        <div className={"h-[45px] basis-full"}>
-          <input
-            type={type}
-            id={id}
-            name={name}
-            onInput={onInput}
-            className={"w-full h-full focus-visible:outline-0 p-2 text-[18px]"}
-            placeholder={placeholder}
-            autoFocus={autoFocus}
-          />
-        </div>
-      </div>
+      <input
+        type={type}
+        id={id}
+        name={name}
+        onInput={onInput}
+        className={
+          "w-full focus-visible:outline-0 p-2 h-[45px] border-2 rounded-[10px] transition-all duration-300 focus-visible:border-[#FF5C00] focus-visible:shadow-input"
+        }
+        placeholder={placeholder}
+        autoFocus={autoFocus}
+      />
     </>
   );
 };
