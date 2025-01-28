@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import UpdateCodeService from "../../../services/UpdateCodeService.js";
+import SaveCodeService from "../../../services/SaveCodeService.js";
 
 // eslint-disable-next-line react/prop-types
 const SaveCode = ({ login, show = false, callback }) => {
@@ -25,6 +26,11 @@ const SaveCode = ({ login, show = false, callback }) => {
   });
 
   useEffect(() => {
+    if (login === false) {
+      toast.error("باید وارد حسابت بشی!", {
+        position: "bottom-center",
+      });
+    }
     setSaveModal(show);
   }, [show]);
 
@@ -36,16 +42,32 @@ const SaveCode = ({ login, show = false, callback }) => {
       .validate(formData, { abortEarly: false })
       .then(async () => {
         setErrors({});
-        let result = await UpdateCodeService(
-          params?.id,
-          localStorage?.getItem("code"),
-        );
-        if (result?.success === true) {
-          toast.success("با موفقیت ذخیره شد.", {
-            position: "bottom-center",
-          });
-          setSaveModal(false);
+
+        if (localStorage?.getItem("is_me") === true) {
+          let result = await UpdateCodeService(
+            params?.id,
+            localStorage?.getItem("code"),
+          );
+          if (result?.success === true) {
+            toast.success("با موفقیت ذخیره شد.", {
+              position: "bottom-center",
+            });
+            setSaveModal(false);
+          }
+        } else {
+          let result = await SaveCodeService(
+            formData.title,
+            localStorage?.getItem("code"),
+          );
+          if (result?.success === true) {
+            toast.success("با موفقیت ذخیره شد.", {
+              position: "bottom-center",
+            });
+            setSaveModal(false);
+            navigate("/" + result.data.id);
+          }
         }
+
         setClicked(false);
       })
       .catch((err) => {
@@ -78,7 +100,7 @@ const SaveCode = ({ login, show = false, callback }) => {
         >
           <h1 className={"text-[23px] text-center font-bold"}>ذخیره کد</h1>
           <Form onSubmit={saveCode}>
-            {localStorage?.getItem("is_me") === false && (
+            {localStorage?.getItem("is_me") !== "true" && (
               <>
                 <Label form={"title"} required={true} error={errors.title}>
                   عنوان کد:
