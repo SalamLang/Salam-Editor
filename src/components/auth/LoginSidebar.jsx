@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+// eslint-disable-next-line react/prop-types
 const LoginSidebar = ({ verify }) => {
   const [progress, setProgress] = useState(0);
   const [readyLevel2, setReadyLevel2] = useState(false);
@@ -55,7 +56,7 @@ const LoginSidebar = ({ verify }) => {
         }, 4000);
 
         setTimeout(() => {
-          setDescriptionClass(" opacity-100 mt-[170px]");
+          setDescriptionClass(" opacity-100 mt-[180px]");
         }, 4500);
       }
     }
@@ -67,8 +68,8 @@ const LoginSidebar = ({ verify }) => {
       }, 1000);
 
       setTimeout(() => {
-        setDescriptionClass(" opacity-100 mt-[170px]");
-      }, 4500);
+        setDescriptionClass(" opacity-100 mt-[180px]");
+      }, 1500);
     }
   }, [readyLevel2, verify]);
 
@@ -95,22 +96,58 @@ const LoginSidebar = ({ verify }) => {
             descriptionClass
           }
         >
-          <p
-            className={"text-white text-[20px] text-center mt-[50px] font-bold"}
-          >
-            سلام اولین زبان فارسی جهان!
-          </p>
-          <p
+          {!verify ? (
+            <>
+              <p
+                className={
+                  "text-white text-[20px] text-center mt-[50px] font-bold"
+                }
+              >
+                سلام اولین زبان فارسی جهان!
+              </p>
+              <p
+                className={
+                  "text-white text-[15px] font-[400] text-justify mt-4 px-7 leading-[1.8]"
+                }
+              >
+                تا حالا با سلام کار کردی؟ میدونی چقدر خفنه؟ شاید بگی اخه به چه
+                درد من میخوره ولی بزار بهت بگم طراحی؟ نویسنده ای؟ معلمی؟ دانش
+                اموزی؟ دوست داری یه جایی باشه هرچی خواستی بسازی؟ دوست داری سایت
+                شخصیتو بسازی؟ یا اصلا برنامه نویسی؟ چی ازین بهتر که بتونی با
+                زبان مادریت کد بزنی؟ هم سریع تره هم بهتره دیگه! تازه یادگیریش هم
+                راحت تره.
+              </p>
+            </>
+          ) : (
+            <>
+              <p
+                className={
+                  "text-white text-[20px] text-center mt-[50px] font-bold"
+                }
+              >
+                اماده ای به یه دنیای جدید سفر کنی؟
+              </p>
+              <p
+                className={
+                  "text-white text-[15px] font-[400] text-center mt-4 px-7 leading-[1.8]"
+                }
+              >
+                سلام یه دنبای جدیده! که هیچکی مثلشو ندیده
+                <br />
+                پس چرا زودتر کاراتو نمیکنی؟ وقت وقت مهاجراته ها!
+                <br />
+                اما اینبار به سلام نه به ...
+              </p>
+            </>
+          )}
+
+          <h1
             className={
-              "text-white text-[15px] font-[400] text-justify mt-4 px-7 leading-[1.8]"
+              "font-[700] text-white text-[25px] absolute bottom-[20px] animate-pulse right-1/2 translate-x-1/2"
             }
           >
-            تا حالا با سلام کار کردی؟ میدونی چقدر خفنه؟ شاید بگی اخه به چه درد
-            من میخوره ولی بزار بهت بگم طراحی؟ نویسنده ای؟ معلمی؟ دانش اموزی؟
-            دوست داری یه جایی باشه هرچی خواستی بسازی؟ دوست داری سایت شخصیتو
-            بسازی؟ یا اصلا برنامه نویسی؟ چی ازین بهتر که بتونی با زبان مادریت کد
-            بزنی؟ هم سریع تره هم بهتره دیگه! تازه یادگیریش هم راحت تره.
-          </p>
+            سلام
+          </h1>
         </div>
       </div>
     </>
