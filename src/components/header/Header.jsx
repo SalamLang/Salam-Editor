@@ -1,7 +1,7 @@
 import Dropdown from "../shared/dropdown/Dropdown.jsx";
 import DropdownItem from "../shared/dropdown/DropdownItem.jsx";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useState } from "react";
 import LoginContext from "../../context/LoginContext.jsx";
 import {
@@ -17,6 +17,7 @@ const Header = () => {
   const { login } = useContext(LoginContext);
 
   const [openSave, setOpenSave] = useState(false);
+  const params = useParams();
 
   return (
     <>
@@ -56,7 +57,7 @@ const Header = () => {
             }}
           />
         </Dropdown>
-        {localStorage?.getItem("is_me") === "true" && <Share />}
+        {params.id && <Share />}
       </header>
       <input
         type="file"

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Tooltip } from "react-tooltip";
 
 const Share = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -7,8 +8,10 @@ const Share = () => {
     <>
       <div
         className={
-          "absolute top-1/2 -translate-y-1/2 left-[10px] flex items-center justify-center"
+          "absolute top-1/2 -translate-y-1/2 left-[10px] flex items-center justify-center cursor-pointer"
         }
+        data-tooltip-id="share"
+        data-tooltip-content="اشتراک گذاری"
       >
         <button>
           <svg
@@ -40,6 +43,10 @@ const Share = () => {
           </svg>
         </button>
       </div>
+      <Tooltip
+        id={"share"}
+        className={"z-[1005] !rounded-[10px] !text-[14px]"}
+      />
     </>
   );
 };
