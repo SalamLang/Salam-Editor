@@ -11,6 +11,8 @@ const Input = ({
   placeholder,
   // eslint-disable-next-line react/prop-types
   autoFocus,
+  // eslint-disable-next-line react/prop-types
+  className,
 }) => {
   return (
     <>
@@ -20,7 +22,8 @@ const Input = ({
         name={name}
         onInput={onInput}
         className={
-          "w-full focus-visible:outline-0 p-2 h-[45px] border-2 rounded-[10px] transition-all duration-300 focus-visible:border-[#FF5C00] focus-visible:shadow-input"
+          "w-full focus-visible:outline-0 p-2 h-[45px] border-2 rounded-[10px] transition-all duration-300 focus-visible:border-[#FF5C00] focus-visible:shadow-input " +
+          className
         }
         placeholder={placeholder}
         autoFocus={autoFocus}
