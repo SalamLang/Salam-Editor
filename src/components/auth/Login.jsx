@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Form from "./Form.jsx";
 import Input from "./Input.jsx";
 import Label from "./Label.jsx";
+import Button from "./Button.jsx";
 
 const Login = () => {
   const [progress, setProgress] = useState(0);
@@ -128,9 +129,10 @@ const Login = () => {
                   onInput={handleChange}
                   placeholder={"شماره موبایل"}
                   autoFocus={true}
-                  className={"mt-1"}
+                  className={"mt-0.5"}
                 />
               </Label>
+              <Button type={"submit"}>ارسال کد</Button>
             </Form>
           </div>
         </div>
