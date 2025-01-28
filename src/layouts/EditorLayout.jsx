@@ -26,10 +26,14 @@ const EditorLayout = () => {
   return (
     <>
       {loading && <Loading />}
-      <Header />
-      <Logo />
-      <Side />
-      <Editor />
+      {loading === false && (
+        <>
+          <Header />
+          <Logo />
+          <Side />
+          <Editor />
+        </>
+      )}
     </>
   );
 };
