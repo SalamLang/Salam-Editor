@@ -29,7 +29,7 @@ const Modal = ({
             animate={{ opacity: 1, display: "inline-block" }}
             exit={{ opacity: 0, display: "none" }}
             className={
-              "overlay backdrop-blur-sm fixed top-0 right-0 w-full h-[100vh] bg-black/30 z-[99]"
+              "overlay backdrop-blur-sm fixed top-0 right-0 w-full h-[100vh] bg-black/30 z-[1001]"
             }
             onClick={() => {
               if (noOverlay === false) {
@@ -43,7 +43,7 @@ const Modal = ({
         {isOpen && (
           <div
             className={
-              "fixed top-1/2 right-1/2 translate-x-1/2 z-[100] -translate-y-1/2 flex justify-center items-center"
+              "fixed top-1/2 right-1/2 translate-x-1/2 z-[1002] -translate-y-1/2 flex justify-center items-center"
             }
           >
             <motion.div
@@ -51,7 +51,7 @@ const Modal = ({
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               className={
-                "bg-white rounded-[20px] overflow-hidden w-[300px] h-[400px] z-[100]" +
+                "bg-white rounded-[20px] overflow-hidden w-[300px] h-[400px] z-[10002]" +
                 " " +
                 className
               }

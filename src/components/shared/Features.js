@@ -1,4 +1,5 @@
 import { toast } from "react-toastify";
+import Modal from "./Modal.jsx";
 
 export const handleFileChange = (event) => {
   const file = event.target.files[0];
@@ -35,14 +36,4 @@ export const handleSaveFile = () => {
   link.download = fileName;
   link.click();
   URL.revokeObjectURL(url);
-};
-
-export const saveCode = (login) => {
-  if (!login) {
-    toast.error("وارد حساب خود شوید.", {
-      position: "bottom-center",
-    });
-    return null;
-  }
-  console.log(";ok");
 };

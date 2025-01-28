@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-const Label = ({ type, className, children, onClick, disabled }) => {
+const Button = ({ type, className, children, onClick, disabled }) => {
   return (
     <>
       <button
@@ -83,4 +83,4 @@ const Label = ({ type, className, children, onClick, disabled }) => {
   );
 };
 
-export default Label;
+export default Button;
