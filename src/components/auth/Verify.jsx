@@ -35,7 +35,7 @@ const Verify = ({ callback }) => {
       .validate(formData, { abortEarly: false })
       .then(async () => {
         setErrors({});
-        let result = await SendOtpService(formData.otp);
+        let result = await VerifyOtpService(formData.otp);
         if (result) {
           toast.success("کدورود باموفقیت ارسال شد.");
           callback();
