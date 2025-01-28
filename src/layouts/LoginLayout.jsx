@@ -13,7 +13,7 @@ const EditorLayout = () => {
       {/*  }}*/}
       {/*/>*/}
 
-      <Verify />
+      <Verify mobile={"09030422838"} />
 
       {/*{isVerifying ?? <Verify />}*/}
     </>

@@ -5,13 +5,13 @@ import Label from "./Label.jsx";
 import Button from "./Button.jsx";
 import * as Yup from "yup";
 import LoginSidebar from "./LoginSidebar.jsx";
-import SendOtpService from "../../services/SendOtpService.js";
 import { toast } from "react-toastify";
+import VerifyOtpService from "../../services/VerifyOtpService.js";
 
 // eslint-disable-next-line react/prop-types
-const Verify = ({ callback }) => {
+const Verify = ({ mobile }) => {
   const [formData, setFormData] = useState({
-    otp: 0,
+    otp: null,
   });
 
   const [clicked, setClicked] = useState(false);
@@ -19,12 +19,7 @@ const Verify = ({ callback }) => {
   const [errors, setErrors] = useState({});
 
   const validation = Yup.object({
-    otp: Yup.string()
-      .matches(
-        /^(?:(?:\\+?|00)(98)|(0))?((?:90|91|92|93|99)[0-9]{8})$/,
-        "شماره موبایل معتبر نیست",
-      )
-      .required("وارد کردن شماره موبایل الزامی است"),
+    otp: Yup.string().required("وارد کد ورود الزامی است"),
   });
 
   const handleSubmit = (e) => {
@@ -35,10 +30,9 @@ const Verify = ({ callback }) => {
       .validate(formData, { abortEarly: false })
       .then(async () => {
         setErrors({});
-        let result = await VerifyOtpService(formData.otp);
+        let result = await VerifyOtpService(mobile, formData.otp);
         if (result) {
           toast.success("کدورود باموفقیت ارسال شد.");
-          callback();
         }
         setClicked(false);
       })
