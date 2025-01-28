@@ -119,7 +119,13 @@ const Login = () => {
             </div>
           </div>
           <div className="basis-1/2 flex flex-col justify-center items-center">
-            <h1 className={"text-[23px] font-bold"}>ورود و ثبت نام</h1>
+            <img
+              src="/images/login.jpg"
+              alt="login"
+              loading={"lazy"}
+              className={"w-[200px] -mt-10 hue-rotate-225"}
+            />
+            {/*<h1 className={"text-[23px] font-bold"}>ورود و ثبت نام</h1>*/}
             <Form onSubmit={handleSubmit} className={"w-full max-w-[320px]"}>
               <Label form={"number"} required={true}>
                 شماره موبایل:
