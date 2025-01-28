@@ -23,7 +23,7 @@ createRoot(document.getElementById("root")).render(
           <SalamConfig />
           <Routes>
             {/*Editor*/}
-            <Route path="/" element={<EditorLayout />} />
+            <Route path="/:id?" element={<EditorLayout />} />
             <Route path="/run" element={<RunLayout />} />
 
             {/*Costume*/}
