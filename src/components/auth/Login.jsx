@@ -3,13 +3,30 @@ import Form from "./Form.jsx";
 import Input from "./Input.jsx";
 import Label from "./Label.jsx";
 import Button from "./Button.jsx";
+import * as Yup from "yup";
 
 const Login = () => {
   const [progress, setProgress] = useState(0);
   const [readyLevel2, setReadyLevel2] = useState(false);
   const [logoClass, setLogoClass] = useState("");
   const [descriptionClass, setDescriptionClass] = useState("");
-  const [mobile, setMobile] = useState(null);
+
+  const [formData, setFormData] = useState({
+    mobile: 0,
+  });
+
+  const [clicked, setClicked] = useState(false);
+
+  const [errors, setErrors] = useState({});
+
+  const validation = Yup.object({
+    mobile: Yup.string()
+      .matches(
+        /^(?:(?:\\+?|00)(98)|(0))?((?:90|91|92|93|99)[0-9]{8})$/,
+        "شماره موبایل معتبر نیست",
+      )
+      .required("وارد کردن شماره موبایل الزامی است"),
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -64,7 +81,27 @@ const Login = () => {
     }
   }, [readyLevel2]);
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setClicked(true);
+
+    validation
+      .validate(formData, { abortEarly: false })
+      .then(async () => {
+        setErrors({});
+        let result = await SendOtpService(formData.mobile);
+        if (result) verifyLevel();
+        setClicked(false);
+      })
+      .catch((err) => {
+        const newErrors = err.inner.reduce((acc, curr) => {
+          acc[curr.path] = curr.message;
+          return acc;
+        }, {});
+        setErrors(newErrors);
+        setClicked(false);
+      });
+  };
 
   const handleChange = () => {};
 
