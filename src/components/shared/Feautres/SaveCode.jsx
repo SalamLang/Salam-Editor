@@ -6,8 +6,8 @@ import Input from "../../auth/Input.jsx";
 import Button from "../../auth/Button.jsx";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
-import SaveCodeService from "../../../services/SaveCodeService.js";
 import { useNavigate, useParams } from "react-router-dom";
+import UpdateCodeService from "../../../services/UpdateCodeService.js";
 
 // eslint-disable-next-line react/prop-types
 const SaveCode = ({ login, show = false, callback }) => {
@@ -41,8 +41,10 @@ const SaveCode = ({ login, show = false, callback }) => {
           localStorage?.getItem("code"),
         );
         if (result?.success === true) {
-          toast.success("با موفقیت ذخیره شد.");
-          navigate("/" + result.data.id);
+          toast.success("با موفقیت ذخیره شد.", {
+            position: "bottom-center",
+          });
+          setSaveModal(false);
         }
         setClicked(false);
       })
