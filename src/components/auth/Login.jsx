@@ -165,7 +165,7 @@ const Login = () => {
               src="/images/login.jpg"
               alt="login"
               loading={"lazy"}
-              className={"w-[200px] -mt-10 hue-rotate-225"}
+              className={"w-[200px] -mt-10 hue-rotate-[215deg]"}
             />
             {/*<h1 className={"text-[23px] font-bold"}>ورود و ثبت نام</h1>*/}
             <Form onSubmit={handleSubmit} className={"w-full max-w-[320px]"}>
