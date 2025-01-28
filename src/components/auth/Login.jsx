@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Form from "./Form.jsx";
 import Input from "./Input.jsx";
+import Label from "./Label.jsx";
 
 const Login = () => {
   const [progress, setProgress] = useState(0);
@@ -119,13 +120,15 @@ const Login = () => {
           <div className="basis-1/2 flex flex-col justify-center items-center">
             <h1 className={"text-[23px] font-bold"}>ورود و ثبت نام</h1>
             <Form onSubmit={handleSubmit} className={"w-full max-w-[320px]"}>
-              <Input
-                type={"number"}
-                name={"mobile"}
-                onInput={handleChange}
-                placeholder={"شماره موبایل"}
-                autoFocus={true}
-              />
+              <Label>
+                <Input
+                  type={"number"}
+                  name={"mobile"}
+                  onInput={handleChange}
+                  placeholder={"شماره موبایل"}
+                  autoFocus={true}
+                />
+              </Label>
             </Form>
           </div>
         </div>
