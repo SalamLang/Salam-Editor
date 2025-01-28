@@ -4,18 +4,20 @@ import { useState } from "react";
 
 const EditorLayout = () => {
   const [isVerifying, setIsVerifying] = useState(false);
+  const [mobile, setMobile] = useState(null);
 
   return (
     <>
-      {/*<Login*/}
-      {/*  callback={() => {*/}
-      {/*    setIsVerifying(true);*/}
-      {/*  }}*/}
-      {/*/>*/}
+      {isVerifying === false && (
+        <Login
+          callback={(mobile) => {
+            setIsVerifying(true);
+            setMobile(mobile);
+          }}
+        />
+      )}
 
-      <Verify mobile={"09030422838"} />
-
-      {/*{isVerifying ?? <Verify />}*/}
+      {isVerifying && <Verify mobile={mobile} />}
     </>
   );
 };

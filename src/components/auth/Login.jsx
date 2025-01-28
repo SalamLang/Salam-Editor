@@ -38,7 +38,7 @@ const Login = ({ callback }) => {
         let result = await SendOtpService(formData.mobile);
         if (result) {
           toast.success("کدورود باموفقیت ارسال شد.");
-          callback();
+          callback(formData.mobile);
         }
         setClicked(false);
       })
