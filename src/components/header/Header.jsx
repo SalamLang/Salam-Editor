@@ -10,6 +10,7 @@ import {
   openFilePicker,
 } from "../shared/Feautres/Features.js";
 import SaveCode from "../shared/Feautres/SaveCode.jsx";
+import Share from "./Share.jsx";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Header = () => {
     <>
       <header
         className={
-          "header bg-[#ffdecc] h-[35px] w-[100vw] flex justify-start items-center pr-[75px] gap-[10px]"
+          "header relative bg-[#ffdecc] h-[35px] w-[100vw] flex justify-start items-center pr-[75px] gap-[10px]"
         }
       >
         <Dropdown title={"اسناد"}>
@@ -55,6 +56,7 @@ const Header = () => {
             }}
           />
         </Dropdown>
+        {localStorage?.getItem("is_me") === "true" && <Share />}
       </header>
       <input
         type="file"
