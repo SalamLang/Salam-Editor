@@ -14,11 +14,13 @@ const EditorLayout = () => {
   useEffect(() => {
     if (params.id !== undefined) {
       GetCodeService(params.id).then((result) => {
+        localStorage.setItem("is_me", result?.data?.is_me ?? false);
         localStorage.setItem("code", result?.data?.code ?? "");
         document.title = result?.data?.title ?? "چی میزنی حاجی";
         setLoading(false);
       });
     } else {
+      localStorage.setItem("is_me", false);
       setLoading(false);
     }
   }, [params, location]);
