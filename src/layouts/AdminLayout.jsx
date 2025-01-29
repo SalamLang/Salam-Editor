@@ -1,7 +1,13 @@
 import { Outlet } from "react-router-dom";
 import Header from "../components/admin/Header.jsx";
+import { useContext } from "react";
+import LoginContext from "../context/LoginContext.jsx";
 
 const AdminLayout = () => {
+  const { isAdmin } = useContext(LoginContext);
+
+  alert(isAdmin);
+
   return (
     <>
       <Header />

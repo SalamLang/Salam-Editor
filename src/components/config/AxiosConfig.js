@@ -32,7 +32,10 @@ export const checkToken = async () => {
   if (statue) {
     let result = await client.post("/token");
     if (result.data !== undefined) {
-      return result.data.success === true;
+      return {
+        is_admin: result.data.data.is_admin,
+        login: result.data.success === true,
+      };
     } else {
       return false;
     }
