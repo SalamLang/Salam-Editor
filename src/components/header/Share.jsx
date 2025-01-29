@@ -67,7 +67,7 @@ const Share = () => {
       />
       <Modal
         show={openModal}
-        className={"!w-[330px]"}
+        className={"!w-[330px] h-auto pb-8"}
         callback={() => {
           setOpenModal(false);
         }}
@@ -89,7 +89,7 @@ const Share = () => {
         </p>
         <div
           className={
-            "w-[80%] h-[45px] p-[3px] mt-4 rounded-[15px] border mx-auto flex justify-center items-center"
+            "w-[85%] h-[45px] p-[3px] mt-4 rounded-[15px] border mx-auto flex justify-center items-center"
           }
         >
           <div
@@ -100,7 +100,7 @@ const Share = () => {
             data-tooltip-content="کپی"
           >
             <span className={"text-[#2b71f6]"} dir={"ltr"}>
-              editor.salamlang.ir/{params?.id.substring(0, 5)}...
+              editor.salamlang.ir/{params?.id.substring(0, 6)}...
             </span>
             <svg
               viewBox="0 0 24 24"
