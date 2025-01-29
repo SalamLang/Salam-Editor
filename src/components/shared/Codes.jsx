@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import GetCodeService from "../../services/GetCodeService.js";
 import GetMyCodeService from "../../services/GetMyCodeService.js";
 import { OrbitProgress } from "react-loading-indicators";
+import Svg from "./Svg.jsx";
 
 const Codes = () => {
   const location = useLocation();
@@ -44,8 +45,24 @@ const Codes = () => {
                 <>
                   <div
                     key={code.id}
-                    className={"border rounded-[10px] h-[60px]"}
-                  ></div>
+                    className={
+                      "border rounded-[15px] h-[60px] flex items-center px-3 justify-between"
+                    }
+                  >
+                    <div className={"flex items-center justify-start"}>
+                      <span>
+                        عنوان:
+                        <span className={"text-[#F94316]"}>
+                          {" " + code.title.substring(0, 10) + "..."}
+                        </span>
+                      </span>
+                    </div>
+                    <div className={"flex items-center justify-end"}>
+                      <button className={""}>
+                        <Svg name={"share"} theme={"#276EF6"} />
+                      </button>
+                    </div>
+                  </div>
                 </>
               );
             })}
