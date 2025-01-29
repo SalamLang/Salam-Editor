@@ -67,29 +67,29 @@ const Share = () => {
       />
       <Modal
         show={openModal}
-        className={"!w-[330px] h-auto pb-8"}
+        className={"!w-[360px] h-auto pb-8"}
         callback={() => {
           setOpenModal(false);
         }}
       >
         <img
           src="/images/share.png"
-          className={"w-[100px] mx-auto mt-[30px]"}
+          className={"w-[130px] mx-auto mt-[30px]"}
           alt=""
         />
-        <h1 className={"text-center text-[19px] mt-3 font-bold"}>
+        <h1 className={"text-center text-[20px] mt-3 font-bold"}>
           این لینک رو میتونی استفاده کنی
         </h1>
         <p
           className={
-            "text-center text-gray-400 text-[13px] w-[200px] mt-3 mx-auto"
+            "text-center text-gray-400 text-[14px] w-[200px] mt-3 mx-auto"
           }
         >
           برای به اشتراک گذاشتن لینک زیر به دوستان خود ارسال کنید
         </p>
         <div
           className={
-            "w-[85%] h-[45px] p-[3px] mt-4 rounded-[15px] border mx-auto flex justify-center items-center"
+            "w-[85%] h-[45px] p-[3px] mt-6 rounded-[15px] border mx-auto flex justify-center items-center"
           }
         >
           <div
