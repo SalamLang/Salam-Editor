@@ -1,7 +1,7 @@
 const Codes = () => {
   return (
     <>
-      <h1>this is codes page</h1>
+      <div className="w-full h-full p-3"></div>
     </>
   );
 };
