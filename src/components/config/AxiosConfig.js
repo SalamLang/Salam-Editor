@@ -37,9 +37,15 @@ export const checkToken = async () => {
         login: result.data.success === true,
       };
     } else {
-      return false;
+      return {
+        is_admin: false,
+        login: false,
+      };
     }
   } else {
-    return statue;
+    return {
+      is_admin: false,
+      login: false,
+    };
   }
 };

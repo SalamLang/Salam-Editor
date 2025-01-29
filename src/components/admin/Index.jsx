@@ -2,6 +2,8 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import GetMyCodeService from "../../services/GetMyCodeService.js";
 import { OrbitProgress } from "react-loading-indicators";
+import GetAdminIndexService from "../../services/GetAdminIndexService.js";
+import Line from "../shared/Line.jsx";
 
 const Index = () => {
   const location = useLocation();
@@ -9,7 +11,7 @@ const Index = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    GetMyCodeService().then((result) => {
+    GetAdminIndexService().then((result) => {
       setLoading(false);
       setData(result.data);
     });
@@ -17,6 +19,7 @@ const Index = () => {
 
   return (
     <>
+      <Line title={"اطلاعات"} className={"mt-0"} />
       {loading === true && (
         <>
           <div
@@ -34,6 +37,8 @@ const Index = () => {
           </div>
         </>
       )}
+
+      {loading === false && <></>}
     </>
   );
 };
