@@ -11,6 +11,7 @@ import LoginProvider from "./provider/LoginProvider.jsx";
 import { Toaster } from "react-hot-toast";
 import AdminLayout from "./layouts/AdminLayout.jsx";
 import Index from "./components/admin/Index.jsx";
+import Users from "./components/admin/Users.jsx";
 
 const EditorLayout = lazy(() => import("./layouts/EditorLayout"));
 const RunLayout = lazy(() => import("./layouts/RunLayout"));
@@ -39,6 +40,7 @@ createRoot(document.getElementById("root")).render(
             {/*Admin*/}
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<Index />} />
+              <Route path={"users"} element={<Users />} />
             </Route>
 
             {/*404 - Not found*/}
