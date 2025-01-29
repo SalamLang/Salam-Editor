@@ -4,6 +4,7 @@ import { OrbitProgress } from "react-loading-indicators";
 import Line from "../shared/Line.jsx";
 import GetAllUsersService from "../../services/GetAllUsersService.js";
 import GetAllCodesService from "../../services/GetAllCodesService.js";
+import Svg from "../shared/Svg.jsx";
 
 const Codes = () => {
   const location = useLocation();
@@ -43,7 +44,7 @@ const Codes = () => {
           <div
             className={"flex justify-center items-center flex-col gap-[20px]"}
           >
-            {data.map((user) => {
+            {data.map((code) => {
               return (
                 <>
                   <div
@@ -51,16 +52,26 @@ const Codes = () => {
                       "border w-full h-[60px] rounded-[15px] flex justify-start px-4 items-center gap-[25px]"
                     }
                   >
-                    <span className={"min-w-[70px]"}>
-                      ایدی :<span>{user?.id}</span>
+                    <span
+                      className={
+                        "min-w-[20px] flex justify-center items-center"
+                      }
+                    >
+                      <button
+                        onClick={() => {
+                          window.open("/" + code.id, "_blank");
+                        }}
+                      >
+                        <Svg name={"open_new_tab"} theme={"#276EF6"} />
+                      </button>
                     </span>
 
                     <span className={"min-w-[130px]"}>
-                      عنوان :<span>{user?.title}</span>
+                      عنوان :<span>{code?.title}</span>
                     </span>
 
                     <span className={"min-w-[130px]"}>
-                      کد :<span>{user?.code}</span>
+                      کد :<span>{code?.code}</span>
                     </span>
                   </div>
                 </>
