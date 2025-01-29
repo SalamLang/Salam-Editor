@@ -63,13 +63,13 @@ const Codes = () => {
                     <div className={"flex items-center justify-end gap-[15px]"}>
                       <button
                         className={""}
-                        data-tooltip-id="share"
-                        data-tooltip-content="اشتراک گذاری"
+                        data-tooltip-id="open_new_tab"
+                        data-tooltip-content="باز کردن"
                         onClick={() => {
-                          share();
+                          open_new_tab();
                         }}
                       >
-                        <Svg name={"share"} theme={"#276EF6"} />
+                        <Svg name={"open_new_tab"} theme={"#276EF6"} />
                       </button>
                       <button
                         className={""}
@@ -79,7 +79,7 @@ const Codes = () => {
                           share();
                         }}
                       >
-                        <Svg name={"open_new_tab"} theme={"#276EF6"} />
+                        <Svg name={"share"} theme={"#276EF6"} />
                       </button>
                     </div>
                   </div>
@@ -90,6 +90,7 @@ const Codes = () => {
         )}
       </div>
       <Tooltip id={"share"} className={"!text-[13px] !rounded-[10px]"} />
+      <Tooltip id={"open_new_tab"} className={"!text-[13px] !rounded-[10px]"} />
     </>
   );
 };
