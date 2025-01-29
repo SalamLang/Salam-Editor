@@ -23,7 +23,7 @@ const Header = () => {
             className={
               "text-[18px] " +
               (location.pathname === "/admin" &&
-                "before:w-[10px] before:h-[10px] inline-block before:bg-[#FF5C00] before:block before:rounded-full before:absolute relative pb-2 text-[#FF5C00] before:bottom-0 before:right-1/2 before:translate-x-1/2")
+                "before:w-[9px] before:h-[9px] inline-block before:bg-[#FF5C00] before:block before:rounded-full before:absolute relative pb-2 text-[#FF5C00] before:bottom-0 before:right-1/2 before:translate-x-1/2")
             }
           >
             خانه
