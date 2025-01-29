@@ -1,5 +1,3 @@
-import { toast } from "react-toastify";
-
 let iframe;
 let outputPre;
 let errorPre;

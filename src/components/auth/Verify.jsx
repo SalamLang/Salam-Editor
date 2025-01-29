@@ -5,7 +5,7 @@ import Label from "./Label.jsx";
 import Button from "./Button.jsx";
 import * as Yup from "yup";
 import LoginSidebar from "./LoginSidebar.jsx";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import VerifyOtpService from "../../services/VerifyOtpService.js";
 import { win } from "codemirror/src/util/dom.js";
 

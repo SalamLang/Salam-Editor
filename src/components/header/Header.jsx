@@ -1,6 +1,5 @@
 import Dropdown from "../shared/dropdown/Dropdown.jsx";
 import DropdownItem from "../shared/dropdown/DropdownItem.jsx";
-import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useState } from "react";
 import LoginContext from "../../context/LoginContext.jsx";

@@ -1,5 +1,4 @@
-import { toast } from "react-toastify";
-import Modal from "../Modal.jsx";
+import { toast } from "react-hot-toast";
 
 export const handleFileChange = (event) => {
   const file = event.target.files[0];

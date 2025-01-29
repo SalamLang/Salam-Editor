@@ -6,7 +6,7 @@ import Button from "./Button.jsx";
 import * as Yup from "yup";
 import LoginSidebar from "./LoginSidebar.jsx";
 import SendOtpService from "../../services/SendOtpService.js";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 // eslint-disable-next-line react/prop-types
 const Login = ({ callback }) => {

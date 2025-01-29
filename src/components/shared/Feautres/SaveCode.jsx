@@ -5,7 +5,7 @@ import Label from "../../auth/Label.jsx";
 import Input from "../../auth/Input.jsx";
 import Button from "../../auth/Button.jsx";
 import * as Yup from "yup";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import UpdateCodeService from "../../../services/UpdateCodeService.js";
 import SaveCodeService from "../../../services/SaveCodeService.js";

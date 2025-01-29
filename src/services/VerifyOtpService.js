@@ -1,5 +1,5 @@
 import { client } from "../components/config/AxiosConfig.js";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 const VerifyOtpService = async (mobile, otp) => {
   let result = await client.post("/verify", {

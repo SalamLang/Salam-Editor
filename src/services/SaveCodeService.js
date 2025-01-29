@@ -1,5 +1,5 @@
 import { client } from "../components/config/AxiosConfig.js";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 const SaveCodeService = async (title, code) => {
   let result = await client.post("/code", {
