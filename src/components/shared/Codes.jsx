@@ -20,6 +20,8 @@ const Codes = () => {
 
   const share = () => {};
 
+  const open_new_tab = () => {};
+
   return (
     <>
       <div className="w-full h-full p-3 overflow-auto">
