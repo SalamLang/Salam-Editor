@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Tooltip } from "react-tooltip";
 import Modal from "../shared/Modal.jsx";
-import modal from "../shared/Modal.jsx";
+import { useParams } from "react-router-dom";
 
 const Share = () => {
   const [openModal, setOpenModal] = useState(false);
+  const params = useParams();
 
   return (
     <>
