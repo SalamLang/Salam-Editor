@@ -85,6 +85,8 @@ const Share = () => {
             className={
               "w-full h-full rounded-[10px] bg-[#e6efff] flex items-center px-3 cursor-pointer justify-between flex-row-reverse"
             }
+            data-tooltip-id="copy"
+            data-tooltip-content="کپی"
           >
             <span className={"text-[#2b71f6]"} dir={"ltr"}>
               editor.salamlang.ir/{params?.id.substring(0, 5)}...
@@ -117,6 +119,10 @@ const Share = () => {
           </div>
         </div>
       </Modal>
+      <Tooltip
+        id={"copy"}
+        className={"z-[1005] !text-[14px] !rounded-[10px]"}
+      />
     </>
   );
 };
