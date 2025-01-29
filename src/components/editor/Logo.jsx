@@ -61,7 +61,7 @@ const Logo = () => {
             callback={() => {
               setOpenProfile(false);
             }}
-            className={"!w-[750px] !h-[450px]"}
+            className={"!w-[750px] !h-[450px] relative"}
           >
             <div className="w-full h-full flex">
               <div className={"side basis-3/12 border-l p-3"}>
