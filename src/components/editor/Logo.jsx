@@ -57,7 +57,14 @@ const Logo = () => {
                   </button>
                 ))}
               </div>
-              <div className={"basis-10/12"}></div>
+              <div className={"basis-10/12"}>
+                {tabs.map(
+                  (tab) =>
+                    tab.active === true && (
+                      <div key={tab.id}>{tab.element}</div>
+                    ),
+                )}
+              </div>
             </div>
           </Modal>
         </>
