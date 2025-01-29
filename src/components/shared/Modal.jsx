@@ -13,6 +13,7 @@ const Modal = ({
   className,
   // eslint-disable-next-line react/prop-types
   callback,
+  bars = true,
 }) => {
   const [isOpen, setIsOpen] = useState(show);
 
@@ -57,45 +58,47 @@ const Modal = ({
               }
               key={"modal"}
             >
-              <button
-                className={
-                  "absolute top-[10px] rounded overflow-hidden left-[10px]"
-                }
-                onClick={() => {
-                  setIsOpen(false);
-                  callback();
-                }}
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  width={"35"}
-                  height={"35"}
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+              {bars === true && (
+                <button
+                  className={
+                    "absolute top-[10px] rounded overflow-hidden left-[10px]"
+                  }
+                  onClick={() => {
+                    setIsOpen(false);
+                    callback();
+                  }}
                 >
-                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-                  <g
-                    id="SVGRepo_tracerCarrier"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></g>
-                  <g id="SVGRepo_iconCarrier">
-                    <rect width="24" height="24"></rect>
-                    <path
-                      d="M7 17L16.8995 7.10051"
-                      stroke="#545454"
+                  <svg
+                    viewBox="0 0 24 24"
+                    width={"35"}
+                    height={"35"}
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                    <g
+                      id="SVGRepo_tracerCarrier"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                    ></path>
-                    <path
-                      d="M7 7.00001L16.8995 16.8995"
-                      stroke="#545454"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    ></path>
-                  </g>
-                </svg>
-              </button>
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <rect width="24" height="24"></rect>
+                      <path
+                        d="M7 17L16.8995 7.10051"
+                        stroke="#545454"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></path>
+                      <path
+                        d="M7 7.00001L16.8995 16.8995"
+                        stroke="#545454"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      ></path>
+                    </g>
+                  </svg>
+                </button>
+              )}
               {children}
             </motion.div>
           </div>
