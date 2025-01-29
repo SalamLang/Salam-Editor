@@ -96,6 +96,9 @@ const Share = () => {
             className={
               "w-full h-full rounded-[10px] bg-[#e6efff] flex items-center px-3 cursor-pointer justify-between flex-row-reverse"
             }
+            onClick={() => {
+              copyAddress();
+            }}
             data-tooltip-id="copy"
             data-tooltip-content="کپی"
           >
