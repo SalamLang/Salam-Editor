@@ -38,7 +38,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="/login" element={<LoginLayout />} />
 
             {/*Admin*/}
-            <Route path="/admin" element={<AdminLayout />}>
+            <Route path="admin" element={<AdminLayout />}>
               <Route index element={<Index />} />
               <Route path={"users"} element={<Users />} />
             </Route>
