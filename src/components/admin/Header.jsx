@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
+
   return (
     <>
       <header
@@ -15,7 +17,9 @@ const Header = () => {
             className={"w-[45px]"}
           />
         </Link>
-        <nav></nav>
+        <nav>
+          <Link to={"/admin"}>خانه</Link>
+        </nav>
       </header>
     </>
   );
