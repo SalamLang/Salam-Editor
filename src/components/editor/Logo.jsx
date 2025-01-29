@@ -4,13 +4,20 @@ import LoginContext from "../../context/LoginContext.jsx";
 import Modal from "../shared/Modal.jsx";
 import Profile from "../shared/Profile.jsx";
 import Codes from "../shared/Codes.jsx";
+import Svg from "../shared/Svg.jsx";
 
 const Logo = () => {
   const { login } = useContext(LoginContext);
   const [openProfile, setOpenProfile] = useState(false);
 
   const [tabs, setTabs] = useState([
-    { id: "profile", label: "پروفایل", active: true, element: <Profile /> },
+    {
+      id: "profile",
+      icon: <Svg name={"profile"} />,
+      label: "پروفایل",
+      active: true,
+      element: <Profile />,
+    },
     { id: "codes", label: "کد های من", active: false, element: <Codes /> },
   ]);
 
@@ -47,10 +54,10 @@ const Logo = () => {
             callback={() => {
               setOpenProfile(false);
             }}
-            className={"!w-[750px] !h-[450px] p-3"}
+            className={"!w-[750px] !h-[450px]"}
           >
             <div className="w-full h-full flex">
-              <div className={"side basis-2/12"}>
+              <div className={"side basis-2/12 border-l p-3"}>
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
@@ -64,6 +71,7 @@ const Logo = () => {
                       setTabs(result);
                     }}
                   >
+                    {tab.icon}
                     {tab.label}
                   </button>
                 ))}
