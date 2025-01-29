@@ -1,23 +1,37 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../components/admin/Header.jsx";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import LoginContext from "../context/LoginContext.jsx";
+import Loading from "../components/loading/Loading.jsx";
 
 const AdminLayout = () => {
   const { isAdmin } = useContext(LoginContext);
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
-  alert(isAdmin);
+  useEffect(() => {
+    if (isAdmin !== true) {
+      navigate("/");
+    } else {
+      setLoading(false);
+    }
+  }, [isAdmin, navigate]);
 
   return (
     <>
-      <Header />
-      <div
-        className={
-          "w-[98%] h-[calc(100vh-102px)] border bg-white mx-auto mt-3 rounded-[15px] p-4"
-        }
-      >
-        <Outlet />
-      </div>
+      {loading === true && <Loading />}
+      {loading === false && (
+        <>
+          <Header />
+          <div
+            className={
+              "w-[98%] h-[calc(100vh-102px)] border bg-white mx-auto mt-3 rounded-[15px] p-4"
+            }
+          >
+            <Outlet />
+          </div>
+        </>
+      )}
     </>
   );
 };
