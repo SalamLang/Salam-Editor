@@ -32,7 +32,7 @@ const SaveCode = ({ login, show = false, callback }) => {
       });
     }
     setSaveModal(show);
-  }, [show]);
+  }, [login, show]);
 
   const saveCode = (e) => {
     e.preventDefault();
@@ -43,7 +43,7 @@ const SaveCode = ({ login, show = false, callback }) => {
       .then(async () => {
         setErrors({});
 
-        if (localStorage?.getItem("is_me") === true) {
+        if (localStorage?.getItem("is_me") === "true") {
           let result = await UpdateCodeService(
             params?.id,
             localStorage?.getItem("code"),
@@ -67,7 +67,7 @@ const SaveCode = ({ login, show = false, callback }) => {
             navigate("/" + result.data.id);
           }
         }
-
+        callback();
         setClicked(false);
       })
       .catch((err) => {
