@@ -86,7 +86,9 @@ const Share = () => {
               "w-full h-full rounded-[10px] bg-[#e6efff] flex items-center px-3 cursor-pointer justify-between flex-row-reverse"
             }
           >
-            <span className={"text-[#2b71f6]"}>editor.salamlang.ir</span>
+            <span className={"text-[#2b71f6]"} dir={"ltr"}>
+              editor.salamlang.ir/{params?.id.substring(0, 5)}...
+            </span>
             <svg
               viewBox="0 0 24 24"
               fill="none"
