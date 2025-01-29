@@ -15,6 +15,7 @@ const Header = () => {
             className={"w-[45px]"}
           />
         </Link>
+        <nav></nav>
       </header>
     </>
   );
