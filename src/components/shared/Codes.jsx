@@ -18,7 +18,7 @@ const Codes = () => {
 
   return (
     <>
-      <div className="w-full h-full p-3">
+      <div className="w-full h-full p-3 overflow-auto">
         {loading === true && (
           <>
             <div
@@ -35,6 +35,21 @@ const Codes = () => {
               />
             </div>
           </>
+        )}
+
+        {loading === false && (
+          <div className={"flex flex-col gap-4"}>
+            {codes.map((code) => {
+              return (
+                <>
+                  <div
+                    key={code.id}
+                    className={"border rounded-[10px] h-[60px]"}
+                  ></div>
+                </>
+              );
+            })}
+          </div>
         )}
       </div>
     </>
