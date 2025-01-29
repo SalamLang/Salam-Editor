@@ -5,7 +5,13 @@ const AdminLayout = () => {
   return (
     <>
       <Header />
-      <Outlet />
+      <div
+        className={
+          "w-[98%] h-[calc(100vh-102px)] border bg-white mx-auto mt-3 rounded-[15px] p-4"
+        }
+      >
+        <Outlet />
+      </div>
     </>
   );
 };
