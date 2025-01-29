@@ -20,7 +20,9 @@ const Codes = () => {
 
   const share = () => {};
 
-  const open_new_tab = () => {};
+  const open_new_tab = (id) => {
+    window.open("/" + id, "_blank");
+  };
 
   return (
     <>
@@ -68,7 +70,7 @@ const Codes = () => {
                         data-tooltip-id="open_new_tab"
                         data-tooltip-content="باز کردن"
                         onClick={() => {
-                          open_new_tab();
+                          open_new_tab(code.id);
                         }}
                       >
                         <Svg name={"open_new_tab"} theme={"#276EF6"} />
@@ -78,7 +80,7 @@ const Codes = () => {
                         data-tooltip-id="share"
                         data-tooltip-content="اشتراک گذاری"
                         onClick={() => {
-                          share();
+                          share(code.id);
                         }}
                       >
                         <Svg name={"share"} theme={"#276EF6"} />
