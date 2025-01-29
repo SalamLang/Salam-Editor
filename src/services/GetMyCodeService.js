@@ -1,7 +1,7 @@
 import { client } from "../components/config/AxiosConfig.js";
 
-const GetMyCodeService = async (id) => {
-  let result = await client.get("/codes");
+const GetMyCodeService = async () => {
+  let result = await client.post("/codes");
 
   return result.data;
 };
