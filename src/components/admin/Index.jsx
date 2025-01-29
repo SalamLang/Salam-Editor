@@ -44,7 +44,7 @@ const Index = () => {
           <div className={"flex justify-center items-center gap-[10px]"}>
             <div
               className={
-                "bg-orange-500 basis-1/3 relative overflow-hidden p-4 rounded-[15px] text-white"
+                "bg-[#FF5C00] basis-1/3 relative overflow-hidden p-4 rounded-[15px] text-white"
               }
             >
               <h2>تعداد کل کد ها</h2>
@@ -53,12 +53,21 @@ const Index = () => {
             </div>
             <div
               className={
-                "bg-blue-500 basis-1/3 relative overflow-hidden p-4 rounded-[15px] text-white"
+                "bg-[#276EF6] basis-1/3 relative overflow-hidden p-4 rounded-[15px] text-white"
               }
             >
               <h2>تعداد کل کاربران</h2>
               <h3 className={"mt-2 mb-0"}>{data?.users?.count}</h3>
               <Svg name={"users"} />
+            </div>
+            <div
+              className={
+                "bg-[#D1FF6E] basis-1/3 relative overflow-hidden p-4 rounded-[15px] text-black"
+              }
+            >
+              <h2>تعداد کل بازدیدها</h2>
+              <h3 className={"mt-2 mb-0"}>{data?.visit?.count}</h3>
+              <Svg name={"visits"} />
             </div>
           </div>
         </>

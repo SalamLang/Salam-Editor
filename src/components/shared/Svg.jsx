@@ -318,6 +318,33 @@ const Svg = ({ name, theme = "#000" }) => {
         </svg>
       ),
     },
+    {
+      name: "visits",
+      svg: (
+        <svg
+          fill="#000000"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          enableBackground="new 0 0 100 100"
+          xmlSpace="preserve"
+          className={
+            "opacity-10 absolute top-1/2 -translate-y-1/2 -rotate-[40deg] w-[120px] left-0"
+          }
+        >
+          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            {" "}
+            <path d="M30,58c-1.1,0-2-0.9-2-2v-2c0-1.1,0.9-2,2-2h20c0.5,0,0.9,0.2,1.3,0.5C54.5,49,59,46.6,64,46.1V26 c0-3.3-2.7-6-6-6H26c-3.3,0-6,2.7-6,6v34c0,3.3,2.7,6,6,6h20c0-2.8,0.6-5.5,1.7-8H30z M28,30c0-1.1,0.9-2,2-2h20c1.1,0,2,0.9,2,2v2 c0,1.1-0.9,2-2,2H30c-1.1,0-2-0.9-2-2V30z M28,42c0-1.1,0.9-2,2-2h24c1.1,0,2,0.9,2,2v2c0,1.1-0.9,2-2,2H30c-1.1,0-2-0.9-2-2V42z"></path>
+            <path d="M66,52c-7.7,0-14,6.3-14,14s6.3,14,14,14s14-6.3,14-14S73.7,52,66,52z M73.9,62.5c0,0-8.9,9.7-8.9,9.7 c-0.4,0.4-0.8,0.6-1.4,0.6c-0.5,0-1-0.2-1.4-0.6l-4.8-4.7c-0.4-0.4-0.4-1,0-1.3l1.4-1.3c0.4-0.4,1-0.4,1.4,0l3.4,3.4l7.5-8.4 c0.4-0.4,1-0.4,1.4,0l1.4,1.3C74.2,61.5,74.2,62.2,73.9,62.5z"></path>{" "}
+          </g>
+        </svg>
+      ),
+    },
   ];
 
   const foundSvg = svgs.find((sg) => sg.name === name);
