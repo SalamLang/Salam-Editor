@@ -9,6 +9,8 @@ import NotFound from "./components/errors/NotFound.jsx";
 import Loading from "./components/loading/Loading.jsx";
 import LoginProvider from "./provider/LoginProvider.jsx";
 import { Toaster } from "react-hot-toast";
+import AdminLayout from "./layouts/AdminLayout.jsx";
+import Index from "./components/admin/Index.jsx";
 
 const EditorLayout = lazy(() => import("./layouts/EditorLayout"));
 const RunLayout = lazy(() => import("./layouts/RunLayout"));
@@ -33,6 +35,11 @@ createRoot(document.getElementById("root")).render(
 
             {/*Auth*/}
             <Route path="/login" element={<LoginLayout />} />
+
+            {/*Admin*/}
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Index />} />
+            </Route>
 
             {/*404 - Not found*/}
             <Route path="*" element={<NotFound />} />
