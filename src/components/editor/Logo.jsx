@@ -9,10 +9,10 @@ const Logo = () => {
   const { login } = useContext(LoginContext);
   const [openProfile, setOpenProfile] = useState(false);
 
-  const tabs = [
+  const [tabs, setTabs] = useState([
     { id: "profile", label: "پروفایل", active: true, element: <Profile /> },
     { id: "codes", label: "کد های من", active: false, element: <Codes /> },
-  ];
+  ]);
 
   return (
     <>
@@ -52,7 +52,18 @@ const Logo = () => {
             <div className="w-full h-full flex">
               <div className={"side basis-2/12"}>
                 {tabs.map((tab) => (
-                  <button key={tab.id} className={"block"}>
+                  <button
+                    key={tab.id}
+                    className={"block"}
+                    onClick={() => {
+                      let result = tabs.map((t) => ({
+                        ...t,
+                        active: t.id === tab.id,
+                      }));
+
+                      setTabs(result);
+                    }}
+                  >
                     {tab.label}
                   </button>
                 ))}
