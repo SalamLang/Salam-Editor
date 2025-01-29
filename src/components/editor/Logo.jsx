@@ -2,12 +2,16 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import LoginContext from "../../context/LoginContext.jsx";
 import Modal from "../shared/Modal.jsx";
+import Profile from "../shared/Profile.jsx";
 
 const Logo = () => {
   const { login } = useContext(LoginContext);
   const [openProfile, setOpenProfile] = useState(false);
 
-  const tabs = [{ id: "profile", active: true, element: <Profile /> }];
+  const tabs = [
+    { id: "profile", active: true, element: <Profile /> },
+    { id: "codes", active: false, element: <Codes /> },
+  ];
 
   return (
     <>

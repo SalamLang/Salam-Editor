@@ -1,7 +1,7 @@
 const Profile = () => {
   return (
     <>
-      <h1>this is profle page</h1>
+      <h1>this is profile page</h1>
     </>
   );
 };
