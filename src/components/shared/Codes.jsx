@@ -76,7 +76,7 @@ const Codes = () => {
                       <span>
                         عنوان:
                         <span className={"text-[#F94316]"}>
-                          {" " + code.title.substring(0, 10) + "..."}
+                          {" " + code.title.substring(0, 40)}
                         </span>
                       </span>
                     </div>
