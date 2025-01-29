@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Tooltip } from "react-tooltip";
 import Modal from "../shared/Modal.jsx";
 import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 const Share = () => {
   const [openModal, setOpenModal] = useState(false);

@@ -11,6 +11,7 @@ import NotFound from "./components/errors/NotFound.jsx";
 import { Suspense } from "react";
 import Loading from "./components/loading/Loading.jsx";
 import LoginProvider from "./provider/LoginProvider.jsx";
+import { Toaster } from "react-hot-toast";
 const LoginLayout = lazy(() => import("./layouts/LoginLayout.jsx"));
 
 createRoot(document.getElementById("root")).render(
@@ -20,6 +21,7 @@ createRoot(document.getElementById("root")).render(
         <BrowserRouter>
           <RouteChangeHandler />
           <ToastContainer />
+          <Toaster />
           <SalamConfig />
           <Routes>
             {/*Editor*/}
