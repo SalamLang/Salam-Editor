@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import LoginContext from "../../context/LoginContext.jsx";
 import Modal from "../shared/Modal.jsx";
 import Profile from "../shared/Profile.jsx";
@@ -8,6 +8,13 @@ import Svg from "../shared/Svg.jsx";
 
 const Logo = () => {
   const { login } = useContext(LoginContext);
+  const [isLogin, setIsLogin] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsLogin(login);
+  }, [login, location]);
+
   const [openProfile, setOpenProfile] = useState(false);
 
   const [tabs, setTabs] = useState([
@@ -22,7 +29,7 @@ const Logo = () => {
 
   return (
     <>
-      {login === false && (
+      {isLogin === false && (
         <Link to={"/"}>
           <img
             src="/images/favicon.svg"
@@ -32,7 +39,7 @@ const Logo = () => {
         </Link>
       )}
 
-      {login === true && (
+      {isLogin === true && (
         <>
           <div
             className={
