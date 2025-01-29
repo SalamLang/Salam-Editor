@@ -39,7 +39,37 @@ const Users = () => {
 
       {loading === false && (
         <>
-          <div className={"flex justify-center items-center gap-[10px]"}></div>
+          <div
+            className={"flex justify-center items-center flex-col gap-[20px]"}
+          >
+            {data.map((user) => {
+              return (
+                <>
+                  <div
+                    className={
+                      "border w-full h-[60px] rounded-[15px] flex justify-start px-4 items-center gap-[25px]"
+                    }
+                  >
+                    <span className={"min-w-[70px]"}>
+                      ایدی :<span>{user?.id}</span>
+                    </span>
+
+                    <span className={"min-w-[130px]"}>
+                      نام :<span>{user?.name}</span>
+                    </span>
+
+                    <span className={"min-w-[130px]"}>
+                      فامیلی :<span>{user?.family}</span>
+                    </span>
+
+                    <span className={"min-w-[130px]"}>
+                      موبایل :<span>{user?.mobile}</span>
+                    </span>
+                  </div>
+                </>
+              );
+            })}
+          </div>
         </>
       )}
     </>
