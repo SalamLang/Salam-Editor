@@ -56,12 +56,12 @@ const Logo = () => {
             className={"!w-[750px] !h-[450px]"}
           >
             <div className="w-full h-full flex">
-              <div className={"side basis-2/12 border-l p-3"}>
+              <div className={"side basis-3/12 border-l p-3"}>
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
                     className={
-                      "flex justify-start items-center gap-2 rounded-[5px] p-2 " +
+                      "flex justify-start items-center gap-2 w-full rounded-[10px] p-2 " +
                       (tab.active === true &&
                         "bg-orange-500 text-white fill-white stroke-white")
                     }
