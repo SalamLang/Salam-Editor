@@ -7,6 +7,8 @@ const Logo = () => {
   const { login } = useContext(LoginContext);
   const [openProfile, setOpenProfile] = useState(false);
 
+  const tabs = [{ id: "profile", active: true, element: <Profile /> }];
+
   return (
     <>
       {login === false && (
@@ -40,7 +42,13 @@ const Logo = () => {
             callback={() => {
               setOpenProfile(false);
             }}
-          ></Modal>
+            className={"!w-[750px] !h-[450px]"}
+          >
+            <div className="w-full h-full flex">
+              <div className={"side basis-2/12"}></div>
+              <div className={"side bg-yellow-400 basis-10/12"}></div>
+            </div>
+          </Modal>
         </>
       )}
     </>
