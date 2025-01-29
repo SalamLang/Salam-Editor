@@ -4,6 +4,7 @@ import GetCodeService from "../../services/GetCodeService.js";
 import GetMyCodeService from "../../services/GetMyCodeService.js";
 import { OrbitProgress } from "react-loading-indicators";
 import Svg from "./Svg.jsx";
+import { Tooltip } from "react-tooltip";
 
 const Codes = () => {
   const location = useLocation();
@@ -58,7 +59,11 @@ const Codes = () => {
                       </span>
                     </div>
                     <div className={"flex items-center justify-end"}>
-                      <button className={""}>
+                      <button
+                        className={""}
+                        data-tooltip-id="share"
+                        data-tooltip-content="اشتراک گذاری"
+                      >
                         <Svg name={"share"} theme={"#276EF6"} />
                       </button>
                     </div>
@@ -69,6 +74,7 @@ const Codes = () => {
           </div>
         )}
       </div>
+      <Tooltip id={"share"} className={"!text-[13px] !rounded-[10px]"} />
     </>
   );
 };
