@@ -51,6 +51,15 @@ const Index = () => {
               <h3 className={"mt-2 mb-0"}>{data?.codes?.count}</h3>
               <Svg name={"code"} />
             </div>
+            <div
+              className={
+                "bg-blue-500 basis-1/3 relative overflow-hidden p-4 rounded-[15px] text-white"
+              }
+            >
+              <h2>تعداد کل کاربران</h2>
+              <h3 className={"mt-2 mb-0"}>{data?.users?.count}</h3>
+              <Svg name={"users"} />
+            </div>
           </div>
         </>
       )}

@@ -266,6 +266,58 @@ const Svg = ({ name, theme = "#000" }) => {
         </svg>
       ),
     },
+    {
+      name: "users",
+      svg: (
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className={
+            "opacity-10 absolute top-1/2 -translate-y-1/2 -rotate-[20deg] w-[120px] left-0"
+          }
+        >
+          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <circle
+              cx="9"
+              cy="9"
+              r="4"
+              stroke="#000000"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            ></circle>
+            <path
+              d="M16 19C16 15.6863 12.866 13 9 13C5.13401 13 2 15.6863 2 19"
+              stroke="#000000"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            ></path>
+            <path
+              d="M15 13C17.2091 13 19 11.2091 19 9C19 6.79086 17.2091 5 15 5C13.8053 5 12.7329 5.52375 12 6.35418"
+              stroke="#000000"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            ></path>
+            <path
+              d="M22 19C22 15.6863 18.866 13 15 13C14.1928 13 12.897 12.7069 12 11.7655"
+              stroke="#000000"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            ></path>
+          </g>
+        </svg>
+      ),
+    },
   ];
 
   const foundSvg = svgs.find((sg) => sg.name === name);
