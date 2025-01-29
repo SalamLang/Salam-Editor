@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import LoginContext from "../../context/LoginContext.jsx";
+import Modal from "../shared/Modal.jsx";
 
 const Logo = () => {
   const { login } = useContext(LoginContext);
+  const [openProfile, setOpenProfile] = useState(false);
+
   return (
     <>
       {login === false && (
@@ -17,17 +20,28 @@ const Logo = () => {
       )}
 
       {login === true && (
-        <div
-          className={
-            "border border-gray-300 p-1 rounded-full w-[40px] bg-white cursor-pointer h-[40px] absolute top-[5px] right-[7px]"
-          }
-        >
-          <img
-            src="/images/profile.png"
-            alt="profile picture"
-            className={"w-full h-full object-cover"}
-          />
-        </div>
+        <>
+          <div
+            className={
+              "border border-gray-300 p-1 rounded-full w-[40px] bg-white cursor-pointer h-[40px] absolute top-[5px] right-[7px]"
+            }
+            onClick={() => {
+              setOpenProfile(true);
+            }}
+          >
+            <img
+              src="/images/profile.png"
+              alt="profile picture"
+              className={"w-full h-full object-cover"}
+            />
+          </div>
+          <Modal
+            show={openProfile}
+            callback={() => {
+              setOpenProfile(false);
+            }}
+          ></Modal>
+        </>
       )}
     </>
   );
