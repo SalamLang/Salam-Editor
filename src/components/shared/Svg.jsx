@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-const Svg = ({ name }) => {
+const Svg = ({ name, theme = "#000" }) => {
   const svgs = [
     {
       name: "profile",
@@ -9,7 +9,8 @@ const Svg = ({ name }) => {
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
           xmlnsXlink="http://www.w3.org/1999/xlink"
-          fill="#000000"
+          fill={theme}
+          className={"w-[17px]"}
         >
           <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
           <g
@@ -31,7 +32,7 @@ const Svg = ({ name }) => {
               <g
                 id="Dribbble-Light-Preview"
                 transform="translate(-180.000000, -2159.000000)"
-                fill="#000000"
+                fill={theme}
               >
                 <g id="icons" transform="translate(56.000000, 160.000000)">
                   <path

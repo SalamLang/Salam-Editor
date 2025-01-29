@@ -13,7 +13,6 @@ const Logo = () => {
   const [tabs, setTabs] = useState([
     {
       id: "profile",
-      icon: <Svg name={"profile"} />,
       label: "پروفایل",
       active: true,
       element: <Profile />,
@@ -61,7 +60,11 @@ const Logo = () => {
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
-                    className={"block"}
+                    className={
+                      "flex justify-start items-center gap-2 rounded-[5px] p-2 " +
+                      (tab.active === true &&
+                        "bg-orange-500 text-white fill-white stroke-white")
+                    }
                     onClick={() => {
                       let result = tabs.map((t) => ({
                         ...t,
@@ -71,7 +74,10 @@ const Logo = () => {
                       setTabs(result);
                     }}
                   >
-                    {tab.icon}
+                    <Svg
+                      name={tab.id}
+                      theme={tab.active === true ? "#fff" : "#000"}
+                    />
                     {tab.label}
                   </button>
                 ))}
