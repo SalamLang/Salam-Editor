@@ -86,7 +86,9 @@ const Logo = () => {
                 {tabs.map(
                   (tab) =>
                     tab.active === true && (
-                      <div key={tab.id}>{tab.element}</div>
+                      <div key={tab.id} className={"w-full h-full"}>
+                        {tab.element}
+                      </div>
                     ),
                 )}
               </div>
