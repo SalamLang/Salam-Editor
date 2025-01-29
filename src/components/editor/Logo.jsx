@@ -49,6 +49,7 @@ const Logo = () => {
             />
           </div>
           <Modal
+            bars={false}
             show={openProfile}
             callback={() => {
               setOpenProfile(false);
