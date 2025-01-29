@@ -18,6 +18,8 @@ const Codes = () => {
     });
   }, [location]);
 
+  const share = () => {};
+
   return (
     <>
       <div className="w-full h-full p-3 overflow-auto">
@@ -63,6 +65,9 @@ const Codes = () => {
                         className={""}
                         data-tooltip-id="share"
                         data-tooltip-content="اشتراک گذاری"
+                        onClick={() => {
+                          share();
+                        }}
                       >
                         <Svg name={"share"} theme={"#276EF6"} />
                       </button>
