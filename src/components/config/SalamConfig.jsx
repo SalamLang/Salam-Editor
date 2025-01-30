@@ -3,7 +3,6 @@ import Run from "../run/Run.jsx";
 import { useLocation } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Svg from "../shared/Svg.jsx";
-import { debounce } from "lodash";
 
 // eslint-disable-next-line react/prop-types
 const ToastMessage = ({ text }) => (
@@ -20,6 +19,7 @@ const SalamConfig = () => {
 
   useEffect(() => {
     window.code = "";
+    let id;
 
     window.Module = {
       noInitialRun: true,
@@ -57,7 +57,7 @@ const SalamConfig = () => {
           `,
         );
       },
-      printErr: debounce((text) => {
+      printErr: (text) => {
         console.error(
           "%cprint-Log => " + text,
           `
@@ -70,11 +70,15 @@ const SalamConfig = () => {
           `,
         );
 
-        toast.custom(<ToastMessage text={text} />, {
-          position: "bottom-center",
-          duration: 900,
-        });
-      }, 1000),
+        if (!text.startsWith("program exited")) {
+          toast.remove(id ?? 0);
+
+          id = toast.custom(<ToastMessage text={text} />, {
+            position: "bottom-center",
+            duration: 5000,
+          });
+        }
+      },
     };
 
     window.downloadIframeHTML = () => {
