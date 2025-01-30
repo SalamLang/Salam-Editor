@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Run from "../run/Run.jsx";
 import { useLocation } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import Svg from "../shared/Svg.jsx";
 
 const SalamConfig = () => {
   const [isReady, setIsReady] = useState(false);
@@ -66,12 +68,33 @@ const SalamConfig = () => {
         //   toast.error("ارور در خوانش کد!", {
         //     position: "bottom-center",
         //   });
+        // } else {
+        // toast.error(text, {
+        //   position: "bottom-center",
+        // });
         // }
-        // else {
-        //   toast.error(text, {
-        //     position: "bottom-center",
-        //   });
-        // }
+
+        if (!text.startsWith("program exited")) {
+          toast.error("seyed", {
+            duration: 50000,
+          });
+          toast.custom(
+            <>
+              <div
+                className={
+                  "flex items-center text-[#363636] leading-[1.3] will-change-transform shadow-[0_3px_10px_rgba(0,0,0,0.1),0_3px_3px_rgba(0,0,0,0.05)] max-w-[350px] pointer-events-auto px-2.5 py-2 rounded-lg bg-white gap-3"
+                }
+              >
+                <div className="go2534082608 shrink-0"></div>
+                {text}
+                <Svg name={"copy"} />
+              </div>
+            </>,
+            {
+              position: "bottom-center",
+            },
+          );
+        }
       },
     };
 
