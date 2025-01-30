@@ -12,11 +12,13 @@ const LoginProvider = ({ children }) => {
   const location = useLocation();
 
   useEffect(() => {
-    checkToken().then((result) => {
-      setLogin(result.login);
-      setIsAdmin(result?.is_admin);
-      setLoading(false);
-    });
+    if (location.pathname !== "/run") {
+      checkToken().then((result) => {
+        setLogin(result.login);
+        setIsAdmin(result?.is_admin);
+        setLoading(false);
+      });
+    }
   }, [location]);
 
   return (
