@@ -34,7 +34,7 @@ const Logo = () => {
           <img
             src="/images/favicon.svg"
             alt="salam logo"
-            className={"w-[40px] absolute top-[5px] right-[7px]"}
+            className={"w-[40px] z-[10] absolute top-[3px] right-[5px]"}
           />
         </Link>
       )}
