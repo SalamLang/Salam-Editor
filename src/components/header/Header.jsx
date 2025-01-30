@@ -39,6 +39,12 @@ const Header = () => {
               handleSaveFile();
             }}
           />
+          <DropdownItem
+            title={"خروجی سایت"}
+            callback={() => {
+              window.downloadIframeHTML();
+            }}
+          />
         </Dropdown>
         <Dropdown title={"امکانات"}>
           {login === false && (
