@@ -75,7 +75,7 @@ const LoginSidebar = ({ verify }) => {
 
   return (
     <>
-      <div className="basis-1/2 bg-gradient-to-b from-[#ff9d00] relative to-[#ff5c00]">
+      <div className="basis-1/2 bg-gradient-to-b from-[#ff9d00] relative to-[#ff5c00] md:block hidden">
         <div className="w-[300px] h-[3px] rounded absolute top-[120px] right-1/2 translate-x-1/2 rotate-[165deg] overflow-hidden">
           <div
             className="h-full bg-white"

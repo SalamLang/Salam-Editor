@@ -7,7 +7,6 @@ import * as Yup from "yup";
 import LoginSidebar from "./LoginSidebar.jsx";
 import { toast } from "react-hot-toast";
 import VerifyOtpService from "../../services/VerifyOtpService.js";
-import { win } from "codemirror/src/util/dom.js";
 
 // eslint-disable-next-line react/prop-types
 const Verify = ({ mobile }) => {
