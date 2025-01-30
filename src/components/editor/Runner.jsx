@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
+import useDevice from "../../hooks/useDevice.jsx";
 
 // eslint-disable-next-line react/prop-types
 const Runner = ({ callback }) => {
   const [hidden, setHidden] = useState(true);
+  const device = useDevice();
 
   function debounce(cb, delay) {
     let timeoutId;
@@ -29,7 +31,13 @@ const Runner = ({ callback }) => {
 
       debouncedChange();
     });
-  }, []);
+
+    if (device !== undefined && device === "mobile") {
+      runOutput(3);
+    } else if (device !== undefined && device === "pc") {
+      runOutput(2);
+    }
+  }, [device]);
 
   const runOutput = (level = 1) => {
     const level1 = () => {
