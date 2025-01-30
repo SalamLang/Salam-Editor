@@ -6,7 +6,14 @@ import Svg from "../shared/Svg.jsx";
 
 // eslint-disable-next-line react/prop-types
 const ToastMessage = ({ text }) => (
-  <div className="flex items-center text-[#363636] leading-[1.3] will-change-transform shadow-[0_3px_10px_rgba(0,0,0,0.1),0_3px_3px_rgba(0,0,0,0.05)] max-w-[350px] pointer-events-auto px-2.5 py-2 rounded-lg bg-white gap-3">
+  <div
+    className="flex items-center text-[#363636] leading-[1.3] will-change-transform shadow-[0_3px_10px_rgba(0,0,0,0.1),0_3px_3px_rgba(0,0,0,0.05)] max-w-[350px] pointer-events-auto px-2.5 py-2 cursor-pointer rounded-lg bg-white gap-3"
+    onClick={() => {
+      navigator.clipboard.writeText(text).then(() => {
+        toast.success("کپی شد!");
+      });
+    }}
+  >
     <div className="go2534082608 shrink-0"></div>
     {text}
     <Svg name={"copy"} />
