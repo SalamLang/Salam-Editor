@@ -63,6 +63,7 @@ const SalamConfig = () => {
           font-size: 15px;
           `,
         );
+        toast.remove(id);
       },
       printErr: (text) => {
         console.error(

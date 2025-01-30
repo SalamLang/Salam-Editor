@@ -26,16 +26,19 @@ const SaveCode = ({ login, show = false, callback }) => {
   });
 
   useEffect(() => {
-    if (login === false) {
-      toast.error("باید وارد حسابت بشی!", {
-        position: "bottom-center",
-      });
-    }
     setSaveModal(show);
   }, [login, show]);
 
   const saveCode = (e) => {
     e.preventDefault();
+
+    if (login === false) {
+      toast.error("باید وارد حسابت بشی!", {
+        position: "bottom-center",
+      });
+
+      return false;
+    }
     setClicked(true);
 
     validation
@@ -89,34 +92,32 @@ const SaveCode = ({ login, show = false, callback }) => {
 
   return (
     <>
-      {login === true && (
-        <Modal
-          show={saveModal}
-          className={"w-[400px] h-auto pb-4 p-3"}
-          callback={() => {
-            setSaveModal(false);
-            callback();
-          }}
-        >
-          <h1 className={"text-[23px] text-center font-bold"}>ذخیره کد</h1>
-          <Form onSubmit={saveCode}>
-            {localStorage?.getItem("is_me") !== "true" && (
-              <>
-                <Label form={"title"} required={true} error={errors.title}>
-                  عنوان کد:
-                  <Input
-                    className={"mt-1"}
-                    name={"title"}
-                    onInput={handleChange}
-                    autoFocus={true}
-                  />
-                </Label>
-              </>
-            )}
-            <Button disabled={clicked}>ذخیره کد</Button>
-          </Form>
-        </Modal>
-      )}
+      <Modal
+        show={saveModal}
+        className={"w-[400px] h-auto pb-4 p-3"}
+        callback={() => {
+          setSaveModal(false);
+          callback();
+        }}
+      >
+        <h1 className={"text-[23px] text-center font-bold"}>ذخیره کد</h1>
+        <Form onSubmit={saveCode}>
+          {localStorage?.getItem("is_me") !== "true" && (
+            <>
+              <Label form={"title"} required={true} error={errors.title}>
+                عنوان کد:
+                <Input
+                  className={"mt-1"}
+                  name={"title"}
+                  onInput={handleChange}
+                  autoFocus={true}
+                />
+              </Label>
+            </>
+          )}
+          <Button disabled={clicked}>ذخیره کد</Button>
+        </Form>
+      </Modal>
     </>
   );
 };
