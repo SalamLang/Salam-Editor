@@ -61,7 +61,7 @@ const Editor = () => {
     <>
       <main
         className={
-          "editor-container w-[calc(100%-35px)] h-[calc(100vh-35px)] bg-[#FFF1E9] rounded-tr-[15px] rtl after:inline-block after:border-0 after:z-[-1] after:w-[30px] after:h-[30px] float-end after:bg-[#ffdecc] after:absolute relative after:top-0 after:right-0 flex " +
+          "editor-container w-full h-[calc(100vh-35px)] bg-[#FFF1E9] rtl flex " +
           (levelThere && " flex-col")
         }
       >
@@ -70,7 +70,7 @@ const Editor = () => {
           className={
             (levelTwo && " !w-[50vw] h-full") +
             (levelThere && " !w-full h-[calc(50vh-17px)]") +
-            " w-full rounded-tr-[15px] overflow-auto"
+            " w-full h-full overflow-auto"
           }
         ></div>
         <div
