@@ -18,6 +18,10 @@ const LoginProvider = ({ children }) => {
         setIsAdmin(result?.is_admin);
         setLoading(false);
       });
+    } else {
+      setLogin(false);
+      setIsAdmin(false);
+      setLoading(false);
     }
   }, [location]);
 
