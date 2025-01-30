@@ -16,7 +16,7 @@ const Button = ({
         onClick={onClick}
         disabled={disabled}
         className={
-          "rounded-[10px] bg-[#FF5C00] w-full h-[45px] mt-4 text-white hover:opacity-90 transition-all duration-300 " +
+          "rounded-[10px] bg-[#FF5C00] w-full h-[45px] flex justify-center items-center overflow-hidden mt-4 text-white hover:opacity-90 transition-all duration-300 " +
           className
         }
       >
