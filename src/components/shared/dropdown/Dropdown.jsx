@@ -3,6 +3,7 @@ import { useState } from "react";
 // eslint-disable-next-line react/prop-types
 const Dropdown = ({ children, title }) => {
   const [open, setOpen] = useState(false);
+  const [hover, setHover] = useState(false);
 
   return (
     <>
@@ -10,9 +11,11 @@ const Dropdown = ({ children, title }) => {
         <button
           onClick={() => {
             setOpen(!open);
+            setHover(true);
           }}
           className={
-            "cursor-pointer text-[16px] px-2 py-4 hover:bg-[#ffc2a8] transition duration-200"
+            "cursor-pointer text-[16px] px-2 py-4 hover:bg-[#ffc2a8] transition duration-200" +
+            (hover === true && " bg-[#ffc2a8]")
           }
         >
           {title}
@@ -34,6 +37,7 @@ const Dropdown = ({ children, title }) => {
           }
           onClick={() => {
             setOpen(!open);
+            setHover(false);
           }}
         ></div>
       </div>
