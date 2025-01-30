@@ -45,16 +45,6 @@ const Header = () => {
               window.downloadIframeHTML();
             }}
           />
-        </Dropdown>
-        <Dropdown title={"امکانات"}>
-          {login === false && (
-            <DropdownItem
-              title={"ورود به حساب"}
-              callback={() => {
-                navigate("/login");
-              }}
-            />
-          )}
           <DropdownItem
             title={"ذخیره کد"}
             callback={() => {
@@ -62,6 +52,18 @@ const Header = () => {
             }}
           />
         </Dropdown>
+        {login === false && (
+          <button
+            onClick={() => {
+              navigate("/login");
+            }}
+            className={
+              "cursor-pointer text-[16px] px-2 py-4 hover:bg-[#ffc2a8] transition duration-200"
+            }
+          >
+            ورود به حساب
+          </button>
+        )}
         {params.id && <Share />}
       </header>
       <input
