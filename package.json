@@ -29,6 +29,7 @@
     "codemirror": "^5.65.18",
     "crelt": "^1.0.6",
     "fireworks-js": "^2.10.8",
+    "lodash": "^4.17.21",
     "motion": "^12.0.6",
     "nprogress": "^0.2.0",
     "react": "^18.3.1",
