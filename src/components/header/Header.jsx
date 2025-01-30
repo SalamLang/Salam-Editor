@@ -22,7 +22,7 @@ const Header = () => {
     <>
       <header
         className={
-          "header relative bg-[#ffdecc] h-[35px] w-[100vw] flex justify-start items-center pr-[75px] gap-[10px]"
+          "header relative bg-[#ffdecc] h-[40px] w-[100vw] flex justify-start items-center pr-[75px] gap-[10px]"
         }
       >
         <Dropdown title={"اسناد"}>
@@ -58,7 +58,7 @@ const Header = () => {
               navigate("/login");
             }}
             className={
-              "cursor-pointer text-[16px] px-2 py-4 hover:bg-[#ffc2a8] transition duration-200"
+              "cursor-pointer text-[16px] px-2 h-full flex justify-center items-center hover:bg-[#ffc2a8] transition duration-200"
             }
           >
             ورود به حساب

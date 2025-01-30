@@ -34,7 +34,6 @@ const EditorLayout = () => {
         <>
           <Header />
           <Logo />
-          <Side />
           <Editor />
         </>
       )}

@@ -61,7 +61,7 @@ const Editor = () => {
     <>
       <main
         className={
-          "editor-container w-full h-[calc(100vh-35px)] bg-[#FFF1E9] rtl flex " +
+          "editor-container w-full h-[calc(100vh-40px)] bg-[#FFF1E9] rtl flex " +
           (levelThere && " flex-col")
         }
       >
@@ -83,12 +83,6 @@ const Editor = () => {
           <iframe ref={iframe} className={"w-full h-full bg-white"}></iframe>
           <pre id="error" ref={error} className={"hidden"}></pre>
           <pre id="output" ref={output} className={"hidden"}></pre>
-          <div
-            className={
-              (!levelTwo && "!w-0 ") +
-              " resize w-[12px] h-full transition-all duration-300 cursor-col-resize absolute top-0 right-[-6px]"
-            }
-          ></div>
         </div>
       </main>
 

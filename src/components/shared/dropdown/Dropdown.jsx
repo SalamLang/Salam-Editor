@@ -7,14 +7,14 @@ const Dropdown = ({ children, title }) => {
 
   return (
     <>
-      <div className={"relative"}>
+      <div className={"relative h-full"}>
         <button
           onClick={() => {
             setOpen(!open);
             setHover(true);
           }}
           className={
-            "cursor-pointer text-[16px] px-2 py-4 hover:bg-[#ffc2a8] transition duration-200" +
+            "cursor-pointer text-[16px] px-2 h-full flex justify-center items-center hover:bg-[#ffc2a8] transition duration-200" +
             (hover === true && " bg-[#ffc2a8]")
           }
         >
