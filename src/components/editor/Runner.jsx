@@ -63,12 +63,12 @@ const Runner = ({ callback }) => {
     <>
       <div
         className={
-          (hidden && "opacity-0 ") +
-          " shadow-orange fixed top-[75px] transition-all duration-1000 left-[70px] z-[998] bg-white w-fit h-[40px] rounded-[10px] border flex justify-end items-center px-3 gap-1 flex-row-reverse"
+          "shadow-orange fixed top-[75px] transition-all duration-1000 left-[70px] z-[998] bg-white w-fit h-[40px] rounded-[10px] border flex justify-end items-center px-3 gap-1 flex-row-reverse " +
+          (hidden && " !opacity-0 pointer-events-none")
         }
       >
         <button
-          className={"cursor-pointer "}
+          className={"cursor-pointer"}
           data-tooltip-id="level-1"
           data-tooltip-content="اجرا در صفحه دیگر"
           onClick={() => {
