@@ -33,8 +33,14 @@
         src: url("/fonts/Estedad-Black.ttf");
     }
 
+    @font-face {
+        font-family: "number";
+        font-weight: 400;
+        src: url("/fonts/iranyekanwebregular.ttf");
+    }
+
     * {
-        font-family: "estedad", sans-serif !important;
+        font-family: "number" ,"estedad", sans-serif !important;
 
         ::-webkit-scrollbar {
             width: 8px;
