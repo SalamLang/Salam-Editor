@@ -32,6 +32,13 @@ const Runner = ({ callback }) => {
       debouncedChange();
     });
 
+    document.addEventListener("keypress", (e) => {
+      console.log(e);
+      if (e.altKey && e.key === "KeyT") {
+        console.log("ok");
+      }
+    });
+
     if (device !== undefined && device === "mobile") {
       runOutput(3);
     } else if (device !== undefined && device === "pc") {
