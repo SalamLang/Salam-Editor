@@ -57,6 +57,7 @@ const SalamConfig = () => {
         }
       },
       print: (text) => {
+        toast.remove(id);
         window.code += text;
         console.log(
           "%cprint-Log => " + text,
