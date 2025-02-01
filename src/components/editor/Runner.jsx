@@ -24,28 +24,6 @@ const Runner = ({ callback }) => {
     setHidden(true);
   }, 3000);
 
-  useEffect(() => {
-    document.addEventListener("mousemove", (e) => {
-      e.preventDefault();
-      setHidden(false);
-
-      debouncedChange();
-    });
-
-    document.addEventListener("keypress", (e) => {
-      console.log(e);
-      if (e.altKey && e.key === "KeyT") {
-        console.log("ok");
-      }
-    });
-
-    if (device !== undefined && device === "mobile") {
-      runOutput(3);
-    } else if (device !== undefined && device === "pc") {
-      runOutput(2);
-    }
-  }, [device]);
-
   const runOutput = (level = 1) => {
     const level1 = () => {
       window.open("/run", "_blank");
@@ -65,6 +43,29 @@ const Runner = ({ callback }) => {
       console.error("Level not found");
     }
   };
+
+  useEffect(() => {
+    document.addEventListener("mousemove", (e) => {
+      e.preventDefault();
+      setHidden(false);
+
+      debouncedChange();
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.ctrlKey && event.key.toLowerCase() === "b") {
+        event.preventDefault();
+
+        runOutput(1);
+      }
+    });
+
+    if (device !== undefined && device === "mobile") {
+      runOutput(3);
+    } else if (device !== undefined && device === "pc") {
+      runOutput(2);
+    }
+  }, [device]);
 
   return (
     <>
