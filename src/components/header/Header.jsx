@@ -22,7 +22,7 @@ const Header = () => {
     <>
       <header
         className={
-          "header relative bg-[#ffdecc] h-[40px] w-[100vw] flex justify-start items-center pr-[75px] gap-[10px]"
+          "header relative bg-[#ffdecc] h-[40px] w-[100vw] flex justify-start items-center pr-[45px] sm:pr-[60px] gap-[10px]"
         }
       >
         <Dropdown title={"اسناد"}>
