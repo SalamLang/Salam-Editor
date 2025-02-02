@@ -26,6 +26,7 @@ createRoot(document.getElementById("root")).render(
           <RouteChangeHandler />
           <ToastContainer />
           <Toaster />
+          <ConfirmL
           <SalamConfig />
           <Routes>
             {/*Editor*/}
