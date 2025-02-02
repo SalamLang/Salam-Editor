@@ -14,6 +14,7 @@ const Modal = ({
   // eslint-disable-next-line react/prop-types
   callback,
   bars = true,
+  fixed = true,
 }) => {
   const [isOpen, setIsOpen] = useState(show);
 
@@ -30,7 +31,8 @@ const Modal = ({
             animate={{ opacity: 1, display: "inline-block" }}
             exit={{ opacity: 0, display: "none" }}
             className={
-              "overlay backdrop-blur-sm fixed top-0 right-0 w-full h-[100vh] bg-black/30 z-[1001]"
+              "overlay backdrop-blur-sm top-0 right-0 w-full h-[100vh] bg-black/30 z-[1001]" +
+              (fixed === true ? " fixed " : " absolute ")
             }
             onClick={() => {
               if (noOverlay === false) {

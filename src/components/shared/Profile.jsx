@@ -4,20 +4,22 @@ import Line from "./Line.jsx";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Modal from "./Modal.jsx";
+import Confirm from "./Confirm.jsx";
 
 const Profile = () => {
   const [clicked, setClicked] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const [confirm, setConfirm] = useState(false);
 
   const logout = () => {
     setClicked(true);
-    setTimeout(() => {
-      localStorage.removeItem("token");
-      toast.success("از حساب خارج شدید.");
-      navigate("/");
-      setClicked(false);
-    }, 2000);
+    setConfirm(true);
   };
+
+  const accept = () => {};
+
+  const reject = () => {};
 
   return (
     <>
@@ -36,6 +38,15 @@ const Profile = () => {
           خروج از حساب
         </Button>
       </div>
+
+      <Confirm
+        show={confirm}
+        callback={() => {
+          setConfirm(false);
+        }}
+        accept={accept()}
+        reject={reject()}
+      />
     </>
   );
 };
