@@ -59,6 +59,7 @@ const SalamConfig = () => {
       print: (text) => {
         toast.remove(id);
         window.code += text;
+        window.true = true;
         console.log(
           "%cprint-Log => " + text,
           `
@@ -72,6 +73,7 @@ const SalamConfig = () => {
         );
       },
       printErr: (text) => {
+        window.true = false;
         console.error(
           "%cprint-Log => " + text,
           `
