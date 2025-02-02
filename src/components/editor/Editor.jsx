@@ -17,13 +17,13 @@ const Editor = () => {
   let error = useRef();
   let output = useRef();
 
-  const tags = useTags();
-  const attr = useAttr();
-  const style = useStyle();
+  // const tags = useTags();
+  // const attr = useAttr();
+  // const style = useStyle();
 
-  // const tags = true;
-  // const attr = true;
-  // const style = true;
+  const tags = true;
+  const attr = true;
+  const style = true;
 
   useEffect(() => {
     const editor = document.querySelector("#editor");
@@ -43,8 +43,8 @@ const Editor = () => {
     if (tags && attr && style) {
       EditorService(
         () => {
-          return [...tags, ...attr, ...style];
-          // return [];
+          // return [...tags, ...attr, ...style];
+          return [];
         },
         (updateText) => {
           if (updateText !== localStorage?.getItem("code")) {
@@ -58,7 +58,7 @@ const Editor = () => {
         },
       );
     }
-  }, [attr, location, style, tags]);
+  }, [location]);
 
   return (
     <>

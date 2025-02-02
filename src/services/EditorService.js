@@ -157,7 +157,6 @@ Value {
     extensions: [
       basicSetup,
       SALAM(),
-      customCloseBrackets,
       autocompletion(),
       keymap.of([
         {
