@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Run from "../run/Run.jsx";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Svg from "../shared/Svg.jsx";
 
@@ -30,6 +30,7 @@ const SalamConfig = () => {
 
   useEffect(() => {
     window.code = "";
+
     let id;
 
     toast.remove(id);
@@ -49,12 +50,8 @@ const SalamConfig = () => {
           `,
         );
 
-        if (location.pathname === "/run" || location.pathname === "/") {
-          setIsReady(true);
-          window.isReady = true;
-        } else {
-          window.isReady = false;
-        }
+        setIsReady(true);
+        window.isReady = true;
       },
       print: (text) => {
         toast.remove(id);
