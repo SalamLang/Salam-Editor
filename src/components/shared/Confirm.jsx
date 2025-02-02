@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Modal from "./Modal.jsx";
 
 const Confirm = ({ title }) => {
   const [confirmed, setConfirmed] = useState(null);
@@ -9,7 +10,7 @@ const Confirm = ({ title }) => {
 const ConfirmLayout = () => {
   return (
     <>
-      <div>dkokkokok</div>
+      <Modal show={true} className={"w-[400px] h-[350px]"}></Modal>
     </>
   );
 };
