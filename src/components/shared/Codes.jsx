@@ -62,7 +62,7 @@ const Codes = () => {
         )}
 
         {loading === false && (
-          <div className={"flex flex-col gap-4"}>
+          <div className={"flex flex-col gap-4 w-full h-full"}>
             {codes.map((code) => {
               return (
                 <>
@@ -106,6 +106,24 @@ const Codes = () => {
                 </>
               );
             })}
+            {codes.length === 0 && (
+              <>
+                <div
+                  className={
+                    "w-full h-full flex justify-center items-center flex-col"
+                  }
+                >
+                  <img
+                    src="/images/empty.svg"
+                    alt="empty code"
+                    className={"w-[200px]"}
+                  />
+                  <h1 className={"text-[20px] text-[#FF5C00] font-bold"}>
+                    حاجی هیچ کدی ذخیره نکردی
+                  </h1>
+                </div>
+              </>
+            )}
           </div>
         )}
       </div>
