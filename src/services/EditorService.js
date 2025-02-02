@@ -6,7 +6,7 @@ const EditorService = (autoCompleteData, callback) => {
   }
   const { basicSetup } = CM["codemirror"];
   const { keymap, EditorView } = CM["@codemirror/view"];
-  const { completeFromList, acceptCompletion, autocompletion } =
+  const { closeBrackets, completeFromList, acceptCompletion, autocompletion } =
     CM["@codemirror/autocomplete"];
   const { LRParser } = CM["@lezer/lr"];
   const { LRLanguage, HighlightStyle } = CM["@codemirror/language"];
@@ -142,16 +142,22 @@ Value {
     return result;
   };
 
+  function customCloseBrackets() {
+    closeBrackets({
+      brackets: ["()", "[]", "{}", "«»"],
+    });
+  }
+
   const editor_options = {
     parent: elm_editor,
     styleActiveLine: true,
     lineNumbers: true,
     matchBrackets: true,
-    autoCloseBrackets: true,
 
     extensions: [
       basicSetup,
       SALAM(),
+      customCloseBrackets,
       autocompletion(),
       keymap.of([
         {

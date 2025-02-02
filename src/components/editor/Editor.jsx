@@ -4,6 +4,9 @@ import EditorService from "../../services/EditorService.js";
 import { useLocation } from "react-router-dom";
 import Runner from "./Runner.jsx";
 import SalamService from "../../services/SalamService.js";
+import useTags from "../../hooks/useTags.jsx";
+import useAttr from "../../hooks/useAttr.jsx";
+import useStyle from "../../hooks/useStyle.jsx";
 
 const Editor = () => {
   const [levelTwo, setLevelTwo] = useState(false);
@@ -14,13 +17,13 @@ const Editor = () => {
   let error = useRef();
   let output = useRef();
 
-  // const tags = useTags();
-  // const attr = useAttr();
-  // const style = useStyle();
+  const tags = useTags();
+  const attr = useAttr();
+  const style = useStyle();
 
-  const tags = true;
-  const attr = true;
-  const style = true;
+  // const tags = true;
+  // const attr = true;
+  // const style = true;
 
   useEffect(() => {
     const editor = document.querySelector("#editor");
@@ -40,8 +43,8 @@ const Editor = () => {
     if (tags && attr && style) {
       EditorService(
         () => {
-          // return [...tags, ...attr, ...style];
-          return [];
+          return [...tags, ...attr, ...style];
+          // return [];
         },
         (updateText) => {
           if (updateText !== localStorage?.getItem("code")) {
@@ -55,7 +58,7 @@ const Editor = () => {
         },
       );
     }
-  }, [location]);
+  }, [attr, location, style, tags]);
 
   return (
     <>
