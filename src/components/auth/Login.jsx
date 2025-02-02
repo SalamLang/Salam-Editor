@@ -73,8 +73,21 @@ const Login = ({ callback }) => {
               src="/images/login.jpg"
               alt="login"
               loading={"lazy"}
-              className={"w-[200px] -mt-10 hue-rotate-[215deg]"}
+              className={
+                "hidden sm:inline-block w-[200px] -mt-10 hue-rotate-[215deg]"
+              }
             />
+            <img
+              src="/images/favicon.svg"
+              alt="login"
+              loading={"lazy"}
+              className={"w-[120px] -mt-10 sm:hidden"}
+            />
+            <h1
+              className={"sm:hidden font-bold text-[20px] mt-2 text-[#FF5C00]"}
+            >
+              ورود به سلام
+            </h1>
             <Form onSubmit={handleSubmit} className={"w-full max-w-[320px]"}>
               <Label form={"number"} required={true} error={errors.mobile}>
                 شماره موبایل:
