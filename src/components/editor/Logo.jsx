@@ -34,7 +34,7 @@ const Logo = () => {
           <img
             src="/images/favicon.svg"
             alt="salam logo"
-            className={"w-[40px] z-[10] absolute top-[0px] right-[0px]"}
+            className={"w-[40px] z-[10] absolute top-[0px] right-[5px]"}
           />
         </Link>
       )}
@@ -43,7 +43,7 @@ const Logo = () => {
         <>
           <div
             className={
-              "border border-gray-300 p-1 rounded-full w-[40px] bg-white cursor-pointer h-[40px] absolute top-[5px] right-[7px]"
+              "p-1 rounded-full w-[40px] bg-white cursor-pointer h-[40px] absolute top-0 right-[5px]"
             }
             onClick={() => {
               setOpenProfile(true);
