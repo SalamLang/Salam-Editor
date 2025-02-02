@@ -6,4 +6,14 @@ const Confirm = ({ title }) => {
   useEffect(() => {}, []);
 };
 
+const ConfirmLayout = () => {
+  return (
+    <>
+      <div>dkokkokok</div>
+    </>
+  );
+};
+
+export { ConfirmLayout };
+
 export default Confirm;

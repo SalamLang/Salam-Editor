@@ -13,6 +13,7 @@ import AdminLayout from "./layouts/AdminLayout.jsx";
 import Index from "./components/admin/Index.jsx";
 import Users from "./components/admin/Users.jsx";
 import Codes from "./components/admin/Codes.jsx";
+import { ConfirmLayout } from "./components/shared/Confirm.jsx";
 
 const EditorLayout = lazy(() => import("./layouts/EditorLayout"));
 const RunLayout = lazy(() => import("./layouts/RunLayout"));
@@ -26,7 +27,7 @@ createRoot(document.getElementById("root")).render(
           <RouteChangeHandler />
           <ToastContainer />
           <Toaster />
-          <ConfirmL
+          <ConfirmLayout />
           <SalamConfig />
           <Routes>
             {/*Editor*/}
