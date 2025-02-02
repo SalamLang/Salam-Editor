@@ -6,6 +6,7 @@ import Svg from "./Svg.jsx";
 import { Tooltip } from "react-tooltip";
 import Modal from "./Modal.jsx";
 import { toast } from "react-hot-toast";
+import Line from "./Line.jsx";
 
 const Codes = () => {
   const location = useLocation();
@@ -63,6 +64,7 @@ const Codes = () => {
 
         {loading === false && (
           <div className={"flex flex-col gap-4 w-full h-full"}>
+            <Line title={"کد ها"} className={"mt-2"} />
             {codes.map((code) => {
               return (
                 <>
@@ -116,9 +118,9 @@ const Codes = () => {
                   <img
                     src="/images/empty.svg"
                     alt="empty code"
-                    className={"w-[200px]"}
+                    className={"w-[160px] -mt-20"}
                   />
-                  <h1 className={"text-[20px] text-[#FF5C00] font-bold"}>
+                  <h1 className={"text-[18px] text-[#FF5C00] font-bold"}>
                     حاجی هیچ کدی ذخیره نکردی
                   </h1>
                 </div>
