@@ -58,7 +58,7 @@ const Header = () => {
               navigate("/login");
             }}
             className={
-              "cursor-pointer text-[16px] px-2 h-full flex justify-center items-center hover:bg-[#ffc2a8] transition duration-200"
+              "cursor-pointer text-[16px] dark:text-white/95 px-2 h-full dark:hover:bg-[#22272E] dark:hover:text-white flex justify-center items-center hover:bg-[#ffc2a8] transition duration-200"
             }
           >
             ورود به حساب

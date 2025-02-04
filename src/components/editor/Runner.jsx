@@ -71,7 +71,7 @@ const Runner = ({ callback }) => {
     <>
       <div
         className={
-          "shadow-orange fixed top-[75px] transition-all duration-1000 left-[70px] z-[998] bg-white w-fit h-[40px] rounded-[10px] border flex justify-end items-center px-3 gap-1 flex-row-reverse " +
+          "shadow-orange dark:border-gray-500 fixed top-[75px] transition-all duration-1000 left-[70px] z-[998] bg-white dark:bg-[#22272E] w-fit h-[40px] rounded-[10px] border flex justify-end items-center px-3 gap-1 flex-row-reverse " +
           (hidden && " !opacity-0 pointer-events-none")
         }
       >
@@ -90,7 +90,7 @@ const Runner = ({ callback }) => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="fill-orange-100 stroke-orange-500 -ml-[6px] -mr-[6px]"
+            className="fill-transparent stroke-orange-500 -ml-[6px] -mr-[6px]"
           >
             <path
               d="M15 19h6a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4a1 1 0 0 0-1 1"
@@ -114,7 +114,7 @@ const Runner = ({ callback }) => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="fill-orange-100 stroke-orange-500 -mr-[7px]"
+            className="fill-transparent stroke-orange-500 -mr-[7px]"
           >
             <path
               d="M12 3h9a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-9"
@@ -138,7 +138,7 @@ const Runner = ({ callback }) => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="fill-orange-100 stroke-orange-500 -mr-[7px]"
+            className="fill-transparent stroke-orange-500 -mr-[7px]"
           >
             <path d="M23 11V3H3v8h20Z" strokeWidth="0"></path>
             <path
