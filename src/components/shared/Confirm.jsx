@@ -15,8 +15,15 @@ const Confirm = ({ accept, reject, show, callback }) => {
         callback={() => {
           callback();
         }}
-        className={"w-[500px] h-[250px]"}
-      ></Modal>
+        fixed={false}
+        className={"w-[450px] h-[250px]"}
+      >
+        <h1
+          className={"text-red-600 text-[20px] font-bold text-center mt-[20px]"}
+        >
+          از کار خود مطمئنید؟
+        </h1>
+      </Modal>
     </>
   );
 };

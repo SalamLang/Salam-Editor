@@ -64,7 +64,7 @@ const Codes = () => {
 
         {loading === false && (
           <div className={"flex flex-col gap-4 w-full h-full"}>
-            <Line title={"کد ها"} className={"mt-2"} />
+            <Line title={"کد ها"} className={"mt-2 mb-0"} />
             {codes.map((code) => {
               return (
                 <>
