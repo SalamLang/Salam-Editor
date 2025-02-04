@@ -14,8 +14,8 @@ const Dropdown = ({ children, title }) => {
             setHover(true);
           }}
           className={
-            "cursor-pointer text-[16px] px-2 h-full flex justify-center items-center hover:bg-[#ffc2a8] transition duration-200" +
-            (hover === true && " bg-[#ffc2a8]")
+            "cursor-pointer text-[16px] dark:text-white/95 px-2 h-full flex justify-center items-center dark:hover:bg-[#22272E] dark:hover:text-white hover:bg-[#ffc2a8] transition duration-200" +
+            (hover === true && " bg-[#ffc2a8] dark:bg-[#22272E]")
           }
         >
           {title}

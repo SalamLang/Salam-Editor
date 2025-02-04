@@ -116,7 +116,7 @@
 }
 
 .cm-content {
-    height: calc(100vh - 40px) !important;
+    height: calc(100vh - 42px) !important;
 }
 
 .window {
@@ -177,4 +177,8 @@ input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+html.dark .ͼ1 .cm-cursor, .ͼ1 .cm-dropCursor {
+    border-left: 1px solid #ffffff;
 }
