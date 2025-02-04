@@ -17,9 +17,15 @@ const Profile = () => {
     setConfirm(true);
   };
 
-  const accept = () => {};
+  const accept = () => {
+    setClicked(false);
+    setConfirm(false);
+  };
 
-  const reject = () => {};
+  const reject = () => {
+    setClicked(false);
+    setConfirm(false);
+  };
 
   return (
     <>
@@ -44,8 +50,8 @@ const Profile = () => {
         callback={() => {
           setConfirm(false);
         }}
-        accept={accept()}
-        reject={reject()}
+        accept={accept}
+        reject={reject}
       />
     </>
   );
