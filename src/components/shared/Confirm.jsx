@@ -12,9 +12,10 @@ const Confirm = ({ accept, reject, show, callback }) => {
   return (
     <>
       <Modal
-        show={show}
+        show={open}
         callback={() => {
           callback();
+          reject();
         }}
         fixed={false}
         className={"w-[400px] !h-auto"}
@@ -36,6 +37,9 @@ const Confirm = ({ accept, reject, show, callback }) => {
             className={
               "border-2 bg-transparent !text-red-600 hover:shadow-xl transition-all duration-300 !shadow-red-600/30 border-red-600 flex justify-center items-center gap-2"
             }
+            onClick={() => {
+              accept();
+            }}
           >
             اره مطمئنم
           </Button>
@@ -44,6 +48,9 @@ const Confirm = ({ accept, reject, show, callback }) => {
             className={
               "border-2 bg-transparent !text-gray-400/95 !border-gray-400/95 flex justify-center items-center gap-2 hover:shadow-xl transition-all duration-300 !shadow-gray-600/30"
             }
+            onClick={() => {
+              reject();
+            }}
           >
             نه ولش کن!
           </Button>
