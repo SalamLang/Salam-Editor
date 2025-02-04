@@ -76,6 +76,7 @@ const Share = () => {
           src="/images/share.png"
           className={"w-[130px] mx-auto mt-[30px]"}
           alt=""
+          fetchPriority={"high"}
         />
         <h1 className={"text-center text-[20px] mt-3 font-bold"}>
           این لینک رو میتونی استفاده کنی
