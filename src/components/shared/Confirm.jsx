@@ -2,6 +2,7 @@ import Modal from "./Modal.jsx";
 import { useEffect, useState } from "react";
 import Button from "../auth/Button.jsx";
 
+// eslint-disable-next-line react/prop-types
 const Confirm = ({ accept, reject, show, callback }) => {
   const [open, setOpen] = useState(false);
 
