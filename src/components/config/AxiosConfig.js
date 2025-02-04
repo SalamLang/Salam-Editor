@@ -18,7 +18,7 @@ export const client = {
 export const setToken = () => {
   const token = localStorage?.getItem("token");
 
-  if (token !== undefined) {
+  if (token !== null) {
     instance.defaults.headers.common["authorization"] = "Bearer " + token;
     return true;
   } else {

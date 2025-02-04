@@ -1,15 +1,13 @@
 import Button from "../auth/Button.jsx";
 import Svg from "./Svg.jsx";
 import Line from "./Line.jsx";
-import { toast } from "react-hot-toast";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Modal from "./Modal.jsx";
 import Confirm from "./Confirm.jsx";
 
 const Profile = () => {
   const [clicked, setClicked] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [confirm, setConfirm] = useState(false);
 
   const logout = () => {
@@ -20,6 +18,9 @@ const Profile = () => {
   const accept = () => {
     setClicked(false);
     setConfirm(false);
+
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   const reject = () => {
