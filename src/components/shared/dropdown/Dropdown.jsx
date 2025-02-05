@@ -24,7 +24,7 @@ const Dropdown = ({ children, title }) => {
         <div
           className={
             (!open && "hidden ") +
-            " absolute bg-[#ffe9db]/50 backdrop-blur rounded-[10px] z-[1000] top-[40px] right-0 border border-orange-300 p-2"
+            " absolute bg-[#ffe9db]/50 dark:border-gray-700 dark:text-white/80 dark:bg-gray-800 backdrop-blur rounded-[10px] z-[1000] top-[40px] right-0 border border-orange-300 p-2"
           }
         >
           {children}
