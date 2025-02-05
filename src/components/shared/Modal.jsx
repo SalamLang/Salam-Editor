@@ -54,7 +54,7 @@ const Modal = ({
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0 }}
               className={
-                "bg-white rounded-[20px] overflow-hidden w-[300px] h-[400px] z-[10002]" +
+                "bg-white dark:bg-[#2B2D30] dark:text-white/90 rounded-[20px] overflow-hidden w-[300px] h-[400px] z-[10002]" +
                 " " +
                 className
               }
