@@ -51,6 +51,12 @@ const Header = () => {
               setOpenSave(true);
             }}
           />
+          <DropdownItem
+            title={"تنظیمات"}
+            callback={() => {
+              setOpenSave(true);
+            }}
+          />
         </Dropdown>
         {login === false && (
           <button
