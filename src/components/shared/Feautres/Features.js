@@ -1,4 +1,5 @@
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export const handleFileChange = (event) => {
   const file = event.target.files[0];
@@ -10,7 +11,6 @@ export const handleFileChange = (event) => {
           position: "bottom-right",
         });
         localStorage.setItem("code", e.target.result);
-        navigate("/");
       };
       reader.readAsText(file);
     } else {

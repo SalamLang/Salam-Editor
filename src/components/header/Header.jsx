@@ -71,7 +71,10 @@ const Header = () => {
         id="fileInput"
         style={{ display: "none" }}
         className={"hidden"}
-        onChange={handleFileChange}
+        onChange={(e) => {
+          handleFileChange(e);
+          navigate("/");
+        }}
         accept={".salam"}
       />
       <SaveCode
