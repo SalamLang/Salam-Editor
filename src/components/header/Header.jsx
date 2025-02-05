@@ -10,12 +10,14 @@ import {
 } from "../shared/Feautres/Features.js";
 import SaveCode from "../shared/Feautres/SaveCode.jsx";
 import Share from "./Share.jsx";
+import Setting from "../shared/Setting.jsx";
 
 const Header = () => {
   const navigate = useNavigate();
   const { login } = useContext(LoginContext);
 
   const [openSave, setOpenSave] = useState(false);
+  const [openSetting, setOpenSetting] = useState(false);
   const params = useParams();
 
   return (
@@ -54,7 +56,7 @@ const Header = () => {
           <DropdownItem
             title={"تنظیمات"}
             callback={() => {
-              setOpenSave(true);
+              setOpenSetting(true);
             }}
           />
         </Dropdown>
@@ -88,6 +90,12 @@ const Header = () => {
         show={openSave}
         callback={() => {
           setOpenSave(false);
+        }}
+      />
+      <Setting
+        show={openSetting}
+        callback={() => {
+          setOpenSetting(false);
         }}
       />
     </>
