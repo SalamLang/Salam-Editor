@@ -64,7 +64,7 @@ const Editor = () => {
     <>
       <main
         className={
-          "editor-container w-full h-[calc(100vh-42px)] dark:text-white dark:bg-[#22272E] bg-[#FFF1E9] rtl flex " +
+          "editor-container w-full h-[calc(100vh-42px)] dark:text-white dark:bg-[#1E1F22] bg-[#FFF1E9] rtl flex " +
           (levelThere && " flex-col")
         }
       >
