@@ -19,7 +19,6 @@ const Header = () => {
   const [openSave, setOpenSave] = useState(false);
   const [openSetting, setOpenSetting] = useState(false);
   const params = useParams();
-
   return (
     <>
       <header

@@ -1,9 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-const Dropdown = ({ children, title }) => {
+const Dropdown = ({ children, title, show, callback }) => {
   const [open, setOpen] = useState(false);
   const [hover, setHover] = useState(false);
+
+  useEffect(() => {
+    console.log("kokokokok");
+    setOpen(show);
+
+    if (show === false) {
+      setHover(false);
+    }
+  }, [show]);
 
   return (
     <>
@@ -38,6 +47,7 @@ const Dropdown = ({ children, title }) => {
           onClick={() => {
             setOpen(!open);
             setHover(false);
+            callback();
           }}
         ></div>
       </div>
