@@ -167,19 +167,6 @@ Value {
         indentWithTab,
       ]),
       EditorView.updateListener.of((update) => {
-        // if (update.view) {
-        //   update.view.requestMeasure();
-        // }
-        //
-        // if (update.docChanged || update.viewportChanged) {
-        //   update.view.requestMeasure();
-        // }
-        //
-        // if (update.docChanged || update.viewportChanged) {
-        //   // Force a re-render when the document or viewport changes
-        //   update.view.requestMeasure();
-        // }
-
         if (update.changes) {
           console.log(before_space);
           const newText = update.state.doc.toString();

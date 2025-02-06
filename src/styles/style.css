@@ -72,9 +72,6 @@
     border-left-color: #FF5C00 !important;
 }
 
-.cm-editor {
-    height: 100%;
-}
 
 .cm-scroller {
     overflow: visible !important;
@@ -94,10 +91,6 @@ html.fa .ͼ1 .cm-lineNumbers .cm-gutterElement {
 
 html.en .ͼ1 .cm-lineNumbers .cm-gutterElement {
     padding: 0 0 0 11px;
-}
-
-.cm-line {
-    font-size: 18px;
 }
 
 .cm-tooltip-autocomplete,
