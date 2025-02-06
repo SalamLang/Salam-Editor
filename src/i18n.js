@@ -22,6 +22,8 @@ const resources = {
       matchMobileValidation: "Mobile Is Not Incorrect",
       sendOtp: "OTP Code Send Successfully",
       loginToSalam: "Login To Salam",
+      verify: "Verify",
+      otpCode: "Otp Code",
     },
   },
   fa: {
@@ -44,6 +46,8 @@ const resources = {
       matchMobileValidation: "شماره موبایل معتبر نیست",
       sendOtp: "کد ورود با موفقیت ارسال شد.",
       loginToSalam: "ورود به سلام",
+      verify: "تایید",
+      otpCode: "کد ورود",
     },
   },
 };
