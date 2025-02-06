@@ -13,6 +13,8 @@ const Setting = ({ show, callback }) => {
     setSaveModal(show);
   }, [show]);
 
+  const handleLang = () => {};
+
   return (
     <>
       <Modal
@@ -26,7 +28,7 @@ const Setting = ({ show, callback }) => {
       >
         <Line title={"ظاهری"} className={"mt-0 mb-4"} />
         <div className={"flex items-center gap-[20px]"}>
-          <span>حالت روشنایی</span>
+          <span>حالت روشنایی:</span>
           <label form="switch" className="toggle">
             <input
               type="checkbox"
@@ -78,6 +80,33 @@ const Setting = ({ show, callback }) => {
         </div>
 
         <Line title={"پیشرفته"} className={"mb-4"} />
+        <div className="flex justify-start items-center gap-[20px]">
+          <span>تغییر زبان:</span>
+          <div className={"flex justify-start items-center gap-[20px]"}>
+            <button
+              className={
+                "w-[100px] h-[40px] border-2 dark:border-gray-500 border-dashed rounded-[10px] " +
+                (localStorage?.getItem("lang") === "en" &&
+                  " bg-[#FF5B00] text-white")
+              }
+              id={"en"}
+              onClick={handleLang}
+            >
+              English
+            </button>
+            <button
+              className={
+                "w-[100px] h-[40px] border-2 dark:border-gray-500 border-dashed rounded-[10px] " +
+                (localStorage?.getItem("lang") === "fa" &&
+                  " bg-[#FF5B00] text-white")
+              }
+              id={"fa"}
+              onClick={handleLang}
+            >
+              فارسی
+            </button>
+          </div>
+        </div>
       </Modal>
     </>
   );
