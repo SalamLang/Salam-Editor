@@ -7,9 +7,11 @@ import * as Yup from "yup";
 import LoginSidebar from "./LoginSidebar.jsx";
 import SendOtpService from "../../services/SendOtpService.js";
 import { toast } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line react/prop-types
 const Login = ({ callback }) => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     mobile: 0,
   });
@@ -22,7 +24,7 @@ const Login = ({ callback }) => {
     mobile: Yup.string()
       .matches(
         /^(?:(?:\\+?|00)(98)|(0))?((?:90|91|92|93|99)[0-9]{8})$/,
-        "شماره موبایل معتبر نیست",
+        t("matchMobileValidation"),
       )
       .required("وارد کردن شماره موبایل الزامی است"),
   });
@@ -64,7 +66,7 @@ const Login = ({ callback }) => {
       <div className="w-full h-[100vh] flex justify-center items-center">
         <div
           className={
-            "w-full max-w-[900px] h-full sm:max-h-[500px] bg-white sm:rounded-[15px] sm:border shadow-lg flex justify-center overflow-hidden"
+            "w-full max-w-[900px] h-full sm:max-h-[500px] bg-white sm:rounded-[15px] sm:border shadow-lg flex justify-center overflow-hidden dark:border-0 dark:bg-[#2B2D30] dark:text-white"
           }
         >
           <LoginSidebar />
@@ -74,7 +76,7 @@ const Login = ({ callback }) => {
               alt="login"
               loading={"lazy"}
               className={
-                "hidden sm:inline-block w-[200px] -mt-10 hue-rotate-[215deg]"
+                "hidden sm:inline-block w-[200px] -mt-10 hue-rotate-[215deg] dark:rounded-[100px]"
               }
             />
             <img
@@ -90,18 +92,18 @@ const Login = ({ callback }) => {
             </h1>
             <Form onSubmit={handleSubmit} className={"w-full max-w-[320px]"}>
               <Label form={"number"} required={true} error={errors.mobile}>
-                شماره موبایل:
+                <span>{t("mobileNumber")}: </span>
                 <Input
                   type={"number"}
                   name={"mobile"}
                   onInput={handleChange}
-                  placeholder={"شماره موبایل"}
+                  placeholder={t("mobileNumber")}
                   autoFocus={true}
                   className={"mt-1 tracking-wide"}
                 />
               </Label>
               <Button type={"submit"} disabled={clicked}>
-                ارسال کد
+                {t("sendCode")}
               </Button>
             </Form>
           </div>

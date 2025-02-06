@@ -117,7 +117,7 @@ const SaveCode = ({ login, show = false, callback }) => {
               </Label>
             </>
           )}
-          <Button disabled={clicked}>ذخیره کد</Button>
+          <Button disabled={clicked}>{t("saveCode")}</Button>
         </Form>
       </Modal>
     </>

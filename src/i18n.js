@@ -17,6 +17,9 @@ const resources = {
       theme: "theme",
       changeLang: "change language",
       codeTitle: "code title",
+      mobileNumber: "mobile",
+      sendCode: "send code",
+      matchMobileValidation: "mobile is not incorrect",
     },
   },
   fa: {
@@ -34,6 +37,9 @@ const resources = {
       theme: "سبک روشنایی",
       changeLang: "تغییر زبان",
       codeTitle: "عنوان کد",
+      mobileNumber: "شماره موبایل",
+      sendCode: "ارسال کد",
+      matchMobileValidation: "شماره موبایل معتبر نیست",
     },
   },
 };
