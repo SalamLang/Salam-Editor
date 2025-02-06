@@ -5,11 +5,15 @@ const resources = {
   en: {
     translation: {
       success: "Done successfully!",
+      login: "Login",
+      files: "Files",
     },
   },
   fa: {
     translation: {
       success: "با موفقیت انجام شد!",
+      login: "ورود به حساب",
+      files: "اسناد",
     },
   },
 };

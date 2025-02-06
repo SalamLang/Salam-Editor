@@ -11,10 +11,12 @@ import {
 import SaveCode from "../shared/Feautres/SaveCode.jsx";
 import Share from "./Share.jsx";
 import Setting from "../shared/Setting.jsx";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const navigate = useNavigate();
   const { login } = useContext(LoginContext);
+  const { t } = useTranslation();
 
   const [openSave, setOpenSave] = useState(false);
   const [openSetting, setOpenSetting] = useState(false);
@@ -26,7 +28,7 @@ const Header = () => {
           "header relative bg-[#ffdecc] dark:bg-[#3C3F41] border-gray-600 h-[42px] w-[100vw] flex justify-start items-center pr-[45px] sm:pr-[60px] gap-[10px]"
         }
       >
-        <Dropdown title={"اسناد"}>
+        <Dropdown title={t("files")}>
           <DropdownItem
             title={"باز کردن فایل"}
             callback={() => {
@@ -68,7 +70,7 @@ const Header = () => {
               "cursor-pointer text-[16px] dark:text-white/95 px-2 h-full dark:hover:bg-[#22272E] dark:hover:text-white flex justify-center items-center hover:bg-[#ffc2a8] transition duration-200"
             }
           >
-            ورود به حساب
+            {t("login")}
           </button>
         )}
         {params.id && <Share />}
