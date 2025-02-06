@@ -24,6 +24,8 @@ const resources = {
       loginToSalam: "Login To Salam",
       verify: "Verify",
       otpCode: "Otp Code",
+      requireOtp: "Otp Is Required",
+      problem: "We Have A Problem! Try Again",
     },
   },
   fa: {
@@ -48,6 +50,8 @@ const resources = {
       loginToSalam: "ورود به سلام",
       verify: "تایید",
       otpCode: "کد ورود",
+      requireOtp: "کد ورود الزامی است.",
+      problem: "مشکلی پیش امده! مجدد تلاش کنید.",
     },
   },
 };
