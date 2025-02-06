@@ -4,20 +4,12 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
-      welcome: "Welcome",
-      language: "Language",
+      success: "Done successfully!",
     },
   },
   fa: {
     translation: {
-      welcome: "خوش آمدید",
-      language: "زبان",
-    },
-  },
-  ar: {
-    translation: {
-      welcome: "أهلاً وسهلاً",
-      language: "اللغة",
+      success: "با موفقیت انجام شد!",
     },
   },
 };

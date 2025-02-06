@@ -4,10 +4,12 @@ import Button from "../auth/Button.jsx";
 import { changeTheme } from "./Feautres/Features.js";
 import Line from "./Line.jsx";
 import { toast } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line react/prop-types
 const Setting = ({ show, callback }) => {
   const [saveModal, setSaveModal] = useState(false);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     setSaveModal(show);
@@ -15,6 +17,21 @@ const Setting = ({ show, callback }) => {
 
   const handleLang = (e) => {
     let lang = e.target.id;
+
+    i18n.changeLanguage(lang);
+    document.dir = lang === "fa" ? "rtl" : "ltr";
+
+    toast.success(
+      t("success"),
+      localStorage?.getItem("theme") === "dark"
+        ? {
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+          }
+        : "",
+    );
   };
 
   return (
