@@ -12,6 +12,8 @@ const resources = {
       exportSite: "export site",
       saveCode: "save code",
       setting: "setting",
+      appearance: "appearance",
+      advanced: "advanced",
     },
   },
   fa: {
@@ -24,6 +26,8 @@ const resources = {
       exportSite: "خروجی سایت",
       saveCode: "ذخیره کد",
       setting: "تنظیمات",
+      appearance: "ظاهری",
+      advanced: "پیشرفته",
     },
   },
 };
