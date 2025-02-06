@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Modal from "../Modal.jsx";
 import Form from "../../auth/Form.jsx";
 import Label from "../../auth/Label.jsx";
@@ -20,6 +21,7 @@ const SaveCode = ({ login, show = false, callback }) => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const params = useParams();
+  const { t } = useTranslation();
 
   const validation = Yup.object({
     title: Yup.string().required("وارد کردن عنوان الزامی است"),
@@ -100,12 +102,12 @@ const SaveCode = ({ login, show = false, callback }) => {
           callback();
         }}
       >
-        <h1 className={"text-[23px] text-center font-bold"}>ذخیره کد</h1>
+        <h1 className={"text-[23px] text-center font-bold"}>{t("saveCode")}</h1>
         <Form onSubmit={saveCode}>
           {localStorage?.getItem("is_me") !== "true" && (
             <>
               <Label form={"title"} required={true} error={errors.title}>
-                عنوان کد:
+                <span>{t("codeTitle")} :</span>
                 <Input
                   className={"mt-1"}
                   name={"title"}

@@ -16,6 +16,7 @@ const resources = {
       advanced: "advanced",
       theme: "theme",
       changeLang: "change language",
+      codeTitle: "code title",
     },
   },
   fa: {
@@ -32,6 +33,7 @@ const resources = {
       advanced: "پیشرفته",
       theme: "سبک روشنایی",
       changeLang: "تغییر زبان",
+      codeTitle: "عنوان کد",
     },
   },
 };
