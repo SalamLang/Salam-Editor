@@ -25,7 +25,7 @@ const Header = () => {
     <>
       <header
         className={
-          "header relative bg-[#ffdecc] dark:bg-[#3C3F41] border-gray-600 h-[42px] w-[100vw] flex justify-start items-center pr-[45px] sm:pr-[60px] gap-[10px]"
+          "header relative bg-[#ffdecc] dark:bg-[#3C3F41] border-gray-600 h-[42px] w-[100vw] flex justify-start items-center pr-[45px] sm:pr-[60px] gap-[10px] pl-[20px]"
         }
       >
         <Dropdown title={t("files")}>
