@@ -30,7 +30,7 @@ const Header = () => {
       >
         <Dropdown title={t("files")}>
           <DropdownItem
-            title={"باز کردن فایل"}
+            title={t("openSalamFile")}
             callback={() => {
               openFilePicker();
             }}
