@@ -37,25 +37,25 @@ const Header = () => {
           />
           {/*<hr className={"opacity-100 bg-gray-300 my-2 h-[1px] border-0"}/>*/}
           <DropdownItem
-            title={"خروجی در فایل سلام"}
+            title={t("exportSalamFile")}
             callback={() => {
               handleSaveFile();
             }}
           />
           <DropdownItem
-            title={"خروجی سایت"}
+            title={t("exportSite")}
             callback={() => {
               window.downloadIframeHTML();
             }}
           />
           <DropdownItem
-            title={"ذخیره کد"}
+            title={t("saveCode")}
             callback={() => {
               setOpenSave(true);
             }}
           />
           <DropdownItem
-            title={"تنظیمات"}
+            title={t("setting")}
             callback={() => {
               setOpenSetting(true);
             }}
