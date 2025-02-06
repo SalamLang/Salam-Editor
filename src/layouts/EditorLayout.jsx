@@ -5,15 +5,12 @@ import { useLocation, useParams } from "react-router-dom";
 import GetCodeService from "../services/GetCodeService.js";
 import { useEffect, useState } from "react";
 import Loading from "../components/loading/Loading.jsx";
-import { useTranslation } from "react-i18next";
 const EditorLayout = () => {
   const params = useParams();
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
-    // alert(t("files"));
-
     if (params.id !== undefined) {
       GetCodeService(params.id).then((result) => {
         localStorage.setItem("is_me", result?.data?.is_me ?? false);
