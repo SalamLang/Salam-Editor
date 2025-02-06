@@ -1,3 +1,4 @@
+import "./i18n";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
@@ -14,22 +15,20 @@ import Index from "./components/admin/Index.jsx";
 import Users from "./components/admin/Users.jsx";
 import Codes from "./components/admin/Codes.jsx";
 import EditorLayout from "./layouts/EditorLayout";
-import "./i18n";
 import LangConfig from "./components/config/LangConfig.jsx";
-
+import LoginLayout from "./layouts/LoginLayout.jsx";
 const RunLayout = lazy(() => import("./layouts/RunLayout"));
-const LoginLayout = lazy(() => import("./layouts/LoginLayout.jsx"));
 
 createRoot(document.getElementById("root")).render(
   <>
     <Suspense fallback={<Loading />}>
       <BrowserRouter>
+        <LangConfig />
         <LoginProvider>
           <RouteChangeHandler />
           <ToastContainer />
           <Toaster />
           <SalamConfig />
-          <LangConfig />
           <Routes>
             {/*Editor*/}
             <Route path="/:id?" element={<EditorLayout />} />

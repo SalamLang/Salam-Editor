@@ -20,6 +20,7 @@ const resources = {
       mobileNumber: "mobile",
       sendCode: "send code",
       matchMobileValidation: "mobile is not incorrect",
+      sendOtp: "otp code send successfully",
     },
   },
   fa: {
@@ -40,6 +41,7 @@ const resources = {
       mobileNumber: "شماره موبایل",
       sendCode: "ارسال کد",
       matchMobileValidation: "شماره موبایل معتبر نیست",
+      sendOtp: "کدورود باموفقیت ارسال شد.",
     },
   },
 };

@@ -39,7 +39,17 @@ const Login = ({ callback }) => {
         setErrors({});
         let result = await SendOtpService(formData.mobile);
         if (result) {
-          toast.success("کدورود باموفقیت ارسال شد.");
+          toast.success(
+            t("sendOtp"),
+            localStorage?.getItem("theme") === "dark"
+              ? {
+                  style: {
+                    background: "#333",
+                    color: "#fff",
+                  },
+                }
+              : "",
+          );
           callback(formData.mobile);
         }
         setClicked(false);
