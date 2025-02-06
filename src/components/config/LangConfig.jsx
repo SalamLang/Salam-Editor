@@ -15,6 +15,12 @@ const LangConfig = () => {
 
     i18n.changeLanguage(lang);
     document.dir = localStorage.getItem("lang") === "fa" ? "rtl" : "ltr";
+
+    let doc = document.documentElement;
+    doc.classList.remove("fa");
+    doc.classList.remove("en");
+
+    doc.classList.add(lang);
   }, [i18n, location]);
 };
 

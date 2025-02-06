@@ -23,6 +23,13 @@ const Setting = ({ show, callback }) => {
     i18n.changeLanguage(lang);
     document.dir = lang === "fa" ? "rtl" : "ltr";
 
+    let doc = document.documentElement;
+
+    doc.classList.remove("fa");
+    doc.classList.remove("en");
+
+    doc.classList.add(lang);
+
     toast.success(
       t("success"),
       localStorage?.getItem("theme") === "dark"
