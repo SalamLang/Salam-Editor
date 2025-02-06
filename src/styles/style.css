@@ -72,6 +72,14 @@
     border-left-color: #FF5C00 !important;
 }
 
+.cm-editor {
+    height: 100%;
+}
+
+.cm-scroller {
+    overflow: visible !important;
+}
+
 .ͼ2 .cm-gutters {
     border: 0 !important;
 }

@@ -153,6 +153,7 @@ Value {
     styleActiveLine: true,
     lineNumbers: true,
     matchBrackets: true,
+    viewportMargin: Infinity,
 
     extensions: [
       basicSetup,
@@ -166,8 +167,24 @@ Value {
         indentWithTab,
       ]),
       EditorView.updateListener.of((update) => {
+        if (update.view) {
+          update.view.requestMeasure();
+        }
+
+        if (update.docChanged || update.viewportChanged) {
+          update.view.requestMeasure();
+        }
+
         if (update.changes) {
-          console.log(before_space);
+          update.view.dispatch({
+            effects: EditorView.scrollIntoView(
+              update.state.selection.main.head,
+            ),
+          });
+
+          console.log(update.view.requestMeasure());
+          update.view.requestMeasure();
+
           const newText = update.state.doc.toString();
           callback(newText);
           localStorage.setItem("code", newText);

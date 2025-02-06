@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-const Dropdown = ({ children, title, show, callback }) => {
+const Dropdown = ({ children, title }) => {
   const [open, setOpen] = useState(false);
   const [hover, setHover] = useState(false);
 
   useEffect(() => {
-    console.log("kokokokok");
-    setOpen(show);
-
-    if (show === false) {
+    document.addEventListener("click", (e) => {
+      setOpen(false);
       setHover(false);
-    }
-  }, [show]);
+    });
+  }, [open]);
 
   return (
     <>

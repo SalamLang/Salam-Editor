@@ -58,6 +58,11 @@ const Editor = () => {
         },
       );
     }
+
+    document.querySelector("#editor").addEventListener("scroll", (event) => {
+      event.target.cmView.requestMeasure();
+      console.log("okkkkk scroooooled");
+    });
   }, [location]);
 
   return (
