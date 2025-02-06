@@ -13,8 +13,8 @@ import AdminLayout from "./layouts/AdminLayout.jsx";
 import Index from "./components/admin/Index.jsx";
 import Users from "./components/admin/Users.jsx";
 import Codes from "./components/admin/Codes.jsx";
+import EditorLayout from "./layouts/EditorLayout";
 
-const EditorLayout = lazy(() => import("./layouts/EditorLayout"));
 const RunLayout = lazy(() => import("./layouts/RunLayout"));
 const LoginLayout = lazy(() => import("./layouts/LoginLayout.jsx"));
 
