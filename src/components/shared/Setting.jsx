@@ -18,6 +18,8 @@ const Setting = ({ show, callback }) => {
   const handleLang = (e) => {
     let lang = e.target.id;
 
+    localStorage.setItem("lang", lang);
+
     i18n.changeLanguage(lang);
     document.dir = lang === "fa" ? "rtl" : "ltr";
 
@@ -106,7 +108,7 @@ const Setting = ({ show, callback }) => {
               className={
                 "w-[100px] h-[40px] border-2 dark:border-gray-500 border-dashed rounded-[10px] " +
                 (localStorage?.getItem("lang") === "en" &&
-                  " bg-[#FF5B00] text-white")
+                  " bg-[#FF5B00] text-white border-[#FF8B00]")
               }
               id={"en"}
               onClick={handleLang}
@@ -117,7 +119,7 @@ const Setting = ({ show, callback }) => {
               className={
                 "w-[100px] h-[40px] border-2 dark:border-gray-500 border-dashed rounded-[10px] " +
                 (localStorage?.getItem("lang") === "fa" &&
-                  " bg-[#FF5B00] text-white")
+                  " bg-[#FF5B00] text-white border-[#FF8B00]")
               }
               id={"fa"}
               onClick={handleLang}
