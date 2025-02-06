@@ -5,11 +5,13 @@ import { changeTheme } from "./Feautres/Features.js";
 import Line from "./Line.jsx";
 import { toast } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 const Setting = ({ show, callback }) => {
   const [saveModal, setSaveModal] = useState(false);
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setSaveModal(show);
@@ -41,6 +43,8 @@ const Setting = ({ show, callback }) => {
           }
         : "",
     );
+
+    navigate("/");
   };
 
   return (

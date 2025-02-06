@@ -34,7 +34,12 @@ const Logo = () => {
           <img
             src="/images/favicon.svg"
             alt="salam logo"
-            className={"w-[40px] z-[10] absolute top-[0px] right-[5px]"}
+            className={
+              "w-[40px] z-[10] absolute top-[0px] " +
+              (localStorage?.getItem("lang") === "fa"
+                ? " right-[5px] "
+                : " left-[5px] ")
+            }
           />
         </Link>
       )}

@@ -88,8 +88,12 @@ html.dark .ͼ2 .cm-gutters {
     filter: invert(1) !important;
 }
 
-.ͼ1 .cm-lineNumbers .cm-gutterElement {
+html.fa .ͼ1 .cm-lineNumbers .cm-gutterElement {
     padding: 0 11px 0 0;
+}
+
+html.en .ͼ1 .cm-lineNumbers .cm-gutterElement {
+    padding: 0 0 0 11px;
 }
 
 .cm-line {
