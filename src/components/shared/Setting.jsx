@@ -13,7 +13,9 @@ const Setting = ({ show, callback }) => {
     setSaveModal(show);
   }, [show]);
 
-  const handleLang = () => {};
+  const handleLang = (e) => {
+    let lang = e.target.id;
+  };
 
   return (
     <>
