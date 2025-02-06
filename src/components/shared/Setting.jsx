@@ -3,6 +3,7 @@ import Modal from "./Modal.jsx";
 import Button from "../auth/Button.jsx";
 import { changeTheme } from "./Feautres/Features.js";
 import Line from "./Line.jsx";
+import { toast } from "react-hot-toast";
 
 // eslint-disable-next-line react/prop-types
 const Setting = ({ show, callback }) => {
@@ -34,6 +35,17 @@ const Setting = ({ show, callback }) => {
               defaultChecked={localStorage?.getItem("theme") === "dark"}
               onChange={(e) => {
                 changeTheme();
+                toast.success(
+                  "تغییر یافت !",
+                  localStorage?.getItem("theme") === "dark"
+                    ? {
+                        style: {
+                          background: "#333",
+                          color: "#fff",
+                        },
+                      }
+                    : "",
+                );
               }}
             />
             <div className="icon icon--moon">
@@ -64,6 +76,8 @@ const Setting = ({ show, callback }) => {
             </div>
           </label>
         </div>
+
+        <Line title={"پیشرفته"} className={"mb-4"} />
       </Modal>
     </>
   );
