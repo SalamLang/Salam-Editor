@@ -98,7 +98,7 @@ const Login = ({ callback }) => {
             <h1
               className={"sm:hidden font-bold text-[20px] mt-2 text-[#FF5C00]"}
             >
-              ورود به سلام
+              {t("loginToSalam")}
             </h1>
             <Form onSubmit={handleSubmit} className={"w-full max-w-[320px]"}>
               <Label form={"number"} required={true} error={errors.mobile}>
