@@ -58,9 +58,9 @@ const Setting = ({ show, callback }) => {
         }}
         className={"w-[600px] p-3"}
       >
-        <Line title={"ظاهری"} className={"mt-0 mb-4"} />
+        <Line title={t("appearance")} className={"mt-0 mb-4"} />
         <div className={"flex items-center gap-[20px]"}>
-          <span>حالت روشنایی:</span>
+          <span>{t("theme")}</span>
           <label form="switch" className="toggle">
             <input
               type="checkbox"
@@ -70,7 +70,7 @@ const Setting = ({ show, callback }) => {
               onChange={(e) => {
                 changeTheme();
                 toast.success(
-                  "تغییر یافت !",
+                  t("success"),
                   localStorage?.getItem("theme") === "dark"
                     ? {
                         style: {
@@ -111,9 +111,9 @@ const Setting = ({ show, callback }) => {
           </label>
         </div>
 
-        <Line title={"پیشرفته"} className={"mb-4"} />
+        <Line title={t("advanced")} className={"mb-4"} />
         <div className="flex justify-start items-center gap-[20px]">
-          <span>تغییر زبان:</span>
+          <span>{t("changeLang")}</span>
           <div className={"flex justify-start items-center gap-[20px]"}>
             <button
               className={

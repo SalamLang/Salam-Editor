@@ -14,6 +14,8 @@ const resources = {
       setting: "setting",
       appearance: "appearance",
       advanced: "advanced",
+      theme: "theme",
+      changeLang: "change language",
     },
   },
   fa: {
@@ -28,6 +30,8 @@ const resources = {
       setting: "تنظیمات",
       appearance: "ظاهری",
       advanced: "پیشرفته",
+      theme: "سبک روشنایی",
+      changeLang: "تغییر زبان",
     },
   },
 };
