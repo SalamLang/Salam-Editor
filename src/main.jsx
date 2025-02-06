@@ -15,6 +15,7 @@ import Users from "./components/admin/Users.jsx";
 import Codes from "./components/admin/Codes.jsx";
 import EditorLayout from "./layouts/EditorLayout";
 import "./i18n";
+import LangConfig from "./components/config/LangConfig.jsx";
 
 const RunLayout = lazy(() => import("./layouts/RunLayout"));
 const LoginLayout = lazy(() => import("./layouts/LoginLayout.jsx"));
@@ -28,6 +29,7 @@ createRoot(document.getElementById("root")).render(
           <ToastContainer />
           <Toaster />
           <SalamConfig />
+          <LangConfig />
           <Routes>
             {/*Editor*/}
             <Route path="/:id?" element={<EditorLayout />} />
