@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 // eslint-disable-next-line react/prop-types
 const Verify = ({ mobile }) => {
   const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     otp: null,
   });
@@ -21,7 +22,7 @@ const Verify = ({ mobile }) => {
   const [errors, setErrors] = useState({});
 
   const validation = Yup.object({
-    otp: Yup.string().required("کد ورود الزامی است"),
+    otp: Yup.string().required("وارد کد ورود الزامی است"),
   });
 
   const handleSubmit = (e) => {
@@ -34,7 +35,10 @@ const Verify = ({ mobile }) => {
         setErrors({});
         let result = await VerifyOtpService(mobile, formData.otp);
         if (result) {
+          toast.success("کدورود باموفقیت ارسال شد.");
           location.href = "/";
+        } else {
+          toast.error(t("problem"));
         }
         setClicked(false);
       })
@@ -69,22 +73,22 @@ const Verify = ({ mobile }) => {
               src="/images/login.jpg"
               alt="login"
               loading={"lazy"}
-              className={"w-[200px] -mt-10 hue-rotate-[215deg]"}
+              className={"w-[200px] -mt-10 hue-rotate-[215deg] rounded-[100px]"}
             />
             <Form onSubmit={handleSubmit} className={"w-full max-w-[320px]"}>
               <Label form={"number"} required={true} error={errors.otp}>
-                <span>{t("otpCode")}:</span>
+                کد ورود:
                 <Input
                   type={"number"}
                   name={"otp"}
                   onInput={handleChange}
-                  placeholder={t("otpCode")}
+                  placeholder={"کد ورود"}
                   autoFocus={true}
                   className={"mt-1 tracking-wide"}
                 />
               </Label>
               <Button type={"submit"} disabled={clicked}>
-                {t("verify")}
+                تایید
               </Button>
             </Form>
           </div>

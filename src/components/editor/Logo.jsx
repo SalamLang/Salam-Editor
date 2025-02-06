@@ -48,7 +48,10 @@ const Logo = () => {
         <>
           <div
             className={
-              "p-1 rounded-full w-[40px] bg-white cursor-pointer h-[40px] absolute top-0 right-[5px]"
+              "p-1 rounded-full w-[40px] bg-white cursor-pointer h-[40px] absolute top-0 " +
+              (localStorage?.getItem("lang") === "fa"
+                ? " right-[5px] "
+                : " left-[5px] ")
             }
             onClick={() => {
               setOpenProfile(true);
