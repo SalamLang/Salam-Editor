@@ -10,6 +10,7 @@ import * as Yup from "yup";
 import SendOtpService from "../../services/SendOtpService.js";
 import { toast } from "react-hot-toast";
 import Button from "../auth/Button.jsx";
+import UpdateInfoService from "../../services/UpdateInfoService.js";
 
 const Profile = () => {
   const { t } = useTranslation();
@@ -108,7 +109,7 @@ const Profile = () => {
               defaultValue={data.mobile}
             />
           </Label>
-          <Label form={"name"}>
+          <Label form={"name"} error={errors.name}>
             <span>{t("name")}: </span>
             <Input
               type={"text"}
@@ -120,7 +121,7 @@ const Profile = () => {
               defaultValue={data.name}
             />
           </Label>
-          <Label form={"family"}>
+          <Label form={"family"} error={errors.family}>
             <span>{t("family")}: </span>
             <Input
               type={"text"}
