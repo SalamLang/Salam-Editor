@@ -8,9 +8,9 @@ import { useState } from "react";
 const Profile = () => {
   const { t } = useTranslation();
   const [data, setData] = useState({
-    mobile: null,
-    name: null,
-    family: null,
+    mobile: "09030422848",
+    name: "okaok",
+    family: "pokpk",
   });
 
   return (
@@ -25,6 +25,7 @@ const Profile = () => {
               placeholder={t("mobileNumber")}
               className={"mt-1 tracking-wide"}
               readOnly={true}
+              defaultValue={data.mobile}
             />
           </Label>
           <Label form={"name"}>
@@ -35,6 +36,7 @@ const Profile = () => {
               name={"name"}
               placeholder={t("name")}
               className={"mt-1 tracking-wide"}
+              defaultValue={data.name}
             />
           </Label>
           <Label form={"family"}>
@@ -45,6 +47,7 @@ const Profile = () => {
               name={"family"}
               placeholder={t("family")}
               className={"mt-1 tracking-wide"}
+              defaultValue={data.family}
             />
           </Label>
         </Form>
