@@ -15,10 +15,12 @@ const Input = ({
   className,
   // eslint-disable-next-line react/prop-types
   readOnly,
+  defaultValue,
 }) => {
   return (
     <>
       <input
+        defaultValue={defaultValue}
         type={type}
         id={id}
         name={name}

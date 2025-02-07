@@ -3,9 +3,15 @@ import Input from "../auth/Input.jsx";
 import Label from "../auth/Label.jsx";
 import { useTranslation } from "react-i18next";
 import Form from "../auth/Form.jsx";
+import { useState } from "react";
 
 const Profile = () => {
   const { t } = useTranslation();
+  const [data, setData] = useState({
+    mobile: null,
+    name: null,
+    family: null,
+  });
 
   return (
     <>
