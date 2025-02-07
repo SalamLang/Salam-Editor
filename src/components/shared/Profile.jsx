@@ -6,10 +6,15 @@ import Form from "../auth/Form.jsx";
 import { useEffect, useState } from "react";
 import { OrbitProgress } from "react-loading-indicators";
 import GetInfoService from "../../services/GetInfoService.js";
+import * as Yup from "yup";
+import SendOtpService from "../../services/SendOtpService.js";
+import { toast } from "react-hot-toast";
 
 const Profile = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
+  const [clicked, setClicked] = useState(false);
+  const [errors, setErrors] = useState({});
   const [data, setData] = useState({
     mobile: null,
     name: null,
@@ -22,6 +27,52 @@ const Profile = () => {
       setData(result.data.user);
     });
   }, []);
+
+  const validation = Yup.object({
+    name: Yup.string().required("وارد کردن نام است"),
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setClicked(true);
+
+    validation
+      .validate(formData, { abortEarly: false })
+      .then(async () => {
+        setErrors({});
+        let result = await SendOtpService(formData.mobile);
+        if (result) {
+          toast.success(
+            t("sendOtp"),
+            localStorage?.getItem("theme") === "dark"
+              ? {
+                  style: {
+                    background: "#333",
+                    color: "#fff",
+                  },
+                }
+              : "",
+          );
+          callback(formData.mobile);
+        }
+        setClicked(false);
+      })
+      .catch((err) => {
+        const newErrors = err.inner.reduce((acc, curr) => {
+          acc[curr.path] = curr.message;
+          return acc;
+        }, {});
+        setErrors(newErrors);
+        setClicked(false);
+      });
+  };
+
+  const handleChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value.trim(),
+    });
+  };
 
   return (
     <>
@@ -63,6 +114,7 @@ const Profile = () => {
               id={"name"}
               name={"name"}
               placeholder={t("name")}
+              onInput={handleChange}
               className={"mt-1 tracking-wide"}
               defaultValue={data.name}
             />
@@ -73,6 +125,7 @@ const Profile = () => {
               type={"text"}
               id={"family"}
               name={"family"}
+              onInput={handleChange}
               placeholder={t("family")}
               className={"mt-1 tracking-wide"}
               defaultValue={data.family}
