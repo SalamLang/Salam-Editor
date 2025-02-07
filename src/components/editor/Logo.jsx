@@ -15,13 +15,7 @@ const Logo = () => {
   const [clicked, setClicked] = useState(false);
   const navigate = useNavigate();
   const [confirm, setConfirm] = useState(false);
-
-  useEffect(() => {
-    setIsLogin(login);
-  }, [login, location]);
-
   const [openProfile, setOpenProfile] = useState(false);
-
   const [tabs, setTabs] = useState([
     {
       id: "profile",
@@ -36,7 +30,6 @@ const Logo = () => {
     setClicked(true);
     setConfirm(true);
   };
-
   const accept = () => {
     setClicked(false);
     setConfirm(false);
@@ -44,11 +37,14 @@ const Logo = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
-
   const reject = () => {
     setClicked(false);
     setConfirm(false);
   };
+
+  useEffect(() => {
+    setIsLogin(login);
+  }, [login, location]);
 
   return (
     <>
