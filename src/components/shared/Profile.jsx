@@ -39,13 +39,13 @@ const Profile = () => {
     setClicked(true);
 
     validation
-      .validate(formData, { abortEarly: false })
+      .validate(data, { abortEarly: false })
       .then(async () => {
         setErrors({});
-        let result = await SendOtpService(formData.mobile);
+        let result = await SendOtpService(data.mobile);
         if (result) {
           toast.success(
-            t("sendOtp"),
+            t("saved"),
             localStorage?.getItem("theme") === "dark"
               ? {
                   style: {
@@ -55,7 +55,6 @@ const Profile = () => {
                 }
               : "",
           );
-          callback(formData.mobile);
         }
         setClicked(false);
       })

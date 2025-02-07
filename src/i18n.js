@@ -30,6 +30,7 @@ const resources = {
       family: "Family",
       nameRequire: "Name Cannot Be Empty",
       familyRequire: "Family Cannot Be Empty",
+      saved: "Save Successfully.",
     },
   },
   fa: {
@@ -60,6 +61,7 @@ const resources = {
       family: "نام خانوادگی",
       nameRequire: "نام نباید خالی باشد.",
       familyRequire: "نام خانوادگی نباید خالی باشد.",
+      saved: "ذخیره شد.",
     },
   },
 };
