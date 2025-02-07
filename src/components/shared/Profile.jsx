@@ -42,6 +42,7 @@ const Profile = () => {
             type={"number"}
             placeholder={t("mobileNumber")}
             className={"mt-1 tracking-wide"}
+            readOnly={true}
           />
         </Label>
         <Label form={"name"}>
