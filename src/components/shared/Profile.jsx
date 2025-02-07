@@ -55,6 +55,16 @@ const Profile = () => {
             className={"mt-1 tracking-wide"}
           />
         </Label>
+        <Label form={"family"}>
+          <span>{t("family")}: </span>
+          <Input
+            type={"text"}
+            id={"family"}
+            name={"family"}
+            placeholder={t("family")}
+            className={"mt-1 tracking-wide"}
+          />
+        </Label>
         <Button
           type={"button"}
           theme={"#E7000B"}
