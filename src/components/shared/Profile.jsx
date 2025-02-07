@@ -9,6 +9,7 @@ import GetInfoService from "../../services/GetInfoService.js";
 import * as Yup from "yup";
 import SendOtpService from "../../services/SendOtpService.js";
 import { toast } from "react-hot-toast";
+import Button from "../auth/Button.jsx";
 
 const Profile = () => {
   const { t } = useTranslation();
@@ -29,7 +30,8 @@ const Profile = () => {
   }, []);
 
   const validation = Yup.object({
-    name: Yup.string().required("وارد کردن نام است"),
+    name: Yup.string().required(t("nameRequire")),
+    family: Yup.string().required(t("familyRequire")),
   });
 
   const handleSubmit = (e) => {
@@ -96,7 +98,7 @@ const Profile = () => {
 
       <div className="w-full h-full p-3 overflow-auto">
         <Line title={"اطلاعات حساب"} className={"mt-2"} />
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Label form={"number"}>
             <span>{t("mobileNumber")}: </span>
             <Input
@@ -131,6 +133,9 @@ const Profile = () => {
               defaultValue={data.family}
             />
           </Label>
+          <Button type={"submit"} disabled={clicked} className={"mt-5"}>
+            ذخیره اطلاعات
+          </Button>
         </Form>
       </div>
     </>

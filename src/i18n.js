@@ -28,6 +28,8 @@ const resources = {
       problem: "We Have A Problem! Try Again",
       name: "Name",
       family: "Family",
+      nameRequire: "Name Cannot Be Empty",
+      familyRequire: "Family Cannot Be Empty",
     },
   },
   fa: {
@@ -56,6 +58,8 @@ const resources = {
       problem: "مشکلی پیش امده! مجدد تلاش کنید.",
       name: "نام",
       family: "نام خانوادگی",
+      nameRequire: "نام نباید خالی باشد.",
+      familyRequire: "نام خانوادگی نباید خالی باشد.",
     },
   },
 };
