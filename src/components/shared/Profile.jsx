@@ -42,7 +42,7 @@ const Profile = () => {
       .validate(data, { abortEarly: false })
       .then(async () => {
         setErrors({});
-        let result = await SendOtpService(data.mobile);
+        let result = await UpdateInfoService(data.name, data.family);
         if (result) {
           toast.success(
             t("saved"),
