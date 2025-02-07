@@ -34,7 +34,7 @@ const Profile = () => {
 
   return (
     <>
-      <div className="w-full h-full p-3">
+      <div className="w-full h-full p-3 overflow-auto">
         <Line title={"اطلاعات حساب"} className={"mt-2"} />
         <Label form={"number"}>
           <span>{t("mobileNumber")}: </span>
@@ -65,12 +65,13 @@ const Profile = () => {
             className={"mt-1 tracking-wide"}
           />
         </Label>
+        <Line title={"خروج"} className={"my-6"} />
         <Button
           type={"button"}
           theme={"#E7000B"}
           disabled={clicked}
           className={
-            "border-2 !mt-6 bg-transparent !text-red-600 border-red-600 flex justify-center items-center gap-2"
+            "border-2 bg-transparent !mt-0 mb-2 !text-red-600 border-red-600 flex justify-center items-center gap-2"
           }
           onClick={logout}
         >
