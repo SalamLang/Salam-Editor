@@ -4,11 +4,15 @@ import Line from "./Line.jsx";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Confirm from "./Confirm.jsx";
+import Input from "../auth/Input.jsx";
+import Label from "../auth/Label.jsx";
+import { useTranslation } from "react-i18next";
 
 const Profile = () => {
   const [clicked, setClicked] = useState(false);
   const navigate = useNavigate();
   const [confirm, setConfirm] = useState(false);
+  const { t } = useTranslation();
 
   const logout = () => {
     setClicked(true);
@@ -32,12 +36,30 @@ const Profile = () => {
     <>
       <div className="w-full h-full p-3">
         <Line title={"اطلاعات حساب"} className={"mt-2"} />
+        <Label form={"number"}>
+          <span>{t("mobileNumber")}: </span>
+          <Input
+            type={"number"}
+            placeholder={t("mobileNumber")}
+            className={"mt-1 tracking-wide"}
+          />
+        </Label>
+        <Label form={"name"}>
+          <span>{t("name")}: </span>
+          <Input
+            type={"text"}
+            id={"name"}
+            name={"name"}
+            placeholder={t("name")}
+            className={"mt-1 tracking-wide"}
+          />
+        </Label>
         <Button
           type={"button"}
           theme={"#E7000B"}
           disabled={clicked}
           className={
-            "border-2 bg-transparent !text-red-600 border-red-600 flex justify-center items-center gap-2"
+            "border-2 !mt-6 bg-transparent !text-red-600 border-red-600 flex justify-center items-center gap-2"
           }
           onClick={logout}
         >

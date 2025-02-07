@@ -26,6 +26,7 @@ const resources = {
       otpCode: "Otp Code",
       requireOtp: "Otp Is Required",
       problem: "We Have A Problem! Try Again",
+      name: "name",
     },
   },
   fa: {
@@ -52,6 +53,7 @@ const resources = {
       otpCode: "کد ورود",
       requireOtp: "کد ورود الزامی است.",
       problem: "مشکلی پیش امده! مجدد تلاش کنید.",
+      name: "نام",
     },
   },
 };
