@@ -13,6 +13,7 @@ const Input = ({
   autoFocus,
   // eslint-disable-next-line react/prop-types
   className,
+  // eslint-disable-next-line react/prop-types
   readOnly,
 }) => {
   return (
