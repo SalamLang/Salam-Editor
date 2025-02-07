@@ -1,15 +1,20 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import LoginContext from "../../context/LoginContext.jsx";
 import Modal from "../shared/Modal.jsx";
 import Profile from "../shared/Profile.jsx";
 import Codes from "../shared/Codes.jsx";
 import Svg from "../shared/Svg.jsx";
+import Button from "../auth/Button.jsx";
+import Confirm from "../shared/Confirm.jsx";
 
 const Logo = () => {
   const { login } = useContext(LoginContext);
   const [isLogin, setIsLogin] = useState(false);
   const location = useLocation();
+  const [clicked, setClicked] = useState(false);
+  const navigate = useNavigate();
+  const [confirm, setConfirm] = useState(false);
 
   useEffect(() => {
     setIsLogin(login);
@@ -26,6 +31,24 @@ const Logo = () => {
     },
     { id: "codes", label: "کد های من", active: false, element: <Codes /> },
   ]);
+
+  const logout = () => {
+    setClicked(true);
+    setConfirm(true);
+  };
+
+  const accept = () => {
+    setClicked(false);
+    setConfirm(false);
+
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
+  const reject = () => {
+    setClicked(false);
+    setConfirm(false);
+  };
 
   return (
     <>
@@ -71,8 +94,8 @@ const Logo = () => {
             }}
             className={"!w-[750px] !h-[450px] relative"}
           >
-            <div className="w-full h-full flex">
-              <div className={"side basis-3/12 border-l p-3"}>
+            <div className="w-full h-full flex relative">
+              <div className={"side basis-3/12 border-l p-3 relative"}>
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
@@ -97,6 +120,20 @@ const Logo = () => {
                     {tab.label}
                   </button>
                 ))}
+                <Button
+                  type={"button"}
+                  theme={"#E7000B"}
+                  disabled={clicked}
+                  className={
+                    "border-2 w-[149px] bg-transparent !text-red-600 border-red-600 flex justify-center items-center gap-2 text-[15px] absolute bottom-[12px] m-0 right-[12px]"
+                  }
+                  onClick={() => {
+                    logout();
+                  }}
+                >
+                  <Svg name={"alert"} theme={"#E7000B"} />
+                  خروج از حساب
+                </Button>
               </div>
               <div className={"basis-10/12"}>
                 {tabs.map(
@@ -108,6 +145,14 @@ const Logo = () => {
                     ),
                 )}
               </div>
+              <Confirm
+                show={confirm}
+                callback={() => {
+                  setConfirm(false);
+                }}
+                accept={accept}
+                reject={reject}
+              />
             </div>
           </Modal>
         </>

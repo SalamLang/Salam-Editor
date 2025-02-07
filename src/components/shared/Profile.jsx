@@ -9,28 +9,7 @@ import Label from "../auth/Label.jsx";
 import { useTranslation } from "react-i18next";
 
 const Profile = () => {
-  const [clicked, setClicked] = useState(false);
-  const navigate = useNavigate();
-  const [confirm, setConfirm] = useState(false);
   const { t } = useTranslation();
-
-  const logout = () => {
-    setClicked(true);
-    setConfirm(true);
-  };
-
-  const accept = () => {
-    setClicked(false);
-    setConfirm(false);
-
-    localStorage.removeItem("token");
-    navigate("/");
-  };
-
-  const reject = () => {
-    setClicked(false);
-    setConfirm(false);
-  };
 
   return (
     <>
@@ -65,29 +44,7 @@ const Profile = () => {
             className={"mt-1 tracking-wide"}
           />
         </Label>
-        <Line title={"خروج"} className={"my-6"} />
-        <Button
-          type={"button"}
-          theme={"#E7000B"}
-          disabled={clicked}
-          className={
-            "border-2 bg-transparent !mt-0 mb-2 !text-red-600 border-red-600 flex justify-center items-center gap-2"
-          }
-          onClick={logout}
-        >
-          <Svg name={"alert"} theme={"#E7000B"} />
-          خروج از حساب
-        </Button>
       </div>
-
-      <Confirm
-        show={confirm}
-        callback={() => {
-          setConfirm(false);
-        }}
-        accept={accept}
-        reject={reject}
-      />
     </>
   );
 };
