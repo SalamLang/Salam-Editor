@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Run from "../run/Run.jsx";
 import { useLocation } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Svg from "../shared/Svg.jsx";
+import TrueContext from "../../context/TrueContext.jsx";
 
 // eslint-disable-next-line react/prop-types
 const ToastMessage = ({ text }) => {
@@ -27,6 +28,7 @@ const ToastMessage = ({ text }) => {
 const SalamConfig = () => {
   const [isReady, setIsReady] = useState(false);
   const location = useLocation();
+  const { isTrue, setIsTrue } = useContext(TrueContext);
 
   useEffect(() => {
     window.code = "";
@@ -55,6 +57,8 @@ const SalamConfig = () => {
       },
       print: (text) => {
         toast.remove(id);
+        setIsTrue(true);
+        console.log(isTrue);
         window.code += text;
         window.true = true;
         console.log(
@@ -70,6 +74,7 @@ const SalamConfig = () => {
         );
       },
       printErr: (text) => {
+        setIsTrue(false);
         window.true = false;
         console.error(
           "%cprint-Log => " + text,

@@ -8,8 +8,8 @@ const TrueProvider = ({ children }) => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log("Checking is true code?");
-  }, [location]);
+    console.log("Location or isTrue changed:", { location, isTrue });
+  }, [location, isTrue]);
 
   return (
     <TrueContext.Provider value={{ isTrue, setIsTrue }}>
