@@ -12,12 +12,13 @@ import SaveCode from "../shared/Feautres/SaveCode.jsx";
 import Share from "./Share.jsx";
 import Setting from "../shared/Setting.jsx";
 import { useTranslation } from "react-i18next";
+import TrueContext from "../../context/TrueContext.jsx";
 
 const Header = () => {
   const navigate = useNavigate();
   const { login } = useContext(LoginContext);
   const { t } = useTranslation();
-
+  const { isTrue } = useContext(TrueContext);
   const [openSave, setOpenSave] = useState(false);
   const [openSetting, setOpenSetting] = useState(false);
   const params = useParams();
@@ -39,13 +40,13 @@ const Header = () => {
           <DropdownItem
             title={t("exportSalamFile")}
             callback={() => {
-              handleSaveFile();
+              handleSaveFile(isTrue);
             }}
           />
           <DropdownItem
             title={t("exportSite")}
             callback={() => {
-              window.downloadIframeHTML();
+              window.downloadIframeHTML(isTrue);
             }}
           />
           <DropdownItem

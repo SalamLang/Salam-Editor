@@ -1,5 +1,7 @@
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import TrueContext from "../../../context/TrueContext.jsx";
 
 export const handleFileChange = (event) => {
   const file = event.target.files[0];
@@ -25,16 +27,22 @@ export const openFilePicker = () => {
   document.getElementById("fileInput").click();
 };
 
-export const handleSaveFile = () => {
-  const fileName = "myFile.salam";
-  const fileContent = localStorage.getItem("code") ?? "";
-  const blob = new Blob([fileContent], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = fileName;
-  link.click();
-  URL.revokeObjectURL(url);
+export const handleSaveFile = (isTrue) => {
+  if (isTrue === false) {
+    toast.error("کد دارای ارور است.");
+  }
+
+  if (isTrue === true) {
+    const fileName = "myFile.salam";
+    const fileContent = localStorage.getItem("code") ?? "";
+    const blob = new Blob([fileContent], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = fileName;
+    link.click();
+    URL.revokeObjectURL(url);
+  }
 };
 
 export const changeTheme = () => {

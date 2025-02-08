@@ -31,6 +31,7 @@ const resources = {
       nameRequire: "Name Cannot Be Empty",
       familyRequire: "Family Cannot Be Empty",
       saved: "Save Successfully.",
+      codeError: "Your Code Have A Bug.",
     },
   },
   fa: {
@@ -62,6 +63,7 @@ const resources = {
       nameRequire: "نام نباید خالی باشد.",
       familyRequire: "نام خانوادگی نباید خالی باشد.",
       saved: "ذخیره شد.",
+      codeError: "کد دارای خروجی است.",
     },
   },
 };

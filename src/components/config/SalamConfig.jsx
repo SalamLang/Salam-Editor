@@ -99,17 +99,23 @@ const SalamConfig = () => {
       },
     };
 
-    window.downloadIframeHTML = () => {
-      let iframe = document.querySelector("iframe");
-      let iframeDocument =
-        iframe.contentDocument || iframe.contentWindow.document;
-      let htmlContent = iframeDocument.documentElement.outerHTML;
+    window.downloadIframeHTML = (isTrue) => {
+      if (isTrue === false) {
+        toast.error("کد دارای ارور است");
+      }
 
-      let blob = new Blob([htmlContent], { type: "text/html" });
-      let link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "output.html";
-      link.click();
+      if (isTrue === true) {
+        let iframe = document.querySelector("iframe");
+        let iframeDocument =
+          iframe.contentDocument || iframe.contentWindow.document;
+        let htmlContent = iframeDocument.documentElement.outerHTML;
+
+        let blob = new Blob([htmlContent], { type: "text/html" });
+        let link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "output.html";
+        link.click();
+      }
     };
   }, [location]);
 
