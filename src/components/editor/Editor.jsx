@@ -38,7 +38,7 @@ const Editor = () => {
         error.current,
         output.current,
       );
-    }, 300);
+    }, 500);
 
     if (tags && attr && style) {
       EditorService(
