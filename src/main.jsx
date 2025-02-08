@@ -17,6 +17,7 @@ import Codes from "./components/admin/Codes.jsx";
 import EditorLayout from "./layouts/EditorLayout";
 import LangConfig from "./components/config/LangConfig.jsx";
 import LoginLayout from "./layouts/LoginLayout.jsx";
+import TrueProvider from "./provider/TrueProvider.jsx";
 const RunLayout = lazy(() => import("./layouts/RunLayout"));
 
 createRoot(document.getElementById("root")).render(
@@ -24,33 +25,35 @@ createRoot(document.getElementById("root")).render(
     <Suspense fallback={<Loading />}>
       <BrowserRouter>
         <LangConfig />
-        <LoginProvider>
-          <RouteChangeHandler />
-          <ToastContainer />
-          <Toaster />
-          <SalamConfig />
-          <Routes>
-            {/*Editor*/}
-            <Route path="/:id?" element={<EditorLayout />} />
-            <Route path="/run" element={<RunLayout />} />
+        <TrueProvider>
+          <LoginProvider>
+            <RouteChangeHandler />
+            <ToastContainer />
+            <Toaster />
+            <SalamConfig />
+            <Routes>
+              {/*Editor*/}
+              <Route path="/:id?" element={<EditorLayout />} />
+              <Route path="/run" element={<RunLayout />} />
 
-            {/*Costume*/}
-            <Route path="/firework" element={<FireWork />} />
+              {/*Costume*/}
+              <Route path="/firework" element={<FireWork />} />
 
-            {/*Auth*/}
-            <Route path="/login" element={<LoginLayout />} />
+              {/*Auth*/}
+              <Route path="/login" element={<LoginLayout />} />
 
-            {/*Admin*/}
-            <Route path="admin" element={<AdminLayout />}>
-              <Route index element={<Index />} />
-              <Route path={"users"} element={<Users />} />
-              <Route path={"codes"} element={<Codes />} />
-            </Route>
+              {/*Admin*/}
+              <Route path="admin" element={<AdminLayout />}>
+                <Route index element={<Index />} />
+                <Route path={"users"} element={<Users />} />
+                <Route path={"codes"} element={<Codes />} />
+              </Route>
 
-            {/*404 - Not found*/}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </LoginProvider>
+              {/*404 - Not found*/}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </LoginProvider>
+        </TrueProvider>
       </BrowserRouter>
     </Suspense>
   </>,
