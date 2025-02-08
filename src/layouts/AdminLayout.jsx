@@ -25,7 +25,7 @@ const AdminLayout = () => {
           <Header />
           <div
             className={
-              "w-[98%] h-[calc(100vh-102px)] relative border bg-white mx-auto mt-3 rounded-[15px] p-4"
+              "w-[98%] h-[calc(100vh-102px)] relative border bg-white mx-auto mt-3 rounded-[15px] p-4 overflow-auto"
             }
           >
             <Outlet />

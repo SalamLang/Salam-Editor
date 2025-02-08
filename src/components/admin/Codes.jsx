@@ -70,8 +70,13 @@ const Codes = () => {
                       عنوان :<span>{code?.title}</span>
                     </span>
 
-                    <span className={"min-w-[130px]"}>
-                      کد :<span>{code?.code}</span>
+                    <span
+                      className={"min-w-[130px] flex items-center gap-[10px]"}
+                    >
+                      کد :
+                      <span className={"line-clamp-1 w-[90%]"}>
+                        {code?.code}
+                      </span>
                     </span>
                   </div>
                 </>
