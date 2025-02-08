@@ -27,9 +27,19 @@ export const openFilePicker = () => {
   document.getElementById("fileInput").click();
 };
 
-export const handleSaveFile = (isTrue) => {
+export const handleSaveFile = (isTrue, t) => {
   if (isTrue === false) {
-    toast.error("کد دارای ارور است.");
+    toast.error(
+      t("codeError"),
+      localStorage?.getItem("theme") === "dark"
+        ? {
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+          }
+        : "",
+    );
   }
 
   if (isTrue === true) {

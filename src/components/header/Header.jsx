@@ -13,6 +13,7 @@ import Share from "./Share.jsx";
 import Setting from "../shared/Setting.jsx";
 import { useTranslation } from "react-i18next";
 import TrueContext from "../../context/TrueContext.jsx";
+import { toast } from "react-hot-toast";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const Header = () => {
           <DropdownItem
             title={t("exportSalamFile")}
             callback={() => {
-              handleSaveFile(isTrue);
+              handleSaveFile(isTrue, t);
             }}
           />
           <DropdownItem
@@ -52,7 +53,21 @@ const Header = () => {
           <DropdownItem
             title={t("saveCode")}
             callback={() => {
-              setOpenSave(true);
+              if (isTrue === false) {
+                toast.error(
+                  t("codeError"),
+                  localStorage?.getItem("theme") === "dark"
+                    ? {
+                        style: {
+                          background: "#333",
+                          color: "#fff",
+                        },
+                      }
+                    : "",
+                );
+              } else {
+                setOpenSave(true);
+              }
             }}
           />
           <DropdownItem

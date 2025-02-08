@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Svg from "../shared/Svg.jsx";
 import TrueContext from "../../context/TrueContext.jsx";
+import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line react/prop-types
 const ToastMessage = ({ text }) => {
@@ -29,6 +30,7 @@ const SalamConfig = () => {
   const [isReady, setIsReady] = useState(false);
   const location = useLocation();
   const { isTrue, setIsTrue } = useContext(TrueContext);
+  const { t } = useTranslation();
 
   useEffect(() => {
     window.code = "";
@@ -101,7 +103,17 @@ const SalamConfig = () => {
 
     window.downloadIframeHTML = (isTrue) => {
       if (isTrue === false) {
-        toast.error("کد دارای ارور است");
+        toast.error(
+          t("codeError"),
+          localStorage?.getItem("theme") === "dark"
+            ? {
+                style: {
+                  background: "#333",
+                  color: "#fff",
+                },
+              }
+            : "",
+        );
       }
 
       if (isTrue === true) {
