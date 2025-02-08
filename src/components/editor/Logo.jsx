@@ -121,7 +121,7 @@ const Logo = () => {
                   theme={"#E7000B"}
                   disabled={clicked}
                   className={
-                    "border-2 w-[149px] bg-transparent !text-red-600 border-red-600 flex justify-center items-center gap-2 text-[15px] absolute bottom-[12px] m-0 right-[12px]"
+                    "border-2 !w-[149px] bg-transparent !text-red-600 border-red-600 flex justify-center items-center gap-2 text-[15px] absolute bottom-[12px] m-0 right-[12px]"
                   }
                   onClick={() => {
                     logout();
