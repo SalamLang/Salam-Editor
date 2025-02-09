@@ -12,9 +12,6 @@ const Editor = () => {
   const [levelTwo, setLevelTwo] = useState(false);
   const [levelThere, setLevelThere] = useState(false);
   const location = useLocation();
-  const [Try, setTry] = useState(0);
-  const navigate = useNavigate();
-
   let iframe = useRef();
   let error = useRef();
   let output = useRef();
@@ -34,7 +31,7 @@ const Editor = () => {
     }
 
     if (localStorage?.getItem("code") === null) {
-      setTry(1);
+      location.reload();
     }
 
     setTimeout(() => {
@@ -63,8 +60,6 @@ const Editor = () => {
           }
         },
       );
-      setTry(0);
-      navigate("/");
     }
 
     // document.querySelector("#editor").addEventListener("scroll", (event) => {
