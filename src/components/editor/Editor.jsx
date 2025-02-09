@@ -30,19 +30,6 @@ const Editor = () => {
       editor.innerHTML = "";
     }
 
-    if (localStorage?.getItem("code") === null) {
-      location.reload();
-    }
-
-    setTimeout(() => {
-      SalamService(
-        localStorage?.getItem("code"),
-        iframe.current,
-        error.current,
-        output.current,
-      );
-    }, 500);
-
     if (tags && attr && style) {
       EditorService(
         () => {
@@ -61,6 +48,15 @@ const Editor = () => {
         },
       );
     }
+
+    setTimeout(() => {
+      SalamService(
+        localStorage?.getItem("code"),
+        iframe.current,
+        error.current,
+        output.current,
+      );
+    }, 500);
 
     // document.querySelector("#editor").addEventListener("scroll", (event) => {
     //   event.target.cmView.requestMeasure();
