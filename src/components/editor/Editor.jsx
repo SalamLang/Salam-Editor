@@ -110,7 +110,7 @@ const Editor = () => {
         error.current,
         output.current,
       );
-    }, 500);
+    }, 1000);
 
     // document.querySelector("#editor").addEventListener("scroll", (event) => {
     //   event.target.cmView.requestMeasure();
