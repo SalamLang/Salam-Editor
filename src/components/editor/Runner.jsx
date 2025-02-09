@@ -93,7 +93,7 @@ const Runner = ({ callback }) => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="fill-transparent stroke-orange-500 -ml-[6px] -mr-[6px]"
+            className="fill-transparent stroke-orange-500 -ml-[6px] rtl:-mr-[10px] ltr:-mr-[9px]"
           >
             <path
               d="M15 19h6a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4a1 1 0 0 0-1 1"
@@ -117,7 +117,7 @@ const Runner = ({ callback }) => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="fill-transparent stroke-orange-500 -mr-[7px]"
+            className="fill-transparent stroke-orange-500 rtl:-mr-[9px] ltr:-mr-[5px]"
           >
             <path
               d="M12 3h9a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-9"
@@ -141,7 +141,7 @@ const Runner = ({ callback }) => {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="fill-transparent stroke-orange-500 -mr-[7px]"
+            className="fill-transparent stroke-orange-500 rtl:-mr-[7px] ltr:-mr-[9px] ltr:-ml-[9px]"
           >
             <path d="M23 11V3H3v8h20Z" strokeWidth="0"></path>
             <path
