@@ -103,14 +103,20 @@ const Editor = () => {
       );
     }
 
-    setTimeout(() => {
-      SalamService(
-        localStorage?.getItem("code"),
-        iframe.current,
-        error.current,
-        output.current,
-      );
-    }, 1000);
+    if (window.isReady !== true) {
+      let intId = setInterval(() => {
+        if (window.isReady === true) {
+          console.log(window.isReady);
+          SalamService(
+            localStorage?.getItem("code"),
+            iframe.current,
+            error.current,
+            output.current,
+          );
+          clearInterval(intId);
+        }
+      }, 1000);
+    }
 
     // document.querySelector("#editor").addEventListener("scroll", (event) => {
     //   event.target.cmView.requestMeasure();
