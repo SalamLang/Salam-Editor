@@ -71,7 +71,7 @@ const Runner = ({ callback }) => {
     <>
       <div
         className={
-          "shadow-orange dark:border-gray-500 fixed top-[75px] transition-all duration-1000 z-[998] bg-white dark:bg-[#22272E] w-fit h-[40px] rounded-[10px] border flex justify-end items-center px-3 gap-1 flex-row-reverse " +
+          "shadow-orange dark:border-gray-500 fixed top-[75px] transition-all duration-1000 z-[998] bg-white dark:bg-[#22272E] w-fit py-[3px] rounded-[10px] border flex justify-end items-center px-3 gap-1 flex-row-reverse " +
           (hidden && " !opacity-0 pointer-events-none") +
           (localStorage?.getItem("lang") === "fa"
             ? " left-[70px] "
