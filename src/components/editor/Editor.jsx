@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "../../scripts/codemirror.js";
 import EditorService from "../../services/EditorService.js";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Runner from "./Runner.jsx";
 import SalamService from "../../services/SalamService.js";
 import useTags from "../../hooks/useTags.jsx";
@@ -12,6 +12,8 @@ const Editor = () => {
   const [levelTwo, setLevelTwo] = useState(false);
   const [levelThere, setLevelThere] = useState(false);
   const location = useLocation();
+  const [Try, setTry] = useState(0);
+  const navigate = useNavigate();
 
   let iframe = useRef();
   let error = useRef();
@@ -32,58 +34,7 @@ const Editor = () => {
     }
 
     if (localStorage?.getItem("code") === null) {
-      console.log("Set Default");
-      localStorage.setItem(
-        "code",
-        `صفحه:
-    جهت = «راست به چپ» 
-    رنگ پس زمینه = «سفید»
-    قلم:
-      نام = «استعداد»
-      منبع = «https://editor.salamlang.ir/fonts/Estedad-Light.ttf»
-    تمام
-
-    سراسری:
-      نام قلم=«استعداد»
-    تمام
-
-    جعبه:   
-      عرض=«100%»   
-      ارتفاع=60 
-      رنگ پس زمینه=«سفید»
-      سایه جعبه=«0 0 15px -10px black» 
-      گردی=20 
-      مرز=«1px solid lightgrey»
-      محتوا=«به سلام خوش اومدی»
-      قرارگیری=«فلکس»
-      توجیه محتوا=«مرکز»
-      تراز محتوا=«مرکز»
-      اندازه قلم=22
-    تمام
-    جعبه:
-      قرارگیری=«فلکس»
-      تراز محتوا=«مرکز»
-      توجیه محتوا=«مرکز»
-      فاصله بالا=20
-      تصویر:
-        عرض=120
-        منبع=«https://editor.salamlang.ir/images/favicon.svg»
-      تمام
-    تمام
-    جعبه:
-      قرارگیری=«فلکس»
-      تراز محتوا=«مرکز»
-      توجیه محتوا=«مرکز»
-      فاصله بالا=20
-      پاراگراف:
-        وزن قلم=700
-        اندازه قلم=25
-        رنگ=«نارنجی تیره» 
-        محتوا=«سلام اولین زبان برنامه برنامه نویسی فارسی!!»
-      تمام
-    تمام
-تمام`,
-      );
+      setTry(1);
     }
 
     setTimeout(() => {
@@ -112,6 +63,8 @@ const Editor = () => {
           }
         },
       );
+      setTry(0);
+      navigate("/");
     }
 
     // document.querySelector("#editor").addEventListener("scroll", (event) => {
