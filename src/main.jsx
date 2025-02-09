@@ -14,11 +14,11 @@ import AdminLayout from "./layouts/AdminLayout.jsx";
 import Index from "./components/admin/Index.jsx";
 import Users from "./components/admin/Users.jsx";
 import Codes from "./components/admin/Codes.jsx";
-import EditorLayout from "./layouts/EditorLayout";
 import LangConfig from "./components/config/LangConfig.jsx";
 import LoginLayout from "./layouts/LoginLayout.jsx";
 import TrueProvider from "./provider/TrueProvider.jsx";
 const RunLayout = lazy(() => import("./layouts/RunLayout"));
+const EditorLayout = lazy(() => import("./layouts/EditorLayout"));
 
 createRoot(document.getElementById("root")).render(
   <>
