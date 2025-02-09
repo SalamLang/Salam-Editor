@@ -32,6 +32,7 @@ const Editor = () => {
     }
 
     if (localStorage?.getItem("code") === null) {
+      console.log("Set Default");
       localStorage.setItem(
         "code",
         `صفحه:
