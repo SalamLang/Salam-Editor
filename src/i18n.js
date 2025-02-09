@@ -32,6 +32,14 @@ const resources = {
       familyRequire: "Family Cannot Be Empty",
       saved: "Save Successfully.",
       codeError: "Your Code Have A Bug.",
+      salam: "Salam, the first Persian language in the world!",
+      salamDescription: `Have you ever worked with Salam? Do you know how cool it is? You might say, what does it matter to me, but let me tell you about the design? are you a writer are you a teacher student? Would you like to have a place where you can build anything you want? Do you want to make your own website? Or programming at all? What's better than being able to code in your mother tongue? Faster and better! It is easier to learn.`,
+      salam2: "Are you ready to travel to a new world?",
+      salamDescription2: `Hello, a new trace! No one has seen anything like it
+                <br />
+                So why don't you do your job sooner? It's time for immigrants!
+                <br />
+                But this time to hello, not to...`,
     },
   },
   fa: {
@@ -64,6 +72,19 @@ const resources = {
       familyRequire: "نام خانوادگی نباید خالی باشد.",
       saved: "ذخیره شد.",
       codeError: "کد دارای خروجی است.",
+      salam: "سلام اولین زبان فارسی جهان!",
+      salamDescription: `تا حالا با سلام کار کردی؟ میدونی چقدر خفنه؟ شاید بگی اخه به چه
+                درد من میخوره ولی بزار بهت بگم طراحی؟ نویسنده ای؟ معلمی؟ دانش
+                اموزی؟ دوست داری یه جایی باشه هرچی خواستی بسازی؟ دوست داری سایت
+                شخصیتو بسازی؟ یا اصلا برنامه نویسی؟ چی ازین بهتر که بتونی با
+                زبان مادریت کد بزنی؟ هم سریع تره هم بهتره دیگه! تازه یادگیریش هم
+                راحت تره.`,
+      salam2: "اماده ای به یه دنیای جدید سفر کنی؟",
+      salamDescription2: `سلام یه دنبای جدیده! که هیچکی مثلشو ندیده
+                <br />
+                پس چرا زودتر کاراتو نمیکنی؟ وقت وقت مهاجراته ها!
+                <br />
+                اما اینبار به سلام نه به ...`,
     },
   },
 };

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line react/prop-types
 const LoginSidebar = ({ verify }) => {
@@ -6,6 +7,7 @@ const LoginSidebar = ({ verify }) => {
   const [readyLevel2, setReadyLevel2] = useState(false);
   const [logoClass, setLogoClass] = useState("");
   const [descriptionClass, setDescriptionClass] = useState("");
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!verify) {
@@ -103,19 +105,14 @@ const LoginSidebar = ({ verify }) => {
                   "text-white text-[20px] text-center mt-[50px] font-bold"
                 }
               >
-                سلام اولین زبان فارسی جهان!
+                {t("salam")}
               </p>
               <p
                 className={
                   "text-white text-[15px] font-[400] text-justify mt-4 px-7 leading-[1.8]"
                 }
               >
-                تا حالا با سلام کار کردی؟ میدونی چقدر خفنه؟ شاید بگی اخه به چه
-                درد من میخوره ولی بزار بهت بگم طراحی؟ نویسنده ای؟ معلمی؟ دانش
-                اموزی؟ دوست داری یه جایی باشه هرچی خواستی بسازی؟ دوست داری سایت
-                شخصیتو بسازی؟ یا اصلا برنامه نویسی؟ چی ازین بهتر که بتونی با
-                زبان مادریت کد بزنی؟ هم سریع تره هم بهتره دیگه! تازه یادگیریش هم
-                راحت تره.
+                {t("salamDescription")}
               </p>
             </>
           ) : (
@@ -125,18 +122,14 @@ const LoginSidebar = ({ verify }) => {
                   "text-white text-[20px] text-center mt-[50px] font-bold"
                 }
               >
-                اماده ای به یه دنیای جدید سفر کنی؟
+                {t("salam2")}
               </p>
               <p
                 className={
                   "text-white text-[15px] font-[400] text-center mt-4 px-7 leading-[1.8]"
                 }
               >
-                سلام یه دنبای جدیده! که هیچکی مثلشو ندیده
-                <br />
-                پس چرا زودتر کاراتو نمیکنی؟ وقت وقت مهاجراته ها!
-                <br />
-                اما اینبار به سلام نه به ...
+                {t("salamDescription2")}
               </p>
             </>
           )}
