@@ -34,21 +34,20 @@ const runSalam = (code) => {
     return;
   }
 
-  const args = ["code", code];
-  console.log(
-    "%cCalling Salam with args => " + args[1],
-    `
-          padding: 3px 10px;
-          border-radius: 5px;
-          color: white;
-          background-color: #BEA200;
-          font-family: estedad, sans-serif;
-          font-size: 15px;
-          `,
-  );
+  // console.log(
+  //   "%cCalling Salam with args => " + args[1],
+  //   `
+  //         padding: 3px 10px;
+  //         border-radius: 5px;
+  //         color: white;
+  //         background-color: #BEA200;
+  //         font-family: estedad, sans-serif;
+  //         font-size: 15px;
+  //         `,
+  // );
 
   if (window.isReady) {
-    captureOutput(args);
+    captureOutput(["code", code]);
   } else {
     console.log("Salam runtime not ready. Please wait...");
   }
@@ -85,6 +84,37 @@ const captureOutput = (args) => {
             window.code = "";
           }
         }
+      } catch (err) {
+        Module.printErr("Runtime error: " + err);
+      }
+    } else {
+      Module.printErr(
+        "callMain is not defined. Ensure NO_EXIT_RUNTIME is enabled.",
+      );
+    }
+  } catch (err) {
+    Module.printErr("خطای غیرمنتظره رخ داد. " + err);
+  } finally {
+    is_running = false;
+  }
+};
+
+window.captureLint = (args) => {
+  if (outputPre) outputPre.textContent = "";
+  if (errorPre) errorPre.textContent = "";
+
+  if (is_running) {
+    return;
+  }
+
+  try {
+    is_running = true;
+
+    if (typeof callMain === "function") {
+      try {
+        callMain(args);
+        localStorage.setItem("code", window.code);
+        window.code = "";
       } catch (err) {
         Module.printErr("Runtime error: " + err);
       }
