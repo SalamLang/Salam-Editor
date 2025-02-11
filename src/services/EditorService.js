@@ -230,7 +230,7 @@ Value {
 تمام`,
   };
 
-  let editor = new EditorView(editor_options);
+  let editor = new EditorView(editor_options).focus();
 };
 
 export default EditorService;
