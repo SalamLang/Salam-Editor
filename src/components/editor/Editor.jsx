@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "../../scripts/codemirror.js";
 import EditorService from "../../services/EditorService.js";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Runner from "./Runner.jsx";
 import SalamService from "../../services/SalamService.js";
 import useTags from "../../hooks/useTags.jsx";

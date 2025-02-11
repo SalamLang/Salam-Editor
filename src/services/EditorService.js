@@ -207,9 +207,12 @@ Value {
       تراز محتوا=«مرکز»
       توجیه محتوا=«مرکز»
       فاصله بالا=20
-      تصویر:
+      پیوند: 
+        منبع=«https://salamlang.ir»
+        تصویر:
         عرض=120
         منبع=«https://editor.salamlang.ir/images/favicon.svg»
+      تمام
       تمام
     تمام
     جعبه:
