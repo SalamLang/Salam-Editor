@@ -99,7 +99,7 @@ const captureOutput = (args) => {
   }
 };
 
-window.captureLint = (args) => {
+window.captureLint = () => {
   if (outputPre) outputPre.textContent = "";
   if (errorPre) errorPre.textContent = "";
 
@@ -112,7 +112,7 @@ window.captureLint = (args) => {
 
     if (typeof callMain === "function") {
       try {
-        callMain(args);
+        callMain(["lint", "code", localStorage.getItem("code")]);
         localStorage.setItem("code", window.code);
         window.code = "";
       } catch (err) {
