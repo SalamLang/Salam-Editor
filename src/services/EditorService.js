@@ -1,3 +1,55 @@
+const default_code = `صفحه:
+جهت = «راست به چپ» 
+رنگ پس زمینه = «سفید»
+قلم:
+  نام = «استعداد»
+  منبع = «https://editor.salamlang.ir/fonts/Estedad-Light.ttf»
+تمام
+
+سراسری:
+  نام قلم=«استعداد»
+تمام
+
+جعبه:   
+  عرض=«100%»   
+  ارتفاع=60 
+  رنگ پس زمینه=«سفید»
+  سایه جعبه=«0 0 15px -10px black» 
+  گردی=20 
+  مرز=«1px solid lightgrey»
+  محتوا=«به سلام خوش اومدی»
+  قرارگیری=«فلکس»
+  توجیه محتوا=«مرکز»
+  تراز محتوا=«مرکز»
+  اندازه قلم=22
+تمام
+جعبه:
+  قرارگیری=«فلکس»
+  تراز محتوا=«مرکز»
+  توجیه محتوا=«مرکز»
+  فاصله بالا=20
+  پیوند: 
+    منبع=«https://salamlang.ir»
+    تصویر:
+    عرض=120
+    منبع=«https://editor.salamlang.ir/images/favicon.svg»
+  تمام
+  تمام
+تمام
+جعبه:
+  قرارگیری=«فلکس»
+  تراز محتوا=«مرکز»
+  توجیه محتوا=«مرکز»
+  فاصله بالا=20
+  پاراگراف:
+    وزن قلم=700
+    اندازه قلم=25
+    رنگ=«نارنجی تیره» 
+    محتوا=«سلام اولین زبان برنامه برنامه نویسی فارسی!!»
+  تمام
+تمام
+تمام`;
+
 const EditorService = (autoCompleteData, callback) => {
   const CM = window?.CM;
   if (!CM) {
@@ -65,7 +117,10 @@ Value {
 
 @tokens {
   String { '"' (!["\\\\] | "\\\\" _)* '"' | "«" (!["\\\\»] | "\\\\" _)* "»" }
-  Comment { "//" ![\\n]* }
+  Comment {
+    "//" ![\\n]* |
+    "/*" ( (!"*/" any)* ) "*/"
+  }
   Number { ($[0-9\u0660-\u0669\u06F0-\u06F9])+ ("." ($[0-9\u0660-\u0669\u06F0-\u06F9])+)? }
   Start { ":" }
   Equal { "=" }
@@ -114,8 +169,11 @@ Value {
       ],
     }),
     languageData: {
-      // commentTokens: { line: ";" }
-    },
+      commentTokens: {
+        line: "//",
+        block: { open: "/*", close: "*/" }
+      }
+    }
   });
 
   const exampleCompletion = SALAMLanguage.data.of({
@@ -142,12 +200,6 @@ Value {
     return result;
   };
 
-  function customCloseBrackets() {
-    closeBrackets({
-      brackets: ["()", "[]", "{}", "«»"],
-    });
-  }
-
   const editor_options = {
     parent: elm_editor,
     styleActiveLine: true,
@@ -157,6 +209,7 @@ Value {
 
     extensions: [
       basicSetup,
+      closeBrackets({ brackets: "()[]{}«»" }),
       SALAM(),
       autocompletion(),
       keymap.of([
@@ -165,6 +218,7 @@ Value {
           run: (view) => tab(view),
         },
         indentWithTab,
+        ...defaultKeymap,
       ]),
       EditorView.updateListener.of((update) => {
         if (update.changes) {
@@ -175,59 +229,7 @@ Value {
         }
       }),
     ],
-    doc:
-      localStorage.getItem("code") ??
-      `صفحه:
-    جهت = «راست به چپ» 
-    رنگ پس زمینه = «سفید»
-    قلم:
-      نام = «استعداد»
-      منبع = «https://editor.salamlang.ir/fonts/Estedad-Light.ttf»
-    تمام
-
-    سراسری:
-      نام قلم=«استعداد»
-    تمام
-
-    جعبه:   
-      عرض=«100%»   
-      ارتفاع=60 
-      رنگ پس زمینه=«سفید»
-      سایه جعبه=«0 0 15px -10px black» 
-      گردی=20 
-      مرز=«1px solid lightgrey»
-      محتوا=«به سلام خوش اومدی»
-      قرارگیری=«فلکس»
-      توجیه محتوا=«مرکز»
-      تراز محتوا=«مرکز»
-      اندازه قلم=22
-    تمام
-    جعبه:
-      قرارگیری=«فلکس»
-      تراز محتوا=«مرکز»
-      توجیه محتوا=«مرکز»
-      فاصله بالا=20
-      پیوند: 
-        منبع=«https://salamlang.ir»
-        تصویر:
-        عرض=120
-        منبع=«https://editor.salamlang.ir/images/favicon.svg»
-      تمام
-      تمام
-    تمام
-    جعبه:
-      قرارگیری=«فلکس»
-      تراز محتوا=«مرکز»
-      توجیه محتوا=«مرکز»
-      فاصله بالا=20
-      پاراگراف:
-        وزن قلم=700
-        اندازه قلم=25
-        رنگ=«نارنجی تیره» 
-        محتوا=«سلام اولین زبان برنامه برنامه نویسی فارسی!!»
-      تمام
-    تمام
-تمام`,
+    doc: localStorage.getItem("code") ?? default_code,
   };
 
   let editor = new EditorView(editor_options).focus();
