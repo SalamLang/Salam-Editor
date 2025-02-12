@@ -4,7 +4,7 @@ const useAttr = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch("/src/data/attr.json").then((response) => {
+    fetch("/data/attr.json").then((response) => {
       response.json().then((data) => {
         let result = data.items.map((item, index) => {
           if (index !== 0) {

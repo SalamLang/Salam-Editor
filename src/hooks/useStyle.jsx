@@ -4,7 +4,7 @@ const useStyle = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch("/src/data/style.json").then((response) => {
+    fetch("/data/style.json").then((response) => {
       response.json().then((data) => {
         let result = data.items.map((item, index) => {
           if (index !== 258) {
