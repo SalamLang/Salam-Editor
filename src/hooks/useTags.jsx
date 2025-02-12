@@ -5,7 +5,7 @@ const useTags = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch("/src/data/tags.json").then((response) => {
+    fetch("/data/tags.json").then((response) => {
       response.json().then((data) => {
         let result = data.items.map((item) => {
           return item.text.fa.map((item2, index) => {
