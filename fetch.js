@@ -23,7 +23,7 @@ urls.forEach((item) => {
       JSON.stringify(d.data, null, 2),
       (error) => {
         if (error) {
-          console.error("Error : ", err);
+          console.error("Error : ", error);
         } else {
           console.log("Data Saved and File Saved");
         }
