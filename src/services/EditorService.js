@@ -200,13 +200,15 @@ Value {
     return result;
   };
 
+  console.log(closeBrackets);
+
   const editor_options = {
     parent: elm_editor,
     styleActiveLine: true,
     lineNumbers: true,
     matchBrackets: true,
     viewportMargin: Infinity,
-
+    autoCloseBrackets: true,
     extensions: [
       basicSetup,
       closeBrackets({ brackets: "()[]{}«»" }),
