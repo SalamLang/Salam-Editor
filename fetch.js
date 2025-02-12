@@ -22,7 +22,11 @@ urls.forEach((item) => {
       "src/data/" + item.fileName,
       JSON.stringify(d.data, null, 2),
       (error) => {
-        console.log(error);
+        if (error) {
+          console.error("Error : ", err);
+        } else {
+          console.log("Data Saved and File Saved");
+        }
       },
     );
   });
