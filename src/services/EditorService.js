@@ -124,6 +124,8 @@ Value {
     },
   });
 
+  // SALAMLanguage.data.of({closeBrackets: {brackets: ["(", "[", "{", "'", '"', "«"]}})
+
   const exampleCompletion = SALAMLanguage.data.of({
     autocomplete: completeFromList(autoCompleteData()),
   });
