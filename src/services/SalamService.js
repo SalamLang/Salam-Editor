@@ -99,7 +99,7 @@ const captureOutput = (args) => {
   }
 };
 
-window.captureLint = () => {
+window.captureLint = (callback) => {
   if (outputPre) outputPre.textContent = "";
   if (errorPre) errorPre.textContent = "";
 
@@ -114,6 +114,7 @@ window.captureLint = () => {
       try {
         callMain(["lint", "code", localStorage.getItem("code")]);
         localStorage.setItem("code", window.code);
+        callback();
         window.code = "";
       } catch (err) {
         Module.printErr("Runtime error: " + err);
