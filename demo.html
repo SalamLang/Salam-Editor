@@ -8,20 +8,12 @@
 <script src="/src/scripts/salam-wa.js"></script>
 <script>
     const code = `
-layout:
-    box:
-        background color = "red"
-        content = "Hello, World"
-        font size = "50px"
-
-        hover:
-            background color = "yellow"
-        end
-    end
-end
+لایه:
+    محتوا=«سلام حالت خوبه»
+تمام
 `;
 
-    const res = window.mainSalam(["generator", "code", code, "--lang", "en"]);
+    const res = window.mainSalam(["generator", "code", code, "--lang", "fa"]);
     // console.log(res);
 
     if (res === 0) {
