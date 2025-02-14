@@ -21,37 +21,7 @@
   </head>
   <body class="bg-[#ff5b00]/5 dark:bg-[#22272E]">
     <div id="root"></div>
+    <script src="/src/scripts/salam-wa.js"></script>
     <script type="module" src="/src/main.jsx"></script>
-    <script>
-      const salam = () => {
-        var Module = window.Module
-
-        if (Module) {
-          const script = document.createElement("script");
-          script.src = "salam-wa.js";
-          script.onload = () => {
-            console.log(
-                    "%c1.salam loaded in index success",
-                    `
-                      padding: 3px 10px;
-                      border-radius: 5px;
-                      color: white;
-                      background-color: #00BC1C;
-                      font-family: estedad, sansserif;
-                      font-size: 15px;
-                    `
-            )
-          };
-
-          document.body.appendChild(script);
-        }else {
-          setTimeout(() => {
-            salam()
-          }, 100)
-        }
-      }
-
-      salam()
-    </script>
   </body>
 </html>

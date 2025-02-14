@@ -16,7 +16,7 @@ let isReady = false;
 let is_running = false;
 
 const runProject = () => {
-    captureOutput(code);
+    captureOutput(codeInput);
 };
 
 const captureOutput = (code) => {
@@ -47,22 +47,15 @@ const captureOutput = (code) => {
                 console.error("Compilation errors:", errors);
             }
         }
-        // if (iframe) {
-        //   const iframeDocument =
-        //     iframe.contentDocument || iframe.contentWindow.document;
-        //
-        //   if (iframeDocument) {
-        //     iframe.srcdoc = "";
-        //     iframe.srcdoc = window.code ?? "";
-        //     if (window.code.startsWith("===> Toke")) {
-        //       iframe.srcdoc = "";
-        //       // toast.error("خطا: ورود کاراکتر اشتباه", {
-        //       //   position: "bottom-center",
-        //       // });
-        //     }
-        //     window.code = "";
-        //   }
-        // }
+        if (iframe) {
+          const iframeDocument =
+            iframe.contentDocument || iframe.contentWindow.document;
+
+          if (iframeDocument) {
+            iframe.srcdoc = "";
+            iframe.srcdoc = (window.generator.getGeneratedSource() + " " + window.generator.getGeneratedSourceC())
+          }
+        }
     } finally {
         is_running = false;
     }
