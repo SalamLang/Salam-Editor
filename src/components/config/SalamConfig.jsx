@@ -61,11 +61,6 @@ const SalamConfig = () => {
                 toast.remove(id);
                 setIsTrue(true);
                 console.log(isTrue);
-                if (text === '<a href="https://salamlang.ir">') {
-                    window.code += "<a href=\"https://salamlang.ir\" target='_blank'>";
-                } else {
-                    window.code += text;
-                }
                 window.true = true;
                 console.log(
                     "%cprint-Log => " + text,

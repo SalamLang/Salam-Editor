@@ -31,8 +31,16 @@ const captureOutput = (code) => {
         const res = window.mainSalam(["generator", "code", code, "--lang", localStorage?.getItem("lang")]);
 
         if (res === 0) {
-            console.log(window.generator.getGeneratedSource());
-            console.log(window.generator.getGeneratedSourceC());
+            window.Module.print("running")
+            if (iframe) {
+                const iframeDocument =
+                    iframe.contentDocument || iframe.contentWindow.document;
+
+                if (iframeDocument) {
+                    iframe.srcdoc = "";
+                    iframe.srcdoc = (window.generator.getGeneratedSource() + " " + window.generator.getGeneratedSourceC())
+                }
+            }
         } else {
             const errors = [
                 ...(Array.isArray(window.generator?.errors) ? window.generator.errors : []),
@@ -44,16 +52,6 @@ const captureOutput = (code) => {
                 console.error("Compilation errors:", errors);
                 window.Module.printErr(errors[0])
             }
-        }
-
-        if (iframe) {
-          const iframeDocument =
-            iframe.contentDocument || iframe.contentWindow.document;
-
-          if (iframeDocument) {
-            iframe.srcdoc = "";
-            iframe.srcdoc = (window.generator.getGeneratedSource() + " " + window.generator.getGeneratedSourceC())
-          }
         }
     } finally {
         is_running = false;
