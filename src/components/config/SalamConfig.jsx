@@ -95,7 +95,7 @@ const SalamConfig = () => {
         );
 
         if (!text.startsWith("program exited")) {
-          toast.remove(id ?? 0);
+          toast.remove(id ?? "0");
 
           id = toast.custom(<ToastMessage text={text} />, {
             position: "bottom-center",

@@ -12,7 +12,6 @@ const SalamService = (code, ifr, err, out) => {
     runProject();
 };
 
-let isReady = false;
 let is_running = false;
 
 const runProject = () => {
@@ -35,18 +34,18 @@ const captureOutput = (code) => {
             console.log(window.generator.getGeneratedSource());
             console.log(window.generator.getGeneratedSourceC());
         } else {
-            // Merge the error arrays only if they exist and are valid arrays
             const errors = [
                 ...(Array.isArray(window.generator?.errors) ? window.generator.errors : []),
                 ...(Array.isArray(window.parser?.ast?.errors) ? window.parser.ast.errors : []),
                 ...(Array.isArray(window.validator?.errors) ? window.validator.errors : [])
             ];
 
-            // Check if the merged errors array is non-empty and log it as an error
             if (errors.length > 0) {
                 console.error("Compilation errors:", errors);
+                window.Module.printErr(errors[0])
             }
         }
+
         if (iframe) {
           const iframeDocument =
             iframe.contentDocument || iframe.contentWindow.document;
