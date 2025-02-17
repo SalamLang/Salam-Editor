@@ -1,27 +1,40 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>سلام - ادیتور</title>
     <link rel="stylesheet" href="./src/styles/style.css">
     <script>
-      const theme = localStorage?.getItem("theme")
-      const doc = document.documentElement
+        const theme = localStorage?.getItem("theme")
+        const doc = document.documentElement
 
-      if (theme) {
-        if (theme === "dark") {
-          doc.classList.add("dark")
-        }else if (theme === "light") {
-          doc.classList.remove("dark")
+        if (theme) {
+            if (theme === "dark") {
+                doc.classList.add("dark")
+            } else if (theme === "light") {
+                doc.classList.remove("dark")
+            }
         }
-      }
     </script>
-  </head>
-  <body class="bg-[#ff5b00]/5 dark:bg-[#22272E]">
-    <div id="root"></div>
-    <script src="/src/scripts/salam-wa.js"></script>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+</head>
+<body class="bg-[#ff5b00]/5 dark:bg-[#22272E]">
+<div id="root"></div>
+<script src="/src/scripts/salam-wa.js"></script>
+<script type="module" src="/src/main.jsx"></script>
+<script>
+    const interval = setInterval(() => {
+        if (typeof window.mainSalam !== "undefined") {
+            const interval2 = setInterval(() => {
+                if (typeof window.Module !== "undefined") {
+                    window.Module.onRuntimeInitialized()
+                    clearInterval(interval2)
+                }
+            }, 100);
+            clearInterval(interval)
+        }
+    }, 100);
+</script>
+</body>
 </html>

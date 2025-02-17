@@ -98,7 +98,8 @@ const Editor = () => {
       );
     }
 
-    if (window.isReady !== true) {
+    if (window.isReady !== true || window.isReady === undefined) {
+      console.log(window.isReady)
       let intId = setInterval(() => {
         if (window.isReady === true) {
           console.log(window.isReady);
@@ -110,6 +111,7 @@ const Editor = () => {
           );
           clearInterval(intId);
         }
+        console.log(window.isReady)
       }, 1000);
     }
   }, [attr, location, style, tags]);
