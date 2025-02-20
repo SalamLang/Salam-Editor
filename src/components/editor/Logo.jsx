@@ -54,7 +54,7 @@ const Logo = () => {
             src="/images/favicon.svg"
             alt="salam logo"
             className={
-              "w-[40px] z-[10] absolute top-[0px] " +
+              "w-[42px] z-[10] absolute top-[0px] " +
               (localStorage?.getItem("lang") === "fa"
                 ? " right-[5px] "
                 : " left-[5px] ")
@@ -67,7 +67,7 @@ const Logo = () => {
         <>
           <div
             className={
-              "p-1 rounded-full w-[40px] bg-white cursor-pointer h-[40px] absolute top-0 " +
+              "p-1 rounded-full w-[42px] bg-white cursor-pointer h-[40px] absolute top-0 " +
               (localStorage?.getItem("lang") === "fa"
                 ? " right-[5px] "
                 : " left-[5px] ")
