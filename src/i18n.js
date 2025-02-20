@@ -40,6 +40,7 @@ const resources = {
                 So why don't you do your job sooner? It's time for immigrants!
                 <br />
                 But this time to hello, not to...`,
+      loading: "Loading..."
     },
   },
   fa: {
@@ -85,6 +86,7 @@ const resources = {
                 پس چرا زودتر کاراتو نمیکنی؟ وقت وقت مهاجراته ها!
                 <br />
                 اما اینبار به سلام نه به ...`,
+      loading: "منتظر بمانید..."
     },
   },
 };
