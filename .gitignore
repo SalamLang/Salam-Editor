@@ -1,3 +1,13 @@
+# Dist
+dist/*.wasm
+dist/*.js
+dist/*.html
+dist/data
+dist/assets
+dist/fonts
+dist/images
+dist/styles
+
 # Logs
 logs
 *.log
